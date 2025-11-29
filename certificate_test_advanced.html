@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>発展編修了証 - ICT支援員教育講座</title>
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        body {
+            background: linear-gradient(135deg, #fdf2f8 0%, #fff 100%);
+            min-height: 100vh;
+            padding: 2rem 0;
+        }
+        
+        .certificate-container {
+            max-width: 900px;
+            margin: 2rem auto;
+            padding: 3rem;
+            background: white;
+            border-radius: 1rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            border: 8px solid;
+            border-image: linear-gradient(135deg, #ec4899, #db2777, #be185d) 1;
+        }
+        
+        .certificate-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+        
+        .certificate-logo {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+        }
+        
+        .certificate-title {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: #ec4899;
+            margin: 1rem 0;
+            letter-spacing: 0.1em;
+        }
+        
+        .certificate-subtitle {
+            font-size: 1.5rem;
+            color: #666;
+            margin: 0.5rem 0;
+        }
+        
+        .certificate-body {
+            padding: 2rem;
+            text-align: center;
+        }
+        
+        .recipient-section {
+            margin: 2rem 0;
+            padding: 2rem;
+            background: linear-gradient(135deg, #fdf2f8 0%, #fce7f3 100%);
+            border-radius: 0.5rem;
+        }
+        
+        .recipient-label {
+            font-size: 1.2rem;
+            color: #666;
+            margin-bottom: 0.5rem;
+        }
+        
+        .recipient-name {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #333;
+            border-bottom: 2px solid #ec4899;
+            display: inline-block;
+            padding: 0.5rem 2rem;
+            min-width: 300px;
+        }
+        
+        .certificate-content {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #444;
+            margin: 2rem 0;
+            text-align: left;
+        }
+        
+        .achievement-section {
+            background: #f9fafb;
+            padding: 1.5rem;
+            border-radius: 0.5rem;
+            margin: 2rem 0;
+            border-left: 4px solid #ec4899;
+        }
+        
+        .achievement-title {
+            font-size: 1.3rem;
+            font-weight: bold;
+            color: #ec4899;
+            margin-bottom: 1rem;
+        }
+        
+        .achievement-list {
+            text-align: left;
+            margin-left: 2rem;
+        }
+        
+        .achievement-list li {
+            margin: 0.5rem 0;
+            color: #555;
+        }
+        
+        .score-display {
+            display: inline-block;
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 0.5rem;
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin: 1rem 0;
+        }
+        
+        .certificate-footer {
+            margin-top: 3rem;
+            display: flex;
+            justify-content: space-around;
+            align-items: flex-end;
+        }
+        
+        .signature-section {
+            text-align: center;
+        }
+        
+        .signature-line {
+            border-top: 2px solid #333;
+            width: 200px;
+            margin: 2rem auto 0.5rem;
+        }
+        
+        .signature-label {
+            font-size: 0.9rem;
+            color: #666;
+        }
+        
+        .certificate-date {
+            font-size: 1.1rem;
+            color: #666;
+            margin-top: 2rem;
+        }
+        
+        .certificate-seal {
+            width: 120px;
+            height: 120px;
+            background: linear-gradient(135deg, #ec4899, #db2777);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1rem;
+            font-weight: bold;
+            text-align: center;
+            line-height: 1.4;
+            box-shadow: 0 4px 10px rgba(236, 72, 153, 0.3);
+            margin: 0 auto;
+        }
+        
+        .action-buttons {
+            text-align: center;
+            margin-top: 2rem;
+            padding-top: 2rem;
+            border-top: 2px dashed #ddd;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 1rem 2rem;
+            margin: 0.5rem;
+            border-radius: 0.5rem;
+            text-decoration: none;
+            font-weight: bold;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        
+        .btn:hover {
+            transform: translateY(-2px);
+        }
+        
+        .btn-print {
+            background: linear-gradient(135deg, #ec4899 0%, #db2777 100%);
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+        
+        .btn-print:hover {
+            box-shadow: 0 6px 12px rgba(236, 72, 153, 0.3);
+        }
+        
+        .btn-download {
+            background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%);
+            color: white;
+        }
+        
+        .btn-home {
+            background: #6b7280;
+            color: white;
+        }
+        
+        @media print {
+            body {
+                background: white;
+            }
+            
+            .action-buttons, .navbar, footer {
+                display: none;
+            }
+            
+            .certificate-container {
+                box-shadow: none;
+                margin: 0;
+                padding: 2rem;
+            }
+        }
+        
+        .special-message {
+            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+            border: 2px solid #f59e0b;
+            border-radius: 0.5rem;
+            padding: 1.5rem;
+            margin: 2rem 0;
+            text-align: center;
+        }
+        
+        .special-message-icon {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .special-message-text {
+            font-size: 1.1rem;
+            font-weight: bold;
+            color: #92400e;
+            line-height: 1.6;
+        }
+    </style>
+</head>
+<body>
+    <header class="no-print">
+        <nav class="navbar">
+            <div class="container">
+                <div class="logo">
+                    <h1>🎓 ICT支援員教育講座</h1>
+                </div>
+                <ul class="nav-menu">
+                    <li><a href="index.html">ホーム</a></li>
+                    <li><a href="beginner.html">入門編</a></li>
+                    <li><a href="intermediate.html">基礎編</a></li>
+                    <li><a href="intermediate2.html">中級編</a></li>
+                    <li><a href="advanced.html" class="active">発展編</a></li>
+                    <li><a href="resources.html">参考資料</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <div class="certificate-container" id="certificate">
+        <div class="certificate-header">
+            <div class="certificate-logo">🏆</div>
+            <h1 class="certificate-title">修了証</h1>
+            <p class="certificate-subtitle">Certificate of Completion</p>
+        </div>
+
+        <div class="certificate-body">
+            <div class="recipient-section">
+                <p class="recipient-label">氏名 / Name</p>
+                <div class="recipient-name" id="recipientName" contenteditable="true" style="outline: none;">
+                    氏名を入力してください
+                </div>
+            </div>
+
+            <div class="certificate-content">
+                <p style="text-align: center; font-size: 1.2rem; margin-bottom: 2rem;">
+                    上記の方は、ICT支援員・企画員のための教育講座<br>
+                    <strong style="color: #ec4899; font-size: 1.4rem;">発展編（第25回～第36回）</strong><br>
+                    の全課程を修了し、確認テストに合格されたことを証します。
+                </p>
+
+                <div class="score-display" id="scoreDisplay">
+                    正答率: <span id="percentage">--</span>%（<span id="correct">--</span>/<span id="total">--</span>問正解）
+                </div>
+
+                <div class="achievement-section">
+                    <div class="achievement-title">📚 修得した専門知識とスキル</div>
+                    <ul class="achievement-list">
+                        <li><strong>教育DXの推進</strong> - デジタル変革の全体像とロードマップの理解</li>
+                        <li><strong>高度なネットワーク管理</strong> - インフラ整備とゼロトラストセキュリティ</li>
+                        <li><strong>授業設計支援</strong> - バックワードデザインとカリキュラムマネジメント</li>
+                        <li><strong>STEAM教育とデータサイエンス</strong> - デザイン思考と先端技術活用</li>
+                        <li><strong>特別支援教育の高度な支援技術</strong> - アイトラッキング等の最新技術</li>
+                        <li><strong>情報セキュリティとガバナンス</strong> - CSIRT、リスクマネジメント</li>
+                        <li><strong>教員研修企画と推進リーダー育成</strong> - コーチング、メンタリング</li>
+                        <li><strong>チェンジマネジメント</strong> - 組織変革理論と実践</li>
+                        <li><strong>教育データの活用と分析</strong> - ラーニングアナリティクス、BIツール</li>
+                        <li><strong>プロジェクトマネジメント</strong> - WBS、TCO、ステークホルダー管理</li>
+                        <li><strong>地域連携と広域支援体制</strong> - コミュニティオブプラクティス構築</li>
+                        <li><strong>政策理解と研究実践</strong> - アクションリサーチ、学会発表、未来展望</li>
+                    </ul>
+                </div>
+
+                <div class="special-message">
+                    <div class="special-message-icon">🌟</div>
+                    <div class="special-message-text">
+                        あなたは教育DX推進のリーダーとして、<br>
+                        学校や地域の教育を変革する力を身につけました。<br>
+                        これからの実践と継続的な学びを通じて、<br>
+                        日本の教育の未来を創造してください。
+                    </div>
+                </div>
+            </div>
+
+            <div class="certificate-date" id="issueDate"></div>
+
+            <div class="certificate-footer">
+                <div class="signature-section">
+                    <div class="certificate-seal">
+                        <div>
+                            ICT支援員<br>
+                            教育講座<br>
+                            認定
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="signature-section">
+                    <div class="signature-line"></div>
+                    <p class="signature-label">ICT支援員教育講座 運営事務局</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="action-buttons no-print">
+        <button onclick="window.print()" class="btn btn-print">
+            🖨️ 印刷する
+        </button>
+        <button onclick="downloadCertificate()" class="btn btn-download">
+            💾 PDFとして保存
+        </button>
+        <a href="advanced.html" class="btn btn-home">
+            🏠 発展編トップに戻る
+        </a>
+    </div>
+
+    <footer class="no-print">
+        <div class="container">
+            <p>&copy; 2025 ICT支援員・企画員のための教育講座. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // URLパラメータから成績を取得
+        const urlParams = new URLSearchParams(window.location.search);
+        const percentage = urlParams.get('score') || '--';
+        const correct = urlParams.get('correct') || '--';
+        const total = urlParams.get('total') || '--';
+
+        // 成績を表示
+        document.getElementById('percentage').textContent = percentage;
+        document.getElementById('correct').textContent = correct;
+        document.getElementById('total').textContent = total;
+
+        // 発行日を表示
+        const today = new Date();
+        const dateStr = `${today.getFullYear()}年${today.getMonth() + 1}月${today.getDate()}日`;
+        document.getElementById('issueDate').textContent = `発行日：${dateStr}`;
+
+        // ローカルストレージから名前を取得（以前入力していた場合）
+        const savedName = localStorage.getItem('certificateName');
+        if (savedName) {
+            document.getElementById('recipientName').textContent = savedName;
+        }
+
+        // 名前を保存
+        document.getElementById('recipientName').addEventListener('blur', function() {
+            const name = this.textContent.trim();
+            if (name && name !== '氏名を入力してください') {
+                localStorage.setItem('certificateName', name);
+            }
+        });
+
+        // PDF保存（印刷ダイアログを開く）
+        function downloadCertificate() {
+            const name = document.getElementById('recipientName').textContent.trim();
+            if (name === '氏名を入力してください' || !name) {
+                alert('氏名を入力してください。');
+                document.getElementById('recipientName').focus();
+                return;
+            }
+            
+            // 印刷ダイアログを開く
+            window.print();
+        }
+
+        // 名前欄をクリックした時のプレースホルダー処理
+        document.getElementById('recipientName').addEventListener('focus', function() {
+            if (this.textContent === '氏名を入力してください') {
+                this.textContent = '';
+            }
+        });
+
+        document.getElementById('recipientName').addEventListener('blur', function() {
+            if (this.textContent.trim() === '') {
+                this.textContent = '氏名を入力してください';
+            }
+        });
+    </script>
+</body>
+</html>

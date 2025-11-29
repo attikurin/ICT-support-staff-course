@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>中級編確認テスト合格証 - ICT支援員教育講座</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Yu Gothic', 'Hiragino Kaku Gothic ProN', 'Meiryo', sans-serif;
+            background: linear-gradient(135deg, #06b6d4 0%, #0891b2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 2rem;
+        }
+
+        .certificate-container {
+            background: white;
+            max-width: 900px;
+            width: 100%;
+            padding: 4rem 3rem;
+            border-radius: 1rem;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .certificate-container::before {
+            content: '';
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            right: 20px;
+            bottom: 20px;
+            border: 3px solid #06b6d4;
+            border-radius: 0.5rem;
+            pointer-events: none;
+        }
+
+        .certificate-container::after {
+            content: '';
+            position: absolute;
+            top: 30px;
+            left: 30px;
+            right: 30px;
+            bottom: 30px;
+            border: 1px solid #cffafe;
+            border-radius: 0.3rem;
+            pointer-events: none;
+        }
+
+        .certificate-header {
+            text-align: center;
+            margin-bottom: 2rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .certificate-icon {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+        }
+
+        .certificate-type {
+            font-size: 1.8rem;
+            color: #06b6d4;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+            letter-spacing: 0.1em;
+        }
+
+        .certificate-title {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: #1e293b;
+            margin-bottom: 1rem;
+            letter-spacing: 0.05em;
+        }
+
+        .certificate-body {
+            margin: 3rem 0;
+            position: relative;
+            z-index: 1;
+        }
+
+        .recipient-section {
+            text-align: center;
+            margin-bottom: 2.5rem;
+        }
+
+        .recipient-label {
+            font-size: 1rem;
+            color: #64748b;
+            margin-bottom: 0.5rem;
+        }
+
+        .recipient-name {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #1e293b;
+            padding: 0.5rem 2rem;
+            border-bottom: 2px solid #06b6d4;
+            display: inline-block;
+            min-width: 300px;
+            text-align: center;
+        }
+
+        .recipient-name:focus {
+            outline: none;
+            background: #ecfeff;
+            border-radius: 0.3rem 0.3rem 0 0;
+        }
+
+        .certificate-text {
+            text-align: center;
+            font-size: 1.2rem;
+            line-height: 2;
+            color: #334155;
+            margin: 2rem 0;
+        }
+
+        .achievement-badge {
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+            color: white;
+            padding: 1.5rem;
+            border-radius: 0.5rem;
+            text-align: center;
+            margin: 2rem auto;
+            max-width: 600px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            box-shadow: 0 4px 6px rgba(16, 185, 129, 0.3);
+        }
+
+        .test-details {
+            background: #f8fafc;
+            padding: 1.5rem;
+            border-radius: 0.5rem;
+            border-left: 4px solid #06b6d4;
+            margin: 2rem 0;
+        }
+
+        .test-details h3 {
+            color: #06b6d4;
+            font-size: 1.1rem;
+            margin-bottom: 1rem;
+        }
+
+        .test-details ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .test-details li {
+            padding: 0.5rem 0;
+            color: #475569;
+            font-size: 1rem;
+        }
+
+        .test-details strong {
+            color: #1e293b;
+            font-weight: bold;
+        }
+
+        .score-display {
+            text-align: center;
+            margin: 2rem 0;
+        }
+
+        .score-label {
+            font-size: 1rem;
+            color: #64748b;
+            margin-bottom: 0.5rem;
+        }
+
+        .score-value {
+            font-size: 3rem;
+            font-weight: bold;
+            color: #10b981;
+            text-shadow: 2px 2px 4px rgba(16, 185, 129, 0.2);
+        }
+
+        .certificate-footer {
+            margin-top: 3rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            position: relative;
+            z-index: 1;
+        }
+
+        .date-section {
+            text-align: left;
+        }
+
+        .date-label {
+            font-size: 0.9rem;
+            color: #64748b;
+            margin-bottom: 0.5rem;
+        }
+
+        .date-value {
+            font-size: 1.1rem;
+            color: #1e293b;
+            padding: 0.3rem 1rem;
+            border-bottom: 1px solid #cbd5e1;
+            display: inline-block;
+            min-width: 200px;
+        }
+
+        .date-value:focus {
+            outline: none;
+            background: #ecfeff;
+            border-radius: 0.3rem 0.3rem 0 0;
+        }
+
+        .signature-section {
+            text-align: right;
+        }
+
+        .signature-title {
+            font-size: 0.9rem;
+            color: #64748b;
+            margin-bottom: 0.5rem;
+        }
+
+        .signature-name {
+            font-size: 1.3rem;
+            font-weight: bold;
+            color: #1e293b;
+            margin-bottom: 0.3rem;
+        }
+
+        .signature-position {
+            font-size: 0.9rem;
+            color: #64748b;
+        }
+
+        .action-buttons {
+            text-align: center;
+            margin-top: 2rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 1rem 2rem;
+            margin: 0.5rem;
+            border-radius: 0.5rem;
+            text-decoration: none;
+            font-weight: bold;
+            transition: transform 0.2s, box-shadow 0.2s;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #06b6d4 0%, #0891b2 100%);
+            color: white;
+            box-shadow: 0 4px 6px rgba(6, 182, 212, 0.3);
+        }
+
+        .btn-primary:hover {
+            box-shadow: 0 6px 12px rgba(6, 182, 212, 0.4);
+        }
+
+        .btn-secondary {
+            background: white;
+            color: #06b6d4;
+            border: 2px solid #06b6d4;
+        }
+
+        .btn-secondary:hover {
+            background: #ecfeff;
+        }
+
+        .watermark {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) rotate(-45deg);
+            font-size: 6rem;
+            color: rgba(6, 182, 212, 0.03);
+            font-weight: bold;
+            pointer-events: none;
+            z-index: 0;
+            white-space: nowrap;
+        }
+
+        @media print {
+            body {
+                background: white;
+                padding: 0;
+            }
+
+            .certificate-container {
+                box-shadow: none;
+                max-width: none;
+                page-break-inside: avoid;
+            }
+
+            .action-buttons {
+                display: none;
+            }
+
+            .recipient-name, .date-value {
+                border-bottom: 1px solid #000;
+            }
+        }
+
+        @media (max-width: 768px) {
+            body {
+                padding: 1rem;
+            }
+
+            .certificate-container {
+                padding: 2rem 1.5rem;
+            }
+
+            .certificate-title {
+                font-size: 1.8rem;
+            }
+
+            .recipient-name {
+                font-size: 1.5rem;
+                min-width: 200px;
+            }
+
+            .certificate-footer {
+                flex-direction: column;
+                gap: 2rem;
+            }
+
+            .signature-section {
+                text-align: center;
+            }
+
+            .watermark {
+                font-size: 3rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="certificate-container">
+        <div class="watermark">PASSED</div>
+        
+        <div class="certificate-header">
+            <div class="certificate-icon">🏆</div>
+            <div class="certificate-type">CERTIFICATE OF ACHIEVEMENT</div>
+            <h1 class="certificate-title">合格証</h1>
+        </div>
+
+        <div class="certificate-body">
+            <div class="recipient-section">
+                <div class="recipient-label">氏名</div>
+                <div class="recipient-name" contenteditable="true" id="recipientName">山田 太郎</div>
+            </div>
+
+            <div class="certificate-text">
+                上記の方は<br>
+                <strong style="color: #06b6d4; font-size: 1.3rem;">ICT支援員教育講座 中級編 確認テスト</strong><br>
+                に合格したことを証明します
+            </div>
+
+            <div class="score-display">
+                <div class="score-label">テスト得点</div>
+                <div class="score-value" id="scoreDisplay">-</div>
+            </div>
+
+            <div class="achievement-badge">
+                ⭐ 高度な実践スキルとマネジメント能力を習得
+            </div>
+
+            <div class="test-details">
+                <h3>📋 確認テスト概要</h3>
+                <ul>
+                    <li><strong>テスト内容：</strong>中級編全14回の学習内容に関する理解度確認</li>
+                    <li><strong>出題範囲：</strong>
+                        <ul style="margin-left: 1.5rem; margin-top: 0.5rem;">
+                            <li>・授業におけるICT活用の基本パターン（一斉・個別・協働学習）</li>
+                            <li>・個別最適な学びとICT、学習eポートフォリオ</li>
+                            <li>・プログラミング教育と特別支援教育におけるICT</li>
+                            <li>・学習評価とICT、ルーブリック評価</li>
+                            <li>・校務支援システムの活用と運用</li>
+                            <li>・ネットワークとインフラ管理</li>
+                            <li>・アカウント管理とアクセス制御（MDM、多要素認証）</li>
+                            <li>・トラブルシューティング実践とエスカレーション</li>
+                            <li>・研修・研究授業の支援</li>
+                            <li>・情報発信と広報活動</li>
+                            <li>・予算・調達プロセスの理解（TCO、仕様書）</li>
+                            <li>・実践的な課題解決演習（PDCAサイクル）</li>
+                        </ul>
+                    </li>
+                    <li><strong>問題数：</strong>30問（各3.33点）</li>
+                    <li><strong>合格基準：</strong>80点以上（24問以上正解）</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="certificate-footer">
+            <div class="date-section">
+                <div class="date-label">発行日</div>
+                <div class="date-value" contenteditable="true" id="issueDate">2025年1月15日</div>
+            </div>
+
+            <div class="signature-section">
+                <div class="signature-title">講座責任者</div>
+                <div class="signature-name">櫻井</div>
+                <div class="signature-position">ICT支援員教育講座</div>
+            </div>
+        </div>
+
+        <div class="action-buttons">
+            <button onclick="printCertificate()" class="btn btn-primary">🖨️ 印刷する</button>
+            <a href="certificate_intermediate2.html" class="btn btn-secondary">📜 修了証も取得する</a>
+            <a href="intermediate2.html" class="btn btn-secondary">中級編に戻る</a>
+        </div>
+    </div>
+
+    <script>
+        // ページ読み込み時の処理
+        window.addEventListener('load', function() {
+            // テスト結果を取得
+            const savedResult = localStorage.getItem('intermediate2TestResult');
+            
+            if (savedResult) {
+                const result = JSON.parse(savedResult);
+                
+                // スコアを表示
+                document.getElementById('scoreDisplay').textContent = result.score + '点（' + result.correctCount + '/30問正解）';
+                
+                // 合格していない場合は警告
+                if (!result.passed) {
+                    alert('この合格証は80点以上の合格者のみが取得できます。\nまずは確認テストに合格してください。');
+                    // 3秒後にテストページにリダイレクト
+                    setTimeout(function() {
+                        window.location.href = 'test_intermediate2.html';
+                    }, 3000);
+                }
+                
+                // 日付を自動設定
+                const testDate = new Date(result.date);
+                const dateStr = testDate.toLocaleDateString('ja-JP', {
+                    year: 'numeric',
+                    month: 'long',
+                    day: 'numeric'
+                });
+                document.getElementById('issueDate').textContent = dateStr;
+            } else {
+                alert('テスト結果が見つかりません。\n先に確認テストを受験してください。');
+                // 3秒後にテストページにリダイレクト
+                setTimeout(function() {
+                    window.location.href = 'test_intermediate2.html';
+                }, 3000);
+            }
+
+            // 名前フィールドをクリア
+            const nameField = document.getElementById('recipientName');
+            nameField.textContent = '';
+            nameField.focus();
+        });
+
+        // 印刷機能
+        function printCertificate() {
+            // 名前が入力されているかチェック
+            const name = document.getElementById('recipientName').textContent.trim();
+            if (!name) {
+                alert('氏名を入力してください。');
+                document.getElementById('recipientName').focus();
+                return;
+            }
+
+            // 現在の日付を自動入力（まだ編集されていない場合）
+            const dateField = document.getElementById('issueDate');
+            if (!dateField.dataset.edited) {
+                const today = new Date();
+                const dateStr = today.toLocaleDateString('ja-JP', {
+                    year: 'numeric',
+                    month: 'long',
+                    day: 'numeric'
+                });
+                dateField.textContent = dateStr;
+            }
+
+            // 印刷
+            window.print();
+        }
+
+        // 日付フィールドの編集を検知
+        document.getElementById('issueDate').addEventListener('input', function() {
+            this.dataset.edited = 'true';
+        });
+
+        // 名前フィールドのプレースホルダー的な動作
+        const nameField = document.getElementById('recipientName');
+        nameField.addEventListener('focus', function() {
+            if (this.textContent === '山田 太郎') {
+                this.textContent = '';
+            }
+        });
+
+        nameField.addEventListener('blur', function() {
+            if (this.textContent.trim() === '') {
+                this.textContent = '山田 太郎';
+            }
+        });
+    </script>
+</body>
+</html>

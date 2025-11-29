@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>中級編修了証 - ICT支援員教育講座</title>
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        body {
+            background: linear-gradient(135deg, #06b6d4 0%, #0891b2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+        }
+        
+        .certificate-container {
+            background: white;
+            max-width: 900px;
+            width: 100%;
+            padding: 4rem;
+            border-radius: 1rem;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            position: relative;
+            border: 8px solid #06b6d4;
+        }
+        
+        .certificate-border {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            right: 20px;
+            bottom: 20px;
+            border: 2px solid #06b6d4;
+            pointer-events: none;
+        }
+        
+        .certificate-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+        
+        .certificate-icon {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+        }
+        
+        .certificate-title {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: #06b6d4;
+            margin-bottom: 0.5rem;
+        }
+        
+        .certificate-subtitle {
+            font-size: 1.2rem;
+            color: #666;
+        }
+        
+        .recipient-section {
+            text-align: center;
+            margin: 3rem 0;
+        }
+        
+        .recipient-label {
+            font-size: 1rem;
+            color: #666;
+            margin-bottom: 1rem;
+        }
+        
+        .recipient-name {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #333;
+            border-bottom: 2px solid #06b6d4;
+            display: inline-block;
+            min-width: 300px;
+            padding: 0.5rem 2rem;
+            margin-bottom: 2rem;
+        }
+        
+        .certificate-text {
+            text-align: center;
+            font-size: 1.1rem;
+            line-height: 2;
+            color: #333;
+            margin: 2rem 0;
+        }
+        
+        .course-details {
+            background: #f8f9fa;
+            padding: 2rem;
+            border-radius: 0.5rem;
+            margin: 2rem 0;
+        }
+        
+        .course-details h3 {
+            color: #06b6d4;
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+        
+        .course-list {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0.5rem;
+            font-size: 0.9rem;
+            color: #555;
+        }
+        
+        .achievement-badge {
+            background: linear-gradient(135deg, #06b6d4 0%, #0891b2 100%);
+            color: white;
+            padding: 1rem;
+            border-radius: 0.5rem;
+            text-align: center;
+            margin: 2rem 0;
+            font-weight: bold;
+        }
+        
+        .completion-info {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 2px solid #e0e0e0;
+        }
+        
+        .completion-item {
+            text-align: center;
+        }
+        
+        .completion-label {
+            font-size: 0.9rem;
+            color: #666;
+            margin-bottom: 0.5rem;
+        }
+        
+        .completion-value {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #333;
+        }
+        
+        .signature-section {
+            display: flex;
+            justify-content: center;
+            margin-top: 3rem;
+        }
+        
+        .signature-box {
+            text-align: center;
+            margin: 0 2rem;
+        }
+        
+        .signature-line {
+            width: 200px;
+            border-bottom: 2px solid #333;
+            margin: 2rem auto 0.5rem;
+        }
+        
+        .signature-label {
+            font-size: 0.9rem;
+            color: #666;
+        }
+        
+        .print-button {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: white;
+            color: #06b6d4;
+            border: 2px solid #06b6d4;
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.5rem;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 1rem;
+            transition: all 0.3s;
+        }
+        
+        .print-button:hover {
+            background: #06b6d4;
+            color: white;
+        }
+        
+        @media print {
+            body {
+                background: white;
+            }
+            .print-button {
+                display: none;
+            }
+            .certificate-container {
+                box-shadow: none;
+                max-width: 100%;
+                border: 8px solid #06b6d4;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .certificate-container {
+                padding: 2rem;
+            }
+            .certificate-title {
+                font-size: 1.8rem;
+            }
+            .recipient-name {
+                font-size: 1.5rem;
+                min-width: 200px;
+            }
+            .course-list {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <button class="print-button" onclick="window.print()">🖨️ 印刷する</button>
+    
+    <div class="certificate-container">
+        <div class="certificate-border"></div>
+        
+        <div class="certificate-header">
+            <div class="certificate-icon">💎</div>
+            <h1 class="certificate-title">修了証</h1>
+            <p class="certificate-subtitle">Certificate of Completion</p>
+        </div>
+        
+        <div class="recipient-section">
+            <p class="recipient-label">受講者氏名</p>
+            <div class="recipient-name" contenteditable="true">お名前を入力してください</div>
+        </div>
+        
+        <div class="certificate-text">
+            上記の方は、ICT支援員教育講座<br>
+            <strong style="color: #06b6d4; font-size: 1.3rem;">中級編（全14回）</strong><br>
+            を修了したことを証明します
+        </div>
+        
+        <div class="achievement-badge">
+            ⭐ 高度な実践スキルとマネジメント能力を習得
+        </div>
+        
+        <div class="course-details">
+            <h3>📖 学習内容</h3>
+            <div class="course-list">
+                <div>• 第1回：ICT活用の基本パターン</div>
+                <div>• 第2回：協働学習とICT</div>
+                <div>• 第3回：個別最適な学び</div>
+                <div>• 第4回：プログラミング教育</div>
+                <div>• 第5回：特別支援教育とICT</div>
+                <div>• 第6回：学習評価とICT</div>
+                <div>• 第7回：校務支援システム活用</div>
+                <div>• 第8回：ネットワーク管理</div>
+                <div>• 第9回：アカウント管理</div>
+                <div>• 第10回：データ活用と学習分析</div>
+                <div>• 第11回：プロジェクトマネジメント</div>
+                <div>• 第12回：情報セキュリティ</div>
+                <div>• 第13回：教育委員会との連携</div>
+                <div>• 第14回：課題解決演習</div>
+            </div>
+        </div>
+        
+        <div class="completion-info">
+            <div class="completion-item">
+                <div class="completion-label">修了日</div>
+                <div class="completion-value" contenteditable="true">2025年○月○日</div>
+            </div>
+            <div class="completion-item">
+                <div class="completion-label">総学習時間</div>
+                <div class="completion-value">約21時間</div>
+            </div>
+            <div class="completion-item">
+                <div class="completion-label">レベル</div>
+                <div class="completion-value">中級</div>
+            </div>
+        </div>
+        
+        <div class="signature-section">
+            <div class="signature-box">
+                <div class="signature-line"></div>
+                <p class="signature-label">ICT支援員教育講座<br>講座責任者　櫻井</p>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        // 印刷時の日付自動入力
+        window.addEventListener('beforeprint', function() {
+            const dateElements = document.querySelectorAll('.completion-value[contenteditable="true"]');
+            dateElements.forEach(el => {
+                if (el.textContent.includes('○月○日')) {
+                    const today = new Date();
+                    const year = today.getFullYear();
+                    const month = today.getMonth() + 1;
+                    const day = today.getDate();
+                    el.textContent = `${year}年${month}月${day}日`;
+                }
+            });
+        });
+    </script>
+</body>
+</html>

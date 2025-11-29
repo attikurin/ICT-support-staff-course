@@ -1,0 +1,1021 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>入門編確認テスト - ICT支援員教育講座</title>
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        .test-container {
+            max-width: 900px;
+            margin: 2rem auto;
+            padding: 2rem;
+            background: white;
+            border-radius: 1rem;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        
+        .test-header {
+            text-align: center;
+            padding: 2rem;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border-radius: 1rem;
+            margin-bottom: 2rem;
+        }
+        
+        .test-header h1 {
+            margin: 0;
+            font-size: 2rem;
+        }
+        
+        .test-info {
+            background: #f0f4ff;
+            padding: 1.5rem;
+            border-radius: 0.5rem;
+            margin-bottom: 2rem;
+            border-left: 4px solid #667eea;
+        }
+        
+        .test-info h3 {
+            margin-top: 0;
+            color: #667eea;
+        }
+        
+        .question-card {
+            background: white;
+            border: 2px solid #e0e7ff;
+            border-radius: 0.5rem;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        
+        .question-number {
+            display: inline-block;
+            background: #667eea;
+            color: white;
+            padding: 0.3rem 0.8rem;
+            border-radius: 0.3rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+        }
+        
+        .question-text {
+            font-size: 1.1rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+            color: #333;
+        }
+        
+        .options {
+            margin-left: 1rem;
+        }
+        
+        .option {
+            margin: 0.8rem 0;
+            padding: 0.8rem;
+            border-radius: 0.3rem;
+            transition: background 0.2s;
+        }
+        
+        .option:hover {
+            background: #f0f4ff;
+        }
+        
+        .option input[type="radio"] {
+            margin-right: 0.5rem;
+            width: 18px;
+            height: 18px;
+            cursor: pointer;
+        }
+        
+        .option label {
+            cursor: pointer;
+            font-size: 1rem;
+        }
+        
+        .submit-section {
+            text-align: center;
+            margin-top: 3rem;
+            padding: 2rem;
+            background: #f9fafb;
+            border-radius: 0.5rem;
+        }
+        
+        .submit-btn {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 1rem 3rem;
+            font-size: 1.2rem;
+            border-radius: 0.5rem;
+            cursor: pointer;
+            font-weight: bold;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(102, 126, 234, 0.3);
+        }
+        
+        .submit-btn:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+            transform: none;
+        }
+        
+        .result-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.7);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .result-content {
+            background: white;
+            padding: 3rem;
+            border-radius: 1rem;
+            max-width: 600px;
+            text-align: center;
+            animation: slideIn 0.3s ease-out;
+        }
+        
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .result-icon {
+            font-size: 5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .result-title {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            font-weight: bold;
+        }
+        
+        .result-score {
+            font-size: 3rem;
+            font-weight: bold;
+            color: #667eea;
+            margin: 1rem 0;
+        }
+        
+        .result-pass {
+            color: #10b981;
+        }
+        
+        .result-fail {
+            color: #ef4444;
+        }
+        
+        .result-message {
+            font-size: 1.1rem;
+            margin: 1.5rem 0;
+            line-height: 1.6;
+        }
+        
+        .result-buttons {
+            margin-top: 2rem;
+        }
+        
+        .result-btn {
+            display: inline-block;
+            padding: 1rem 2rem;
+            margin: 0.5rem;
+            border-radius: 0.5rem;
+            text-decoration: none;
+            font-weight: bold;
+            transition: transform 0.2s;
+        }
+        
+        .result-btn:hover {
+            transform: translateY(-2px);
+        }
+        
+        .btn-certificate {
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+            color: white;
+        }
+        
+        .btn-retry {
+            background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+            color: white;
+        }
+        
+        .btn-review {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+        
+        .answer-feedback {
+            display: none;
+            margin-top: 1rem;
+            padding: 1rem;
+            border-radius: 0.5rem;
+            font-weight: bold;
+        }
+        
+        .answer-correct {
+            background: #d1fae5;
+            color: #065f46;
+            border-left: 4px solid #10b981;
+        }
+        
+        .answer-incorrect {
+            background: #fee2e2;
+            color: #991b1b;
+            border-left: 4px solid #ef4444;
+        }
+        
+        .progress-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+            transition: width 0.3s;
+            z-index: 999;
+        }
+    </style>
+</head>
+<body>
+    <div class="progress-bar" id="progressBar"></div>
+    
+    <header>
+        <nav class="navbar">
+            <div class="container">
+                <div class="logo">
+                    <h1>🎓 ICT支援員教育講座</h1>
+                </div>
+                <ul class="nav-menu">
+                    <li><a href="index.html">ホーム</a></li>
+                    <li><a href="beginner.html" class="active">入門編</a></li>
+                    <li><a href="intermediate.html">基礎編</a></li>
+                    <li><a href="intermediate2.html">中級編</a></li>
+                    <li><a href="advanced.html">発展編</a></li>
+                    <li><a href="resources.html">参考資料</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <main class="container">
+        <div class="test-container">
+            <div class="test-header">
+                <h1>📝 入門編 確認テスト</h1>
+                <p style="margin: 0.5rem 0 0 0; font-size: 1.1rem;">ICT支援員として必要な基礎知識を確認しましょう</p>
+            </div>
+
+            <div class="test-info">
+                <h3>📋 テスト概要</h3>
+                <ul style="margin: 0.5rem 0;">
+                    <li><strong>問題数：</strong>20問（各5点）</li>
+                    <li><strong>合格基準：</strong>80点以上（16問以上正解）</li>
+                    <li><strong>制限時間：</strong>なし</li>
+                    <li><strong>注意事項：</strong>全ての問題に解答してから「採点する」ボタンを押してください</li>
+                </ul>
+            </div>
+
+            <form id="testForm">
+                <!-- 問題1 -->
+                <div class="question-card">
+                    <span class="question-number">問題 1</span>
+                    <div class="question-text">日本の教育行政において、学校を直接管理・運営する責任を持つのはどこですか？</div>
+                    <div class="options">
+                        <div class="option">
+                            <input type="radio" id="q1a1" name="q1" value="1">
+                            <label for="q1a1">文部科学省</label>
+                        </div>
+                        <div class="option">
+                            <input type="radio" id="q1a2" name="q1" value="2">
+                            <label for="q1a2">中央教育審議会</label>
+                        </div>
+                        <div class="option">
+                            <input type="radio" id="q1a3" name="q1" value="3">
+                            <label for="q1a3">市町村教育委員会</label>
+                        </div>
+                        <div class="option">
+                            <input type="radio" id="q1a4" name="q1" value="4">
+                            <label for="q1a4">都道府県教育委員会</label>
+                        </div>
+                    </div>
+                    <div class="answer-feedback" id="feedback1"></div>
+                </div>
+
+                <!-- 問題2 -->
+                <div class="question-card">
+                    <span class="question-number">問題 2</span>
+                    <div class="question-text">GIGAスクール構想の目標として正しいものはどれですか？</div>
+                    <div class="options">
+                        <div class="option">
+                            <input type="radio" id="q2a1" name="q2" value="1">
+                            <label for="q2a1">教員1人に1台のPCを配備する</label>
+                        </div>
+                        <div class="option">
+                            <input type="radio" id="q2a2" name="q2" value="2">
+                            <label for="q2a2">児童生徒1人1台端末と高速ネットワーク環境の整備</label>
+                        </div>
+                        <div class="option">
+                            <input type="radio" id="q2a3" name="q2" value="3">
+                            <label for="q2a3">全ての授業をオンライン化する</label>
+                        </div>
+                        <div class="option">
+                            <input type="radio" id="q2a4" name="q2" value="4">
+                            <label for="q2a4">紙の教科書を全てデジタル化する</label>
+                        </div>
+                    </div>
+                    <div class="answer-feedback" id="feedback2"></div>
+                </div>
+
+                <!-- 問題3 -->
+                <div class="question-card">
+                    <span class="question-number">問題 3</span>
+                    <div class="question-text">現行学習指導要領（令和版）が育成を目指す資質・能力の3つの柱に含まれないものはどれですか？</div>
+                    <div class="options">
+                        <div class="option">
+                            <input type="radio" id="q3a1" name="q3" value="1">
+                            <label for="q3a1">知識及び技能</label>
+                        </div>
+                        <div class="option">
+                            <input type="radio" id="q3a2" name="q3" value="2">
+                            <label for="q3a2">思考力・判断力・表現力等</label>
+                        </div>
+                        <div class="option">
+                            <input type="radio" id="q3a3" name="q3" value="3">
+                            <label for="q3a3">学びに向かう力・人間性等</label>
+                        </div>
+                        <div class="option">
+                            <input type="radio" id="q3a4" name="q3" value="4">
+                            <label for="q3a4">情報処理能力</label>
+                        </div>
+                    </div>
+                    <div class="answer-feedback" id="feedback3"></div>
+                </div>
+
+                <!-- 問題4 -->
+                <div class="question-card">
+                    <span class="question-number">問題 4</span>
+                    <div class="question-text">情報活用能力は学習指導要領においてどのように位置づけられていますか？</div>
+                    <div class="options">
+                        <div class="option">
+                            <input type="radio" id="q4a1" name="q4" value="1">
+                            <label for="q4a1">特別活動で育成する能力</label>
+                        </div>
+                        <div class="option">
+                            <input type="radio" id="q4a2" name="q4" value="2">
+                            <label for="q4a2">学習の基盤となる資質・能力</label>
+                        </div>
+                        <div class="option">
+                            <input type="radio" id="q4a3" name="q4" value="3">
+                            <label for="q4a3">情報科で育成する専門能力</label>
+                        </div>
+                        <div class="option">
+                            <input type="radio" id="q4a4" name="q4" value="4">
+                            <label for="q4a4">中学校以降で学ぶ能力</label>
+                        </div>
+                    </div>
+                    <div class="answer-feedback" id="feedback4"></div>
+                </div>
+
+                <!-- 問題5 -->
+                <div class="question-card">
+                    <span class="question-number">問題 5</span>
+                    <div class="question-text">ICT支援員の主要業務領域として正しくないものはどれですか？</div>
+                    <div class="options">
+                        <div class="option">
+                            <input type="radio" id="q5a1" name="q5" value="1">
+                            <label for="q5a1">授業支援</label>
+                        </div>
+                        <div class="option">
+                            <input type="radio" id="q5a2" name="q5" value="2">
+                            <label for="q5a2">校務支援</label>
+                        </div>
+                        <div class="option">
+                            <input type="radio" id="q5a3" name="q5" value="3">
+                            <label for="q5a3">教員の人事評価</label>
+                        </div>
+                        <div class="option">
+                            <input type="radio" id="q5a4" name="q5" value="4">
+                            <label for="q5a4">環境整備</label>
+                        </div>
+                    </div>
+                    <div class="answer-feedback" id="feedback5"></div>
+                </div>
+
+                <!-- 問題6 -->
+                <div class="question-card">
+                    <span class="question-number">問題 6</span>
+                    <div class="question-text">GIGAスクール構想で整備された1人1台端末として、主に採用されていないOSはどれですか？</div>
+                    <div class="options">
+                        <div class="option">
+                            <input type="radio" id="q6a1" name="q6" value="1">
+                            <label for="q6a1">iPadOS</label>
+                        </div>
+                        <div class="option">
+                            <input type="radio" id="q6a2" name="q6" value="2">
+                            <label for="q6a2">Chrome OS</label>
+                        </div>
+                        <div class="option">
+                            <input type="radio" id="q6a3" name="q6" value="3">
+                            <label for="q6a3">Windows</label>
+                        </div>
+                        <div class="option">
+                            <input type="radio" id="q6a4" name="q6" value="4">
+                            <label for="q6a4">Linux</label>
+                        </div>
+                    </div>
+                    <div class="answer-feedback" id="feedback6"></div>
+                </div>
+
+                <!-- 問題7 -->
+                <div class="question-card">
+                    <span class="question-number">問題 7</span>
+                    <div class="question-text">MDM（モバイルデバイス管理）の主な役割として正しくないものはどれですか？</div>
+                    <div class="options">
+                        <div class="option">
+                            <input type="radio" id="q7a1" name="q7" value="1">
+                            <label for="q7a1">端末の一括設定と管理</label>
+                        </div>
+                        <div class="option">
+                            <input type="radio" id="q7a2" name="q7" value="2">
+                            <label for="q7a2">アプリケーションの配信</label>
+                        </div>
+                        <div class="option">
+                            <input type="radio" id="q7a3" name="q7" value="3">
+                            <label for="q7a3">セキュリティポリシーの適用</label>
+                        </div>
+                        <div class="option">
+                            <input type="radio" id="q7a4" name="q7" value="4">
+                            <label for="q7a4">児童生徒の成績管理</label>
+                        </div>
+                    </div>
+                    <div class="answer-feedback" id="feedback7"></div>
+                </div>
+
+                <!-- 問題8 -->
+                <div class="question-card">
+                    <span class="question-number">問題 8</span>
+                    <div class="question-text">Google Workspace for Educationに含まれないサービスはどれですか？</div>
+                    <div class="options">
+                        <div class="option">
+                            <input type="radio" id="q8a1" name="q8" value="1">
+                            <label for="q8a1">Google Classroom</label>
+                        </div>
+                        <div class="option">
+                            <input type="radio" id="q8a2" name="q8" value="2">
+                            <label for="q8a2">Google Drive</label>
+                        </div>
+                        <div class="option">
+                            <input type="radio" id="q8a3" name="q8" value="3">
+                            <label for="q8a3">Microsoft Teams</label>
+                        </div>
+                        <div class="option">
+                            <input type="radio" id="q8a4" name="q8" value="4">
+                            <label for="q8a4">Google Meet</label>
+                        </div>
+                    </div>
+                    <div class="answer-feedback" id="feedback8"></div>
+                </div>
+
+                <!-- 問題9 -->
+                <div class="question-card">
+                    <span class="question-number">問題 9</span>
+                    <div class="question-text">教育情報セキュリティポリシーにおける情報セキュリティの3要素に含まれないものはどれですか？</div>
+                    <div class="options">
+                        <div class="option">
+                            <input type="radio" id="q9a1" name="q9" value="1">
+                            <label for="q9a1">機密性（Confidentiality）</label>
+                        </div>
+                        <div class="option">
+                            <input type="radio" id="q9a2" name="q9" value="2">
+                            <label for="q9a2">完全性（Integrity）</label>
+                        </div>
+                        <div class="option">
+                            <input type="radio" id="q9a3" name="q9" value="3">
+                            <label for="q9a3">可用性（Availability）</label>
+                        </div>
+                        <div class="option">
+                            <input type="radio" id="q9a4" name="q9" value="4">
+                            <label for="q9a4">拡張性（Scalability）</label>
+                        </div>
+                    </div>
+                    <div class="answer-feedback" id="feedback9"></div>
+                </div>
+
+                <!-- 問題10 -->
+                <div class="question-card">
+                    <span class="question-number">問題 10</span>
+                    <div class="question-text">学校における個人情報の取り扱いについて、正しい説明はどれですか？</div>
+                    <div class="options">
+                        <div class="option">
+                            <input type="radio" id="q10a1" name="q10" value="1">
+                            <label for="q10a1">教育目的であれば自由に使用できる</label>
+                        </div>
+                        <div class="option">
+                            <input type="radio" id="q10a2" name="q10" value="2">
+                            <label for="q10a2">個人情報保護法の適用を受け、適切な管理が必要</label>
+                        </div>
+                        <div class="option">
+                            <input type="radio" id="q10a3" name="q10" value="3">
+                            <label for="q10a3">教員のみが管理すればよく、ICT支援員は関係ない</label>
+                        </div>
+                        <div class="option">
+                            <input type="radio" id="q10a4" name="q10" value="4">
+                            <label for="q10a4">保護者の同意があればインターネット上に公開できる</label>
+                        </div>
+                    </div>
+                    <div class="answer-feedback" id="feedback10"></div>
+                </div>
+
+                <!-- 問題11 -->
+                <div class="question-card">
+                    <span class="question-number">問題 11</span>
+                    <div class="question-text">情報モラル教育とデジタルシチズンシップの違いとして、最も適切な説明はどれですか？</div>
+                    <div class="options">
+                        <div class="option">
+                            <input type="radio" id="q11a1" name="q11" value="1">
+                            <label for="q11a1">情報モラルは危険回避、デジタルシチズンシップは前向きな活用と社会参画を重視</label>
+                        </div>
+                        <div class="option">
+                            <input type="radio" id="q11a2" name="q11" value="2">
+                            <label for="q11a2">情報モラルは小学校、デジタルシチズンシップは中学校以降で学ぶ</label>
+                        </div>
+                        <div class="option">
+                            <input type="radio" id="q11a3" name="q11" value="3">
+                            <label for="q11a3">情報モラルは日本、デジタルシチズンシップは海外の概念</label>
+                        </div>
+                        <div class="option">
+                            <input type="radio" id="q11a4" name="q11" value="4">
+                            <label for="q11a4">本質的に同じ概念である</label>
+                        </div>
+                    </div>
+                    <div class="answer-feedback" id="feedback11"></div>
+                </div>
+
+                <!-- 問題12 -->
+                <div class="question-card">
+                    <span class="question-number">問題 12</span>
+                    <div class="question-text">著作権法第35条が定める学校での著作物利用について、正しい説明はどれですか？</div>
+                    <div class="options">
+                        <div class="option">
+                            <input type="radio" id="q12a1" name="q12" value="1">
+                            <label for="q12a1">教育目的であれば全ての著作物を自由に利用できる</label>
+                        </div>
+                        <div class="option">
+                            <input type="radio" id="q12a2" name="q12" value="2">
+                            <label for="q12a2">授業目的であれば一定の条件下で著作物を利用できる</label>
+                        </div>
+                        <div class="option">
+                            <input type="radio" id="q12a3" name="q12" value="3">
+                            <label for="q12a3">学校では著作権法の適用を受けない</label>
+                        </div>
+                        <div class="option">
+                            <input type="radio" id="q12a4" name="q12" value="4">
+                            <label for="q12a4">教員のみが利用でき、児童生徒は利用できない</label>
+                        </div>
+                    </div>
+                    <div class="answer-feedback" id="feedback12"></div>
+                </div>
+
+                <!-- 問題13 -->
+                <div class="question-card">
+                    <span class="question-number">問題 13</span>
+                    <div class="question-text">SARTRAS（授業目的公衆送信補償金制度）について、正しい説明はどれですか？</div>
+                    <div class="options">
+                        <div class="option">
+                            <input type="radio" id="q13a1" name="q13" value="1">
+                            <label for="q13a1">学校がインターネット回線を契約するための制度</label>
+                        </div>
+                        <div class="option">
+                            <input type="radio" id="q13a2" name="q13" value="2">
+                            <label for="q13a2">オンライン授業等で著作物を送信する際の補償金制度</label>
+                        </div>
+                        <div class="option">
+                            <input type="radio" id="q13a3" name="q13" value="3">
+                            <label for="q13a3">教員の研修を支援する制度</label>
+                        </div>
+                        <div class="option">
+                            <input type="radio" id="q13a4" name="q13" value="4">
+                            <label for="q13a4">ICT機器を購入するための補助金制度</label>
+                        </div>
+                    </div>
+                    <div class="answer-feedback" id="feedback13"></div>
+                </div>
+
+                <!-- 問題14 -->
+                <div class="question-card">
+                    <span class="question-number">問題 14</span>
+                    <div class="question-text">学校組織において、学校の教育活動全体を統括する責任者は誰ですか？</div>
+                    <div class="options">
+                        <div class="option">
+                            <input type="radio" id="q14a1" name="q14" value="1">
+                            <label for="q14a1">教頭</label>
+                        </div>
+                        <div class="option">
+                            <input type="radio" id="q14a2" name="q14" value="2">
+                            <label for="q14a2">教務主任</label>
+                        </div>
+                        <div class="option">
+                            <input type="radio" id="q14a3" name="q14" value="3">
+                            <label for="q14a3">校長</label>
+                        </div>
+                        <div class="option">
+                            <input type="radio" id="q14a4" name="q14" value="4">
+                            <label for="q14a4">主幹教諭</label>
+                        </div>
+                    </div>
+                    <div class="answer-feedback" id="feedback14"></div>
+                </div>
+
+                <!-- 問題15 -->
+                <div class="question-card">
+                    <span class="question-number">問題 15</span>
+                    <div class="question-text">ICT支援員が教員とコミュニケーションをとる際の基本姿勢として、最も適切なものはどれですか？</div>
+                    <div class="options">
+                        <div class="option">
+                            <input type="radio" id="q15a1" name="q15" value="1">
+                            <label for="q15a1">専門家として技術的に指導する立場をとる</label>
+                        </div>
+                        <div class="option">
+                            <input type="radio" id="q15a2" name="q15" value="2">
+                            <label for="q15a2">教育の専門家である教員を尊重し、支援者としての立場を意識する</label>
+                        </div>
+                        <div class="option">
+                            <input type="radio" id="q15a3" name="q15" value="3">
+                            <label for="q15a3">友人のようにフレンドリーに接する</label>
+                        </div>
+                        <div class="option">
+                            <input type="radio" id="q15a4" name="q15" value="4">
+                            <label for="q15a4">距離を置いて必要最小限の会話にとどめる</label>
+                        </div>
+                    </div>
+                    <div class="answer-feedback" id="feedback15"></div>
+                </div>
+
+                <!-- 問題16 -->
+                <div class="question-card">
+                    <span class="question-number">問題 16</span>
+                    <div class="question-text">学校訪問時のマナーとして、不適切なものはどれですか？</div>
+                    <div class="options">
+                        <div class="option">
+                            <input type="radio" id="q16a1" name="q16" value="1">
+                            <label for="q16a1">職員室に入る際は「失礼します」と挨拶する</label>
+                        </div>
+                        <div class="option">
+                            <input type="radio" id="q16a2" name="q16" value="2">
+                            <label for="q16a2">名札やIDカードを着用する</label>
+                        </div>
+                        <div class="option">
+                            <input type="radio" id="q16a3" name="q16" value="3">
+                            <label for="q16a3">授業中でも緊急の用件であれば教室に入ってよい</label>
+                        </div>
+                        <div class="option">
+                            <input type="radio" id="q16a4" name="q16" value="4">
+                            <label for="q16a4">児童生徒の個人情報が見えないよう配慮する</label>
+                        </div>
+                    </div>
+                    <div class="answer-feedback" id="feedback16"></div>
+                </div>
+
+                <!-- 問題17 -->
+                <div class="question-card">
+                    <span class="question-number">問題 17</span>
+                    <div class="question-text">「主体的・対話的で深い学び」の実現において、ICTの役割として最も適切なものはどれですか？</div>
+                    <div class="options">
+                        <div class="option">
+                            <input type="radio" id="q17a1" name="q17" value="1">
+                            <label for="q17a1">ICTを使えば自動的に深い学びが実現する</label>
+                        </div>
+                        <div class="option">
+                            <input type="radio" id="q17a2" name="q17" value="2">
+                            <label for="q17a2">思考の可視化や協働作業を効果的に支援するツールとして活用</label>
+                        </div>
+                        <div class="option">
+                            <input type="radio" id="q17a3" name="q17" value="3">
+                            <label for="q17a3">全ての授業でICTを使わなければならない</label>
+                        </div>
+                        <div class="option">
+                            <input type="radio" id="q17a4" name="q17" value="4">
+                            <label for="q17a4">教員の負担を完全に代替する</label>
+                        </div>
+                    </div>
+                    <div class="answer-feedback" id="feedback17"></div>
+                </div>
+
+                <!-- 問題18 -->
+                <div class="question-card">
+                    <span class="question-number">問題 18</span>
+                    <div class="question-text">トラブルシューティングの基本手順として、最初に行うべきことは何ですか？</div>
+                    <div class="options">
+                        <div class="option">
+                            <input type="radio" id="q18a1" name="q18" value="1">
+                            <label for="q18a1">すぐに機器を分解して内部を確認する</label>
+                        </div>
+                        <div class="option">
+                            <input type="radio" id="q18a2" name="q18" value="2">
+                            <label for="q18a2">状況を落ち着いて聞き取り、問題を特定する</label>
+                        </div>
+                        <div class="option">
+                            <input type="radio" id="q18a3" name="q18" value="3">
+                            <label for="q18a3">ベンダーに連絡する</label>
+                        </div>
+                        <div class="option">
+                            <input type="radio" id="q18a4" name="q18" value="4">
+                            <label for="q18a4">新しい機器と交換する</label>
+                        </div>
+                    </div>
+                    <div class="answer-feedback" id="feedback18"></div>
+                </div>
+
+                <!-- 問題19 -->
+                <div class="question-card">
+                    <span class="question-number">問題 19</span>
+                    <div class="question-text">NEXT GIGA（2024-2028）の重点施策に含まれないものはどれですか？</div>
+                    <div class="options">
+                        <div class="option">
+                            <input type="radio" id="q19a1" name="q19" value="1">
+                            <label for="q19a1">端末の計画的な更新</label>
+                        </div>
+                        <div class="option">
+                            <input type="radio" id="q19a2" name="q19" value="2">
+                            <label for="q19a2">利活用の深化</label>
+                        </div>
+                        <div class="option">
+                            <input type="radio" id="q19a3" name="q19" value="3">
+                            <label for="q19a3">格差是正への取り組み</label>
+                        </div>
+                        <div class="option">
+                            <input type="radio" id="q19a4" name="q19" value="4">
+                            <label for="q19a4">全ての授業の完全オンライン化</label>
+                        </div>
+                    </div>
+                    <div class="answer-feedback" id="feedback19"></div>
+                </div>
+
+                <!-- 問題20 -->
+                <div class="question-card">
+                    <span class="question-number">問題 20</span>
+                    <div class="question-text">校務分掌とは何を指しますか？</div>
+                    <div class="options">
+                        <div class="option">
+                            <input type="radio" id="q20a1" name="q20" value="1">
+                            <label for="q20a1">学校の予算配分</label>
+                        </div>
+                        <div class="option">
+                            <input type="radio" id="q20a2" name="q20" value="2">
+                            <label for="q20a2">学校の業務を分担して組織的に運営する仕組み</label>
+                        </div>
+                        <div class="option">
+                            <input type="radio" id="q20a3" name="q20" value="3">
+                            <label for="q20a3">教員の給与体系</label>
+                        </div>
+                        <div class="option">
+                            <input type="radio" id="q20a4" name="q20" value="4">
+                            <label for="q20a4">授業時間割の作成</label>
+                        </div>
+                    </div>
+                    <div class="answer-feedback" id="feedback20"></div>
+                </div>
+
+                <div class="submit-section">
+                    <p style="margin-bottom: 1rem; color: #666;">全ての問題に解答しましたか？解答を確認してから採点してください。</p>
+                    <button type="button" class="submit-btn" id="submitBtn" onclick="gradeTest()">📊 採点する</button>
+                </div>
+            </form>
+        </div>
+    </main>
+
+    <!-- 結果モーダル -->
+    <div class="result-modal" id="resultModal">
+        <div class="result-content">
+            <div class="result-icon" id="resultIcon"></div>
+            <div class="result-title" id="resultTitle"></div>
+            <div class="result-score" id="resultScore"></div>
+            <div class="result-message" id="resultMessage"></div>
+            <div class="result-buttons" id="resultButtons"></div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>講座について</h4>
+                    <ul>
+                        <li><a href="beginner.html">入門編（第1回～第10回）</a></li>
+                        <li><a href="intermediate.html">基礎編（第11回～第24回）</a></li>
+                        <li><a href="intermediate2.html">中級編（第1回～第14回）</a></li>
+                        <li><a href="advanced.html">発展編（第25回～第36回）</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>参考リソース</h4>
+                    <ul>
+                        <li><a href="resources.html">主要参考資料</a></li>
+                        <li><a href="resources.html#government">国・行政機関</a></li>
+                        <li><a href="resources.html#organizations">専門機関・団体</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>お問い合わせ</h4>
+                    <p>本講座に関するお問い合わせは、櫻井までお願いいたします。</p>
+                    <p>Email: <a href="mailto:school.ict.info@gmail.com">school.ict.info@gmail.com</a></p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 ICT支援員・企画員のための教育講座. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // 正解データ
+        const answers = {
+            q1: '3',  // 市町村教育委員会
+            q2: '2',  // 1人1台端末と高速ネットワーク
+            q3: '4',  // 情報処理能力は含まれない
+            q4: '2',  // 学習の基盤となる資質・能力
+            q5: '3',  // 教員の人事評価は含まれない
+            q6: '4',  // Linux
+            q7: '4',  // 成績管理は含まれない
+            q8: '3',  // Microsoft Teams
+            q9: '4',  // 拡張性は含まれない
+            q10: '2', // 個人情報保護法の適用
+            q11: '1', // 危険回避 vs 前向きな活用
+            q12: '2', // 一定の条件下で利用可能
+            q13: '2', // オンライン授業等の補償金制度
+            q14: '3', // 校長
+            q15: '2', // 教員を尊重し支援者として
+            q16: '3', // 授業中は入らない
+            q17: '2', // 思考の可視化や協働作業の支援
+            q18: '2', // 状況を聞き取り問題を特定
+            q19: '4', // 完全オンライン化は含まれない
+            q20: '2'  // 業務分担の仕組み
+        };
+
+        // 解説データ
+        const explanations = {
+            q1: '市町村教育委員会が小・中学校を、都道府県教育委員会が高等学校等を管理・運営します。',
+            q2: 'GIGAスクール構想の中核は「1人1台端末」と「高速ネットワーク環境」の整備です。',
+            q3: '資質・能力の3つの柱は「知識及び技能」「思考力・判断力・表現力等」「学びに向かう力・人間性等」です。',
+            q4: '情報活用能力は、言語能力や問題発見・解決能力と並ぶ「学習の基盤となる資質・能力」です。',
+            q5: 'ICT支援員の4つの主要業務は「授業支援」「校務支援」「環境整備」「校内研修」です。',
+            q6: 'GIGAスクール構想では主にiPad、Chromebook、Windows端末が採用されています。',
+            q7: 'MDMは端末管理のためのシステムで、成績管理は校務支援システムの役割です。',
+            q8: 'Microsoft TeamsはMicrosoft 365 Educationに含まれるサービスです。',
+            q9: '情報セキュリティの3要素（CIA）は「機密性」「完全性」「可用性」です。',
+            q10: '学校も個人情報保護法の適用を受け、適切な管理と取り扱いが必要です。',
+            q11: 'デジタルシチズンシップは、危険回避だけでなく前向きな活用と社会参画を重視します。',
+            q12: '著作権法第35条により、授業目的であれば一定の条件下で著作物を利用できます。',
+            q13: 'SARTRASは、オンライン授業等で著作物を送信する際の補償金を管理する団体です。',
+            q14: '校長は学校の教育活動全体を統括する責任者（校務をつかさどる）です。',
+            q15: 'ICT支援員は教育の専門家である教員を尊重し、支援者としての立場を意識することが重要です。',
+            q16: '授業中は児童生徒の学びを妨げないよう、緊急時以外は教室に入らないのがマナーです。',
+            q17: 'ICTは思考の可視化や協働作業を効果的に支援するツールとして活用されます。',
+            q18: 'トラブル対応の第一歩は、落ち着いて状況を聞き取り、問題を正確に特定することです。',
+            q19: 'NEXT GIGAは端末更新、利活用深化、格差是正を重点としています。',
+            q20: '校務分掌は学校の業務を教職員で分担し、組織的に運営する仕組みです。'
+        };
+
+        // スクロール進捗バー
+        window.addEventListener('scroll', function() {
+            const windowHeight = window.innerHeight;
+            const documentHeight = document.documentElement.scrollHeight - windowHeight;
+            const scrolled = window.scrollY;
+            const progress = (scrolled / documentHeight) * 100;
+            document.getElementById('progressBar').style.width = progress + '%';
+        });
+
+        // テスト採点
+        function gradeTest() {
+            const form = document.getElementById('testForm');
+            let score = 0;
+            let answeredCount = 0;
+            const totalQuestions = 20;
+
+            // 全問回答チェック
+            for (let i = 1; i <= totalQuestions; i++) {
+                const answer = form.querySelector(`input[name="q${i}"]:checked`);
+                if (answer) {
+                    answeredCount++;
+                }
+            }
+
+            if (answeredCount < totalQuestions) {
+                alert(`まだ解答していない問題があります。\n解答済み: ${answeredCount}/${totalQuestions}問`);
+                return;
+            }
+
+            // 採点
+            for (let i = 1; i <= totalQuestions; i++) {
+                const answer = form.querySelector(`input[name="q${i}"]:checked`);
+                const feedback = document.getElementById(`feedback${i}`);
+                
+                if (answer && answer.value === answers[`q${i}`]) {
+                    score += 5;
+                    feedback.className = 'answer-feedback answer-correct';
+                    feedback.innerHTML = `✓ 正解！ ${explanations[`q${i}`]}`;
+                } else {
+                    feedback.className = 'answer-feedback answer-incorrect';
+                    feedback.innerHTML = `✗ 不正解。 ${explanations[`q${i}`]}`;
+                }
+                feedback.style.display = 'block';
+            }
+
+            // 結果表示
+            showResult(score);
+
+            // 結果をlocalStorageに保存
+            const result = {
+                score: score,
+                date: new Date().toISOString(),
+                passed: score >= 80
+            };
+            localStorage.setItem('beginnerTestResult', JSON.stringify(result));
+
+            // 結果位置までスクロール
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // 結果表示
+        function showResult(score) {
+            const modal = document.getElementById('resultModal');
+            const icon = document.getElementById('resultIcon');
+            const title = document.getElementById('resultTitle');
+            const scoreDiv = document.getElementById('resultScore');
+            const message = document.getElementById('resultMessage');
+            const buttons = document.getElementById('resultButtons');
+
+            const passed = score >= 80;
+
+            if (passed) {
+                icon.textContent = '🎉';
+                title.textContent = '合格おめでとうございます！';
+                title.className = 'result-title result-pass';
+                scoreDiv.textContent = `${score}点`;
+                scoreDiv.className = 'result-score result-pass';
+                message.innerHTML = `
+                    <p><strong>入門編の確認テストに合格しました！</strong></p>
+                    <p>ICT支援員として必要な基礎知識が身についています。</p>
+                    <p>合格証を取得して、次のステップへ進みましょう。</p>
+                `;
+                buttons.innerHTML = `
+                    <a href="certificate_test_beginner.html" class="result-btn btn-certificate">🏆 合格証を取得する</a>
+                    <a href="certificate_beginner.html" class="result-btn btn-certificate">📜 修了証を取得する</a>
+                    <a href="beginner.html" class="result-btn btn-review">入門編に戻る</a>
+                `;
+            } else {
+                icon.textContent = '📚';
+                title.textContent = 'もう少し復習が必要です';
+                title.className = 'result-title result-fail';
+                scoreDiv.textContent = `${score}点`;
+                scoreDiv.className = 'result-score result-fail';
+                message.innerHTML = `
+                    <p><strong>合格基準: 80点以上</strong></p>
+                    <p>各問題の解説を確認して、もう一度チャレンジしましょう。</p>
+                    <p>入門編のセッションを復習することをお勧めします。</p>
+                `;
+                buttons.innerHTML = `
+                    <button onclick="retryTest()" class="result-btn btn-retry">🔄 もう一度挑戦する</button>
+                    <a href="beginner.html" class="result-btn btn-review">📖 入門編で復習する</a>
+                `;
+            }
+
+            modal.style.display = 'flex';
+        }
+
+        // 再挑戦
+        function retryTest() {
+            location.reload();
+        }
+
+        // ページ読み込み時の処理
+        window.addEventListener('load', function() {
+            // 前回の結果がある場合は表示
+            const savedResult = localStorage.getItem('beginnerTestResult');
+            if (savedResult) {
+                const result = JSON.parse(savedResult);
+                const date = new Date(result.date);
+                console.log(`前回の結果: ${result.score}点 (${date.toLocaleDateString('ja-JP')})`);
+            }
+        });
+    </script>
+</body>
+</html>

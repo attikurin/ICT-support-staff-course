@@ -1,0 +1,599 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>補完カリキュラム - ICT支援員教育講座</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/advanced.css">
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="container">
+                <div class="logo">
+                    <h1>🎓 ICT支援員教育講座</h1>
+                </div>
+                <ul class="nav-menu">
+                    <li><a href="index.html">ホーム</a></li>
+                    <li><a href="beginner.html">入門編</a></li>
+                    <li><a href="intermediate.html">基礎編</a></li>
+                    <li><a href="intermediate2.html">中級編</a></li>
+                    <li><a href="advanced.html">発展編</a></li>
+                    <li><a href="certification.html">試験対策</a></li>
+                    <li><a href="supplement.html" class="active">補完カリキュラム</a></li>
+                    <li><a href="resources.html">参考資料</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero" style="background: linear-gradient(135deg, #10b981 0%, #059669 100%);">
+            <div class="container">
+                <div class="level-icon" style="font-size: 4rem;">📚</div>
+                <h2>補完カリキュラム：専門性をさらに深める</h2>
+                <p class="subtitle">全28回（第49回～第76回） | 既存講座（全62回）を補完する高度専門カリキュラム</p>
+                <p class="hero-description">情報科学、プログラミング、データサイエンス、教育経営など、ICT支援員・企画員として更なる専門性を高めるための発展的なカリキュラムです。基礎講座修了者を対象に、技術力・経営力・実践力を体系的に深めます。</p>
+            </div>
+        </section>
+
+        <!-- カリキュラム統合マップ -->
+        <section class="sessions-list" style="background-color: #f0fdf4;">
+            <div class="container">
+                <h2>📊 完全版カリキュラムマップ</h2>
+                
+                <div style="background: white; padding: 2rem; border-radius: 1rem; margin-bottom: 2rem; box-shadow: var(--shadow);">
+                    <h3 style="color: var(--success-color); text-align: center; margin-bottom: 1.5rem; font-size: 1.8rem;">
+                        🎓 既存講座62回 + 補完講座28回 = 完全版90回
+                    </h3>
+                    
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem; margin-top: 2rem;">
+                        <div style="background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%); color: white; padding: 1.5rem; border-radius: 0.75rem; text-align: center;">
+                            <h4 style="color: white; margin-bottom: 0.5rem;">入門編</h4>
+                            <p style="font-size: 2rem; font-weight: bold; margin: 0.5rem 0;">10回</p>
+                            <p style="font-size: 0.9rem; opacity: 0.9;">既存講座のみ</p>
+                        </div>
+                        
+                        <div style="background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%); color: white; padding: 1.5rem; border-radius: 0.75rem; text-align: center;">
+                            <h4 style="color: white; margin-bottom: 0.5rem;">基礎編</h4>
+                            <p style="font-size: 2rem; font-weight: bold; margin: 0.5rem 0;">28回</p>
+                            <p style="font-size: 0.9rem; opacity: 0.9;">既存14回 + 補完14回</p>
+                        </div>
+                        
+                        <div style="background: linear-gradient(135deg, #06b6d4 0%, #0891b2 100%); color: white; padding: 1.5rem; border-radius: 0.75rem; text-align: center;">
+                            <h4 style="color: white; margin-bottom: 0.5rem;">中級編</h4>
+                            <p style="font-size: 2rem; font-weight: bold; margin: 0.5rem 0;">20回</p>
+                            <p style="font-size: 0.9rem; opacity: 0.9;">既存14回 + 補完6回</p>
+                        </div>
+                        
+                        <div style="background: linear-gradient(135deg, #ec4899 0%, #db2777 100%); color: white; padding: 1.5rem; border-radius: 0.75rem; text-align: center;">
+                            <h4 style="color: white; margin-bottom: 0.5rem;">発展編</h4>
+                            <p style="font-size: 2rem; font-weight: bold; margin: 0.5rem 0;">20回</p>
+                            <p style="font-size: 0.9rem; opacity: 0.9;">既存12回 + 補完8回</p>
+                        </div>
+                        
+                        <div style="background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%); color: white; padding: 1.5rem; border-radius: 0.75rem; text-align: center;">
+                            <h4 style="color: white; margin-bottom: 0.5rem;">試験対策</h4>
+                            <p style="font-size: 2rem; font-weight: bold; margin: 0.5rem 0;">12回</p>
+                            <p style="font-size: 0.9rem; opacity: 0.9;">既存講座のみ</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 補完カリキュラムの構成 -->
+        <section class="sessions-list">
+            <div class="container">
+                <h2>📚 補完カリキュラムの構成（全28回）</h2>
+                
+                <!-- 第1編：情報科学・コンピュータサイエンス基礎編 -->
+                <div style="background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%); color: white; padding: 2rem; border-radius: 1rem; margin-bottom: 2rem;">
+                    <h3 style="color: white; font-size: 1.8rem; margin-bottom: 1rem;">📘 第1編：情報科学・コンピュータサイエンス基礎編（全8回）</h3>
+                    <p style="font-size: 1.1rem;">第49回～第56回 | 対象：基礎編修了者、技術的専門性を高めたい方</p>
+                </div>
+
+                <div class="session-card">
+                    <div class="session-header">
+                        <span class="session-number">第49回</span>
+                    </div>
+                    <h3 class="session-title"><a href="sessions/session49.html" style="color: inherit; text-decoration: none;">コンピュータシステム概論【2025年最新版】</a></h3>
+                    <ul class="session-topics">
+                        <li><strong>コンピュータの5大機能</strong> - 入力、出力、記憶、演算、制御装置</li>
+                        <li><strong>CPU・メモリ・ストレージ</strong> - Intel N100/N95、RAM、SSD/eMMC、GIGA第2期基準</li>
+                        <li><strong>性能指標とベンチマーク</strong> - PassMark、教育用途での必要スペック</li>
+                        <li><strong>学校での機器選定</strong> - TCO計算、予備機15%、OSサポート期限（AUE）</li>
+                    </ul>
+                    <p style="margin-top: 1rem; color: var(--gray);"><strong>関連講座：</strong>第6回（ハードウェア基礎）の発展版</p>
+                    <a href="sessions/session49.html" class="btn" style="background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%); color: white; display: inline-block; margin-top: 1rem;">📖 第49回を学習する</a>
+                </div>
+
+                <div class="session-card">
+                    <div class="session-header">
+                        <span class="session-number">第50回</span>
+                    </div>
+                    <h3 class="session-title">オペレーティングシステム論</h3>
+                    <ul class="session-topics">
+                        <li><strong>OSの基本機能</strong> - プロセス管理、メモリ管理、ファイルシステム</li>
+                        <li><strong>主要OS比較</strong> - Windows、Chrome OS、iOS/iPadOS、macOS</li>
+                        <li><strong>OS管理と設定</strong> - Active Directory、MDM、管理コンソール</li>
+                        <li><strong>OSトラブル対応</strong> - 起動不良、セーフモード、再インストール</li>
+                    </ul>
+                </div>
+
+                <div class="session-card">
+                    <div class="session-header">
+                        <span class="session-number">第51回</span>
+                    </div>
+                    <h3 class="session-title">データベース論</h3>
+                    <ul class="session-topics">
+                        <li><strong>リレーショナルデータベース</strong> - テーブル、主キー、外部キー、正規化</li>
+                        <li><strong>SQL基礎</strong> - SELECT、INSERT、UPDATE、DELETE</li>
+                        <li><strong>校務支援システムのデータ構造</strong> - 児童生徒情報、成績、出欠管理</li>
+                        <li><strong>データバックアップ</strong> - バックアップ戦略、復元、データ移行</li>
+                    </ul>
+                </div>
+
+                <div class="session-card">
+                    <div class="session-header">
+                        <span class="session-number">第52回</span>
+                    </div>
+                    <h3 class="session-title">アルゴリズムと情報科学の基礎</h3>
+                    <ul class="session-topics">
+                        <li><strong>基本アルゴリズム</strong> - 探索（線形・二分）、整列（バブル・選択・クイック）</li>
+                        <li><strong>データ構造</strong> - 配列、リスト、スタック、キュー、木構造</li>
+                        <li><strong>計算量（オーダー記法）</strong> - O(1)、O(n)、O(n²)、O(log n)</li>
+                        <li><strong>プログラミング教育への応用</strong> - Scratchでのアルゴリズム表現</li>
+                    </ul>
+                </div>
+
+                <div class="session-card">
+                    <div class="session-header">
+                        <span class="session-number">第53回</span>
+                    </div>
+                    <h3 class="session-title">システムプログラミング</h3>
+                    <ul class="session-topics">
+                        <li><strong>シェルスクリプト</strong> - Bash/PowerShell、コマンドライン基礎</li>
+                        <li><strong>業務自動化</strong> - バッチ処理、定型作業の自動化</li>
+                        <li><strong>Python自動化</strong> - ファイル処理、データ加工、レポート生成</li>
+                        <li><strong>教育現場での活用例</strong> - 名簿整形、成績集計、画像リサイズ</li>
+                    </ul>
+                </div>
+
+                <div class="session-card">
+                    <div class="session-header">
+                        <span class="session-number">第54回</span>
+                    </div>
+                    <h3 class="session-title">計算機ハードウェア</h3>
+                    <ul class="session-topics">
+                        <li><strong>ハードウェアアーキテクチャ</strong> - フォン・ノイマン型、CPU内部構造</li>
+                        <li><strong>主要コンポーネント</strong> - マザーボード、電源、冷却システム</li>
+                        <li><strong>入出力インターフェース</strong> - USB、HDMI、Thunderbolt</li>
+                        <li><strong>ハードウェア保守管理</strong> - 清掃、部品交換、修理判断</li>
+                    </ul>
+                </div>
+
+                <div class="session-card">
+                    <div class="session-header">
+                        <span class="session-number">第55回</span>
+                    </div>
+                    <h3 class="session-title">ネットワークプロトコル論</h3>
+                    <ul class="session-topics">
+                        <li><strong>TCP/IP階層モデル</strong> - アプリケーション、トランスポート、インターネット、ネットワークインターフェース層</li>
+                        <li><strong>主要プロトコル</strong> - HTTP/HTTPS、DNS、DHCP、ARP</li>
+                        <li><strong>セキュリティプロトコル</strong> - SSL/TLS、IPsec、VPN</li>
+                        <li><strong>実践的ネットワーク分析</strong> - Wireshark、パケット解析</li>
+                    </ul>
+                </div>
+
+                <div class="session-card">
+                    <div class="session-header">
+                        <span class="session-number">第56回</span>
+                    </div>
+                    <h3 class="session-title">情報セキュリティ技術論</h3>
+                    <ul class="session-topics">
+                        <li><strong>暗号技術</strong> - 共通鍵・公開鍵暗号、ハッシュ関数、電子署名</li>
+                        <li><strong>認証技術</strong> - パスワード、多要素認証、生体認証</li>
+                        <li><strong>脅威と対策</strong> - マルウェア、フィッシング、DDoS攻撃</li>
+                        <li><strong>セキュリティ監査</strong> - 脆弱性診断、ペネトレーションテスト</li>
+                    </ul>
+                </div>
+
+                <!-- 第2編：プログラミング・開発スキル編 -->
+                <div style="background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%); color: white; padding: 2rem; border-radius: 1rem; margin: 3rem 0 2rem 0;">
+                    <h3 style="color: white; font-size: 1.8rem; margin-bottom: 1rem;">📗 第2編：プログラミング・開発スキル編（全6回）</h3>
+                    <p style="font-size: 1.1rem;">第57回～第62回 | 対象：基礎編修了者、プログラミングスキルを向上させたい方</p>
+                </div>
+
+                <div class="session-card">
+                    <div class="session-header">
+                        <span class="session-number">第57回</span>
+                    </div>
+                    <h3 class="session-title">Python基礎プログラミング</h3>
+                    <ul class="session-topics">
+                        <li><strong>Python入門</strong> - 変数、データ型、演算子、制御構文</li>
+                        <li><strong>関数とモジュール</strong> - 関数定義、引数、戻り値、標準ライブラリ</li>
+                        <li><strong>ファイル操作とデータ処理</strong> - CSV、Excel、JSON、PDF</li>
+                        <li><strong>教育現場での活用</strong> - データ集計、自動レポート作成</li>
+                    </ul>
+                </div>
+
+                <div class="session-card">
+                    <div class="session-header">
+                        <span class="session-number">第58回</span>
+                    </div>
+                    <h3 class="session-title">Web開発基礎（HTML/CSS/JavaScript）</h3>
+                    <ul class="session-topics">
+                        <li><strong>HTML5とセマンティックタグ</strong> - 構造化マークアップ、アクセシビリティ</li>
+                        <li><strong>CSS3とレスポンシブデザイン</strong> - Flexbox、Grid、メディアクエリ</li>
+                        <li><strong>JavaScript基礎</strong> - DOM操作、イベント処理、非同期処理</li>
+                        <li><strong>教育Webサイト作成</strong> - 学級サイト、学習教材ページ</li>
+                    </ul>
+                </div>
+
+                <div class="session-card">
+                    <div class="session-header">
+                        <span class="session-number">第59回</span>
+                    </div>
+                    <h3 class="session-title">Google Apps Script実践</h3>
+                    <ul class="session-topics">
+                        <li><strong>GAS基礎</strong> - スクリプトエディタ、基本構文、トリガー</li>
+                        <li><strong>Googleサービス連携</strong> - Spreadsheet、Forms、Gmail、Calendar</li>
+                        <li><strong>校務自動化</strong> - 出欠集計、成績処理、メール一斉送信</li>
+                        <li><strong>実践プロジェクト</strong> - 自動化ツールの開発</li>
+                    </ul>
+                </div>
+
+                <div class="session-card">
+                    <div class="session-header">
+                        <span class="session-number">第60回</span>
+                    </div>
+                    <h3 class="session-title">データベース実践とAPI活用</h3>
+                    <ul class="session-topics">
+                        <li><strong>SQLiteとPython連携</strong> - データベース作成、CRUD操作</li>
+                        <li><strong>Web API基礎</strong> - REST API、JSON、認証</li>
+                        <li><strong>外部サービス連携</strong> - Google API、教育系API活用</li>
+                        <li><strong>学校データ管理システム</strong> - 簡易データベースアプリ開発</li>
+                    </ul>
+                </div>
+
+                <div class="session-card">
+                    <div class="session-header">
+                        <span class="session-number">第61回</span>
+                    </div>
+                    <h3 class="session-title">教育アプリ・ツール開発</h3>
+                    <ul class="session-topics">
+                        <li><strong>アプリ開発の企画</strong> - ニーズ分析、要件定義、設計</li>
+                        <li><strong>ノーコード/ローコードツール</strong> - Glide、AppSheet、PowerApps</li>
+                        <li><strong>学習支援ツール開発</strong> - クイズアプリ、フラッシュカード</li>
+                        <li><strong>公開と運用</strong> - テスト、デプロイ、フィードバック収集</li>
+                    </ul>
+                </div>
+
+                <div class="session-card">
+                    <div class="session-header">
+                        <span class="session-number">第62回</span>
+                    </div>
+                    <h3 class="session-title">オープンソースソフトウェアと教育ICT</h3>
+                    <ul class="session-topics">
+                        <li><strong>OSS（オープンソースソフトウェア）概論</strong> - ライセンス、コミュニティ</li>
+                        <li><strong>教育向けOSS</strong> - Moodle、LibreOffice、GIMP、Blender</li>
+                        <li><strong>GitHub入門</strong> - バージョン管理、コラボレーション</li>
+                        <li><strong>OSS活用事例</strong> - 学校でのOSS導入と運用</li>
+                    </ul>
+                </div>
+
+                <!-- 第3編：データサイエンス・AI教育編 -->
+                <div style="background: linear-gradient(135deg, #06b6d4 0%, #0891b2 100%); color: white; padding: 2rem; border-radius: 1rem; margin: 3rem 0 2rem 0;">
+                    <h3 style="color: white; font-size: 1.8rem; margin-bottom: 1rem;">🎓 第3編：データサイエンス・AI教育編（全6回）</h3>
+                    <p style="font-size: 1.1rem;">第63回～第68回 | 対象：中級編修了者、データ活用・AI教育を推進したい方</p>
+                </div>
+
+                <div class="session-card">
+                    <div class="session-header">
+                        <span class="session-number">第63回</span>
+                    </div>
+                    <h3 class="session-title">データサイエンス入門</h3>
+                    <ul class="session-topics">
+                        <li><strong>データサイエンスの基礎</strong> - データ分析の流れ、ツール概要</li>
+                        <li><strong>Python データ分析</strong> - pandas、NumPy、データクリーニング</li>
+                        <li><strong>記述統計と可視化</strong> - 平均、分散、相関、グラフ作成</li>
+                        <li><strong>教育データの分析</strong> - 学習ログ、成績データの分析実践</li>
+                    </ul>
+                </div>
+
+                <div class="session-card">
+                    <div class="session-header">
+                        <span class="session-number">第64回</span>
+                    </div>
+                    <h3 class="session-title">統計学と推測統計</h3>
+                    <ul class="session-topics">
+                        <li><strong>確率と確率分布</strong> - 正規分布、二項分布、ポアソン分布</li>
+                        <li><strong>仮説検定</strong> - t検定、カイ二乗検定、有意水準</li>
+                        <li><strong>相関と回帰分析</strong> - 相関係数、単回帰、重回帰</li>
+                        <li><strong>教育への応用</strong> - 学力調査データ分析、施策効果測定</li>
+                    </ul>
+                </div>
+
+                <div class="session-card">
+                    <div class="session-header">
+                        <span class="session-number">第65回</span>
+                    </div>
+                    <h3 class="session-title">機械学習入門</h3>
+                    <ul class="session-topics">
+                        <li><strong>機械学習の基礎</strong> - 教師あり・なし学習、強化学習</li>
+                        <li><strong>主要アルゴリズム</strong> - 決定木、ランダムフォレスト、k近傍法</li>
+                        <li><strong>scikit-learn実践</strong> - モデル構築、学習、評価</li>
+                        <li><strong>教育データへの応用</strong> - 学習者分類、成績予測</li>
+                    </ul>
+                </div>
+
+                <div class="session-card">
+                    <div class="session-header">
+                        <span class="session-number">第66回</span>
+                    </div>
+                    <h3 class="session-title">生成AI・大規模言語モデル（LLM）の深化</h3>
+                    <ul class="session-topics">
+                        <li><strong>LLMの仕組み</strong> - Transformer、GPT、BERT、トークン化</li>
+                        <li><strong>プロンプトエンジニアリング応用</strong> - 高度な指示、Few-shot、Chain of Thought</li>
+                        <li><strong>RAG（検索拡張生成）</strong> - カスタムデータ活用、ベクトルDB</li>
+                        <li><strong>教育現場での実装</strong> - 授業支援AI、質問応答システム</li>
+                    </ul>
+                </div>
+
+                <div class="session-card">
+                    <div class="session-header">
+                        <span class="session-number">第67回</span>
+                    </div>
+                    <h3 class="session-title">AI教育カリキュラム設計</h3>
+                    <ul class="session-topics">
+                        <li><strong>AIリテラシー教育</strong> - AIの仕組み、社会への影響、倫理</li>
+                        <li><strong>発達段階に応じた指導</strong> - 小学校、中学校、高校でのAI教育</li>
+                        <li><strong>AI体験活動</strong> - Teachable Machine、AIメーカー、Google AI Experiments</li>
+                        <li><strong>カリキュラム開発</strong> - 年間計画、評価方法、教材作成</li>
+                    </ul>
+                </div>
+
+                <div class="session-card">
+                    <div class="session-header">
+                        <span class="session-number">第68回</span>
+                    </div>
+                    <h3 class="session-title">ラーニングアナリティクス実践</h3>
+                    <ul class="session-topics">
+                        <li><strong>学習分析の理論</strong> - ラーニングアナリティクスとは、データ収集</li>
+                        <li><strong>学習ダッシュボード</strong> - 可視化、リアルタイム分析</li>
+                        <li><strong>予測分析</strong> - 学習者の躓き予測、早期支援</li>
+                        <li><strong>倫理とプライバシー</strong> - データ保護、同意取得、透明性</li>
+                    </ul>
+                </div>
+
+                <!-- 第4編：教育経営・マネジメント編 -->
+                <div style="background: linear-gradient(135deg, #ec4899 0%, #db2777 100%); color: white; padding: 2rem; border-radius: 1rem; margin: 3rem 0 2rem 0;">
+                    <h3 style="color: white; font-size: 1.8rem; margin-bottom: 1rem;">💼 第4編：教育経営・マネジメント編（全8回）</h3>
+                    <p style="font-size: 1.1rem;">第69回～第76回 | 対象：発展編修了者、教育CIO・企画職を目指す方</p>
+                </div>
+
+                <div class="session-card">
+                    <div class="session-header">
+                        <span class="session-number">第69回</span>
+                    </div>
+                    <h3 class="session-title">教育CIO（Chief Information Officer）論</h3>
+                    <ul class="session-topics">
+                        <li><strong>教育CIOの役割</strong> - ICT戦略立案、組織変革リーダーシップ</li>
+                        <li><strong>情報化推進体制</strong> - 教育委員会、学校、外部連携</li>
+                        <li><strong>ICTガバナンス</strong> - 方針策定、標準化、統制</li>
+                        <li><strong>予算とリソース管理</strong> - 中長期計画、投資優先順位</li>
+                    </ul>
+                </div>
+
+                <div class="session-card">
+                    <div class="session-header">
+                        <span class="session-number">第70回</span>
+                    </div>
+                    <h3 class="session-title">組織論と人的資源管理</h3>
+                    <ul class="session-topics">
+                        <li><strong>組織デザイン</strong> - 組織構造、階層、部門設計</li>
+                        <li><strong>人事管理</strong> - 採用、育成、評価、モチベーション</li>
+                        <li><strong>リーダーシップ理論</strong> - 変革型、サーバント、状況対応型</li>
+                        <li><strong>教職員の人材育成</strong> - ICT研修体系、キャリア開発</li>
+                    </ul>
+                </div>
+
+                <div class="session-card">
+                    <div class="session-header">
+                        <span class="session-number">第71回</span>
+                    </div>
+                    <h3 class="session-title">教育マーケティングと広報戦略</h3>
+                    <ul class="session-topics">
+                        <li><strong>マーケティング基礎</strong> - STP分析、4P/4C、ブランディング</li>
+                        <li><strong>学校広報戦略</strong> - Webサイト、SNS、プレスリリース</li>
+                        <li><strong>ステークホルダー分析</strong> - 保護者、地域、企業、行政</li>
+                        <li><strong>ICT活用PR</strong> - 先進的取組の発信、メディア対応</li>
+                    </ul>
+                </div>
+
+                <div class="session-card">
+                    <div class="session-header">
+                        <span class="session-number">第72回</span>
+                    </div>
+                    <h3 class="session-title">学校ブランディングと情報発信</h3>
+                    <ul class="session-topics">
+                        <li><strong>ブランド戦略</strong> - ブランドアイデンティティ、差別化</li>
+                        <li><strong>デジタルマーケティング</strong> - SEO、コンテンツマーケティング</li>
+                        <li><strong>危機管理広報</strong> - リスクコミュニケーション、炎上対策</li>
+                        <li><strong>成果の測定</strong> - アクセス解析、エンゲージメント測定</li>
+                    </ul>
+                </div>
+
+                <div class="session-card">
+                    <div class="session-header">
+                        <span class="session-number">第73回</span>
+                    </div>
+                    <h3 class="session-title">教育ファイナンス論と教育経済学</h3>
+                    <ul class="session-topics">
+                        <li><strong>教育財政の基礎</strong> - 国庫負担制度、地方交付税、予算編成</li>
+                        <li><strong>教育経済学</strong> - 人的資本論、教育の収益率、効果測定</li>
+                        <li><strong>費用対効果分析</strong> - ROI、TCO、ICT投資の効果測定</li>
+                        <li><strong>補助金活用</strong> - GIGAスクール補助金、申請手続き</li>
+                    </ul>
+                </div>
+
+                <div class="session-card">
+                    <div class="session-header">
+                        <span class="session-number">第74回</span>
+                    </div>
+                    <h3 class="session-title">教育機関と経営戦略論</h3>
+                    <ul class="session-topics">
+                        <li><strong>戦略理論</strong> - ポーター競争戦略、ブルーオーシャン戦略</li>
+                        <li><strong>環境分析</strong> - PEST分析、SWOT分析、5フォース分析</li>
+                        <li><strong>差別化戦略</strong> - ICT活用先進校ブランディング、地域連携</li>
+                        <li><strong>リスクマネジメント</strong> - BCP、危機管理、持続可能経営</li>
+                    </ul>
+                </div>
+
+                <div class="session-card">
+                    <div class="session-header">
+                        <span class="session-number">第75回</span>
+                    </div>
+                    <h3 class="session-title">ソーシャル・アントレプレナーシップ論</h3>
+                    <ul class="session-topics">
+                        <li><strong>社会起業家精神</strong> - 社会的企業、NPO、一般社団法人</li>
+                        <li><strong>社会課題と教育</strong> - 教育格差、不登校、特別支援、地域過疎化</li>
+                        <li><strong>ビジネスモデル構築</strong> - 社会的インパクトと経済的持続性</li>
+                        <li><strong>教育分野の社会的企業事例</strong> - カタリバ、Learning for All、LITALICO</li>
+                    </ul>
+                </div>
+
+                <div class="session-card">
+                    <div class="session-header">
+                        <span class="session-number">第76回</span>
+                    </div>
+                    <h3 class="session-title">教育テック総論とデジタルエコシステム</h3>
+                    <ul class="session-topics">
+                        <li><strong>EdTech概論</strong> - 定義、歴史、市場動向、カテゴリー</li>
+                        <li><strong>教育デジタルエコシステム</strong> - データ連携基盤、学習eポートフォリオ、API</li>
+                        <li><strong>EdTech導入プロセス</strong> - ニーズ分析、選定、効果測定</li>
+                        <li><strong>未来の教育テック</strong> - メタバース教育、AI教師、VR/AR/MR</li>
+                    </ul>
+                </div>
+
+
+            </div>
+        </section>
+
+        <!-- 推奨学習パス -->
+        <section class="sessions-list" style="background-color: #fef3c7;">
+            <div class="container">
+                <h2>🎯 推奨学習パス</h2>
+                
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; margin-top: 2rem;">
+                    <!-- パス1 -->
+                    <div style="background: white; padding: 2rem; border-radius: 1rem; box-shadow: var(--shadow); border-top: 4px solid #3b82f6;">
+                        <h3 style="color: #2563eb; margin-bottom: 1rem;">📘 ICT支援員スタンダードコース</h3>
+                        <p style="font-weight: 600; color: var(--dark); margin-bottom: 0.5rem;">学習期間：12ヶ月</p>
+                        <p style="font-weight: 600; color: var(--dark); margin-bottom: 1rem;">総回数：56回</p>
+                        <ul style="list-style: none; padding: 0;">
+                            <li style="padding: 0.5rem 0; border-bottom: 1px solid #f3f4f6;">✅ 入門編（第1～10回）</li>
+                            <li style="padding: 0.5rem 0; border-bottom: 1px solid #f3f4f6;">✅ 基礎編既存（第11～24回）</li>
+                            <li style="padding: 0.5rem 0; border-bottom: 1px solid #f3f4f6;">✅ プログラミング・開発（第57～62回）</li>
+                            <li style="padding: 0.5rem 0; border-bottom: 1px solid #f3f4f6;">✅ 中級編既存（中級第1～14回）</li>
+                            <li style="padding: 0.5rem 0;">✅ 試験対策（第37～40回）</li>
+                        </ul>
+                    </div>
+
+                    <!-- パス2 -->
+                    <div style="background: white; padding: 2rem; border-radius: 1rem; box-shadow: var(--shadow); border-top: 4px solid #8b5cf6;">
+                        <h3 style="color: #7c3aed; margin-bottom: 1rem;">📊 データ活用スペシャリストコース</h3>
+                        <p style="font-weight: 600; color: var(--dark); margin-bottom: 0.5rem;">学習期間：16ヶ月</p>
+                        <p style="font-weight: 600; color: var(--dark); margin-bottom: 1rem;">総回数：70回</p>
+                        <ul style="list-style: none; padding: 0;">
+                            <li style="padding: 0.5rem 0; border-bottom: 1px solid #f3f4f6;">✅ 入門～中級編既存（全38回）</li>
+                            <li style="padding: 0.5rem 0; border-bottom: 1px solid #f3f4f6;">✅ 情報科学基礎（第49～56回）</li>
+                            <li style="padding: 0.5rem 0; border-bottom: 1px solid #f3f4f6;">✅ プログラミング（第57～62回）</li>
+                            <li style="padding: 0.5rem 0; border-bottom: 1px solid #f3f4f6;">✅ データサイエンス・AI（第63～68回）</li>
+                            <li style="padding: 0.5rem 0;">✅ 発展編データ関連（第33回）</li>
+                        </ul>
+                    </div>
+
+                    <!-- パス3 -->
+                    <div style="background: white; padding: 2rem; border-radius: 1rem; box-shadow: var(--shadow); border-top: 4px solid #ec4899;">
+                        <h3 style="color: #db2777; margin-bottom: 1rem;">💼 教育CIO・企画職コース</h3>
+                        <p style="font-weight: 600; color: var(--dark); margin-bottom: 0.5rem;">学習期間：18ヶ月</p>
+                        <p style="font-weight: 600; color: var(--dark); margin-bottom: 1rem;">総回数：82回</p>
+                        <ul style="list-style: none; padding: 0;">
+                            <li style="padding: 0.5rem 0; border-bottom: 1px solid #f3f4f6;">✅ 全入門～発展編既存（第1～36回＋中級編）</li>
+                            <li style="padding: 0.5rem 0; border-bottom: 1px solid #f3f4f6;">✅ 情報科学基礎（第49～56回）</li>
+                            <li style="padding: 0.5rem 0; border-bottom: 1px solid #f3f4f6;">✅ データサイエンス・AI（第63～68回）</li>
+                            <li style="padding: 0.5rem 0; border-bottom: 1px solid #f3f4f6;">✅ 教育経営・マネジメント（第69～76回）</li>
+                            <li style="padding: 0.5rem 0;">✅ ITCE2級試験対策（第45～48回）</li>
+                        </ul>
+                    </div>
+
+                    <!-- パス4 -->
+                    <div style="background: white; padding: 2rem; border-radius: 1rem; box-shadow: var(--shadow); border-top: 4px solid #10b981;">
+                        <h3 style="color: #059669; margin-bottom: 1rem;">🎓 完全マスターコース</h3>
+                        <p style="font-weight: 600; color: var(--dark); margin-bottom: 0.5rem;">学習期間：18ヶ月</p>
+                        <p style="font-weight: 600; color: var(--dark); margin-bottom: 1rem;">総回数：90回</p>
+                        <ul style="list-style: none; padding: 0;">
+                            <li style="padding: 0.5rem 0; border-bottom: 1px solid #f3f4f6;">✅ 全カリキュラム履修</li>
+                            <li style="padding: 0.5rem 0; border-bottom: 1px solid #f3f4f6;">✅ 既存講座62回</li>
+                            <li style="padding: 0.5rem 0; border-bottom: 1px solid #f3f4f6;">✅ 補完講座28回（第49～76回）</li>
+                            <li style="padding: 0.5rem 0; border-bottom: 1px solid #f3f4f6;">✅ ICT支援員認定＋ITCE3級＋2級取得</li>
+                            <li style="padding: 0.5rem 0;">✅ 修士レベルの専門性</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA Section -->
+        <section class="cta-section">
+            <div class="container">
+                <h2>さらなる専門性を高めましょう</h2>
+                <p>補完カリキュラムで、ICT支援員・企画員としての専門性を次のレベルへ</p>
+                <div class="cta-buttons">
+                    <a href="index.html" class="btn btn-primary">基本講座（全62回）を見る</a>
+                    <a href="resources.html" class="btn btn-secondary">参考資料</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>基本講座</h4>
+                    <ul>
+                        <li><a href="beginner.html">入門編（第1回～第10回）</a></li>
+                        <li><a href="intermediate.html">基礎編（第11回～第24回）</a></li>
+                        <li><a href="intermediate2.html">中級編（第1回～第14回）</a></li>
+                        <li><a href="advanced.html">発展編（第25回～第36回）</a></li>
+                        <li><a href="certification.html">試験対策（第37回～第48回）</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>補完カリキュラム</h4>
+                    <ul>
+                        <li><a href="supplement.html">情報科学・CS基礎（第49～56回）</a></li>
+                        <li><a href="supplement.html">プログラミング（第57～62回）</a></li>
+                        <li><a href="supplement.html">データサイエンス・AI（第63～68回）</a></li>
+                        <li><a href="supplement.html">教育経営（第69～76回）</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>お問い合わせ</h4>
+                    <p>本講座に関するお問い合わせは、櫻井までお願いいたします。</p>
+                    <p>Email: <a href="mailto:school.ict.info@gmail.com">school.ict.info@gmail.com</a></p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 ICT支援員・企画員のための教育講座. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+</body>
+</html>
