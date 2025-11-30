@@ -1,0 +1,1118 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>第30回：情報セキュリティの高度な実践とガバナンス - ICT支援員教育講座</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/session.css">
+    <link rel="stylesheet" href="../css/advanced.css">
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="container">
+                <div class="logo">
+                    <h1>🎓 ICT支援員教育講座</h1>
+                </div>
+                <ul class="nav-menu">
+                    <li><a href="../index.html">ホーム</a></li>
+                    <li><a href="../beginner.html">入門編</a></li>
+                    <li><a href="../intermediate.html">基礎編</a></li>
+                    <li><a href="../intermediate2.html">中級編</a></li>
+                    <li><a href="../advanced.html" class="active">発展編</a></li>
+                    <li><a href="../certification.html">試験対策</a></li>
+                    <li><a href="../resources.html">参考資料</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <main class="session-content">
+        <div class="container">
+            <div class="session-header-content">
+                <span class="session-label advanced">発展編</span>
+                <h1>第30回：情報セキュリティの高度な実践とガバナンス</h1>
+                <p class="session-meta">全7回中の第6回 | 学習時間目安：120分</p>
+            </div>
+
+            <section class="objectives">
+                <h2>🎯 学習目標</h2>
+                <ul>
+                    <li>教育現場における情報セキュリティのリスクアセスメント手法を理解する</li>
+                    <li>インシデント対応計画の策定と運用方法を習得する</li>
+                    <li>セキュリティ監査の実施と改善活動のPDCAサイクルを学ぶ</li>
+                    <li>ゼロデイ攻撃など最新脅威への対応戦略を理解する</li>
+                    <li>学校全体でセキュリティ文化を醸成する方法を学ぶ</li>
+                </ul>
+            </section>
+
+            <section class="content-section">
+                <h2>1. リスクアセスメントの実践</h2>
+
+                <h3>1.1 脅威の特定</h3>
+
+            <h4>教育現場における主要な脅威</h4>
+
+            <div class="step-box">
+                <h5>🌐 外部からの脅威</h5>
+                <ul>
+                    <li><strong>標的型攻撃メール</strong> - 教職員を狙ったフィッシング
+                        <ul>
+                            <li>実在の組織・人物を騙る巧妙なメール</li>
+                            <li>添付ファイルやリンクからのマルウェア感染</li>
+                        </ul>
+                    </li>
+                    <li><strong>ランサムウェア攻撃</strong>
+                        <ul>
+                            <li>データを暗号化し、身代金を要求</li>
+                            <li>教育機関への攻撃が世界的に増加</li>
+                        </ul>
+                    </li>
+                    <li><strong>DDoS攻撃</strong> - 学校Webサイト等への攻撃
+                        <ul>
+                            <li>大量のアクセスでサービス停止</li>
+                            <li>入試期間など重要時期を狙われる</li>
+                        </ul>
+                    </li>
+                    <li><strong>不正アクセス</strong>
+                        <ul>
+                            <li>学習者用端末への侵入</li>
+                            <li>校務システムへの不正ログイン</li>
+                            <li>SQLインジェクション、クロスサイトスクリプティング</li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="step-box">
+                <h5>🏢 内部からの脅威</h5>
+                <ul>
+                    <li><strong>教職員による誤操作・誤送信</strong>
+                        <ul>
+                            <li>メールの宛先間違い（TO/CC/BCCの誤用）</li>
+                            <li>添付ファイルの取り違え</li>
+                            <li>個人情報を含むファイルの誤公開</li>
+                        </ul>
+                    </li>
+                    <li><strong>USBメモリ等の紛失・盗難</strong>
+                        <ul>
+                            <li>持ち運び中の紛失</li>
+                            <li>車上荒らし</li>
+                            <li>暗号化されていないデータの流出</li>
+                        </ul>
+                    </li>
+                    <li><strong>私物端末の無断使用（シャドーIT）</strong>
+                        <ul>
+                            <li>セキュリティポリシー外の端末使用</li>
+                            <li>管理外のクラウドサービス利用</li>
+                        </ul>
+                    </li>
+                    <li><strong>退職者によるデータ持ち出し</strong>
+                        <ul>
+                            <li>アカウント削除の遅れ</li>
+                            <li>転職先での不適切な使用</li>
+                        </ul>
+                    </li>
+                    <li><strong>児童生徒による不適切な利用</strong>
+                        <ul>
+                            <li>不正なソフトウェアのインストール</li>
+                            <li>他人のアカウントの不正使用</li>
+                            <li>不適切なWebサイトへのアクセス</li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="step-box">
+                <h5>🏗️ 物理的脅威</h5>
+                <ul>
+                    <li><strong>機器の盗難・破損</strong> - タブレット、PC、サーバーの盗難</li>
+                    <li><strong>自然災害</strong> - 地震、水害、火災によるデータ消失</li>
+                    <li><strong>停電、ネットワーク障害</strong> - インフラの停止</li>
+                    <li><strong>サーバールームへの不正侵入</strong> - 物理的アクセス制御の不備</li>
+                </ul>
+            </div>
+
+            <h4>脅威の特定手順</h4>
+            <div class="example-box">
+                <h5>📊 脅威特定のステップ</h5>
+                <ol>
+                    <li><strong>資産の洗い出し</strong>
+                        <ul>
+                            <li>情報資産台帳の作成（ハードウェア、ソフトウェア、データ）</li>
+                            <li>機密度分類（機密、重要、一般）</li>
+                            <li>保管場所と管理責任者の明確化</li>
+                        </ul>
+                    </li>
+                    <li><strong>脅威シナリオの作成</strong>
+                        <ul>
+                            <li>過去のインシデント事例の分析</li>
+                            <li>他校・他自治体の事例研究</li>
+                            <li>IPAやJPCERT/CCの脅威情報の活用</li>
+                        </ul>
+                    </li>
+                    <li><strong>脅威マップの作成</strong>
+                        <ul>
+                            <li>資産×脅威のマトリクス表</li>
+                            <li>影響度の可視化</li>
+                        </ul>
+                    </li>
+                </ol>
+            </div>
+
+            <h3>1.2 脆弱性の評価</h3>
+
+            <h4>脆弱性の種類</h4>
+            <table>
+                <tr>
+                    <th>分類</th>
+                    <th>脆弱性の例</th>
+                    <th>リスク</th>
+                </tr>
+                <tr>
+                    <td><strong>技術的脆弱性</strong></td>
+                    <td>・古いOS・ソフトウェアの使用<br>・パッチ未適用<br>・弱いパスワード設定<br>・暗号化の未実施<br>・ファイアウォール設定不備</td>
+                    <td><span class="risk-level risk-critical">Critical</span></td>
+                </tr>
+                <tr>
+                    <td><strong>運用的脆弱性</strong></td>
+                    <td>・アクセス権限の過剰付与<br>・退職者アカウントの削除遅延<br>・バックアップ未実施<br>・ログ監視の不足<br>・セキュリティポリシーの未整備</td>
+                    <td><span class="risk-level risk-high">High</span></td>
+                </tr>
+                <tr>
+                    <td><strong>物理的脆弱性</strong></td>
+                    <td>・サーバールームの施錠管理不備<br>・防犯カメラの死角<br>・機器の固定不足（地震対策）<br>・訪問者管理の甘さ</td>
+                    <td><span class="risk-level risk-medium">Medium</span></td>
+                </tr>
+                <tr>
+                    <td><strong>人的脆弱性</strong></td>
+                    <td>・セキュリティ教育の不足<br>・意識の低さ<br>・ルール遵守の欠如<br>・報告・相談体制の不備</td>
+                    <td><span class="risk-level risk-high">High</span></td>
+                </tr>
+            </table>
+
+            <h4>脆弱性診断の実施</h4>
+            <div class="info-box">
+                <h4>脆弱性診断の種類</h4>
+                <ul>
+                    <li><strong>プラットフォーム診断</strong> - OS、ミドルウェアの脆弱性スキャン</li>
+                    <li><strong>Webアプリケーション診断</strong> - 学校Webサイト、校務システムの診断</li>
+                    <li><strong>ネットワーク診断</strong> - 不正な通信、設定ミスの検出</li>
+                    <li><strong>ペネトレーションテスト</strong> - 疑似攻撃による侵入可否の検証</li>
+                </ul>
+
+                <h5>診断ツールの例</h5>
+                <ul>
+                    <li><strong>OpenVAS</strong> - オープンソースの脆弱性スキャナー</li>
+                    <li><strong>Nmap</strong> - ネットワークスキャン、ポート開放状況確認</li>
+                    <li><strong>OWASP ZAP</strong> - Webアプリケーション脆弱性診断</li>
+                    <li><strong>商用サービス</strong> - 専門業者による定期診断</li>
+                </ul>
+            </div>
+
+            <h3>1.3 リスクの評価と対応優先度</h3>
+
+            <h4>リスク評価の計算</h4>
+            <div class="info-box">
+                <p><strong>リスク = 脅威の発生可能性 × 影響度</strong></p>
+                
+                <h5>発生可能性の評価（5段階）</h5>
+                <ul>
+                    <li>5: ほぼ確実（年に複数回発生）</li>
+                    <li>4: 高い（年に1回程度）</li>
+                    <li>3: 中程度（数年に1回）</li>
+                    <li>2: 低い（10年に1回程度）</li>
+                    <li>1: ほとんどない（極めて稀）</li>
+                </ul>
+
+                <h5>影響度の評価（5段階）</h5>
+                <ul>
+                    <li>5: 壊滅的（学校運営停止、大規模な個人情報流出）</li>
+                    <li>4: 重大（長期間の業務停止、重要情報の漏洩）</li>
+                    <li>3: 中程度（一部業務の停止、限定的な情報漏洩）</li>
+                    <li>2: 軽微（短時間の業務影響、軽微な漏洩）</li>
+                    <li>1: 無視できる（ほとんど影響なし）</li>
+                </ul>
+            </div>
+
+            <h4>リスクマトリクス</h4>
+            <div class="example-box">
+                <table>
+                    <tr>
+                        <th>影響度＼可能性</th>
+                        <th>1</th>
+                        <th>2</th>
+                        <th>3</th>
+                        <th>4</th>
+                        <th>5</th>
+                    </tr>
+                    <tr>
+                        <td><strong>5</strong></td>
+                        <td style="background: #ffa500;">5</td>
+                        <td style="background: #ff6b6b;">10</td>
+                        <td style="background: #ff6b6b;">15</td>
+                        <td style="background: #dc3545;">20</td>
+                        <td style="background: #dc3545;">25</td>
+                    </tr>
+                    <tr>
+                        <td><strong>4</strong></td>
+                        <td style="background: #ffa500;">4</td>
+                        <td style="background: #ffa500;">8</td>
+                        <td style="background: #ff6b6b;">12</td>
+                        <td style="background: #ff6b6b;">16</td>
+                        <td style="background: #dc3545;">20</td>
+                    </tr>
+                    <tr>
+                        <td><strong>3</strong></td>
+                        <td style="background: #28a745;">3</td>
+                        <td style="background: #ffa500;">6</td>
+                        <td style="background: #ffa500;">9</td>
+                        <td style="background: #ff6b6b;">12</td>
+                        <td style="background: #ff6b6b;">15</td>
+                    </tr>
+                    <tr>
+                        <td><strong>2</strong></td>
+                        <td style="background: #28a745;">2</td>
+                        <td style="background: #28a745;">4</td>
+                        <td style="background: #ffa500;">6</td>
+                        <td style="background: #ffa500;">8</td>
+                        <td style="background: #ff6b6b;">10</td>
+                    </tr>
+                    <tr>
+                        <td><strong>1</strong></td>
+                        <td style="background: #28a745;">1</td>
+                        <td style="background: #28a745;">2</td>
+                        <td style="background: #28a745;">3</td>
+                        <td style="background: #ffa500;">4</td>
+                        <td style="background: #ffa500;">5</td>
+                    </tr>
+                </table>
+                <p style="margin-top: 15px;"><strong>対応優先度：</strong></p>
+                <ul>
+                    <li><span class="risk-level risk-critical">Critical</span> リスク値 15以上 - 即座に対応</li>
+                    <li><span class="risk-level risk-high">High</span> リスク値 8～14 - 早急に対応</li>
+                    <li><span class="risk-level risk-medium">Medium</span> リスク値 4～7 - 計画的に対応</li>
+                    <li><span class="risk-level risk-low">Low</span> リスク値 1～3 - 監視継続</li>
+                </ul>
+            </div>
+
+            <h4>リスク対応の4つの戦略</h4>
+            <div class="step-box">
+                <ol>
+                    <li><strong>リスク低減（Mitigation）</strong> - 対策を実施してリスクを下げる
+                        <ul>
+                            <li>例：セキュリティソフト導入、パッチ適用、暗号化</li>
+                        </ul>
+                    </li>
+                    <li><strong>リスク回避（Avoidance）</strong> - リスクのある活動を行わない
+                        <ul>
+                            <li>例：危険なサービスの利用禁止、私物端末の使用禁止</li>
+                        </ul>
+                    </li>
+                    <li><strong>リスク移転（Transfer）</strong> - 第三者にリスクを移す
+                        <ul>
+                            <li>例：サイバー保険加入、クラウドサービスへの移行</li>
+                        </ul>
+                    </li>
+                    <li><strong>リスク保有（Acceptance）</strong> - リスクを受け入れる
+                        <ul>
+                            <li>例：対策コストが損害額を上回る低リスクの受容</li>
+                        </ul>
+                    </li>
+                </ol>
+            </div>
+            </section>
+
+            <section class="content-section">
+                <h2>2. インシデント対応計画（IRP）</h2>
+
+                <h3>2.1 インシデント対応体制の構築</h3>
+
+            <h4>CSIRT（Computer Security Incident Response Team）の設置</h4>
+            <div class="info-box">
+                <h4>学校版CSIRT体制の例</h4>
+                <ul>
+                    <li><strong>インシデントレスポンスマネージャー（統括責任者）</strong>
+                        <ul>
+                            <li>役職：校長または教頭</li>
+                            <li>役割：意思決定、対外発表、責任者</li>
+                        </ul>
+                    </li>
+                    <li><strong>技術リーダー</strong>
+                        <ul>
+                            <li>役職：情報主任またはICT支援員</li>
+                            <li>役割：技術的調査、対策実施、復旧作業</li>
+                        </ul>
+                    </li>
+                    <li><strong>コミュニケーション担当</strong>
+                        <ul>
+                            <li>役職：教務主任または広報担当</li>
+                            <li>役割：教育委員会・保護者への連絡、情報発信</li>
+                        </ul>
+                    </li>
+                    <li><strong>記録担当</strong>
+                        <ul>
+                            <li>役職：事務職員</li>
+                            <li>役割：経緯の詳細記録、証拠保全</li>
+                        </ul>
+                    </li>
+                    <li><strong>法務・コンプライアンス担当</strong>
+                        <ul>
+                            <li>役職：事務長</li>
+                            <li>役割：法的対応、警察・弁護士との連携</li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+
+            <h3>2.2 インシデント対応フロー</h3>
+
+            <div class="step-box">
+                <h5><span class="step-number">1</span>検知・報告（Detection & Reporting）</h5>
+                <p><strong>目標：5分以内</strong></p>
+                <ul>
+                    <li>異常の発見者が即座にCSIRTリーダーに報告</li>
+                    <li>報告内容：いつ、どこで、何が、誰が、どのように</li>
+                    <li>初動の記録開始</li>
+                </ul>
+            </div>
+
+            <div class="step-box">
+                <h5><span class="step-number">2</span>トリアージ・評価（Triage & Assessment）</h5>
+                <p><strong>目標：15分以内</strong></p>
+                <ul>
+                    <li>インシデントの深刻度判定（レベル1～4）</li>
+                    <li>影響範囲の特定（何台、どのデータ、どの教室）</li>
+                    <li>CSIRTメンバーの招集</li>
+                </ul>
+
+                <h5>深刻度レベルの定義</h5>
+                <table style="margin-top: 10px;">
+                    <tr>
+                        <th>レベル</th>
+                        <th>定義</th>
+                        <th>例</th>
+                    </tr>
+                    <tr>
+                        <td><strong>レベル4<br>（Critical）</strong></td>
+                        <td>学校運営に重大な影響<br>大規模な情報漏洩</td>
+                        <td>ランサムウェア感染<br>全校生徒の個人情報流出</td>
+                    </tr>
+                    <tr>
+                        <td><strong>レベル3<br>（High）</strong></td>
+                        <td>業務の一部停止<br>重要情報の漏洩リスク</td>
+                        <td>サーバー侵入<br>教職員アカウント乗っ取り</td>
+                    </tr>
+                    <tr>
+                        <td><strong>レベル2<br>（Medium）</strong></td>
+                        <td>限定的な影響<br>迅速対応で拡大防止可能</td>
+                        <td>1台のPC感染<br>不審メールの受信</td>
+                    </tr>
+                    <tr>
+                        <td><strong>レベル1<br>（Low）</strong></td>
+                        <td>軽微な影響<br>通常業務で対応可能</td>
+                        <td>迷惑メールの大量受信<br>軽微な設定ミス</td>
+                    </tr>
+                </table>
+            </div>
+
+            <div class="step-box">
+                <h5><span class="step-number">3</span>封じ込め（Containment）</h5>
+                <p><strong>目標：30分以内</strong></p>
+                <ul>
+                    <li><strong>短期的封じ込め</strong>
+                        <ul>
+                            <li>感染端末のネットワーク遮断</li>
+                            <li>侵害されたアカウントの無効化</li>
+                            <li>攻撃者のIPアドレスをブロック</li>
+                        </ul>
+                    </li>
+                    <li><strong>長期的封じ込め</strong>
+                        <ul>
+                            <li>代替システムの準備</li>
+                            <li>最小限の機能での業務継続</li>
+                            <li>全体への影響の最小化</li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="step-box">
+                <h5><span class="step-number">4</span>根絶（Eradication）</h5>
+                <p><strong>目標：状況による（数時間～数日）</strong></p>
+                <ul>
+                    <li>マルウェアの完全除去</li>
+                    <li>脆弱性のパッチ適用</li>
+                    <li>不正なアカウント・ファイルの削除</li>
+                    <li>システムの再構築（必要に応じて）</li>
+                </ul>
+            </div>
+
+            <div class="step-box">
+                <h5><span class="step-number">5</span>復旧（Recovery）</h5>
+                <p><strong>目標：状況による</strong></p>
+                <ul>
+                    <li>バックアップからのデータ復元</li>
+                    <li>システムの動作確認</li>
+                    <li>段階的な運用再開</li>
+                    <li>監視の強化</li>
+                </ul>
+            </div>
+
+            <div class="step-box">
+                <h5><span class="step-number">6</span>事後対応（Post-Incident Activities）</h5>
+                <p><strong>目標：1週間以内</strong></p>
+                <ul>
+                    <li><strong>詳細報告書の作成</strong>
+                        <ul>
+                            <li>インシデントの経緯</li>
+                            <li>原因分析（根本原因）</li>
+                            <li>対応の評価（うまくいった点、課題）</li>
+                        </ul>
+                    </li>
+                    <li><strong>再発防止策の実施</strong>
+                        <ul>
+                            <li>技術的対策の強化</li>
+                            <li>ルール・手順の見直し</li>
+                            <li>教育・訓練の実施</li>
+                        </ul>
+                    </li>
+                    <li><strong>情報共有</strong>
+                        <ul>
+                            <li>教育委員会への報告</li>
+                            <li>他校への注意喚起</li>
+                            <li>教職員への周知</li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+
+            <h3>2.3 コミュニケーション計画</h3>
+
+            <h4>ステークホルダー別の連絡手順</h4>
+            <table>
+                <tr>
+                    <th>対象</th>
+                    <th>連絡タイミング</th>
+                    <th>連絡内容</th>
+                    <th>連絡方法</th>
+                </tr>
+                <tr>
+                    <td><strong>教育委員会</strong></td>
+                    <td>レベル3以上：即座<br>レベル2：当日中</td>
+                    <td>インシデント概要<br>影響範囲<br>対応状況</td>
+                    <td>電話 + メール<br>書面報告（後日）</td>
+                </tr>
+                <tr>
+                    <td><strong>保護者</strong></td>
+                    <td>個人情報漏洩時：確認後即座<br>その他：必要に応じて</td>
+                    <td>事実関係<br>影響範囲<br>対応策<br>お詫び</td>
+                    <td>文書配布<br>保護者会<br>Webサイト</td>
+                </tr>
+                <tr>
+                    <td><strong>警察</strong></td>
+                    <td>犯罪性が疑われる場合：即座</td>
+                    <td>被害状況<br>証拠保全</td>
+                    <td>電話 + 訪問</td>
+                </tr>
+                <tr>
+                    <td><strong>IPA<br>JPCERT/CC</strong></td>
+                    <td>重大インシデント：速やかに</td>
+                    <td>技術的詳細<br>攻撃手法<br>IOC情報</td>
+                    <td>専用フォーム<br>メール</td>
+                </tr>
+                <tr>
+                    <td><strong>メディア</strong></td>
+                    <td>大規模漏洩時：教育委員会と調整</td>
+                    <td>公式発表内容のみ<br>窓口の一本化</td>
+                    <td>プレスリリース<br>会見</td>
+                </tr>
+            </table>
+
+            <div class="warning-box">
+                <h4>⚠️ コミュニケーションの注意点</h4>
+                <ul>
+                    <li><strong>憶測で話さない</strong> - 確認された事実のみを伝える</li>
+                    <li><strong>情報の一元化</strong> - 窓口を統一し、矛盾した情報を出さない</li>
+                    <li><strong>タイムリーな更新</strong> - 状況が変われば速やかに追加連絡</li>
+                    <li><strong>二次被害の防止</strong> - 被害者への配慮、プライバシー保護</li>
+                    <li><strong>記録の徹底</strong> - いつ、誰に、何を伝えたか記録</li>
+                </ul>
+            </div>
+            </section>
+
+            <section class="content-section">
+                <h2>3. セキュリティ監査とPDCAサイクル</h2>
+
+                <h3>3.1 セキュリティ監査の種類</h3>
+
+            <table>
+                <tr>
+                    <th>監査種類</th>
+                    <th>目的</th>
+                    <th>実施頻度</th>
+                </tr>
+                <tr>
+                    <td><strong>内部監査</strong></td>
+                    <td>自校でのセキュリティ状況確認<br>ポリシー遵守状況のチェック</td>
+                    <td>年2回（学期ごと）</td>
+                </tr>
+                <tr>
+                    <td><strong>外部監査</strong></td>
+                    <td>第三者による客観的評価<br>専門的な脆弱性診断</td>
+                    <td>年1回</td>
+                </tr>
+                <tr>
+                    <td><strong>特別監査</strong></td>
+                    <td>インシデント後の原因究明<br>大規模システム更新後の確認</td>
+                    <td>必要時</td>
+                </tr>
+            </table>
+
+            <h3>3.2 監査項目のチェックリスト</h3>
+
+            <div class="example-box">
+                <h5>📋 セキュリティ監査チェックリスト（抜粋）</h5>
+                
+                <h5>【技術的対策】</h5>
+                <ul>
+                    <li>☐ すべてのOSに最新のセキュリティパッチが適用されているか</li>
+                    <li>☐ ウイルス対策ソフトが全端末に導入され、定義ファイルが最新か</li>
+                    <li>☐ ファイアウォールが適切に設定されているか</li>
+                    <li>☐ 不要なポートが閉じられているか</li>
+                    <li>☐ 暗号化通信（HTTPS、SSL/TLS）が使用されているか</li>
+                    <li>☐ 重要データが暗号化されているか</li>
+                    <li>☐ バックアップが定期的に取得され、復元テストが実施されているか</li>
+                    <li>☐ ログが適切に記録・保管されているか</li>
+                </ul>
+
+                <h5>【アクセス制御】</h5>
+                <ul>
+                    <li>☐ パスワードポリシーが設定され、遵守されているか（長さ、複雑さ、有効期限）</li>
+                    <li>☐ 多要素認証が導入されているか（可能な範囲で）</li>
+                    <li>☐ アクセス権限が最小権限の原則に基づいて設定されているか</li>
+                    <li>☐ 退職者のアカウントが速やかに削除されているか</li>
+                    <li>☐ 共有アカウントの使用が禁止されているか</li>
+                </ul>
+
+                <h5>【物理的セキュリティ】</h5>
+                <ul>
+                    <li>☐ サーバールームが施錠管理されているか</li>
+                    <li>☐ 入退室記録が取られているか</li>
+                    <li>☐ 機器の固定（地震対策）がされているか</li>
+                    <li>☐ 無人時の画面ロックが徹底されているか</li>
+                </ul>
+
+                <h5>【運用管理】</h5>
+                <ul>
+                    <li>☐ 情報セキュリティポリシーが整備されているか</li>
+                    <li>☐ 教職員にセキュリティ研修が実施されているか（年1回以上）</li>
+                    <li>☐ インシデント対応手順書が整備されているか</li>
+                    <li>☐ 個人情報取扱規程が遵守されているか</li>
+                    <li>☐ 外部委託先のセキュリティ管理が適切か</li>
+                </ul>
+            </div>
+
+            <h3>3.3 PDCAサイクルによる継続的改善</h3>
+
+            <div class="step-box">
+                <h5><span class="step-number">P</span>Plan（計画）</h5>
+                <ul>
+                    <li>年間セキュリティ計画の策定</li>
+                    <li>リスクアセスメントの実施</li>
+                    <li>対策の優先順位付けと予算確保</li>
+                    <li>目標設定（KPI: Key Performance Indicator）</li>
+                </ul>
+            </div>
+
+            <div class="step-box">
+                <h5><span class="step-number">D</span>Do（実行）</h5>
+                <ul>
+                    <li>セキュリティ対策の実施</li>
+                    <li>教職員研修の実施</li>
+                    <li>ポリシー・手順の周知徹底</li>
+                    <li>日常的な監視とログ確認</li>
+                </ul>
+            </div>
+
+            <div class="step-box">
+                <h5><span class="step-number">C</span>Check（評価）</h5>
+                <ul>
+                    <li>セキュリティ監査の実施</li>
+                    <li>KPIの測定と評価</li>
+                    <li>インシデント発生状況の分析</li>
+                    <li>脆弱性診断結果の確認</li>
+                </ul>
+            </div>
+
+            <div class="step-box">
+                <h5><span class="step-number">A</span>Act（改善）</h5>
+                <ul>
+                    <li>監査で発見された問題の是正</li>
+                    <li>ポリシー・手順の見直し</li>
+                    <li>新たな脅威への対応策追加</li>
+                    <li>次年度計画への反映</li>
+                </ul>
+            </div>
+
+            <div class="info-box">
+                <h4>KPI（重要業績評価指標）の例</h4>
+                <ul>
+                    <li><strong>パッチ適用率</strong> - 90%以上を維持</li>
+                    <li><strong>セキュリティ研修受講率</strong> - 教職員100%</li>
+                    <li><strong>インシデント対応時間</strong> - 初動15分以内</li>
+                    <li><strong>バックアップ成功率</strong> - 99%以上</li>
+                    <li><strong>パスワードポリシー遵守率</strong> - 95%以上</li>
+                    <li><strong>監査指摘事項の改善率</strong> - 3ヶ月以内に90%改善</li>
+                </ul>
+            </div>
+            </section>
+
+            <section class="content-section">
+                <h2>4. 最新脅威への対応</h2>
+
+                <h3>4.1 ゼロデイ攻撃</h3>
+
+            <div class="danger-box">
+                <h4>⚠️ ゼロデイ攻撃とは</h4>
+                <p><span class="highlight">ベンダーがパッチを提供する前（脆弱性が公表される前）に行われる攻撃</span>です。通常のパッチ適用では防げないため、高度な対策が必要です。</p>
+            </div>
+
+            <h4>ゼロデイ攻撃への対応策</h4>
+            <div class="info-box">
+                <h4>多層防御（Defense in Depth）の徹底</h4>
+                <ul>
+                    <li><strong>侵入防止システム（IPS）</strong> - 既知の攻撃パターンのブロック</li>
+                    <li><strong>振る舞い検知</strong> - 異常な動作の検出とブロック</li>
+                    <li><strong>サンドボックス</strong> - 疑わしいファイルを仮想環境で実行</li>
+                    <li><strong>ネットワーク分離</strong> - 重要システムの隔離</li>
+                    <li><strong>最小権限の原則</strong> - 被害拡大の防止</li>
+                    <li><strong>迅速な情報収集</strong> - JPCERT/CC、IPA等からの情報入手</li>
+                    <li><strong>暫定対策の実施</strong> - パッチ未提供時の回避策</li>
+                </ul>
+            </div>
+
+            <h3>4.2 標的型攻撃</h3>
+
+            <h4>標的型攻撃の特徴</h4>
+            <div class="warning-box">
+                <p>教育機関を<span class="highlight">特定して狙う高度な攻撃</span>です。事前に組織や個人の情報を調査し、信頼できるように見せかけたメールで侵入を試みます。</p>
+            </div>
+
+            <h4>標的型攻撃メールの見分け方</h4>
+            <div class="example-box">
+                <h5>🚨 不審メールのチェックポイント</h5>
+                <ul>
+                    <li><strong>送信者アドレス</strong> - 公式に見えて微妙に違う（typosquatting）</li>
+                    <li><strong>件名</strong> - 緊急性を煽る、業務に関連しているように見せかける</li>
+                    <li><strong>本文</strong> - 日本語の不自然さ、文体の違和感</li>
+                    <li><strong>添付ファイル</strong> - 実行ファイル（.exe）、圧縮ファイル（.zip）、Office文書のマクロ</li>
+                    <li><strong>リンク</strong> - URLにカーソルを合わせると表示と異なるアドレス</li>
+                    <li><strong>不自然な要求</strong> - パスワード入力、個人情報の提供</li>
+                </ul>
+
+                <h5>対処方法</h5>
+                <ol>
+                    <li>不審に思ったら<strong>開かない、クリックしない</strong></li>
+                    <li>情報主任またはICT支援員に報告</li>
+                    <li>送信者に別の手段（電話等）で確認</li>
+                    <li>全教職員への注意喚起</li>
+                </ol>
+            </div>
+
+            <h3>4.3 ランサムウェア</h3>
+
+            <h4>ランサムウェア攻撃の流れ</h4>
+            <div class="step-box">
+                <ol>
+                    <li><strong>侵入</strong> - フィッシングメール、脆弱性を突いた侵入</li>
+                    <li><strong>潜伏</strong> - 数週間～数ヶ月、バックアップの場所を探索</li>
+                    <li><strong>権限昇格</strong> - 管理者権限の奪取</li>
+                    <li><strong>データ窃取</strong> - 暗号化前に重要データを外部転送（二重脅迫）</li>
+                    <li><strong>暗号化</strong> - 全データを暗号化、業務停止</li>
+                    <li><strong>身代金要求</strong> - ビットコイン等での支払い要求</li>
+                </ol>
+            </div>
+
+            <h4>ランサムウェア対策</h4>
+            <div class="success-box">
+                <h4>✅ 予防策</h4>
+                <ul>
+                    <li><strong>バックアップの徹底</strong> - 3-2-1ルール（3つのコピー、2種類のメディア、1つはオフライン）</li>
+                    <li><strong>パッチ適用</strong> - OS、ソフトウェアの迅速な更新</li>
+                    <li><strong>ネットワーク分離</strong> - 校務系と学習系の分離</li>
+                    <li><strong>EDR（Endpoint Detection and Response）</strong> - 端末での異常検知</li>
+                    <li><strong>教職員教育</strong> - フィッシングメール訓練</li>
+                </ul>
+
+                <h4>✅ 感染時の対応</h4>
+                <ul>
+                    <li><strong>絶対に身代金を払わない</strong> - 支払っても復号される保証はない</li>
+                    <li><strong>即座にネットワーク遮断</strong> - 被害拡大防止</li>
+                    <li><strong>警察・専門機関に通報</strong> - サイバー犯罪相談窓口、IPA</li>
+                    <li><strong>バックアップから復元</strong> - クリーンな環境で復旧</li>
+                    <li><strong>侵入経路の特定と封鎖</strong> - 再発防止</li>
+                </ul>
+            </div>
+
+            <h3>4.4 サプライチェーン攻撃</h3>
+
+            <div class="info-box">
+                <h4>サプライチェーン攻撃とは</h4>
+                <p>学校を直接狙うのではなく、<span class="highlight">学校が利用するベンダーやサービスを経由して侵入する攻撃</span>です。</p>
+
+                <h5>教育現場での例</h5>
+                <ul>
+                    <li>学習支援システムのベンダーが侵害され、そこから学校に攻撃</li>
+                    <li>保守委託業者のアカウントを悪用した不正アクセス</li>
+                    <li>教材会社のWebサイト改ざんによるマルウェア配布</li>
+                </ul>
+
+                <h5>対策</h5>
+                <ul>
+                    <li><strong>ベンダー選定時のセキュリティ評価</strong> - ISMSやプライバシーマーク取得状況</li>
+                    <li><strong>契約書でのセキュリティ要件明記</strong> - 責任範囲の明確化</li>
+                    <li><strong>委託先の定期監査</strong> - セキュリティ対策状況の確認</li>
+                    <li><strong>ゼロトラストの考え方</strong> - 外部接続も内部接続も疑う</li>
+                </ul>
+            </div>
+            </section>
+
+            <section class="content-section">
+                <h2>5. セキュリティ文化の醸成</h2>
+
+                <h3>5.1 教職員のセキュリティ意識向上</h3>
+
+            <h4>年間教育プログラム</h4>
+            <div class="example-box">
+                <h5>📅 年間スケジュール例</h5>
+                <table>
+                    <tr>
+                        <th>時期</th>
+                        <th>研修内容</th>
+                        <th>形式</th>
+                    </tr>
+                    <tr>
+                        <td><strong>4月</strong></td>
+                        <td>新任者向け基礎研修<br>情報セキュリティポリシーの説明</td>
+                        <td>集合研修（60分）</td>
+                    </tr>
+                    <tr>
+                        <td><strong>6月</strong></td>
+                        <td>標的型攻撃メール訓練</td>
+                        <td>実践訓練</td>
+                    </tr>
+                    <tr>
+                        <td><strong>9月</strong></td>
+                        <td>最新脅威の動向<br>夏期休業中のインシデント事例</td>
+                        <td>オンライン研修（30分）</td>
+                    </tr>
+                    <tr>
+                        <td><strong>11月</strong></td>
+                        <td>個人情報保護法の理解<br>事例研究</td>
+                        <td>集合研修（60分）</td>
+                    </tr>
+                    <tr>
+                        <td><strong>2月</strong></td>
+                        <td>年度の振り返り<br>次年度の計画</td>
+                        <td>オンライン研修（30分）</td>
+                    </tr>
+                </table>
+            </div>
+
+            <h4>効果的な教育手法</h4>
+            <div class="success-box">
+                <h4>✅ 意識定着のための工夫</h4>
+                <ul>
+                    <li><strong>実例ベースの教育</strong> - 他校の実際のインシデント事例を教材に</li>
+                    <li><strong>短時間・高頻度</strong> - 長時間研修より、15分の定期配信</li>
+                    <li><strong>ゲーミフィケーション</strong> - クイズ形式、ポイント制で楽しく学ぶ</li>
+                    <li><strong>標的型攻撃メール訓練</strong> - 擬似的な攻撃メールを送信し、対応を訓練</li>
+                    <li><strong>ポスター・リマインダー</strong> - 職員室にセキュリティ標語のポスター</li>
+                    <li><strong>インシデント事例の共有</strong> - 「今月のインシデント」を定期配信</li>
+                </ul>
+            </div>
+
+            <h3>5.2 児童生徒への情報モラル教育</h3>
+
+            <h4>発達段階に応じた指導</h4>
+            <table>
+                <tr>
+                    <th>段階</th>
+                    <th>重点内容</th>
+                    <th>指導のポイント</th>
+                </tr>
+                <tr>
+                    <td><strong>小学校<br>低学年</strong></td>
+                    <td>・ID/パスワードの管理<br>・他人に見せない<br>・困ったら大人に相談</td>
+                    <td>具体的な行動ルール<br>繰り返しの確認</td>
+                </tr>
+                <tr>
+                    <td><strong>小学校<br>中学年</strong></td>
+                    <td>・個人情報とは何か<br>・ネット上の情報の扱い<br>・著作権の基礎</td>
+                    <td>体験的な学習<br>動画・教材の活用</td>
+                </tr>
+                <tr>
+                    <td><strong>小学校<br>高学年</strong></td>
+                    <td>・SNSでの適切なコミュニケーション<br>・情報の信憑性<br>・ネット依存</td>
+                    <td>グループディスカッション<br>事例研究</td>
+                </tr>
+                <tr>
+                    <td><strong>中学校</strong></td>
+                    <td>・セキュリティの仕組み<br>・サイバー犯罪<br>・デジタルシチズンシップ</td>
+                    <td>探究的な学習<br>社会とのつながり</td>
+                </tr>
+            </table>
+
+            <h3>5.3 セキュリティポリシーの浸透</h3>
+
+            <h4>分かりやすいポリシー文書</h4>
+            <div class="info-box">
+                <h4>ポリシー文書の構成</h4>
+                <ul>
+                    <li><strong>基本方針</strong> - 学校の情報セキュリティに対する姿勢</li>
+                    <li><strong>対策基準</strong> - 遵守すべき具体的な基準</li>
+                    <li><strong>実施手順</strong> - 日常業務での具体的な手順</li>
+                    <li><strong>FAQ</strong> - よくある質問と回答</li>
+                    <li><strong>連絡先</strong> - 困ったときの相談先</li>
+                </ul>
+
+                <h5>分かりやすくするための工夫</h5>
+                <ul>
+                    <li>専門用語は最小限に、注釈をつける</li>
+                    <li>図解、フローチャートを多用</li>
+                    <li>「やるべきこと」「やってはいけないこと」を明確に</li>
+                    <li>イラストやアイコンで視覚的に</li>
+                    <li>スマホでも見やすいデザイン</li>
+                </ul>
+            </div>
+
+            <h4>ポリシー遵守の仕組み</h4>
+            <ul>
+                <li><strong>新任時の誓約書</strong> - セキュリティポリシー遵守の誓約</li>
+                <li><strong>定期的な確認</strong> - 年1回、ポリシー内容の再確認と署名</li>
+                <li><strong>監査での確認</strong> - 遵守状況のチェック</li>
+                <li><strong>違反時の対応</strong> - 軽微なものは注意・指導、重大なものは懲戒</li>
+                <li><strong>表彰制度</strong> - セキュリティ意識の高い教職員・クラスを表彰</li>
+            </ul>
+            </section>
+
+            <section class="content-section">
+                <h2>6. 実践演習</h2>
+
+                <div class="success-box">
+                <h4>📝 演習課題</h4>
+                <p>以下の3つの演習を通じて、情報セキュリティの高度な実践とガバナンスのスキルを身につけましょう。</p>
+            </div>
+
+            <h3>演習1：リスクアセスメントの実施</h3>
+            <div class="example-box">
+                <h4>シナリオ</h4>
+                <p>あなたの中学校（生徒数450名、教職員50名）で、情報セキュリティのリスクアセスメントを実施することになりました。</p>
+
+                <h4>学校の状況</h4>
+                <ul>
+                    <li>1人1台タブレット配備済み</li>
+                    <li>校務支援システム導入済み</li>
+                    <li>Webサイトあり（外部ホスティング）</li>
+                    <li>過去にセキュリティインシデントなし</li>
+                    <li>セキュリティポリシーは5年前に作成、更新されていない</li>
+                </ul>
+
+                <h4>課題</h4>
+                <ol>
+                    <li><strong>資産の洗い出し</strong>
+                        <ul>
+                            <li>情報資産台帳の作成（主要な資産10項目以上）</li>
+                            <li>機密度分類（機密、重要、一般）</li>
+                        </ul>
+                    </li>
+                    <li><strong>脅威と脆弱性の特定</strong>
+                        <ul>
+                            <li>想定される脅威のリスト（10項目以上）</li>
+                            <li>現状の脆弱性の洗い出し</li>
+                        </ul>
+                    </li>
+                    <li><strong>リスク評価</strong>
+                        <ul>
+                            <li>リスクマトリクスによる評価（5項目以上）</li>
+                            <li>対応優先度の決定</li>
+                        </ul>
+                    </li>
+                    <li><strong>対策計画</strong>
+                        <ul>
+                            <li>優先度の高いリスクへの対策案</li>
+                            <li>実施スケジュールと予算概算</li>
+                        </ul>
+                    </li>
+                </ol>
+
+                <h4>提出物</h4>
+                <p>リスクアセスメント報告書（A4用紙5～7枚、資産台帳、リスクマトリクス、対策計画含む）</p>
+            </div>
+
+            <h3>演習2：インシデント対応計画の策定</h3>
+            <div class="example-box">
+                <h4>シナリオ</h4>
+                <p>あなたの学校で、ランサムウェア感染を想定したインシデント対応計画（IRP）を策定してください。</p>
+
+                <h4>想定インシデント</h4>
+                <p>月曜日の朝8時、教職員のPCがランサムウェアに感染。画面に身代金要求のメッセージが表示され、校務サーバーのデータも暗号化された疑い。</p>
+
+                <h4>課題</h4>
+                <ol>
+                    <li><strong>CSIRT体制の構築</strong>
+                        <ul>
+                            <li>役割分担（誰が何を担当するか）</li>
+                            <li>連絡体制（連絡先リスト）</li>
+                        </ul>
+                    </li>
+                    <li><strong>対応手順の作成</strong>
+                        <ul>
+                            <li>検知から復旧までの6段階の詳細手順</li>
+                            <li>各段階での担当者と目標時間</li>
+                            <li>判断基準とエスカレーションルール</li>
+                        </ul>
+                    </li>
+                    <li><strong>コミュニケーション計画</strong>
+                        <ul>
+                            <li>教育委員会、保護者への連絡手順</li>
+                            <li>連絡のタイミングと内容</li>
+                            <li>記者対応（想定問答含む）</li>
+                        </ul>
+                    </li>
+                    <li><strong>訓練計画</strong>
+                        <ul>
+                            <li>年間の訓練スケジュール</li>
+                            <li>シミュレーション訓練の内容</li>
+                        </ul>
+                    </li>
+                </ol>
+
+                <h4>提出物</h4>
+                <p>インシデント対応計画書（A4用紙7～10枚、フローチャート、連絡先リスト、想定問答集含む）</p>
+            </div>
+
+            <h3>演習3：セキュリティ監査計画の立案</h3>
+            <div class="example-box">
+                <h4>シナリオ</h4>
+                <p>教育委員会から、各校でセキュリティ監査を年2回実施するよう指示がありました。あなたの学校での監査計画を立案してください。</p>
+
+                <h4>課題</h4>
+                <ol>
+                    <li><strong>監査計画の作成</strong>
+                        <ul>
+                            <li>年間スケジュール（内部監査2回、外部監査1回）</li>
+                            <li>監査メンバーの選定</li>
+                            <li>監査範囲と重点項目</li>
+                        </ul>
+                    </li>
+                    <li><strong>監査チェックリストの作成</strong>
+                        <ul>
+                            <li>技術的対策（20項目以上）</li>
+                            <li>運用管理（15項目以上）</li>
+                            <li>物理的セキュリティ（10項目以上）</li>
+                        </ul>
+                    </li>
+                    <li><strong>PDCAサイクルの設計</strong>
+                        <ul>
+                            <li>KPIの設定（5項目以上）</li>
+                            <li>評価方法</li>
+                            <li>改善のプロセス</li>
+                        </ul>
+                    </li>
+                    <li><strong>報告書フォーマットの作成</strong>
+                        <ul>
+                            <li>監査結果報告書の構成</li>
+                            <li>改善勧告の記載方法</li>
+                        </ul>
+                    </li>
+                </ol>
+
+                <h4>提出物</h4>
+                <p>セキュリティ監査計画書（A4用紙7～10枚、年間スケジュール、チェックリスト、報告書フォーマット含む）</p>
+            </div>
+            </section>
+
+            <section class="content-section">
+                <h2>📚 まとめ</h2>
+                
+                <div class="success-box">
+                <h4>✅ この講座で学んだこと</h4>
+                <ul>
+                    <li><strong>リスクアセスメント</strong> - 脅威・脆弱性の特定とリスク評価手法</li>
+                    <li><strong>インシデント対応</strong> - CSIRT体制構築と6段階の対応フロー</li>
+                    <li><strong>セキュリティ監査</strong> - 監査の実施とPDCAサイクルによる改善</li>
+                    <li><strong>最新脅威への対応</strong> - ゼロデイ、標的型攻撃、ランサムウェア対策</li>
+                    <li><strong>セキュリティ文化</strong> - 教職員・児童生徒の意識向上とポリシー浸透</li>
+                </ul>
+            </div>
+
+            <div class="danger-box">
+                <h4>🔒 セキュリティは継続的な取り組み</h4>
+                <p>情報セキュリティに「完璧」はありません。<span class="highlight">脅威は日々進化し、新たな攻撃手法が生まれ続けています</span>。重要なのは、リスクを正しく理解し、適切な対策を継続的に実施し、インシデント発生時に迅速に対応できる体制を整えることです。</p>
+            </div>
+
+            <h3>次のステップ</h3>
+            <ul>
+                <li><strong>第31回</strong> - 教育政策の立案と実行</li>
+                <li><strong>第32回</strong> - ICT企画員としてのキャリア形成</li>
+                <li><strong>第33回</strong> - プロジェクトマネジメント実践</li>
+            </ul>
+
+            <div class="warning-box">
+                <h4>💡 継続学習のために</h4>
+                <ul>
+                    <li>IPA、JPCERT/CCの最新情報を定期確認</li>
+                    <li>情報セキュリティマネジメント試験の受験検討</li>
+                    <li>セキュリティカンファレンス（CODE BLUE、Black Hat等）への参加</li>
+                    <li>CSIRT構築・運用に関する研修参加</li>
+                    <li>他自治体のセキュリティインシデント事例の研究</li>
+                    <li>教育情報セキュリティポリシーガイドラインの定期確認</li>
+                </ul>
+            </div>
+            </section>
+
+            <div class="navigation">
+                <a href="session29.html" class="btn btn-secondary">← 第29回</a>
+                <a href="../advanced.html" class="btn">発展編トップへ</a>
+                <a href="session31.html" class="btn btn-primary">第31回 →</a>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>講座について</h4>
+                    <ul>
+                        <li><a href="../beginner.html">入門編（第1回～第10回）</a></li>
+                        <li><a href="../intermediate.html">基礎編（第11回～第24回）</a></li>
+                        <li><a href="../intermediate2.html">中級編（第1回～第14回）</a></li>
+                        <li><a href="../advanced.html">発展編（第25回～第36回）</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>参考リソース</h4>
+                    <ul>
+                        <li><a href="../resources.html">主要参考資料</a></li>
+                        <li><a href="../resources.html#government">国・行政機関</a></li>
+                        <li><a href="../resources.html#organizations">専門機関・団体</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>お問い合わせ</h4>
+                    <p>本講座に関するお問い合わせは、櫻井までお願いいたします。</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 ICT支援員・企画員のための教育講座. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../js/main.js"></script>
+</body>
+</html>

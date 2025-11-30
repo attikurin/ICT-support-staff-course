@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>中級編 第10回: トラブルシューティング実践 | ICT支援員教育講座</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/session.css">
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="container">
+                <div class="logo">
+                    <h1>🎓 ICT支援員教育講座</h1>
+                </div>
+                <ul class="nav-menu">
+                    <li><a href="../index.html">ホーム</a></li>
+                    <li><a href="../beginner.html">入門編</a></li>
+                    <li><a href="../intermediate.html">基礎編</a></li>
+                    <li><a href="../intermediate2.html" class="active">中級編</a></li>
+                    <li><a href="../advanced.html">発展編</a></li>
+                    <li><a href="../certification.html">試験対策</a></li>
+                    <li><a href="../resources.html">参考資料</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <main class="container session-content">
+        <div class="session-header intermediate">
+            <span class="session-label">中級編第10回</span>
+            <h1>トラブルシューティング実践</h1>
+            <p class="session-meta">所要時間: 90分 | レベル: 中級</p>
+        </div>
+
+        <section class="objectives">
+            <h2>📘 学習目標</h2>
+            <ul>
+                <li>学校現場で頻発するICTトラブルの種類と原因を理解する</li>
+                <li>体系的なトラブルシューティングの手順を習得する</li>
+                <li>状況に応じた適切な対応と判断ができるようになる</li>
+                <li>トラブル記録と再発防止策の重要性を理解する</li>
+            </ul>
+        </section>
+
+        <section class="content-section">
+            <h2>1. トラブルシューティングの基本原則</h2>
+            
+            <h3>1.1 基本的な考え方</h3>
+            
+            <div class="point-box">
+                <h4>🎯 トラブル対応の5原則</h4>
+                <ol>
+                    <li><strong>落ち着く</strong>：慌てず冷静に状況を把握</li>
+                    <li><strong>聞く</strong>：具体的に「何が」「いつ」「どのように」起きたか確認</li>
+                    <li><strong>切り分ける</strong>：範囲を特定し、原因を絞り込む</li>
+                    <li><strong>試す</strong>：簡単な対処から順に試す</li>
+                    <li><strong>記録する</strong>：現象、対処法、結果を記録</li>
+                </ol>
+            </div>
+
+            <h3>1.2 切り分けの基本</h3>
+            
+            <div class="info-box">
+                <h4>💡 トラブル切り分けの観点</h4>
+                <ul>
+                    <li><strong>範囲の特定</strong>：
+                        <ul>
+                            <li>1台だけ？ → 端末の問題</li>
+                            <li>1クラスだけ？ → その教室のネットワークの問題</li>
+                            <li>学校全体？ → サーバー、回線の問題</li>
+                        </ul>
+                    </li>
+                    <li><strong>再現性</strong>：
+                        <ul>
+                            <li>必ず起きる？ → 設定や故障の可能性</li>
+                            <li>時々起きる？ → 負荷、タイミングの問題</li>
+                        </ul>
+                    </li>
+                    <li><strong>タイミング</strong>：
+                        <ul>
+                            <li>いつから？ → 直前の変更点を確認</li>
+                            <li>特定の時間帯だけ？ → 混雑、定期処理の影響</li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+
+            <h3>1.3 対応の優先順位</h3>
+            
+            <table style="width: 100%; border-collapse: collapse; margin: 1rem 0;">
+                <thead>
+                    <tr style="background: #f5f5f5;">
+                        <th style="padding: 0.75rem; border: 1px solid #ddd;">優先度</th>
+                        <th style="padding: 0.75rem; border: 1px solid #ddd;">状況</th>
+                        <th style="padding: 0.75rem; border: 1px solid #ddd;">対応</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td style="padding: 0.75rem; border: 1px solid #ddd;"><strong>最優先</strong></td>
+                        <td style="padding: 0.75rem; border: 1px solid #ddd;">授業に支障、学校全体に影響</td>
+                        <td style="padding: 0.75rem; border: 1px solid #ddd;">即座に対応、代替手段の提示</td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 0.75rem; border: 1px solid #ddd;"><strong>高</strong></td>
+                        <td style="padding: 0.75rem; border: 1px solid #ddd;">一部の授業に影響</td>
+                        <td style="padding: 0.75rem; border: 1px solid #ddd;">授業時間内に解決を目指す</td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 0.75rem; border: 1px solid #ddd;"><strong>中</strong></td>
+                        <td style="padding: 0.75rem; border: 1px solid #ddd;">個人の端末トラブル</td>
+                        <td style="padding: 0.75rem; border: 1px solid #ddd;">休み時間や放課後に対応</td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 0.75rem; border: 1px solid #ddd;"><strong>低</strong></td>
+                        <td style="padding: 0.75rem; border: 1px solid #ddd;">使い方の質問、軽微な不具合</td>
+                        <td style="padding: 0.75rem; border: 1px solid #ddd;">時間のあるときに対応</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <section class="content-section">
+            <h2>2. 頻出トラブルと対処法</h2>
+            
+            <h3>2.1 ログイン・認証トラブル</h3>
+            
+            <p><strong>【トラブル1】パスワードを忘れた</strong></p>
+            <ul>
+                <li><strong>確認事項</strong>：
+                    <ul>
+                        <li>CapsLockがONになっていないか</li>
+                        <li>全角/半角を間違えていないか</li>
+                        <li>最近パスワード変更したか</li>
+                    </ul>
+                </li>
+                <li><strong>対処法</strong>：
+                    <ul>
+                        <li>パスワードカードの確認</li>
+                        <li>管理コンソールからパスワードリセット</li>
+                        <li>仮パスワード発行、変更を促す</li>
+                    </ul>
+                </li>
+            </ul>
+
+            <p><strong>【トラブル2】「アカウントがロックされています」</strong></p>
+            <ul>
+                <li><strong>原因</strong>：パスワード誤入力を繰り返した</li>
+                <li><strong>対処法</strong>：
+                    <ul>
+                        <li>管理コンソールからロック解除</li>
+                        <li>正しいパスワードを確認してから再試行</li>
+                    </ul>
+                </li>
+            </ul>
+
+            <h3>2.2 ネットワーク接続トラブル</h3>
+            
+            <p><strong>【トラブル3】Wi-Fiに繋がらない</strong></p>
+            <div class="point-box">
+                <h4>🎯 診断手順</h4>
+                <ol>
+                    <li><strong>Wi-Fiアイコン確認</strong>：表示されているか、電波マークは？</li>
+                    <li><strong>機内モード確認</strong>：ONになっていないか</li>
+                    <li><strong>SSID確認</strong>：正しいSSIDを選択しているか</li>
+                    <li><strong>パスワード確認</strong>：正しく入力しているか</li>
+                    <li><strong>他端末での確認</strong>：他の端末は繋がるか（切り分け）</li>
+                    <li><strong>端末再起動</strong>：端末を再起動してみる</li>
+                    <li><strong>AP確認</strong>：アクセスポイントのランプ状態</li>
+                </ol>
+            </div>
+
+            <p><strong>【トラブル4】インターネットに繋がらない（Wi-Fiは接続済）</strong></p>
+            <ul>
+                <li><strong>確認事項</strong>：
+                    <ul>
+                        <li>他の端末も同じ症状か</li>
+                        <li>特定のサイトだけか、すべてのサイトか</li>
+                        <li>ルーターのランプ状態</li>
+                    </ul>
+                </li>
+                <li><strong>対処法</strong>：
+                    <ul>
+                        <li>ブラウザのキャッシュクリア</li>
+                        <li>DNSの確認（8.8.8.8で試す）</li>
+                        <li>ルーター再起動</li>
+                    </ul>
+                </li>
+            </ul>
+
+            <h3>2.3 端末・アプリトラブル</h3>
+            
+            <p><strong>【トラブル5】タブレットが起動しない</strong></p>
+            <ul>
+                <li><strong>確認事項</strong>：
+                    <ul>
+                        <li>充電はされているか</li>
+                        <li>電源ボタンを長押ししてみる</li>
+                        <li>画面が真っ暗なだけで音は出るか</li>
+                    </ul>
+                </li>
+                <li><strong>対処法</strong>：
+                    <ul>
+                        <li>充電ケーブルを接続して10分待つ</li>
+                        <li>強制再起動（機種ごとの方法）</li>
+                        <li>修理が必要な場合は業者に連絡</li>
+                    </ul>
+                </li>
+            </ul>
+
+            <p><strong>【トラブル6】アプリが起動しない・フリーズする</strong></p>
+            <ul>
+                <li><strong>対処法の順序</strong>：
+                    <ol>
+                        <li>アプリの再起動</li>
+                        <li>アプリのキャッシュクリア</li>
+                        <li>端末の再起動</li>
+                        <li>アプリの再インストール</li>
+                        <li>OSのアップデート確認</li>
+                    </ol>
+                </li>
+            </ul>
+
+            <h3>2.4 授業中の緊急トラブル</h3>
+            
+            <p><strong>【トラブル7】電子黒板に映らない</strong></p>
+            <div class="warning-box">
+                <h4>⚠️ 授業開始直前の対応</h4>
+                <p><strong>チェックリスト（30秒以内）：</strong></p>
+                <ol>
+                    <li>電源が入っているか</li>
+                    <li>ケーブルが抜けていないか</li>
+                    <li>入力切替が正しいか</li>
+                    <li>PCがスリープ状態でないか</li>
+                </ol>
+                <p><strong>すぐに解決しない場合：</strong></p>
+                <ul>
+                    <li>代替手段を提案（プロジェクター、別の教室）</li>
+                    <li>授業を進めてもらい、休み時間に対応</li>
+                </ul>
+            </div>
+
+            <p><strong>【トラブル8】音が出ない</strong></p>
+            <ul>
+                <li>ミュートになっていないか</li>
+                <li>音量が0になっていないか</li>
+                <li>ヘッドホンが刺さっていないか</li>
+                <li>出力先の選択ミス（HDMI、スピーカー）</li>
+            </ul>
+        </section>
+
+        <section class="content-section">
+            <h2>3. ケース別対応シナリオ</h2>
+            
+            <h3>3.1 ケース1：授業開始直前のトラブル</h3>
+            
+            <p><strong>状況</strong>：授業開始5分前、教員から「タブレットが配れない。充電されていない」と連絡</p>
+            
+            <p><strong>対応手順：</strong></p>
+            <ol>
+                <li><strong>状況確認</strong>：何台が充電されていないか、充電カートの電源は入っているか</li>
+                <li><strong>即時対応</strong>：
+                    <ul>
+                        <li>充電されている端末から優先的に配布</li>
+                        <li>充電されていない端末は充電しながら後で使用</li>
+                    </ul>
+                </li>
+                <li><strong>代替案</strong>：ペア学習（2人で1台）に変更できないか教員に相談</li>
+                <li><strong>根本対応</strong>：授業後、充電カートの接続確認、ケーブルの断線チェック</li>
+            </ol>
+
+            <h3>3.2 ケース2：複数人が同時にトラブル</h3>
+            
+            <p><strong>状況</strong>：授業中、10人の児童が「Google Classroomが開けない」と挙手</p>
+            
+            <p><strong>対応手順：</strong></p>
+            <ol>
+                <li><strong>範囲の特定</strong>：クラス全体か、一部だけか</li>
+                <li><strong>切り分け</strong>：
+                    <ul>
+                        <li>他のサイトは開けるか → ネットワークの問題かアプリの問題か</li>
+                        <li>他のクラスは問題ないか → 学校全体の問題か</li>
+                    </ul>
+                </li>
+                <li><strong>優先順位</strong>：
+                    <ul>
+                        <li>授業進行を優先：代替手段（紙のプリント）を提案</li>
+                        <li>問題が起きていない児童は授業継続</li>
+                    </ul>
+                </li>
+                <li><strong>個別対応</strong>：ブラウザ再起動、キャッシュクリア</li>
+            </ol>
+
+            <h3>3.3 ケース3：原因不明の不具合</h3>
+            
+            <p><strong>状況</strong>：「時々画面が固まる」という曖昧な相談</p>
+            
+            <p><strong>対応手順：</strong></p>
+            <ol>
+                <li><strong>詳細なヒアリング</strong>：
+                    <ul>
+                        <li>いつ起きるか（特定のアプリ使用時？）</li>
+                        <li>どのくらいの頻度か</li>
+                        <li>何をしているときか</li>
+                    </ul>
+                </li>
+                <li><strong>再現確認</strong>：実際に目の前で再現してもらう</li>
+                <li><strong>ログ確認</strong>：エラーメッセージ、システムログ</li>
+                <li><strong>記録</strong>：現象を詳細に記録し、業者に相談</li>
+            </ol>
+        </section>
+
+        <section class="content-section">
+            <h2>4. エスカレーション（上位への報告）</h2>
+            
+            <h3>4.1 エスカレーションが必要な場合</h3>
+            
+            <div class="info-box">
+                <h4>📌 エスカレーションの判断基準</h4>
+                <ul>
+                    <li>自分の権限・知識で対応できない</li>
+                    <li>30分以上対応しても解決しない</li>
+                    <li>学校全体に影響がある</li>
+                    <li>ハードウェア故障の疑い</li>
+                    <li>セキュリティに関わる問題</li>
+                </ul>
+            </div>
+
+            <h3>4.2 報告すべき相手</h3>
+            <ul>
+                <li><strong>情報担当教員</strong>：学校内の判断が必要な場合</li>
+                <li><strong>教育委員会</strong>：ネットワーク、システム全体の問題</li>
+                <li><strong>保守業者</strong>：ハードウェア故障、システム障害</li>
+                <li><strong>校長・教頭</strong>：重大なトラブル、保護者対応が必要な場合</li>
+            </ul>
+
+            <h3>4.3 報告時に伝えるべき情報</h3>
+            <ul>
+                <li><strong>現象</strong>：何が起きているか具体的に</li>
+                <li><strong>範囲</strong>：何台、どのクラス、いつから</li>
+                <li><strong>影響</strong>：授業に支障があるか</li>
+                <li><strong>実施した対応</strong>：何を試したか</li>
+                <li><strong>緊急度</strong>：すぐに対応が必要か</li>
+            </ul>
+        </section>
+
+        <section class="content-section">
+            <h2>5. トラブル記録と再発防止</h2>
+            
+            <h3>5.1 トラブル記録の重要性</h3>
+            
+            <div class="point-box">
+                <h4>🎯 記録する理由</h4>
+                <ul>
+                    <li>同じトラブルが起きたときの参照</li>
+                    <li>傾向分析（特定の端末、時期の問題把握）</li>
+                    <li>業者への報告資料</li>
+                    <li>次年度への引き継ぎ</li>
+                </ul>
+            </div>
+
+            <h3>5.2 記録すべき項目</h3>
+            <table style="width: 100%; border-collapse: collapse; margin: 1rem 0;">
+                <thead>
+                    <tr style="background: #f5f5f5;">
+                        <th style="padding: 0.75rem; border: 1px solid #ddd;">項目</th>
+                        <th style="padding: 0.75rem; border: 1px solid #ddd;">内容</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td style="padding: 0.75rem; border: 1px solid #ddd;"><strong>日時</strong></td>
+                        <td style="padding: 0.75rem; border: 1px solid #ddd;">発生日時、対応日時</td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 0.75rem; border: 1px solid #ddd;"><strong>場所・機器</strong></td>
+                        <td style="padding: 0.75rem; border: 1px solid #ddd;">教室名、端末番号、機器名</td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 0.75rem; border: 1px solid #ddd;"><strong>報告者</strong></td>
+                        <td style="padding: 0.75rem; border: 1px solid #ddd;">教員名、児童生徒名</td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 0.75rem; border: 1px solid #ddd;"><strong>現象</strong></td>
+                        <td style="padding: 0.75rem; border: 1px solid #ddd;">具体的な症状、エラーメッセージ</td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 0.75rem; border: 1px solid #ddd;"><strong>対処内容</strong></td>
+                        <td style="padding: 0.75rem; border: 1px solid #ddd;">実施した対応、結果</td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 0.75rem; border: 1px solid #ddd;"><strong>原因</strong></td>
+                        <td style="padding: 0.75rem; border: 1px solid #ddd;">判明した原因（推測含む）</td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 0.75rem; border: 1px solid #ddd;"><strong>状態</strong></td>
+                        <td style="padding: 0.75rem; border: 1px solid #ddd;">解決/未解決/エスカレーション</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3>5.3 再発防止策</h3>
+            <ul>
+                <li><strong>定期メンテナンス</strong>：発生前に予防する</li>
+                <li><strong>マニュアル整備</strong>：よくあるトラブルの対処法を文書化</li>
+                <li><strong>教員・児童生徒への啓発</strong>：正しい使い方の指導</li>
+                <li><strong>環境改善</strong>：根本原因の解消（古い機器の更新など）</li>
+            </ul>
+        </section>
+
+        <section class="content-section">
+            <h2>6. トラブル対応の心構え</h2>
+            
+            <h3>6.1 冷静な対応</h3>
+            <ul>
+                <li>焦らず、落ち着いて状況を把握する</li>
+                <li>教員や児童生徒の不安を和らげる声かけ</li>
+                <li>「必ず解決します」という姿勢を示す</li>
+            </ul>
+
+            <h3>6.2 コミュニケーション</h3>
+            <ul>
+                <li>専門用語を使わず、分かりやすい説明</li>
+                <li>進捗状況を適宜報告</li>
+                <li>解決しない場合も、その旨を正直に伝える</li>
+            </ul>
+
+            <h3>6.3 継続的な学習</h3>
+            <ul>
+                <li>新しい機器・アプリの情報収集</li>
+                <li>他の支援員との情報共有</li>
+                <li>メーカーのサポート情報を定期確認</li>
+            </ul>
+        </section>
+
+        <section class="exercises">
+            <h2>📝 演習問題</h2>
+            
+            <div class="exercise-item">
+                <h3>演習1: トラブル診断</h3>
+                <p>授業中、児童から「Scratchが動かない」と相談されました。どのような順序で確認・対応しますか？</p>
+            </div>
+
+            <div class="exercise-item">
+                <h3>演習2: 優先順位の判断</h3>
+                <p>以下のトラブルが同時に発生しました。対応の優先順位をつけ、理由を説明してください。</p>
+                <ol>
+                    <li>1台のタブレットが起動しない</li>
+                    <li>電子黒板が映らず、授業が始められない</li>
+                    <li>Wi-Fiが遅く、動画が止まる</li>
+                    <li>教員から「パスワードを忘れた」と連絡</li>
+                </ol>
+            </div>
+
+            <div class="exercise-item">
+                <h3>演習3: エスカレーション判断</h3>
+                <p>ネットワークトラブルで、以下を試しても解決しません。次にどのような行動を取りますか？</p>
+                <ul>
+                    <li>端末の再起動 → 変化なし</li>
+                    <li>Wi-Fi再接続 → 接続はできるがインターネットに繋がらない</li>
+                    <li>他の端末でも同じ症状</li>
+                </ul>
+            </div>
+        </section>
+
+        <section class="summary">
+            <h2>📌 まとめ</h2>
+            <ul>
+                <li>トラブル対応は「落ち着く」「聞く」「切り分ける」「試す」「記録する」の5原則</li>
+                <li>範囲の特定、再現性、タイミングで原因を切り分ける</li>
+                <li>授業への影響を最優先に考え、代替手段を提案する</li>
+                <li>自分で対応できない場合は適切にエスカレーションする</li>
+                <li>トラブル記録を残し、再発防止と次回対応の効率化を図る</li>
+            </ul>
+        </section>
+
+        <section class="references">
+            <h2>📚 参考資料</h2>
+            <ul>
+                <li><a href="https://www.mext.go.jp/studxstyle/" target="_blank">StuDX Style（文部科学省）</a></li>
+                <li><a href="https://support.google.com/edu/" target="_blank">Google Workspace for Education サポート</a></li>
+                <li><a href="https://support.microsoft.com/ja-jp/education" target="_blank">Microsoft 教育機関向けサポート</a></li>
+            </ul>
+        </section>
+
+        <nav class="session-nav">
+            <a href="session_c09.html" class="prev-session">← 中級編 第9回: アカウント管理とアクセス制御</a>
+            <a href="../intermediate2.html" class="back-to-course">中級編コース一覧へ</a>
+            <a href="session_c11.html" class="next-session">中級編 第11回: プロジェクトマネジメント入門 →</a>
+        </nav>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>講座について</h4>
+                    <ul>
+                        <li><a href="../beginner.html">入門編（第1回～第10回）</a></li>
+                        <li><a href="../intermediate.html">基礎編（第11回～第24回）</a></li>
+                        <li><a href="../intermediate2.html">中級編（第1回～第14回）</a></li>
+                        <li><a href="../advanced.html">発展編（第25回～第36回）</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>参考リソース</h4>
+                    <ul>
+                        <li><a href="../resources.html">主要参考資料</a></li>
+                        <li><a href="../resources.html#government">国・行政機関</a></li>
+                        <li><a href="../resources.html#organizations">専門機関・団体</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>お問い合わせ</h4>
+                    <p>本講座に関するお問い合わせは、櫻井までお願いいたします。</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 ICT支援員・企画員のための教育講座. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../js/main.js"></script>
+</body>
+</html>

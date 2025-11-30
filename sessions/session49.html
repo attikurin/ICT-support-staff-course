@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>第49回：コンピュータシステム概論【2025年最新版】 - ICT支援員教育講座</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/session.css">
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="container">
+                <div class="logo">
+                    <h1>🎓 ICT支援員教育講座</h1>
+                </div>
+                <ul class="nav-menu">
+                    <li><a href="../index.html">ホーム</a></li>
+                    <li><a href="../beginner.html">入門編</a></li>
+                    <li><a href="../intermediate.html">基礎編</a></li>
+                    <li><a href="../intermediate2.html">中級編</a></li>
+                    <li><a href="../advanced.html">発展編</a></li>
+                    <li><a href="../certification.html">試験対策</a></li>
+                    <li><a href="../supplement.html">補完カリキュラム</a></li>
+                    <li><a href="../resources.html">参考資料</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <main class="session-content">
+        <div class="container">
+            <div class="session-header-content">
+                <span class="session-label supplement">補完カリキュラム</span>
+                <h1>第49回：コンピュータシステム概論【2025年最新版】</h1>
+                <p class="session-meta">情報科学・CS基礎編（全8回）の第1回 | 学習時間目安：120分（講義90分、演習30分） | 難易度：★★★☆☆</p>
+            </div>
+
+            <div class="info-box">
+                <h3>📋 講座概要</h3>
+                <ul>
+                    <li><strong>対象者：</strong>ICT支援員、教育情報化コーディネータ、学校ICT管理者</li>
+                    <li><strong>受講前提：</strong>基礎編（第1回〜第48回）修了、または同等の知識</li>
+                    <li><strong>学習時間：</strong>120分（講義90分、演習30分）</li>
+                    <li><strong>難易度：</strong>★★★☆☆（中級）</li>
+                    <li><strong>最終更新：</strong>2025年11月（GIGA第2期対応版）</li>
+                </ul>
+            </div>
+
+            <section class="objectives">
+                <h2>🎯 学習目標</h2>
+                <p>本講座を修了することで、以下のことができるようになります：</p>
+                <ul>
+                    <li>コンピュータの基本構造と動作原理を理解し、説明できる</li>
+                    <li>ハードウェアとソフトウェアの関係を体系的に理解できる</li>
+                    <li>教育現場での機器選定に必要な技術的判断ができる</li>
+                    <li>端末のスペック表を読み解き、適切な評価ができる</li>
+                    <li>学校の予算とニーズに合わせた機器提案ができる</li>
+                    <li><strong>【追加】</strong>GIGA第2期（2024年度〜）の最新基準を理解できる</li>
+                </ul>
+            </section>
+
+            <section class="content-section">
+                <h2>📚 第1章：コンピュータの基本構造</h2>
+                
+                <h3>1.1 コンピュータの5大機能</h3>
+                <p>コンピュータは、情報処理を行うための機械であり、以下の5つの基本機能を持っています。これは<strong>「コンピュータの5大機能」</strong>として知られ、すべてのコンピュータに共通する基本構造です。</p>
+                
+                <div class="info-box">
+                    <h4>📌 5大機能の概要</h4>
+                    
+                    <h5>1. 入力（Input）</h5>
+                    <ul>
+                        <li><strong>デバイス例：</strong>キーボード、マウス、タッチパネル、カメラ、マイクなど</li>
+                        <li><strong>役割：</strong>外部からデータや命令を取り込む機能</li>
+                        <li><strong>学校現場の例：</strong>タブレットのタッチ操作、QRコードリーダー</li>
+                    </ul>
+
+                    <h5>2. 記憶（Storage）</h5>
+                    <ul>
+                        <li><strong>デバイス例：</strong>RAM（主記憶装置）、SSD/HDD（補助記憶装置）</li>
+                        <li><strong>役割：</strong>データやプログラムを保存する機能</li>
+                        <li><strong>学校現場の例：</strong>児童生徒の作品ファイル、授業用教材の保存</li>
+                    </ul>
+
+                    <h5>3. 演算（Arithmetic/Logic）</h5>
+                    <ul>
+                        <li><strong>デバイス例：</strong>CPU（中央演算処理装置）内の演算装置</li>
+                        <li><strong>役割：</strong>数値計算や論理演算を行う機能</li>
+                        <li><strong>学校現場の例：</strong>プログラミング実行、画像編集の処理</li>
+                    </ul>
+
+                    <h5>4. 制御（Control）</h5>
+                    <ul>
+                        <li><strong>デバイス例：</strong>CPU内の制御装置</li>
+                        <li><strong>役割：</strong>各装置に指示を出し、全体を統括する機能</li>
+                        <li><strong>学校現場の例：</strong>OSによる各アプリの動作制御</li>
+                    </ul>
+
+                    <h5>5. 出力（Output）</h5>
+                    <ul>
+                        <li><strong>デバイス例：</strong>ディスプレイ、プリンター、スピーカーなど</li>
+                        <li><strong>役割：</strong>処理結果を外部に伝える機能</li>
+                        <li><strong>学校現場の例：</strong>電子黒板への表示、印刷物の出力</li>
+                    </ul>
+                </div>
+
+                <div class="point-box">
+                    <h4>💡 教育現場での応用</h4>
+                    <p><strong>GIGA端末（タブレットやノートPC）で考えると：</strong></p>
+                    <ol>
+                        <li><strong>入力：</strong>タッチペンで図を描く</li>
+                        <li>↓</li>
+                        <li><strong>記憶：</strong>作品がSSDに保存される</li>
+                        <li>↓</li>
+                        <li><strong>演算：</strong>CPUが画像処理</li>
+                        <li>↓</li>
+                        <li><strong>制御：</strong>OSがアプリを管理</li>
+                        <li>↓</li>
+                        <li><strong>出力：</strong>画面に表示、または大型提示装置に投影</li>
+                    </ol>
+                    <p>この流れを理解することで、<strong>「なぜ端末が遅いのか」「どこに問題があるのか」</strong>を特定しやすくなります。</p>
+                </div>
+
+                <h3>1.2 ノイマン型コンピュータの概念</h3>
+                <p>現代のほとんどのコンピュータは<strong>「ノイマン型（フォン・ノイマン型）」</strong>と呼ばれる基本設計に基づいています。</p>
+
+                <div class="info-box">
+                    <h4>📌 ノイマン型の特徴</h4>
+                    <ul>
+                        <li><strong>プログラム内蔵方式：</strong>プログラム（命令）とデータを同じメモリに格納する</li>
+                        <li><strong>逐次制御方式：</strong>プログラムを順次実行する（逐次処理）</li>
+                        <li><strong>柔軟性：</strong>プログラムの変更により、同じハードウェアで異なる処理ができる</li>
+                    </ul>
+                </div>
+
+                <div class="point-box">
+                    <h4>💡 教育現場での意味</h4>
+                    <ul>
+                        <li>同じ端末で、ワープロソフトも表計算ソフトも動く理由</li>
+                        <li>ソフトウェアを更新すれば、ハードウェアを変えずに機能拡張できる</li>
+                        <li>プログラミング教育で「命令を記憶させる」概念の基礎</li>
+                    </ul>
+                </div>
+
+                <div class="warning-box">
+                    <h4>⚠️ 重要なポイント</h4>
+                    <p>ノイマン型コンピュータの理解は、以下の講座とも深く関連します：</p>
+                    <ul>
+                        <li><strong>第50回：オペレーティングシステム論</strong> - プログラムとメモリの管理</li>
+                        <li><strong>第52回：アルゴリズムと情報科学の基礎</strong> - 逐次処理の概念</li>
+                        <li><strong>第57回：プログラミング基礎</strong> - 命令の記述と実行</li>
+                    </ul>
+                </div>
+            </section>
+
+            <section class="navigation-buttons">
+                <a href="../supplement.html" class="btn btn-secondary">← 補完カリキュラム一覧へ</a>
+                <a href="session50.html" class="btn btn-primary">次の講座：第50回 →</a>
+            </section>
+
+            <section class="content-section">
+                <h2>📚 第2章：CPU（プロセッサ）の仕組み</h2>
+                
+                <h3>2.1 CPUの役割と構造</h3>
+                <p><strong>CPU（Central Processing Unit：中央処理装置）</strong>は、コンピュータの「頭脳」に相当します。</p>
+                
+                <div class="info-box">
+                    <h4>📌 CPUの主要構成要素</h4>
+                    
+                    <h5>1. 制御装置（Control Unit）</h5>
+                    <ul>
+                        <li>メモリから命令を取り出し、解読する</li>
+                        <li>各装置に適切な制御信号を送る</li>
+                    </ul>
+
+                    <h5>2. 演算装置（ALU：Arithmetic Logic Unit）</h5>
+                    <ul>
+                        <li>算術演算（加算、減算、乗算、除算）</li>
+                        <li>論理演算（AND、OR、NOTなど）</li>
+                    </ul>
+
+                    <h5>3. レジスタ（Register）</h5>
+                    <ul>
+                        <li>CPU内部の超高速記憶領域</li>
+                        <li>現在処理中のデータや命令を一時保存</li>
+                    </ul>
+
+                    <h5>4. キャッシュメモリ（Cache Memory）</h5>
+                    <ul>
+                        <li>CPUとメインメモリの速度差を埋める高速メモリ</li>
+                        <li>L1、L2、L3キャッシュの階層構造</li>
+                    </ul>
+                </div>
+
+                <h3>2.2 CPUの性能指標</h3>
+                <p>教育現場で端末を選定する際、CPUの性能を理解することは重要です。</p>
+
+                <div class="info-box">
+                    <h4>📌 主要な性能指標</h4>
+                    
+                    <h5>1. クロック周波数（Clock Speed）</h5>
+                    <ul>
+                        <li><strong>単位：</strong>GHz（ギガヘルツ）</li>
+                        <li><strong>例：</strong>2.4GHz、3.6GHz</li>
+                        <li><strong>意味：</strong>1秒間に何回処理サイクルを実行できるか</li>
+                        <li><strong>注意：</strong>周波数が高い = 速いとは限らない（アーキテクチャに依存）</li>
+                    </ul>
+
+                    <h5>2. コア数（Core Count）</h5>
+                    <ul>
+                        <li>デュアルコア（2コア）、クアッドコア（4コア）、オクタコア（8コア）など</li>
+                        <li>複数の処理を同時に実行できる</li>
+                        <li><strong>教育現場：</strong>ブラウザで複数タブ + ビデオ会議 + 録画などマルチタスクに有利</li>
+                    </ul>
+
+                    <h5>3. スレッド数（Thread Count）</h5>
+                    <ul>
+                        <li>ハイパースレッディング技術により、1コアで2スレッド処理可能</li>
+                        <li><strong>例：</strong>4コア8スレッド</li>
+                        <li>より多くの並行処理が可能</li>
+                    </ul>
+
+                    <h5>4. キャッシュメモリ容量</h5>
+                    <ul>
+                        <li><strong>L1キャッシュ：</strong>数十KB（最速）</li>
+                        <li><strong>L2キャッシュ：</strong>数百KB〜数MB</li>
+                        <li><strong>L3キャッシュ：</strong>数MB〜数十MB（共有キャッシュ）</li>
+                        <li>大容量ほど処理効率が向上</li>
+                    </ul>
+                </div>
+
+                <h3>2.3 主要CPUメーカーと教育端末への適用</h3>
+
+                <div class="info-box" style="background-color: #eff6ff;">
+                    <h4>🔷 Intel プロセッサ</h4>
+                    
+                    <h5>従来のCeleron/Pentiumシリーズ（〜2023年）</h5>
+                    <ul>
+                        <li><strong>シリーズ：</strong>Celeron N4020、N4500、N5100など</li>
+                        <li><strong>GIGA第1期の主流：</strong>Celeron N4500が文部科学省の最低基準</li>
+                        <li><strong>性能：</strong>基本的な学習活動に対応</li>
+                        <li><strong>PassMark参考値：</strong>
+                            <ul>
+                                <li>N4020：1,567点</li>
+                                <li>N4500：1,818点</li>
+                                <li>N5100：3,298点</li>
+                            </ul>
+                        </li>
+                    </ul>
+
+                    <h5>【追加】Intel Processorシリーズ（2024年〜）</h5>
+                    <div class="point-box">
+                        <p><strong>💡 重要な変更点</strong></p>
+                        <ul>
+                            <li><strong>背景：</strong>2024年以降、IntelはCeleron/PentiumブランドをIntel Processorブランドに統合</li>
+                            <li><strong>主要モデル：</strong>Intel Processor N100、N95、N200など</li>
+                            <li><strong>GIGA第2期での採用増：</strong>N100/N95が実質的なCeleron後継として教育端末に採用され始めている</li>
+                        </ul>
+                    </div>
+
+                    <h5>Intel N100/N95の性能（2025年推奨）</h5>
+                    <ul>
+                        <li><strong>性能：</strong>約2.8〜3倍の性能向上（N4500比較）
+                            <ul>
+                                <li>Intel N100：5,157点（PassMark）</li>
+                                <li>Intel N95：5,206点（PassMark）</li>
+                                <li>参考：第7世代デスクトップCore i5に匹敵する性能</li>
+                            </ul>
+                        </li>
+                        <li><strong>文部科学省の見解：</strong>「Intel Processor N100は、Intel Celeron Processor N4500と同等以上との最低スペック基準を満たす」（2024年4月公式文書）</li>
+                        <li><strong>特徴：</strong>
+                            <ul>
+                                <li>超省電力（10W）</li>
+                                <li>長時間バッテリー駆動</li>
+                                <li>コストパフォーマンス優秀</li>
+                            </ul>
+                        </li>
+                        <li><strong>教育用途：</strong>文書作成、ブラウジング、プログラミング（Scratch、micro:bit）、オンライン授業に十分</li>
+                    </ul>
+                </div>
+
+                <div class="info-box" style="background-color: #fef2f2;">
+                    <h4>🔶 AMD プロセッサ</h4>
+                    <ul>
+                        <li><strong>シリーズ：</strong>Ryzen 3、Ryzen 5、Ryzen 7、Athlon</li>
+                        <li><strong>教育向け：</strong>Athlon、Ryzen 3/5（コストパフォーマンス重視）</li>
+                        <li><strong>特徴：</strong>Intelより価格が抑えられ、マルチコア性能が高い</li>
+                        <li><strong>用途：</strong>動画編集、3Dモデリング、STEAM教育</li>
+                        <li><strong>注意：</strong>教育現場ではIntelが主流、AMD採用は一部に留まる</li>
+                    </ul>
+                </div>
+
+                <div class="info-box" style="background-color: #f0fdf4;">
+                    <h4>📱 ARM プロセッサ（Apple Silicon含む）</h4>
+                    <ul>
+                        <li><strong>シリーズ：</strong>Apple A/Mシリーズ（iPad）、Qualcomm Snapdragon（一部Chromebook）</li>
+                        <li><strong>教育向け：</strong>iPad（A14〜A17、M1、M2チップ）</li>
+                        <li><strong>特徴：</strong>低消費電力、高効率、長時間バッテリー駆動</li>
+                        <li><strong>用途：</strong>モバイル学習、1人1台端末、フィールドワーク</li>
+                        <li><strong>注意：</strong>教育現場ではiPadが主流、Apple Silicon搭載Macは高等教育や特定用途</li>
+                    </ul>
+                </div>
+
+                <h3>2.4 教育現場での選定ポイント</h3>
+                
+                <div style="overflow-x: auto;">
+                    <table style="width: 100%; border-collapse: collapse; margin: 1.5rem 0;">
+                        <thead>
+                            <tr style="background-color: var(--primary-color); color: white;">
+                                <th style="padding: 1rem; border: 1px solid #ddd; text-align: left;">用途</th>
+                                <th style="padding: 1rem; border: 1px solid #ddd; text-align: left;">推奨CPU</th>
+                                <th style="padding: 1rem; border: 1px solid #ddd; text-align: left;">具体例</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td style="padding: 0.75rem; border: 1px solid #ddd;">低学年・基本利用</td>
+                                <td style="padding: 0.75rem; border: 1px solid #ddd;">Celeron N4500、Intel N100、ARM系</td>
+                                <td style="padding: 0.75rem; border: 1px solid #ddd;">文書作成、ブラウジング</td>
+                            </tr>
+                            <tr style="background-color: #f9fafb;">
+                                <td style="padding: 0.75rem; border: 1px solid #ddd;">中高学年・汎用</td>
+                                <td style="padding: 0.75rem; border: 1px solid #ddd;">Intel N100/N95、Core i3、Ryzen 3</td>
+                                <td style="padding: 0.75rem; border: 1px solid #ddd;">オンライン授業、プログラミング</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 0.75rem; border: 1px solid #ddd;">STEAM教育・専門用途</td>
+                                <td style="padding: 0.75rem; border: 1px solid #ddd;">Core i5以上、Ryzen 5以上</td>
+                                <td style="padding: 0.75rem; border: 1px solid #ddd;">動画編集、3D CAD、データサイエンス</td>
+                            </tr>
+                            <tr style="background-color: #f9fafb;">
+                                <td style="padding: 0.75rem; border: 1px solid #ddd;">予算制約</td>
+                                <td style="padding: 0.75rem; border: 1px solid #ddd;">Intel N100、AMD Athlon</td>
+                                <td style="padding: 0.75rem; border: 1px solid #ddd;">最高のコストパフォーマンス</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 0.75rem; border: 1px solid #ddd;">バッテリー重視</td>
+                                <td style="padding: 0.75rem; border: 1px solid #ddd;">ARM系（iPad、Chromebook）</td>
+                                <td style="padding: 0.75rem; border: 1px solid #ddd;">長時間駆動、持ち運び</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="warning-box">
+                    <h4>⚠️ Intel N100/N95の登場による影響</h4>
+                    <ul>
+                        <li>2024〜2025年の新規導入では、従来のCeleron N4500よりIntel N100/N95が推奨される傾向</li>
+                        <li>同価格帯で約3倍の性能向上</li>
+                        <li>5年間の使用を考慮すると、将来のソフトウェア要件にも対応可能</li>
+                    </ul>
+                </div>
+            </section>
+
+            <div class="info-box">
+                <h3>📝 続きは作成中</h3>
+                <p>この講座は以下の章で構成されます：</p>
+                <ul>
+                    <li>✅ 第1章：コンピュータの基本構造</li>
+                    <li>✅ 第2章：CPU（プロセッサ）の仕組み</li>
+                    <li>⏳ 第3章：メモリとストレージ</li>
+                    <li>⏳ 第4章：コンピュータの性能指標</li>
+                    <li>⏳ 第5章：学校での機器選定のポイント</li>
+                    <li>⏳ 実践演習</li>
+                </ul>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 ICT支援員・企画員のための教育講座. All rights reserved.</p>
+            <p>お問い合わせ：<a href="mailto:school.ict.info@gmail.com">school.ict.info@gmail.com</a></p>
+        </div>
+    </footer>
+</body>
+</html>

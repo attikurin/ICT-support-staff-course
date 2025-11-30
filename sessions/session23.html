@@ -1,0 +1,897 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>第23回：トラブルシューティングの実践 - ICT支援員教育講座</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/session.css">
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="container">
+                <div class="logo">
+                    <h1>🎓 ICT支援員教育講座</h1>
+                </div>
+                <ul class="nav-menu">
+                    <li><a href="../index.html">ホーム</a></li>
+                    <li><a href="../beginner.html">入門編</a></li>
+                    <li><a href="../intermediate.html" class="active">基礎編</a></li>
+                    <li><a href="../intermediate2.html">中級編</a></li>
+                    <li><a href="../advanced.html">発展編</a></li>
+                    <li><a href="../certification.html">試験対策</a></li>
+                    <li><a href="../resources.html">参考資料</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <main class="container session-content">
+            <div class="session-header intermediate">
+                <span class="session-label">基礎編 第23回</span>
+                <h1>トラブルシューティングの実践</h1>
+                <p class="session-meta">所要時間: 90分 | レベル: 基礎</p>
+            </div>
+
+            <section class="objectives">
+                <h2>📘 学習目標</h2>
+                <p>本講座を修了することで、以下のスキルを習得できます：</p>
+                <ul>
+                    <li>学校現場で頻発するICTトラブルに迅速かつ適切に対応できる</li>
+                    <li>問題の原因を論理的に切り分け、効率的に解決に導くことができる</li>
+                    <li>トラブル対応の記録を体系的に管理し、組織的な知識として共有できる</li>
+                    <li>予防保全の観点から、トラブルを未然に防ぐ仕組みを構築できる</li>
+                </ul>
+            </section>
+
+            <section class="content-section">
+                <h2>2. よくあるトラブルと対処法</h2>
+                
+                <h3>2.1 起動・ログインの問題</h3>
+                
+                <p>学校現場で最も頻繁に発生するトラブルの一つです。授業開始時に発生すると大きな支障となるため、迅速な対応が求められます。</p>
+
+                <h4>主な症状と対処法</h4>
+                
+                <div class="example-box">
+                    <h5>電源が入らない場合</h5>
+                    <ul>
+                        <li>バッテリー残量の確認（充電ランプの状態を確認）</li>
+                        <li>ACアダプターの接続確認（コネクタの抜き差し）</li>
+                        <li>電源ボタンの長押し（10秒以上）による強制再起動</li>
+                        <li>バッテリーの取り外し・再装着（可能な機種の場合）</li>
+                    </ul>
+                </div>
+
+                <div class="example-box">
+                    <h5>起動途中で止まる場合</h5>
+                    <ul>
+                        <li>セーフモードでの起動を試行</li>
+                        <li>周辺機器（USBメモリ、外付けHDDなど）を全て外して起動</li>
+                        <li>BIOSの起動順位の確認</li>
+                        <li>システム復元ポイントへの復帰</li>
+                    </ul>
+                </div>
+
+                <div class="example-box">
+                    <h5>ログインできない場合</h5>
+                    <ul>
+                        <li>CapsLockの状態確認（パスワード入力時の大文字・小文字）</li>
+                        <li>NumLockの状態確認（テンキーでの数字入力）</li>
+                        <li>アカウント名の入力ミス確認（全角・半角、スペースの有無）</li>
+                        <li>パスワードリセットツールの利用</li>
+                        <li>管理者アカウントでのログイン試行</li>
+                    </ul>
+                </div>
+
+                <h4>実践的対応フロー</h4>
+                <div class="tip-box">
+                    <ol>
+                        <li>症状の正確な聞き取り（「いつから」「何をしたら」「どうなった」）</li>
+                        <li>最も可能性の高い原因から順に確認</li>
+                        <li>各手順の結果を記録</li>
+                        <li>解決後、再発防止のための指導</li>
+                    </ol>
+                </div>
+
+                <h3>2.2 ネットワーク接続トラブル</h3>
+                
+                <p>Wi-Fi接続やインターネットアクセスの問題は、オンライン学習の普及により特に重要度が増しています。</p>
+
+                <h4>症状別対処法</h4>
+                
+                <table>
+                    <thead>
+                        <tr>
+                            <th>症状</th>
+                            <th>考えられる原因</th>
+                            <th>対処方法</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Wi-Fiアイコンに×印</td>
+                            <td>Wi-Fi機能がOFF</td>
+                            <td>機内モード解除、Wi-Fi ON確認</td>
+                        </tr>
+                        <tr>
+                            <td>SSIDが表示されない</td>
+                            <td>電波が届いていない</td>
+                            <td>APに近づく、障害物確認、AP再起動</td>
+                        </tr>
+                        <tr>
+                            <td>接続はできるがインターネットに繋がらない</td>
+                            <td>DHCP、DNS、ゲートウェイの問題</td>
+                            <td>「ネットワーク診断」実行、IPアドレス確認、DNS設定確認</td>
+                        </tr>
+                        <tr>
+                            <td>接続が頻繁に切れる</td>
+                            <td>電波干渉、AP負荷過多</td>
+                            <td>チャンネル変更、AP増設検討、接続端末数制限</td>
+                        </tr>
+                        <tr>
+                            <td>速度が遅い</td>
+                            <td>帯域不足、同時接続多数</td>
+                            <td>時間帯をずらす、不要なアプリ終了、回線増強検討</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <h4>チェックリスト</h4>
+                <div class="info-box">
+                    <h5>個別端末の問題か、全体の問題かの切り分け</h5>
+                    <ul>
+                        <li><strong>1台だけ：</strong>端末側の設定問題の可能性大</li>
+                        <li><strong>複数台/全台：</strong>ネットワーク機器やサーバー側の問題の可能性大</li>
+                    </ul>
+
+                    <h5>基本確認項目</h5>
+                    <ol>
+                        <li>Wi-FiがONになっているか</li>
+                        <li>正しいSSIDに接続しているか</li>
+                        <li>パスワードは正しいか</li>
+                        <li>他の端末は繋がっているか</li>
+                        <li>ブラウザのキャッシュクリア</li>
+                        <li>端末の再起動</li>
+                    </ol>
+                </div>
+
+                <h3>2.3 アプリケーションの問題</h3>
+                
+                <h4>起動しない・フリーズする</h4>
+                <div class="example-box">
+                    <h5>対処手順</h5>
+                    <ol>
+                        <li><strong>タスクの強制終了：</strong>タスクマネージャー（Ctrl+Shift+Esc）で該当プロセスを終了</li>
+                        <li><strong>アプリの再起動：</strong>完全に終了してから再度起動</li>
+                        <li><strong>端末の再起動：</strong>メモリリフレッシュ</li>
+                        <li><strong>アップデート確認：</strong>最新版へのアップデート</li>
+                        <li><strong>再インストール：</strong>アンインストール後、再インストール</li>
+                        <li><strong>互換性モード：</strong>古いアプリの場合、互換性設定を変更</li>
+                    </ol>
+                </div>
+
+                <h4>データが保存できない・開けない</h4>
+                <div class="example-box">
+                    <h5>考えられる原因と対処</h5>
+                    <ul>
+                        <li><strong>保存先の容量不足：</strong>ストレージ容量確認、不要ファイル削除</li>
+                        <li><strong>ファイル名の問題：</strong>使用禁止文字（/\:*?"<>|）確認</li>
+                        <li><strong>権限の問題：</strong>管理者権限で実行、保存先変更</li>
+                        <li><strong>ファイル破損：</strong>バックアップからの復元、修復ツール使用</li>
+                        <li><strong>互換性の問題：</strong>ファイル形式の変換、別アプリで開く</li>
+                    </ul>
+                </div>
+
+                <h3>2.4 プリンター・印刷トラブル</h3>
+                
+                <table>
+                    <thead>
+                        <tr>
+                            <th>症状</th>
+                            <th>原因</th>
+                            <th>対処法</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>プリンターが見つからない</td>
+                            <td>接続問題、ドライバー問題</td>
+                            <td>ケーブル確認、プリンター電源ON、ドライバー再インストール</td>
+                        </tr>
+                        <tr>
+                            <td>印刷ジョブが詰まっている</td>
+                            <td>エラー発生、処理待ち</td>
+                            <td>印刷キューのクリア、プリンタースプーラー再起動</td>
+                        </tr>
+                        <tr>
+                            <td>印刷できるが文字化けする</td>
+                            <td>フォント問題、ドライバー不具合</td>
+                            <td>PDFで印刷、ドライバー更新、フォント埋め込み</td>
+                        </tr>
+                        <tr>
+                            <td>用紙が詰まる</td>
+                            <td>用紙設定ミス、湿気</td>
+                            <td>用紙トレイ確認、用紙種類設定、湿気対策</td>
+                        </tr>
+                        <tr>
+                            <td>色がおかしい</td>
+                            <td>インク不足、ヘッド詰まり</td>
+                            <td>インク残量確認、ヘッドクリーニング、ノズルチェック</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <h3>2.5 タブレット・iPad特有のトラブル</h3>
+                
+                <h4>タッチ操作が効かない</h4>
+                <div class="example-box">
+                    <ul>
+                        <li>画面の清掃（指紋、汚れ）</li>
+                        <li>保護フィルムの確認（気泡、浮き）</li>
+                        <li>再起動（強制再起動も試す）</li>
+                        <li>タッチ調整（設定→アクセシビリティ）</li>
+                        <li>ケースが干渉していないか確認</li>
+                    </ul>
+                </div>
+
+                <h4>アプリがダウンロードできない</h4>
+                <div class="example-box">
+                    <ul>
+                        <li>Apple ID / Google アカウントのサインイン状態確認</li>
+                        <li>ストレージ容量確認</li>
+                        <li>ネットワーク接続確認</li>
+                        <li>App Store / Google Play のキャッシュクリア</li>
+                        <li>MDM（モバイルデバイス管理）の制限確認</li>
+                    </ul>
+                </div>
+
+                <h4>バッテリーの減りが早い</h4>
+                <div class="example-box">
+                    <ul>
+                        <li>バックグラウンドアプリの終了</li>
+                        <li>画面の明るさ調整</li>
+                        <li>位置情報サービスの見直し</li>
+                        <li>自動更新の設定見直し</li>
+                        <li>バッテリーの劣化確認（設定→バッテリー）</li>
+                    </ul>
+                </div>
+
+                <h3>2.6 プロジェクター・電子黒板トラブル</h3>
+                
+                <table>
+                    <thead>
+                        <tr>
+                            <th>症状</th>
+                            <th>対処法</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>映像が映らない</td>
+                            <td>入力切替確認、ケーブル接続確認、ランプ切れ確認、PC側の出力設定</td>
+                        </tr>
+                        <tr>
+                            <td>色がおかしい</td>
+                            <td>ケーブル接触不良、色温度設定、RGB調整</td>
+                        </tr>
+                        <tr>
+                            <td>画面がぼやける</td>
+                            <td>フォーカス調整、解像度設定確認、レンズ清掃</td>
+                        </tr>
+                        <tr>
+                            <td>音が出ない</td>
+                            <td>音量確認、ミュート解除、オーディオケーブル確認、出力デバイス選択</td>
+                        </tr>
+                        <tr>
+                            <td>リモコンが効かない</td>
+                            <td>電池交換、受光部の障害物除去、リモコンリセット</td>
+                        </tr>
+                        <tr>
+                            <td>電子黒板のタッチが反応しない</td>
+                            <td>キャリブレーション実行、専用ペンの電池確認、センサー清掃</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+
+            <section class="content-section">
+                <h2>3. トラブルシューティングの基本プロセス</h2>
+                
+                <h3>3.1 問題の切り分け手法</h3>
+                
+                <p>効率的にトラブルを解決するには、論理的な切り分けが重要です。</p>
+
+                <div class="info-box">
+                    <h4>切り分けの基本軸</h4>
+                    
+                    <h5>① ハードウェア vs ソフトウェア</h5>
+                    <ul>
+                        <li><strong>ハードウェア：</strong>物理的な故障（画面割れ、水濡れ、コネクタ破損等）</li>
+                        <li><strong>ソフトウェア：</strong>OS、アプリ、設定の問題</li>
+                        <li><strong>切り分け方法：</strong>別の端末で同じ操作をしてみる</li>
+                    </ul>
+
+                    <h5>② 個別 vs 全体</h5>
+                    <ul>
+                        <li><strong>個別：</strong>特定の端末・ユーザーだけの問題</li>
+                        <li><strong>全体：</strong>複数台・全体で発生している問題</li>
+                        <li><strong>切り分け方法：</strong>他の端末・ユーザーで試す</li>
+                    </ul>
+
+                    <h5>③ 端末側 vs サーバー・ネットワーク側</h5>
+                    <ul>
+                        <li><strong>端末側：</strong>端末設定、アプリの問題</li>
+                        <li><strong>サーバー・ネットワーク側：</strong>インフラの問題</li>
+                        <li><strong>切り分け方法：</strong>オフラインで動作するか、他のサービスは使えるか</li>
+                    </ul>
+                </div>
+
+                <h3>3.2 トラブル対応の7ステップ</h3>
+                
+                <div class="info-box">
+                    <h4>ステップ1: 状況把握</h4>
+                    <ul>
+                        <li>いつから、どの端末で、誰が使っている時に発生したか</li>
+                        <li>何をしようとして、どうなったか</li>
+                        <li>エラーメッセージの内容</li>
+                        <li>再現性はあるか（毎回起きるか、時々か）</li>
+                    </ul>
+
+                    <h4>ステップ2: 仮説立案</h4>
+                    <ul>
+                        <li>症状から考えられる原因を列挙</li>
+                        <li>可能性の高い順に優先順位付け</li>
+                        <li>過去の類似事例を参照</li>
+                    </ul>
+
+                    <h4>ステップ3: 検証</h4>
+                    <ul>
+                        <li>仮説に基づいて確認・テスト</li>
+                        <li>一度に複数の変更をしない（原因特定のため）</li>
+                        <li>各手順の結果を記録</li>
+                    </ul>
+
+                    <h4>ステップ4: 対処実施</h4>
+                    <ul>
+                        <li>原因が特定できたら、適切な対処を実施</li>
+                        <li>変更前の状態をメモ（元に戻せるように）</li>
+                        <li>ユーザーに作業内容を説明</li>
+                    </ul>
+
+                    <h4>ステップ5: 動作確認</h4>
+                    <ul>
+                        <li>問題が解決したか確認</li>
+                        <li>他の機能に影響が出ていないか確認</li>
+                        <li>ユーザーに正常動作を確認してもらう</li>
+                    </ul>
+
+                    <h4>ステップ6: 記録</h4>
+                    <ul>
+                        <li>トラブルの内容、原因、対処方法を記録</li>
+                        <li>対応時間、担当者を記録</li>
+                        <li>ナレッジベースに登録</li>
+                    </ul>
+
+                    <h4>ステップ7: 予防策の検討</h4>
+                    <ul>
+                        <li>同じトラブルが再発しないための対策</li>
+                        <li>横展開（他の端末でも同様の設定が必要か）</li>
+                        <li>教員・児童生徒への周知事項</li>
+                    </ul>
+                </div>
+
+                <h3>3.3 エスカレーションの判断</h3>
+                
+                <p>自分で解決できない場合は、適切にエスカレーション（上位者・専門家への依頼）することが重要です。</p>
+
+                <div class="warning-box">
+                    <h4>⚠ エスカレーションすべき状況</h4>
+                    <ul>
+                        <li>30分試しても解決しない</li>
+                        <li>ハードウェアの物理的故障が疑われる</li>
+                        <li>サーバー・ネットワーク機器の問題</li>
+                        <li>複数台・全校規模で発生している</li>
+                        <li>セキュリティに関わる問題</li>
+                        <li>データ消失のリスクがある</li>
+                        <li>自分の権限では対応できない</li>
+                    </ul>
+                </div>
+
+                <div class="tip-box">
+                    <h4>✓ エスカレーション時に伝える情報</h4>
+                    <ul>
+                        <li>発生日時、場所、端末・ユーザー情報</li>
+                        <li>症状の詳細（エラーメッセージ、スクリーンショット）</li>
+                        <li>これまで試した対処とその結果</li>
+                        <li>影響範囲（何台、どのクラス等）</li>
+                        <li>緊急度（授業への影響度）</li>
+                    </ul>
+                </div>
+
+                <h4>エスカレーション先</h4>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>問題の種類</th>
+                            <th>エスカレーション先</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>端末の故障</td>
+                            <td>保守業者、メーカーサポート</td>
+                        </tr>
+                        <tr>
+                            <td>ネットワーク障害</td>
+                            <td>ネットワーク管理者、業者</td>
+                        </tr>
+                        <tr>
+                            <td>校務支援システム</td>
+                            <td>システム管理者、ベンダー</td>
+                        </tr>
+                        <tr>
+                            <td>アカウント・権限</td>
+                            <td>情報管理担当教員、教育委員会</td>
+                        </tr>
+                        <tr>
+                            <td>セキュリティ問題</td>
+                            <td>情報セキュリティ担当、教育委員会</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+
+            <section class="content-section">
+                <h2>4. トラブル対応の記録と共有</h2>
+                
+                <h3>4.1 トラブルチケットの管理</h3>
+                
+                <p>トラブル対応を体系的に管理するために、トラブルチケット（記録票）を活用します。</p>
+
+                <h4>記録すべき項目</h4>
+                <div class="info-box">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>項目</th>
+                                <th>内容</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>チケット番号</td>
+                                <td>一意の管理番号</td>
+                            </tr>
+                            <tr>
+                                <td>発生日時</td>
+                                <td>いつ発生したか</td>
+                            </tr>
+                            <tr>
+                                <td>報告者</td>
+                                <td>誰から報告があったか</td>
+                            </tr>
+                            <tr>
+                                <td>発生場所</td>
+                                <td>どこで発生したか（教室、PC室等）</td>
+                            </tr>
+                            <tr>
+                                <td>端末情報</td>
+                                <td>機種、シリアル番号、管理番号</td>
+                            </tr>
+                            <tr>
+                                <td>症状</td>
+                                <td>何が起きたか（詳細に記述）</td>
+                            </tr>
+                            <tr>
+                                <td>原因</td>
+                                <td>特定できた原因</td>
+                            </tr>
+                            <tr>
+                                <td>対処内容</td>
+                                <td>実施した対処（手順も記載）</td>
+                            </tr>
+                            <tr>
+                                <td>対応者</td>
+                                <td>誰が対応したか</td>
+                            </tr>
+                            <tr>
+                                <td>対応時間</td>
+                                <td>対応開始～完了までの時間</td>
+                            </tr>
+                            <tr>
+                                <td>ステータス</td>
+                                <td>未対応/対応中/完了/保留</td>
+                            </tr>
+                            <tr>
+                                <td>備考</td>
+                                <td>その他特記事項</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <h3>4.2 ナレッジベースの構築</h3>
+                
+                <p>トラブル事例を蓄積し、検索可能な形で共有することで、組織全体の対応力が向上します。</p>
+
+                <h4>ナレッジベースの構成例</h4>
+                <div class="example-box">
+                    <h5>カテゴリ分類</h5>
+                    <ul>
+                        <li>ハードウェア（PC、タブレット、プリンター等）</li>
+                        <li>ソフトウェア（OS、アプリ別）</li>
+                        <li>ネットワーク</li>
+                        <li>アカウント・認証</li>
+                        <li>周辺機器</li>
+                    </ul>
+
+                    <h5>記事のフォーマット</h5>
+                    <ul>
+                        <li><strong>タイトル：</strong>「○○ができない」など、症状を端的に</li>
+                        <li><strong>症状：</strong>詳細な症状の説明</li>
+                        <li><strong>原因：</strong>なぜ起きるか</li>
+                        <li><strong>対処法：</strong>ステップバイステップで解決手順</li>
+                        <li><strong>予防策：</strong>再発防止の方法</li>
+                        <li><strong>関連記事：</strong>類似トラブルへのリンク</li>
+                    </ul>
+                </div>
+
+                <h4>ナレッジベースの運用</h4>
+                <div class="tip-box">
+                    <ul>
+                        <li><strong>定期的な更新：</strong>新しいトラブル事例を追加</li>
+                        <li><strong>レビュー：</strong>古い情報は更新・削除</li>
+                        <li><strong>検索性：</strong>タグ付け、全文検索可能に</li>
+                        <li><strong>アクセス権限：</strong>教員も閲覧できるようにする</li>
+                        <li><strong>フィードバック：</strong>「役に立った」ボタン等で評価</li>
+                    </ul>
+                </div>
+
+                <h3>4.3 FAQ（よくある質問）の作成</h3>
+                
+                <p>頻出する質問・トラブルをFAQとしてまとめ、教員が自己解決できるようにします。</p>
+
+                <div class="example-box">
+                    <h4>FAQ例</h4>
+                    
+                    <h5>Q1. Wi-Fiに繋がらなくなりました</h5>
+                    <p><strong>A.</strong> 以下の手順をお試しください：</p>
+                    <ol>
+                        <li>機内モードがONになっていないか確認</li>
+                        <li>Wi-FiをOFF→ONにしてみる</li>
+                        <li>端末を再起動する</li>
+                        <li>それでも繋がらない場合は ICT支援員にご連絡ください</li>
+                    </ol>
+
+                    <h5>Q2. プロジェクターに映像が映りません</h5>
+                    <p><strong>A.</strong> 以下を確認してください：</p>
+                    <ol>
+                        <li>プロジェクターの電源が入っているか</li>
+                        <li>正しい入力（HDMI1等）が選択されているか</li>
+                        <li>ケーブルがしっかり接続されているか</li>
+                        <li>PC側で「画面複製」または「拡張」が選択されているか（Windowsキー+P）</li>
+                    </ol>
+
+                    <h5>Q3. パスワードを忘れました</h5>
+                    <p><strong>A.</strong> 情報管理担当の○○先生、またはICT支援員にご連絡ください。本人確認後、リセットいたします。</p>
+                </div>
+            </section>
+
+            <section class="content-section">
+                <h2>5. 予防保全とトラブル予防</h2>
+                
+                <h3>5.1 定期メンテナンスの重要性</h3>
+                
+                <p>トラブルが起きてから対処するより、未然に防ぐことが重要です。</p>
+
+                <h4>日常点検（毎日）</h4>
+                <div class="example-box">
+                    <ul>
+                        <li>充電カートの充電状態確認</li>
+                        <li>ネットワーク機器のランプ状態確認</li>
+                        <li>プロジェクターの動作確認</li>
+                        <li>教室環境チェック（破損、異常音等）</li>
+                    </ul>
+                </div>
+
+                <h4>週次点検</h4>
+                <div class="example-box">
+                    <ul>
+                        <li>端末のOS・アプリ更新状況確認</li>
+                        <li>ウイルス定義ファイル更新確認</li>
+                        <li>ストレージ容量確認</li>
+                        <li>バックアップ実行状況確認</li>
+                    </ul>
+                </div>
+
+                <h4>月次点検</h4>
+                <div class="example-box">
+                    <ul>
+                        <li>端末の清掃（キーボード、画面等）</li>
+                        <li>プリンターのメンテナンス（ヘッドクリーニング等）</li>
+                        <li>ケーブル類の断線チェック</li>
+                        <li>バッテリーの劣化状況確認</li>
+                    </ul>
+                </div>
+
+                <h4>学期毎・年次点検</h4>
+                <div class="example-box">
+                    <ul>
+                        <li>全端末の棚卸し（紛失・破損確認）</li>
+                        <li>不要ファイルの削除、初期化</li>
+                        <li>ハードウェアの動作確認</li>
+                        <li>保守契約の更新確認</li>
+                    </ul>
+                </div>
+
+                <h3>5.2 トラブル予防の啓発活動</h3>
+                
+                <h4>教員向け</h4>
+                <div class="tip-box">
+                    <ul>
+                        <li><strong>使い方講習：</strong>正しい操作方法の周知</li>
+                        <li><strong>注意喚起：</strong>よくある誤操作の事例共有</li>
+                        <li><strong>マニュアル配布：</strong>基本操作のクイックガイド</li>
+                        <li><strong>Q&A掲示：</strong>よくある質問を掲示板に</li>
+                    </ul>
+                </div>
+
+                <h4>児童生徒向け</h4>
+                <div class="tip-box">
+                    <ul>
+                        <li><strong>使用ルールの徹底：</strong>持ち方、扱い方の指導</li>
+                        <li><strong>ログイン・ログアウトの習慣化：</strong>セキュリティ意識</li>
+                        <li><strong>トラブル時の報告方法：</strong>すぐ教員に報告</li>
+                        <li><strong>デジタルシティズンシップ教育：</strong>責任ある使用</li>
+                    </ul>
+                </div>
+
+                <h3>5.3 環境整備</h3>
+                
+                <div class="example-box">
+                    <h4>物理的環境</h4>
+                    <ul>
+                        <li>適切な温湿度管理（機器の寿命延長）</li>
+                        <li>ほこり対策（定期清掃）</li>
+                        <li>配線整理（断線・転倒防止）</li>
+                        <li>盗難・破損対策（保管場所の施錠）</li>
+                    </ul>
+
+                    <h4>ソフトウェア環境</h4>
+                    <ul>
+                        <li>OS・アプリの計画的アップデート</li>
+                        <li>セキュリティパッチの適用</li>
+                        <li>不要ソフトのアンインストール</li>
+                        <li>定期的なウイルススキャン</li>
+                    </ul>
+
+                    <h4>運用ルール</h4>
+                    <ul>
+                        <li>端末持ち出しルールの明確化</li>
+                        <li>故障時の報告フローの整備</li>
+                        <li>予備機の確保と管理</li>
+                        <li>定期的な利用状況確認</li>
+                    </ul>
+                </div>
+            </section>
+
+            <section class="content-section">
+                <h2>6. 緊急時の対応</h2>
+                
+                <h3>6.1 授業中のトラブル対応</h3>
+                
+                <p>授業中のトラブルは、児童生徒の学びに直接影響するため、迅速な対応が求められます。</p>
+
+                <div class="warning-box">
+                    <h4>⚠ 授業中対応の原則</h4>
+                    <ul>
+                        <li><strong>授業を止めない：</strong>すぐ解決できない場合は代替手段を提案</li>
+                        <li><strong>静かに対応：</strong>他の児童生徒の学習を妨げない</li>
+                        <li><strong>教員の指示を尊重：</strong>教員の授業進行を最優先</li>
+                        <li><strong>記録：</strong>対応後に詳細を記録</li>
+                    </ul>
+                </div>
+
+                <h4>代替手段の提案例</h4>
+                <div class="example-box">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>トラブル</th>
+                                <th>代替手段</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>1台の端末が起動しない</td>
+                                <td>予備機と交換、ペア学習に変更</td>
+                            </tr>
+                            <tr>
+                                <td>プロジェクターが映らない</td>
+                                <td>電子黒板使用、印刷資料配布、口頭説明</td>
+                            </tr>
+                            <tr>
+                                <td>ネットワークが繋がらない</td>
+                                <td>オフラインで作業、テザリング、後日オンライン作業</td>
+                            </tr>
+                            <tr>
+                                <td>アプリが起動しない</td>
+                                <td>別のアプリで代用、紙の教材使用</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <h3>6.2 大規模障害への対応</h3>
+                
+                <p>全校的なネットワーク障害など、影響範囲が大きいトラブルの場合</p>
+
+                <div class="info-box">
+                    <h4>対応手順</h4>
+                    <ol>
+                        <li><strong>即座に管理職・情報管理担当に報告</strong></li>
+                        <li><strong>影響範囲の特定：</strong>どの教室、何台に影響しているか</li>
+                        <li><strong>全体アナウンス：</strong>校内放送・メール等で周知</li>
+                        <li><strong>復旧作業：</strong>業者・専門家と連携</li>
+                        <li><strong>進捗共有：</strong>定期的に状況を更新</li>
+                        <li><strong>復旧確認：</strong>全端末の動作確認</li>
+                        <li><strong>原因究明と再発防止：</strong>事後報告書作成</li>
+                    </ol>
+                </div>
+
+                <h3>6.3 緊急連絡先リストの整備</h3>
+                
+                <div class="tip-box">
+                    <h4>整備すべき連絡先</h4>
+                    <ul>
+                        <li>校内：管理職、情報管理担当教員</li>
+                        <li>教育委員会：情報教育担当</li>
+                        <li>保守業者：端末、ネットワーク、サーバー</li>
+                        <li>メーカーサポート</li>
+                        <li>インターネットプロバイダ</li>
+                        <li>校務支援システムベンダー</li>
+                    </ul>
+                    <p>連絡先は常に最新の状態に更新し、すぐアクセスできる場所に保管しましょう。</p>
+                </div>
+            </section>
+
+            <section class="content-section">
+                <h2>📝 演習問題</h2>
+                
+                <div class="exercise">
+                    <h3>演習1：トラブル診断</h3>
+                    <p>以下の症状から、考えられる原因と対処法を答えてください。</p>
+                    
+                    <h4>ケース1：</h4>
+                    <p>「タブレットの電源ボタンを押しても何も反応しません。昨日まで普通に使えていました。」</p>
+                    
+                    <h4>ケース2：</h4>
+                    <p>「PC教室の全てのパソコンでインターネットに繋がりません。他の教室は正常です。」</p>
+                    
+                    <h4>ケース3：</h4>
+                    <p>「プリンターから印刷できません。他の先生は印刷できているようです。」</p>
+                </div>
+
+                <div class="exercise">
+                    <h3>演習2：対応フロー作成</h3>
+                    <p>「プロジェクターに映像が映らない」というトラブルに対する対応フローチャートを作成してください。</p>
+                    <ul>
+                        <li>確認すべき項目</li>
+                        <li>対処手順</li>
+                        <li>エスカレーションの判断基準</li>
+                    </ul>
+                </div>
+
+                <div class="exercise">
+                    <h3>演習3：トラブルチケット記入</h3>
+                    <p>以下の状況について、トラブルチケットを記入してください。</p>
+                    
+                    <p><strong>状況：</strong><br>
+                    2024年10月15日 10:30、3年2組の授業中に、児童A君のタブレット（管理番号：T-302-05）が突然フリーズしました。何を操作しても反応がなく、電源ボタンを長押しして強制再起動したところ、正常に起動しました。その後は問題なく使用できています。</p>
+                </div>
+            </section>
+
+            <section class="content-section">
+                <h2>📋 まとめ</h2>
+                
+                <div class="summary-box">
+                    <h3>本セッションで学んだこと</h3>
+                    <ul>
+                        <li><strong>よくあるトラブル：</strong>起動・ログイン、ネットワーク、アプリ、プリンター、タブレット、プロジェクター</li>
+                        <li><strong>切り分け手法：</strong>ハードvsソフト、個別vs全体、端末vsサーバー</li>
+                        <li><strong>対応プロセス：</strong>7ステップ（状況把握→仮説→検証→対処→確認→記録→予防）</li>
+                        <li><strong>エスカレーション：</strong>判断基準、伝えるべき情報</li>
+                        <li><strong>記録と共有：</strong>トラブルチケット、ナレッジベース、FAQ</li>
+                        <li><strong>予防保全：</strong>定期メンテナンス、啓発活動、環境整備</li>
+                        <li><strong>緊急時対応：</strong>授業中の対応原則、大規模障害対応</li>
+                    </ul>
+                </div>
+
+                <div class="key-points">
+                    <h3>重要ポイント</h3>
+                    <ol>
+                        <li><strong>冷静に、論理的に：</strong>焦らず、順序立てて原因を切り分ける</li>
+                        <li><strong>記録の徹底：</strong>トラブル対応は必ず記録し、組織の知識に</li>
+                        <li><strong>予防が最善：</strong>トラブルが起きる前に防ぐ</li>
+                        <li><strong>適切なエスカレーション：</strong>自分で抱え込まず、必要なら専門家に</li>
+                        <li><strong>ユーザー視点：</strong>教員・児童生徒の立場で考え、寄り添う</li>
+                        <li><strong>継続的改善：</strong>トラブルから学び、システムを改善</li>
+                    </ol>
+                </div>
+
+                <div class="next-steps">
+                    <h3>次のステップ</h3>
+                    <ul>
+                        <li>自分の担当校でよく起きるトラブルをリストアップする</li>
+                        <li>トラブルチケットのフォーマットを作成する</li>
+                        <li>FAQ集を作り始める</li>
+                        <li>緊急連絡先リストを整備する</li>
+                        <li>定期メンテナンスのチェックリストを作成する</li>
+                        <li>トラブル対応の実践を積み、経験値を高める</li>
+                        <li>技術系コミュニティで情報交換する</li>
+                    </ul>
+                </div>
+            </section>
+
+            <section class="content-section">
+                <div class="point-box" style="margin-top: 2rem;">
+                    <h4>🎯 次回予告</h4>
+                    <p><strong>第24回：学校訪問・授業視察の技法（基礎編最終回）</strong></p>
+                    <p>基礎編のまとめとして、学校訪問・授業視察の実践的技法を学びます。訪問の目的と種類、事前準備、授業観察の視点と記録方法、建設的なフィードバック技法、訪問後のフォローアップまで、ICT支援員に求められる訪問・視察スキルを総合的に習得します。基礎編全14回の総括も行います。</p>
+                    <p style="margin-top: 1rem; font-weight: bold; color: #7c3aed;">🎓 基礎編（第11回～第24回）完了後は、中級編へ進みましょう！</p>
+                </div>
+            </section>
+
+            <section class="content-section">
+                <h2>📚 参考資料</h2>
+                <ul>
+                    <li>各メーカーの公式サポートサイト</li>
+                    <li><a href="https://support.microsoft.com/" target="_blank">Microsoft サポート</a></li>
+                    <li><a href="https://support.apple.com/" target="_blank">Apple サポート</a></li>
+                    <li><a href="https://support.google.com/edu/" target="_blank">Google for Education ヘルプ</a></li>
+                    <li>各種トラブルシューティングツール</li>
+                    <li>技術系コミュニティ（<a href="https://stackexchange.com/" target="_blank">Stack Exchange</a>, <a href="https://www.reddit.com/" target="_blank">Reddit</a>等）</li>
+                </ul>
+            </section>
+
+            <div class="navigation">
+                <a href="session22.html" class="btn btn-secondary">← 第22回</a>
+                <a href="../intermediate.html" class="btn">基礎編トップへ</a>
+                <a href="session24.html" class="btn btn-primary">第24回 →</a>
+            </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>講座について</h4>
+                    <ul>
+                        <li><a href="../beginner.html">入門編（第1回～第10回）</a></li>
+                        <li><a href="../intermediate.html">基礎編（第11回～第24回）</a></li>
+                        <li><a href="../intermediate2.html">中級編（第1回～第14回）</a></li>
+                        <li><a href="../advanced.html">発展編（第25回～第36回）</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>参考リソース</h4>
+                    <ul>
+                        <li><a href="../resources.html">主要参考資料</a></li>
+                        <li><a href="../resources.html#government">国・行政機関</a></li>
+                        <li><a href="../resources.html#organizations">専門機関・団体</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>お問い合わせ</h4>
+                    <p>本講座に関するお問い合わせは、櫻井までお願いいたします。</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 ICT支援員・企画員のための教育講座. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,162 @@
+/* 発展編専用スタイル */
+
+/* セッションヘッダー - 発展編 */
+.session-header.advanced {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+/* 発展編のラベルカラー */
+.session-label.advanced {
+    background-color: rgba(236, 72, 153, 0.3);
+}
+
+/* ステージバッジ（キャリアステージ用） */
+.stage-badge {
+    display: inline-block;
+    padding: 0.4rem 0.8rem;
+    margin: 0.3rem;
+    border-radius: 1rem;
+    font-weight: 600;
+    font-size: 0.85rem;
+    color: white;
+}
+
+.stage-beginner {
+    background-color: #28a745;
+}
+
+.stage-early {
+    background-color: #17a2b8;
+}
+
+.stage-mid {
+    background-color: #ffc107;
+    color: #333;
+}
+
+.stage-leader {
+    background-color: #fd7e14;
+}
+
+.stage-manager {
+    background-color: #dc3545;
+}
+
+/* DXフェーズバッジ */
+.stage-preparation {
+    background-color: #ff9800;
+}
+
+.stage-pilot {
+    background-color: #2196f3;
+}
+
+.stage-deployment {
+    background-color: #4caf50;
+}
+
+.stage-optimization {
+    background-color: #9c27b0;
+}
+
+/* チェンジマネジメント用バッジ */
+.change-type {
+    display: inline-block;
+    padding: 0.4rem 0.8rem;
+    margin: 0.3rem;
+    border-radius: 1rem;
+    font-weight: 600;
+    font-size: 0.85rem;
+}
+
+.type-supporter {
+    background-color: #4caf50;
+    color: white;
+}
+
+.type-neutral {
+    background-color: #ffc107;
+    color: #333;
+}
+
+.type-skeptic {
+    background-color: #ff9800;
+    color: white;
+}
+
+.type-resistor {
+    background-color: #f44336;
+    color: white;
+}
+
+/* 追加の情報ボックススタイル */
+.success-box {
+    background-color: #e8f5e9;
+    border-left: 4px solid #4caf50;
+    padding: 1.5rem;
+    border-radius: 0.75rem;
+    margin: 1.5rem 0;
+}
+
+.success-box h4 {
+    color: #388e3c;
+    margin-top: 0;
+}
+
+.example-box {
+    background-color: #f3e5f5;
+    border-left: 4px solid #9c27b0;
+    padding: 1.5rem;
+    border-radius: 0.75rem;
+    margin: 1.5rem 0;
+}
+
+.example-box h4 {
+    color: #7b1fa2;
+    margin-top: 0;
+}
+
+.step-box {
+    background-color: #e0f2f1;
+    border-left: 4px solid #009688;
+    padding: 1.5rem;
+    border-radius: 0.75rem;
+    margin: 1.5rem 0;
+}
+
+.step-box h4 {
+    color: #00796b;
+    margin-top: 0;
+}
+
+.tip-box {
+    background-color: #fff3e0;
+    border-left: 4px solid #ff9800;
+    padding: 1.5rem;
+    border-radius: 0.75rem;
+    margin: 1.5rem 0;
+}
+
+.tip-box h4 {
+    color: #e65100;
+    margin-top: 0;
+}
+
+/* テーブルの拡張スタイル */
+.content-section table.comparison-table th {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+.content-section table.data-table th {
+    background-color: #2196f3;
+}
+
+/* レスポンシブデザイン対応 */
+@media (max-width: 768px) {
+    .stage-badge,
+    .change-type {
+        font-size: 0.75rem;
+        padding: 0.3rem 0.6rem;
+        margin: 0.2rem;
+    }
+}

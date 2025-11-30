@@ -1,0 +1,1004 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>第26回：高度なネットワーク管理とインフラ整備 - ICT支援員教育講座</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/session.css">
+    <link rel="stylesheet" href="../css/advanced.css">
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="container">
+                <div class="logo">
+                    <h1>🎓 ICT支援員教育講座</h1>
+                </div>
+                <ul class="nav-menu">
+                    <li><a href="../index.html">ホーム</a></li>
+                    <li><a href="../beginner.html">入門編</a></li>
+                    <li><a href="../intermediate.html">基礎編</a></li>
+                    <li><a href="../intermediate2.html">中級編</a></li>
+                    <li><a href="../advanced.html" class="active">発展編</a></li>
+                    <li><a href="../certification.html">試験対策</a></li>
+                    <li><a href="../resources.html">参考資料</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <main class="session-content">
+        <div class="container">
+            <div class="session-header-content">
+                <span class="session-label advanced">発展編</span>
+                <h1>第26回：高度なネットワーク管理とインフラ整備</h1>
+                <p class="session-meta">全7回中の第2回 | 学習時間目安：120分</p>
+            </div>
+
+            <section class="objectives">
+                <h2>🎯 学習目標</h2>
+                <ul>
+                    <li>トラフィック分析によるネットワーク使用状況の可視化と最適化</li>
+                    <li>ボトルネックの特定と性能低下の原因究明・解決</li>
+                    <li>冗長化設計による障害に強いネットワーク構築</li>
+                    <li>無線LAN最適化とWi-Fi環境の高度な管理技術</li>
+                    <li>多層防御とゼロトラストによるセキュリティ強化</li>
+                    <li>Wi-Fi 6/7、5G、クラウドネイティブなど次世代技術への対応</li>
+                </ul>
+            </section>
+
+            <section class="content-section">
+            <h2>1. ネットワークアセスメントの深化</h2>
+
+            <h3>1-1. トラフィック分析</h3>
+
+            <h4>トラフィック分析の目的</h4>
+            <ul>
+                <li><strong>ネットワークの使用状況を可視化</strong> - 誰が、いつ、何を、どれだけ使っているか</li>
+                <li><strong>授業時間帯の負荷傾向を把握</strong> - ピークタイムとその原因の特定</li>
+                <li><strong>不要な通信の検出</strong> - 帯域を圧迫している無駄なトラフィックの発見</li>
+                <li><strong>将来の需要予測</strong> - インフラ増強のタイミングと規模の判断</li>
+            </ul>
+
+            <div class="info-box">
+                <h4>分析ツールの活用</h4>
+                
+                <h5>ネットワーク管理システム</h5>
+                <ul>
+                    <li><strong>Cisco Meraki Dashboard</strong> - クラウド型統合管理、リアルタイム可視化</li>
+                    <li><strong>UniFi Controller</strong> - Ubiquiti製品の統合管理、詳細な分析機能</li>
+                    <li><strong>フリーウェア</strong> - Wireshark（パケット解析）、MRTG（グラフ化）</li>
+                </ul>
+
+                <h5>トラフィックログの読み取り方</h5>
+                <ul>
+                    <li>帯域使用率の確認方法 - 回線容量に対する使用率</li>
+                    <li>アプリケーション別通信量の把握 - YouTube、Zoom、クラウドストレージ等</li>
+                    <li>デバイス別の通信量分析 - 端末ごとの利用状況</li>
+                </ul>
+            </div>
+
+            <h4>重点的に確認すべき項目</h4>
+            <div class="example-box">
+                <h5>📊 時間帯別トラフィックパターン</h5>
+                <ul>
+                    <li><strong>朝の一斉起動時</strong> - 8:00-8:30のトラフィック急増（OS更新、同期処理）</li>
+                    <li><strong>授業時間中の動画視聴</strong> - 教育動画やライブ配信による帯域占有</li>
+                    <li><strong>クラウドサービスへのアクセス集中</strong> - Google Classroom、Microsoft 365等</li>
+                    <li><strong>昼休みや放課後の使用パターン</strong> - 個人利用による多様なアクセス</li>
+                    <li><strong>大容量ファイルのダウンロード</strong> - 教材配布、ソフトウェア更新</li>
+                </ul>
+            </div>
+
+            <h3>1-2. ボトルネックの特定</h3>
+
+            <h4>ボトルネックの種類</h4>
+            <table>
+                <tr>
+                    <th>種類</th>
+                    <th>原因</th>
+                    <th>症状</th>
+                </tr>
+                <tr>
+                    <td><strong>帯域不足</strong></td>
+                    <td>インターネット回線、校内LANの容量不足</td>
+                    <td>動画が止まる、ダウンロードが遅い</td>
+                </tr>
+                <tr>
+                    <td><strong>機器性能不足</strong></td>
+                    <td>スイッチ、ルーター、アクセスポイントの処理能力不足</td>
+                    <td>特定エリアだけ遅い、一部端末で接続不安定</td>
+                </tr>
+                <tr>
+                    <td><strong>設定不備</strong></td>
+                    <td>QoS未設定、VLAN設計の問題</td>
+                    <td>重要な通信が遅延、優先制御されない</td>
+                </tr>
+                <tr>
+                    <td><strong>物理的制約</strong></td>
+                    <td>配線の劣化、距離の問題</td>
+                    <td>断続的な切断、速度低下</td>
+                </tr>
+            </table>
+
+            <h4>特定の手法</h4>
+            <div class="step-box">
+                <h5><span class="step-number">1</span>レイテンシ（遅延）測定</h5>
+                <ul>
+                    <li><code>ping</code>、<code>traceroute</code>コマンドの活用</li>
+                    <li>教室ごとの応答時間比較</li>
+                    <li>時間帯による変動の記録</li>
+                </ul>
+            </div>
+
+            <div class="step-box">
+                <h5><span class="step-number">2</span>スループット測定</h5>
+                <ul>
+                    <li>実効速度の計測 - 実際のデータ転送速度</li>
+                    <li>理論値との乖離確認 - 規格上の速度との比較</li>
+                    <li>上り/下りの速度バランス確認</li>
+                </ul>
+            </div>
+
+            <div class="step-box">
+                <h5><span class="step-number">3</span>パケットロス率の確認</h5>
+                <ul>
+                    <li>時系列での変化の観察</li>
+                    <li>許容範囲（通常1%以下）との比較</li>
+                    <li>特定の時間帯や場所での傾向分析</li>
+                </ul>
+            </div>
+
+            <h4>ボトルネック診断のフローチャート</h4>
+            <div class="example-box">
+                <ol>
+                    <li><strong>症状の報告</strong> - ユーザーからの遅延・不安定の訴え</li>
+                    <li><strong>発生場所の特定</strong> - 全校/特定教室/特定端末</li>
+                    <li><strong>発生時間帯の確認</strong> - 常時/授業時間/特定時間</li>
+                    <li><strong>影響範囲の調査</strong> - 全サービス/特定アプリ/特定サイト</li>
+                    <li><strong>測定・分析</strong> - 上記の手法を用いた原因究明</li>
+                    <li><strong>原因の特定</strong> - 帯域/機器/設定/物理のいずれか</li>
+                    <li><strong>対策の実施</strong> - 増強/交換/設定変更/修理</li>
+                    <li><strong>効果の検証</strong> - 改善確認と継続監視</li>
+                </ol>
+            </div>
+        </section>
+
+        <section>
+            <h2>2. 冗長化設計とフェイルオーバー</h2>
+
+            <h3>2-1. 冗長化の重要性</h3>
+
+            <div class="warning-box">
+                <h4>⚠️ 教育現場におけるネットワーク停止のリスク</h4>
+                <ul>
+                    <li><strong>授業の中断</strong> - デジタル教材が使えず授業進行に支障</li>
+                    <li><strong>校務の停滞</strong> - 出席管理、成績処理、連絡業務の停止</li>
+                    <li><strong>評価・信頼の低下</strong> - 保護者・地域からの信頼喪失</li>
+                    <li><strong>復旧コストの増大</strong> - 緊急対応費用、代替手段の確保</li>
+                </ul>
+            </div>
+
+            <div class="info-box">
+                <h4>冗長化の基本原則</h4>
+                <p><span class="highlight">SPOF（Single Point of Failure）</span>を排除し、一つの機器や回線の障害が全体の停止につながらないようにします。</p>
+                
+                <h5>冗長化すべき主要コンポーネント</h5>
+                <ul>
+                    <li><strong>インターネット回線</strong> - 複数ISP、異なるルート</li>
+                    <li><strong>コアスイッチ</strong> - スタック構成、クラスタリング</li>
+                    <li><strong>ルーター/ファイアウォール</strong> - アクティブ・スタンバイ構成</li>
+                    <li><strong>無線LANコントローラー</strong> - デュアル構成</li>
+                    <li><strong>電源</strong> - UPS、予備電源</li>
+                </ul>
+            </div>
+
+            <h3>2-2. 回線冗長化の設計</h3>
+
+            <h4>デュアルISP構成</h4>
+            <div class="example-box">
+                <h5>🌐 構成例：主回線 + バックアップ回線</h5>
+                
+                <p><strong>主回線</strong></p>
+                <ul>
+                    <li>光回線（1Gbps） - 通常時の全トラフィックを処理</li>
+                    <li>低遅延、高品質</li>
+                </ul>
+
+                <p><strong>バックアップ回線</strong></p>
+                <ul>
+                    <li>LTE/5Gルーター（100Mbps～） - 主回線障害時に自動切替</li>
+                    <li>即座に利用開始可能</li>
+                </ul>
+
+                <p><strong>切替制御</strong></p>
+                <ul>
+                    <li>自動フェイルオーバー - 障害検知後30秒以内に切替</li>
+                    <li>ヘルスチェック - 定期的な疎通確認</li>
+                    <li>手動切替オプション - メンテナンス時などの計画的切替</li>
+                </ul>
+            </div>
+
+            <h4>ロードバランシング構成</h4>
+            <div class="info-box">
+                <h4>複数回線の同時利用</h4>
+                <ul>
+                    <li><strong>アクティブ・アクティブ構成</strong> - 両回線を常時使用し帯域を最大化</li>
+                    <li><strong>トラフィック分散</strong> - 宛先別、アプリケーション別に振り分け</li>
+                    <li><strong>コスト効率</strong> - 両回線の投資が無駄にならない</li>
+                    <li><strong>障害時の影響軽減</strong> - 片方が停止しても50%の帯域は維持</li>
+                </ul>
+            </div>
+
+            <h3>2-3. 機器レベルの冗長化</h3>
+
+            <h4>スイッチのスタック構成</h4>
+            <div class="example-box">
+                <h5>スタッキングの利点</h5>
+                <ul>
+                    <li><strong>論理的な一体化</strong> - 複数スイッチを1台として管理</li>
+                    <li><strong>無停止運用</strong> - 1台が故障しても残りで継続動作</li>
+                    <li><strong>管理の簡素化</strong> - 設定が共有され、管理IPも1つ</li>
+                    <li><strong>帯域の集約</strong> - 複数リンクの並行利用</li>
+                </ul>
+
+                <h5>実装のポイント</h5>
+                <ul>
+                    <li>同一モデル、同一ファームウェアバージョンでの構成</li>
+                    <li>専用スタックケーブルでの接続（高速・低遅延）</li>
+                    <li>マスター/スタンバイの役割自動切替</li>
+                    <li>設定の自動同期</li>
+                </ul>
+            </div>
+
+            <h4>ルーター/ファイアウォールの冗長化</h4>
+            <div class="step-box">
+                <h5>VRRP（Virtual Router Redundancy Protocol）の活用</h5>
+                <ul>
+                    <li><strong>仮想IPアドレス</strong> - クライアントは仮想IPをデフォルトゲートウェイに設定</li>
+                    <li><strong>マスター/バックアップ</strong> - 通常はマスターが処理、障害時にバックアップが昇格</li>
+                    <li><strong>ヘルスチェック</strong> - 定期的なハートビートでマスターの状態監視</li>
+                    <li><strong>高速切替</strong> - 数秒以内にバックアップが引き継ぎ</li>
+                </ul>
+            </div>
+
+            <h3>2-4. フェイルオーバーテストの実施</h3>
+
+            <div class="warning-box">
+                <h4>⚠️ テストの重要性</h4>
+                <p>冗長化構成を導入しても、<span class="highlight">実際に障害時に正しく動作するか検証しなければ意味がありません</span>。定期的なテストで想定通りの動作を確認しましょう。</p>
+            </div>
+
+            <h4>テスト計画</h4>
+            <ol>
+                <li><strong>事前準備</strong> - 実施日時の決定、関係者への通知、バックアウトプラン</li>
+                <li><strong>テスト内容の明確化</strong> - 何を確認するか（切替時間、通信継続性等）</li>
+                <li><strong>実施時間帯の選定</strong> - 授業影響の少ない放課後や休日</li>
+                <li><strong>監視体制の確立</strong> - 各所での通信状況確認担当者配置</li>
+                <li><strong>記録の徹底</strong> - 切替タイミング、所要時間、発生した問題</li>
+                <li><strong>振り返りと改善</strong> - テスト結果の分析と設定の最適化</li>
+            </ol>
+
+            <div class="example-box">
+                <h5>テストシナリオ例</h5>
+                <ul>
+                    <li><strong>回線切替テスト</strong> - 主回線のケーブルを物理的に抜き、バックアップ回線への切替を確認</li>
+                    <li><strong>スイッチ障害テスト</strong> - スタックスイッチの1台を再起動し、通信断が発生しないか確認</li>
+                    <li><strong>ルーター切替テスト</strong> - マスタールーターを停止し、バックアップへの昇格とクライアント通信継続を確認</li>
+                    <li><strong>電源障害テスト</strong> - 主電源を切り、UPSからの給電とバックアップ発電機の起動を確認</li>
+                </ul>
+            </div>
+        </section>
+
+        <section>
+            <h2>3. 無線LAN環境の最適化</h2>
+
+            <h3>3-1. チャネル設計と電波干渉対策</h3>
+
+            <h4>2.4GHz帯と5GHz帯の使い分け</h4>
+            <table>
+                <tr>
+                    <th>周波数帯</th>
+                    <th>特徴</th>
+                    <th>推奨用途</th>
+                </tr>
+                <tr>
+                    <td><strong>2.4GHz</strong></td>
+                    <td>・到達範囲が広い<br>・障害物に強い<br>・干渉源が多い（電子レンジ、Bluetooth等）<br>・利用可能チャネル少ない</td>
+                    <td>・広いエリアカバー<br>・古い端末のサポート<br>・軽量な通信</td>
+                </tr>
+                <tr>
+                    <td><strong>5GHz</strong></td>
+                    <td>・高速通信可能<br>・干渉が少ない<br>・到達範囲が狭い<br>・利用可能チャネル多い</td>
+                    <td>・高密度エリア（教室）<br>・動画視聴、ビデオ会議<br>・大容量ファイル転送</td>
+                </tr>
+            </table>
+
+            <h4>チャネル設計の原則</h4>
+            <div class="info-box">
+                <h4>重複しないチャネル配置</h4>
+                
+                <h5>2.4GHz帯（推奨チャネル：1、6、11）</h5>
+                <ul>
+                    <li>これら3チャネルは互いに干渉しない</li>
+                    <li>隣接する教室では異なるチャネルを割り当て</li>
+                    <li>例：A教室=Ch1、B教室=Ch6、C教室=Ch11、D教室=Ch1…</li>
+                </ul>
+
+                <h5>5GHz帯（W52/W53/W56）</h5>
+                <ul>
+                    <li>利用可能チャネルが多く、重複を避けやすい</li>
+                    <li>DFS（Dynamic Frequency Selection）対応チャネルの活用</li>
+                    <li>チャネル幅の選択（20MHz/40MHz/80MHz/160MHz）</li>
+                </ul>
+            </div>
+
+            <h4>電波干渉の検出と対策</h4>
+            <div class="example-box">
+                <h5>🔍 サイトサーベイツールの活用</h5>
+                <ul>
+                    <li><strong>Wi-Fiアナライザー</strong> - スマートフォンアプリで簡易調査</li>
+                    <li><strong>専門測定器</strong> - Ekahau、AirMagnet等のプロフェッショナルツール</li>
+                    <li><strong>APの管理画面</strong> - 周辺APの電波強度、干渉レベルの確認</li>
+                </ul>
+
+                <h5>対策手法</h5>
+                <ul>
+                    <li><strong>チャネル変更</strong> - 混雑していないチャネルへの移動</li>
+                    <li><strong>送信電力の調整</strong> - 不必要に強い電波は干渉の原因</li>
+                    <li><strong>AP配置の見直し</strong> - カバレッジの重複を最適化</li>
+                    <li><strong>干渉源の除去</strong> - 古いWi-Fiルーター、不要な機器の撤去</li>
+                </ul>
+            </div>
+
+            <h3>3-2. ローミングの最適化</h3>
+
+            <h4>シームレスなローミングの重要性</h4>
+            <p>生徒がタブレットを持って教室を移動したり、廊下を歩いたりする際、<span class="highlight">アクセスポイント間の切替（ローミング）がスムーズでないと通信が途切れてしまいます</span>。特にビデオ会議や動画視聴中の断続は学習体験を大きく損ないます。</p>
+
+            <h4>高速ローミング技術</h4>
+            <div class="info-box">
+                <h4>IEEE 802.11k/r/v の活用</h4>
+                
+                <h5>802.11k（Radio Resource Management）</h5>
+                <ul>
+                    <li>端末に周辺APの情報を事前提供</li>
+                    <li>より良いAPへの切替判断を支援</li>
+                </ul>
+
+                <h5>802.11r（Fast Transition）</h5>
+                <ul>
+                    <li>認証プロセスの簡略化</li>
+                    <li>ローミング時間を大幅短縮（数百msから数十msへ）</li>
+                </ul>
+
+                <h5>802.11v（Wireless Network Management）</h5>
+                <ul>
+                    <li>ネットワーク側から端末に最適なAPを推奨</li>
+                    <li>負荷分散の支援</li>
+                </ul>
+            </div>
+
+            <h4>ローミング設定のベストプラクティス</h4>
+            <ul>
+                <li><strong>同一SSID・同一パスワード</strong> - 全APで統一し、シームレスな移動を実現</li>
+                <li><strong>適切なRSSI閾値</strong> - 端末がAPから離れすぎる前に切替を促す</li>
+                <li><strong>Band Steering</strong> - 5GHz対応端末を自動的に5GHz帯に誘導</li>
+                <li><strong>Load Balancing</strong> - 特定APへの集中を避け、複数APに分散</li>
+            </ul>
+
+            <h3>3-3. 高密度環境への対応</h3>
+
+            <h4>教室の高密度接続シナリオ</h4>
+            <div class="warning-box">
+                <h4>⚠️ 典型的な課題</h4>
+                <p>40人学級で全員が同時にタブレットを使用する場合、<span class="highlight">1つのAPに40台が接続</span>することになります。これは通常のオフィス環境よりはるかに高密度です。</p>
+            </div>
+
+            <div class="info-box">
+                <h4>高密度対応のポイント</h4>
+                
+                <h5>1. AP配置密度の向上</h5>
+                <ul>
+                    <li>1教室に1台以上のAP設置</li>
+                    <li>大教室や体育館は複数台配置</li>
+                </ul>
+
+                <h5>2. Wi-Fi 6（802.11ax）の導入</h5>
+                <ul>
+                    <li><strong>OFDMA</strong> - 複数端末への同時送信で効率化</li>
+                    <li><strong>MU-MIMO</strong> - 複数端末との並行通信</li>
+                    <li><strong>TWT（Target Wake Time）</strong> - 端末の省電力化とトラフィック分散</li>
+                    <li><strong>BSS Coloring</strong> - 隣接APの干渉軽減</li>
+                </ul>
+
+                <h5>3. QoS（Quality of Service）の設定</h5>
+                <ul>
+                    <li>教育アプリケーションに優先帯域を割当</li>
+                    <li>動画ストリーミングの帯域制御</li>
+                    <li>不要な通信（ゲーム、SNS等）の制限</li>
+                </ul>
+            </div>
+
+            <h4>トラフィック制御の具体例</h4>
+            <div class="example-box">
+                <h5>優先度付けの例</h5>
+                <table>
+                    <tr>
+                        <th>優先度</th>
+                        <th>アプリケーション</th>
+                        <th>帯域割当</th>
+                    </tr>
+                    <tr>
+                        <td><strong>高</strong></td>
+                        <td>Zoom、Google Meet（ビデオ会議）</td>
+                        <td>40%</td>
+                    </tr>
+                    <tr>
+                        <td><strong>中</strong></td>
+                        <td>Google Classroom、教育アプリ</td>
+                        <td>40%</td>
+                    </tr>
+                    <tr>
+                        <td><strong>低</strong></td>
+                        <td>YouTube（教育以外）、ゲーム</td>
+                        <td>15%</td>
+                    </tr>
+                    <tr>
+                        <td><strong>最低</strong></td>
+                        <td>ソフトウェア更新、バックグラウンド同期</td>
+                        <td>5%</td>
+                    </tr>
+                </table>
+            </div>
+        </section>
+
+        <section>
+            <h2>4. セキュリティの高度化</h2>
+
+            <h3>4-1. 多層防御の実装</h3>
+
+            <div class="info-box">
+                <h4>Defense in Depth（多層防御）の概念</h4>
+                <p><span class="highlight">単一のセキュリティ対策に頼らず、複数の防御層を組み合わせる</span>ことで、攻撃者がどこか一つを突破しても全体としては守られる体制を構築します。</p>
+            </div>
+
+            <h4>セキュリティ層の構成</h4>
+            <div class="step-box">
+                <h5><span class="step-number">1</span>境界防御層</h5>
+                <ul>
+                    <li><strong>ファイアウォール</strong> - 外部からの不正アクセス遮断</li>
+                    <li><strong>IPS/IDS</strong> - 侵入検知・防御システム</li>
+                    <li><strong>UTM</strong> - 統合脅威管理（複数機能の統合）</li>
+                </ul>
+            </div>
+
+            <div class="step-box">
+                <h5><span class="step-number">2</span>ネットワーク層</h5>
+                <ul>
+                    <li><strong>VLAN分離</strong> - 生徒用/教職員用/校務用の分離</li>
+                    <li><strong>アクセス制御</strong> - 必要最小限の通信のみ許可</li>
+                    <li><strong>NAC（Network Access Control）</strong> - 接続端末の認証・検疫</li>
+                </ul>
+            </div>
+
+            <div class="step-box">
+                <h5><span class="step-number">3</span>アプリケーション層</h5>
+                <ul>
+                    <li><strong>Webフィルタリング</strong> - 有害サイトのブロック</li>
+                    <li><strong>アンチウイルス/マルウェア対策</strong> - 端末での脅威検出</li>
+                    <li><strong>DLP（Data Loss Prevention）</strong> - 機密情報の外部流出防止</li>
+                </ul>
+            </div>
+
+            <div class="step-box">
+                <h5><span class="step-number">4</span>データ層</h5>
+                <ul>
+                    <li><strong>暗号化</strong> - 保存データ・通信データの暗号化</li>
+                    <li><strong>バックアップ</strong> - ランサムウェア対策含む定期バックアップ</li>
+                    <li><strong>アクセス権限管理</strong> - 最小権限の原則に基づく設定</li>
+                </ul>
+            </div>
+
+            <h3>4-2. ゼロトラストネットワークの考え方</h3>
+
+            <div class="info-box">
+                <h4>ゼロトラストとは</h4>
+                <p>従来の「内部ネットワークは信頼できる」という前提を捨て、<span class="highlight">「すべてのアクセスを常に検証する」</span>という考え方です。クラウドサービスやBYOD（私物端末の業務利用）が普及した現代に適したセキュリティモデルです。</p>
+            </div>
+
+            <h4>ゼロトラストの基本原則</h4>
+            <ol>
+                <li><strong>すべてのリソースは信頼できないと想定</strong> - 内部ネットワークであっても検証</li>
+                <li><strong>最小権限アクセス</strong> - 必要な人が、必要な時に、必要なリソースのみアクセス</li>
+                <li><strong>継続的な認証と認可</strong> - 一度ログインすれば終わりではなく、常時検証</li>
+                <li><strong>マイクロセグメンテーション</strong> - ネットワークを細かく分割し、侵害の拡大を防止</li>
+                <li><strong>すべての通信を暗号化</strong> - 内部通信でも盗聴リスクを考慮</li>
+            </ol>
+
+            <h4>教育現場でのゼロトラスト実装例</h4>
+            <div class="example-box">
+                <h5>🔐 実装ステップ</h5>
+                <ul>
+                    <li><strong>IDベースの認証強化</strong> - 統合ID管理（Google Workspace、Microsoft 365のSSO活用）</li>
+                    <li><strong>デバイス認証</strong> - 登録された端末のみネットワーク接続許可</li>
+                    <li><strong>コンテキスト認証</strong> - 場所、時間、デバイス状態に応じたアクセス制御</li>
+                    <li><strong>マイクロセグメンテーション</strong> - 教室ごと、学年ごとのネットワーク分離</li>
+                    <li><strong>監視とログ分析</strong> - 異常なアクセスパターンの検出</li>
+                </ul>
+            </div>
+
+            <h3>4-3. インシデント対応体制</h3>
+
+            <h4>CSIRT（Computer Security Incident Response Team）の構築</h4>
+            <div class="warning-box">
+                <h4>⚠️ インシデント発生時の初動が重要</h4>
+                <p>セキュリティインシデント発生時、<span class="highlight">誰が何をするか事前に決めておくこと</span>が被害の最小化に直結します。</p>
+            </div>
+
+            <div class="info-box">
+                <h4>学校版CSIRT体制例</h4>
+                <ul>
+                    <li><strong>リーダー</strong> - 教頭または情報主任（意思決定・対外対応）</li>
+                    <li><strong>技術担当</strong> - ICT支援員または外部業者（技術的対応・調査）</li>
+                    <li><strong>連絡担当</strong> - 事務職員（教育委員会・警察等への連絡）</li>
+                    <li><strong>記録担当</strong> - 教諭（経緯・対応内容の詳細記録）</li>
+                </ul>
+            </div>
+
+            <h4>インシデント対応フロー</h4>
+            <div class="step-box">
+                <h5><span class="step-number">1</span>検知・報告（5分以内）</h5>
+                <ul>
+                    <li>異常の発見者がリーダーに即座に報告</li>
+                    <li>状況の初期把握（いつ、どこで、何が）</li>
+                </ul>
+            </div>
+
+            <div class="step-box">
+                <h5><span class="step-number">2</span>初動対応（15分以内）</h5>
+                <ul>
+                    <li>被害拡大防止（感染端末の隔離、ネットワーク遮断）</li>
+                    <li>CSIRTメンバー招集</li>
+                    <li>記録開始（時系列での詳細記録）</li>
+                </ul>
+            </div>
+
+            <div class="step-box">
+                <h5><span class="step-number">3</span>状況分析（30分以内）</h5>
+                <ul>
+                    <li>影響範囲の特定（何台、どの教室、どのデータ）</li>
+                    <li>原因の推定（マルウェア、不正アクセス、設定ミス等）</li>
+                    <li>レベル判定（軽微/中程度/重大）</li>
+                </ul>
+            </div>
+
+            <div class="step-box">
+                <h5><span class="step-number">4</span>対策実施（1時間以内）</h5>
+                <ul>
+                    <li>技術的対応（マルウェア駆除、パッチ適用、設定変更）</li>
+                    <li>外部連絡（教育委員会、警察、ベンダー）</li>
+                    <li>代替手段の確保（授業継続のための措置）</li>
+                </ul>
+            </div>
+
+            <div class="step-box">
+                <h5><span class="step-number">5</span>復旧・検証（状況による）</h5>
+                <ul>
+                    <li>システムの復旧と動作確認</li>
+                    <li>再発防止策の実施</li>
+                    <li>通常運用への復帰</li>
+                </ul>
+            </div>
+
+            <div class="step-box">
+                <h5><span class="step-number">6</span>事後対応（1週間以内）</h5>
+                <ul>
+                    <li>詳細報告書の作成</li>
+                    <li>教職員への情報共有と教育</li>
+                    <li>再発防止策の体制化</li>
+                    <li>CSIRTの振り返りと改善</li>
+                </ul>
+            </div>
+        </section>
+
+        <section>
+            <h2>5. 次世代技術への対応</h2>
+
+            <h3>5-1. Wi-Fi 6/6E/7の導入検討</h3>
+
+            <h4>世代ごとの特徴比較</h4>
+            <table>
+                <tr>
+                    <th>規格</th>
+                    <th>最大速度</th>
+                    <th>主な特徴</th>
+                    <th>教育現場での評価</th>
+                </tr>
+                <tr>
+                    <td><strong>Wi-Fi 5<br>(802.11ac)</strong></td>
+                    <td>6.9 Gbps</td>
+                    <td>・5GHz帯のみ<br>・MU-MIMO（下り）</td>
+                    <td>現行の主流、十分な性能</td>
+                </tr>
+                <tr>
+                    <td><strong>Wi-Fi 6<br>(802.11ax)</strong></td>
+                    <td>9.6 Gbps</td>
+                    <td>・2.4/5GHz対応<br>・OFDMA、MU-MIMO（上下）<br>・高密度環境に強い</td>
+                    <td><strong>推奨</strong>：新規導入の標準</td>
+                </tr>
+                <tr>
+                    <td><strong>Wi-Fi 6E</strong></td>
+                    <td>9.6 Gbps</td>
+                    <td>・6GHz帯追加<br>・干渉のない帯域<br>・端末対応が限定的</td>
+                    <td>今後の選択肢、端末普及待ち</td>
+                </tr>
+                <tr>
+                    <td><strong>Wi-Fi 7<br>(802.11be)</strong></td>
+                    <td>46 Gbps</td>
+                    <td>・超高速・超低遅延<br>・マルチリンク動作<br>・2024年～製品化</td>
+                    <td>将来的な選択肢、まだ早い</td>
+                </tr>
+            </table>
+
+            <h4>Wi-Fi 6導入のメリット</h4>
+            <div class="success-box">
+                <h4>✅ 教育現場での具体的効果</h4>
+                <ul>
+                    <li><strong>高密度接続の安定化</strong> - 40台同時接続でも快適</li>
+                    <li><strong>遅延の低減</strong> - ビデオ会議での音声・映像のズレ軽減</li>
+                    <li><strong>バッテリー寿命の延長</strong> - TWT機能でタブレットの電池持ちが向上</li>
+                    <li><strong>混雑時の速度低下抑制</strong> - OFDMA により複数端末に効率的に帯域分配</li>
+                </ul>
+            </div>
+
+            <h4>導入時の注意点</h4>
+            <div class="warning-box">
+                <h4>⚠️ チェックポイント</h4>
+                <ul>
+                    <li><strong>端末対応確認</strong> - 生徒のタブレットがWi-Fi 6対応か（未対応でも接続可能だが効果限定的）</li>
+                    <li><strong>既存機器との共存</strong> - Wi-Fi 5以前の端末も使えるが、全体の効率は低下</li>
+                    <li><strong>コスト対効果</strong> - AP価格は高いが、高密度環境では投資価値あり</li>
+                    <li><strong>段階的導入</strong> - 特に混雑する教室から優先的に更新</li>
+                </ul>
+            </div>
+
+            <h3>5-2. 5Gとローカル5Gの活用</h3>
+
+            <h4>5Gの特徴</h4>
+            <div class="info-box">
+                <h4>5Gの3つの特性</h4>
+                <ul>
+                    <li><strong>超高速（eMBB）</strong> - 最大20Gbps、4Gの約20倍</li>
+                    <li><strong>超低遅延（URLLC）</strong> - 1ms以下、リアルタイム制御可能</li>
+                    <li><strong>多数同時接続（mMTC）</strong> - 1km²あたり100万台のIoT機器接続</li>
+                </ul>
+            </div>
+
+            <h4>教育現場での活用シーン</h4>
+            <div class="example-box">
+                <h5>🚀 5G活用例</h5>
+                <ul>
+                    <li><strong>バックアップ回線</strong> - 有線回線障害時の5Gルーター自動切替</li>
+                    <li><strong>屋外授業</strong> - 校庭、体育館でのオンライン授業やライブ配信</li>
+                    <li><strong>VR/AR教育</strong> - 低遅延が必要な没入型学習コンテンツ</li>
+                    <li><strong>遠隔授業の高品質化</strong> - 4K映像でのリアルタイム双方向授業</li>
+                    <li><strong>IoT機器の大量接続</strong> - センサー、カメラ等の多数接続</li>
+                </ul>
+            </div>
+
+            <h4>ローカル5Gとは</h4>
+            <p><span class="highlight">ローカル5Gは、自治体や企業が特定のエリア内で独自に構築できる5Gネットワーク</span>です。キャリアの5Gサービスとは独立しており、専有帯域で安定した通信が可能です。</p>
+
+            <div class="info-box">
+                <h4>ローカル5Gのメリット</h4>
+                <ul>
+                    <li><strong>専有帯域</strong> - 他の利用者の影響を受けない</li>
+                    <li><strong>高セキュリティ</strong> - 外部ネットワークと切り離された運用可能</li>
+                    <li><strong>柔軟な設計</strong> - 用途に応じたカスタマイズ</li>
+                    <li><strong>長期的なコスト削減</strong> - 回線費用が不要（初期投資は高額）</li>
+                </ul>
+
+                <h4>デメリット・課題</h4>
+                <ul>
+                    <li><strong>高額な初期投資</strong> - 基地局、免許取得等で数千万円規模</li>
+                    <li><strong>専門知識が必要</strong> - 運用・保守に高度なスキル必須</li>
+                    <li><strong>対応端末が限定的</strong> - 専用端末が必要な場合あり</li>
+                    <li><strong>免許取得の手続き</strong> - 総務省への申請・審査が必要</li>
+                </ul>
+            </div>
+
+            <div class="warning-box">
+                <h4>⚠️ 教育現場での現実的判断</h4>
+                <p>現時点では、<span class="highlight">ほとんどの学校でローカル5Gは投資対効果が見合いません</span>。キャリアの5Gサービスをバックアップ回線や特定用途に活用する方が現実的です。ただし、大規模自治体での複数校統合ネットワークや、先進的実証実験には選択肢となります。</p>
+            </div>
+
+            <h3>5-3. クラウドネイティブなネットワーク管理</h3>
+
+            <h4>クラウド管理型ネットワークの利点</h4>
+            <div class="info-box">
+                <h4>従来型との違い</h4>
+                
+                <h5>従来型（オンプレミス管理）</h5>
+                <ul>
+                    <li>学校内の管理サーバーが必要</li>
+                    <li>学校に出向かないと設定変更できない</li>
+                    <li>ソフトウェア更新が手動で手間</li>
+                </ul>
+
+                <h5>クラウド管理型</h5>
+                <ul>
+                    <li>インターネット経由でどこからでも管理</li>
+                    <li>複数校を一元管理可能</li>
+                    <li>自動ファームウェア更新</li>
+                    <li>AI/機械学習による自動最適化</li>
+                </ul>
+            </div>
+
+            <h4>主要なクラウド管理プラットフォーム</h4>
+            <div class="example-box">
+                <h5>代表的な製品</h5>
+                <ul>
+                    <li><strong>Cisco Meraki</strong> - 直感的UI、豊富な機能、高価格</li>
+                    <li><strong>Ubiquiti UniFi</strong> - コストパフォーマンス良、柔軟性高</li>
+                    <li><strong>Aruba Central</strong> - エンタープライズ向け、高機能</li>
+                    <li><strong>Ruckus Cloud</strong> - 教育機関での実績多数</li>
+                </ul>
+            </div>
+
+            <h4>クラウド管理の活用例</h4>
+            <ul>
+                <li><strong>自宅からのトラブル対応</strong> - 緊急時も学校に行かずに設定変更</li>
+                <li><strong>複数校の統合管理</strong> - 教育委員会で全校のネットワーク状況を一覧</li>
+                <li><strong>異常検知とアラート</strong> - トラフィック急増、機器故障を自動通知</li>
+                <li><strong>レポート自動生成</strong> - 月次の利用状況レポートを自動作成</li>
+                <li><strong>ゲストWi-Fiの一元管理</strong> - 来校者用の一時パスワード発行等</li>
+            </ul>
+
+            <h3>5-4. SD-WAN（Software-Defined WAN）の検討</h3>
+
+            <h4>SD-WANとは</h4>
+            <p><span class="highlight">SD-WANは、複数の回線（光、LTE、5G等）をソフトウェアで統合管理し、最適な経路を自動選択する技術</span>です。従来の固定的なルーティングではなく、リアルタイムでトラフィックを振り分けます。</p>
+
+            <div class="info-box">
+                <h4>SD-WANのメリット</h4>
+                <ul>
+                    <li><strong>回線の有効活用</strong> - 複数回線を同時利用し、帯域を最大化</li>
+                    <li><strong>自動フェイルオーバー</strong> - 主回線障害時の瞬時切替</li>
+                    <li><strong>アプリケーション最適化</strong> - 重要な通信に優先帯域を自動割当</li>
+                    <li><strong>コスト削減</strong> - 高価な専用線から安価なインターネット回線へシフト可能</li>
+                    <li><strong>簡単な管理</strong> - 複雑なルーティング設定が不要</li>
+                </ul>
+            </div>
+
+            <h4>教育現場での活用シーン</h4>
+            <div class="example-box">
+                <h5>🌐 実装例</h5>
+                <p><strong>構成：主回線（光1Gbps）+ バックアップ回線（5G）</strong></p>
+                <ul>
+                    <li><strong>通常時</strong> - 主回線を優先使用、5Gは待機または軽負荷トラフィック</li>
+                    <li><strong>ピーク時</strong> - 動画視聴等の大容量通信を5Gに自動分散</li>
+                    <li><strong>障害時</strong> - 主回線が切れたら即座に全トラフィックを5Gに切替</li>
+                    <li><strong>重要通信</strong> - ビデオ会議は品質保証のため主回線優先</li>
+                </ul>
+            </div>
+
+            <div class="warning-box">
+                <h4>⚠️ 導入時の検討事項</h4>
+                <ul>
+                    <li><strong>複数回線の契約</strong> - SD-WANの効果を得るには複数回線が前提</li>
+                    <li><strong>機器コスト</strong> - SD-WAN対応ルーター/ゲートウェイが必要</li>
+                    <li><strong>運用スキル</strong> - ポリシー設定には一定の知識が必要</li>
+                    <li><strong>段階的導入</strong> - まずは主要拠点（教育委員会等）から試験導入</li>
+                </ul>
+            </div>
+        </section>
+
+        <section>
+            <h2>6. 実践演習</h2>
+
+            <div class="success-box">
+                <h4>📝 演習課題</h4>
+                <p>以下の3つの演習を通じて、高度なネットワーク管理スキルを実践的に身につけましょう。</p>
+            </div>
+
+            <h3>演習1：ネットワークアセスメント計画の立案</h3>
+            <div class="example-box">
+                <h4>シナリオ</h4>
+                <p>あなたの学校では「授業中にインターネットが遅い」という報告が増えています。校長から原因究明と改善策の提案を求められました。</p>
+
+                <h4>課題</h4>
+                <ol>
+                    <li><strong>調査計画の作成</strong>
+                        <ul>
+                            <li>何を、いつ、どのように調査するか</li>
+                            <li>使用する測定ツールとその理由</li>
+                            <li>重点的にチェックする項目リスト</li>
+                        </ul>
+                    </li>
+                    <li><strong>データ収集方法の設計</strong>
+                        <ul>
+                            <li>トラフィックログの取得方法</li>
+                            <li>教室ごとの速度測定手順</li>
+                            <li>利用者（教職員・生徒）へのヒアリング項目</li>
+                        </ul>
+                    </li>
+                    <li><strong>分析フレームワーク</strong>
+                        <ul>
+                            <li>収集したデータをどう分析するか</li>
+                            <li>ボトルネックを特定する判断基準</li>
+                            <li>結果を校長に説明するための資料構成</li>
+                        </ul>
+                    </li>
+                </ol>
+
+                <h4>提出物</h4>
+                <p>調査計画書（A4用紙2～3枚程度、図表含む）</p>
+            </div>
+
+            <h3>演習2：冗長化構成の設計</h3>
+            <div class="example-box">
+                <h4>シナリオ</h4>
+                <p>新設される中学校のネットワークインフラを設計することになりました。教育委員会からは「GIGAスクール構想の安定運用のため、障害に強いネットワークを構築してほしい」と要望されています。</p>
+
+                <h4>学校の条件</h4>
+                <ul>
+                    <li>生徒数：600名（各学年200名、1学年6クラス）</li>
+                    <li>教職員：50名</li>
+                    <li>タブレット：生徒全員+教職員分を配備済み</li>
+                    <li>予算：ネットワーク機器に300万円まで</li>
+                </ul>
+
+                <h4>課題</h4>
+                <ol>
+                    <li><strong>冗長化設計図の作成</strong>
+                        <ul>
+                            <li>ネットワーク構成図（回線、ルーター、スイッチ、AP配置）</li>
+                            <li>どの部分をどのように冗長化するか</li>
+                            <li>SPOFが残る箇所とその理由（予算制約等）</li>
+                        </ul>
+                    </li>
+                    <li><strong>機器選定と見積</strong>
+                        <ul>
+                            <li>必要な機器のリスト（型番、台数、単価）</li>
+                            <li>冗長化構成の選択理由（スタッキング、VRRP等）</li>
+                            <li>予算内での最適化</li>
+                        </ul>
+                    </li>
+                    <li><strong>運用計画</strong>
+                        <ul>
+                            <li>フェイルオーバーテストの計画</li>
+                            <li>定期メンテナンスの手順</li>
+                            <li>障害時の対応フロー</li>
+                        </ul>
+                    </li>
+                </ol>
+
+                <h4>提出物</h4>
+                <p>設計書（A4用紙5枚程度、ネットワーク図、機器リスト、運用手順含む）</p>
+            </div>
+
+            <h3>演習3：次世代技術導入の提案</h3>
+            <div class="example-box">
+                <h4>シナリオ</h4>
+                <p>あなたの市では、現在のWi-Fi 5環境を更新するタイミングを迎えています。教育長から「Wi-Fi 6への更新」「ローカル5Gの検討」「クラウド管理への移行」の3つの選択肢について比較検討し、推奨案を提示してほしいと依頼されました。</p>
+
+                <h4>市の状況</h4>
+                <ul>
+                    <li>市立小学校：10校（各校300～500名）</li>
+                    <li>市立中学校：5校（各校400～600名）</li>
+                    <li>現状：各校に教育委員会からICT支援員を派遣（週1回訪問）</li>
+                    <li>現在の課題：各校バラバラの機器、統一的な管理ができていない</li>
+                </ul>
+
+                <h4>課題</h4>
+                <ol>
+                    <li><strong>3つの選択肢の比較表作成</strong>
+                        <ul>
+                            <li>コスト（初期投資、年間運用費）</li>
+                            <li>技術的メリット・デメリット</li>
+                            <li>導入スケジュールと工期</li>
+                            <li>必要な体制・スキル</li>
+                        </ul>
+                    </li>
+                    <li><strong>推奨案の提示</strong>
+                        <ul>
+                            <li>どの選択肢（または組み合わせ）が最適か</li>
+                            <li>その選択の根拠（教育効果、コスト、管理効率等）</li>
+                            <li>段階的導入の計画</li>
+                        </ul>
+                    </li>
+                    <li><strong>導入後の効果予測</strong>
+                        <ul>
+                            <li>授業でのICT活用がどう改善されるか</li>
+                            <li>管理業務の効率化の具体例</li>
+                            <li>5年後を見据えた拡張性</li>
+                        </ul>
+                    </li>
+                </ol>
+
+                <h4>提出物</h4>
+                <p>提案書（A4用紙5～7枚程度、比較表、導入計画、費用対効果分析含む）</p>
+            </div>
+        </section>
+
+        <section>
+            <h2>📚 まとめ</h2>
+            
+            <div class="success-box">
+                <h4>✅ この講座で学んだこと</h4>
+                <ul>
+                    <li><strong>ネットワークアセスメント</strong> - トラフィック分析とボトルネック特定の手法</li>
+                    <li><strong>冗長化設計</strong> - SPOFを排除し、障害に強いネットワーク構築</li>
+                    <li><strong>無線LAN最適化</strong> - チャネル設計、ローミング、高密度対応</li>
+                    <li><strong>セキュリティ強化</strong> - 多層防御、ゼロトラスト、インシデント対応</li>
+                    <li><strong>次世代技術</strong> - Wi-Fi 6/7、5G、クラウド管理、SD-WAN</li>
+                </ul>
+            </div>
+
+            <div class="info-box">
+                <h4>🚀 ICT支援員から企画員へのステップアップ</h4>
+                <p>本講座で学んだ高度なネットワーク管理スキルは、<span class="highlight">ICT企画員として自治体全体のインフラ戦略を立案する際の基盤</span>となります。単なるトラブル対応だけでなく、将来を見据えた投資判断ができる人材が求められています。</p>
+            </div>
+
+            <h3>次のステップ</h3>
+            <ul>
+                <li><strong>第27回</strong> - 高度な授業設計支援と授業研究</li>
+                <li><strong>第28回</strong> - 先進的なSTEAM教育とデータサイエンス</li>
+                <li><strong>第29回</strong> - 特別支援教育の高度な支援技術</li>
+            </ul>
+
+            <div class="warning-box">
+                <h4>💡 継続学習のために</h4>
+                <ul>
+                    <li>ベンダー提供のオンライン研修（Cisco、Microsoft等）を活用</li>
+                    <li>関連資格の取得（ネットワークスペシャリスト、CCNA等）</li>
+                    <li>教育情報セキュリティポリシーガイドラインの定期確認</li>
+                    <li>他自治体の先進事例研究と情報交換</li>
+                </ul>
+            </div>
+            </section>
+
+            <div class="navigation">
+                <a href="session25.html" class="btn btn-secondary">← 第25回</a>
+                <a href="../advanced.html" class="btn">発展編トップへ</a>
+                <a href="session27.html" class="btn btn-primary">第27回 →</a>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>講座について</h4>
+                    <ul>
+                        <li><a href="../beginner.html">入門編（第1回～第10回）</a></li>
+                        <li><a href="../intermediate.html">基礎編（第11回～第24回）</a></li>
+                        <li><a href="../intermediate2.html">中級編（第1回～第14回）</a></li>
+                        <li><a href="../advanced.html">発展編（第25回～第36回）</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>参考リソース</h4>
+                    <ul>
+                        <li><a href="../resources.html">主要参考資料</a></li>
+                        <li><a href="../resources.html#government">国・行政機関</a></li>
+                        <li><a href="../resources.html#organizations">専門機関・団体</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>お問い合わせ</h4>
+                    <p>本講座に関するお問い合わせは、櫻井までお願いいたします。</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 ICT支援員・企画員のための教育講座. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../js/main.js"></script>
+</body>
+</html>

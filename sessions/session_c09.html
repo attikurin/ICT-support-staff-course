@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>中級編 第9回: アカウント管理とアクセス制御 | ICT支援員教育講座</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/session.css">
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="container">
+                <div class="logo">
+                    <h1>🎓 ICT支援員教育講座</h1>
+                </div>
+                <ul class="nav-menu">
+                    <li><a href="../index.html">ホーム</a></li>
+                    <li><a href="../beginner.html">入門編</a></li>
+                    <li><a href="../intermediate.html">基礎編</a></li>
+                    <li><a href="../intermediate2.html" class="active">中級編</a></li>
+                    <li><a href="../advanced.html">発展編</a></li>
+                    <li><a href="../certification.html">試験対策</a></li>
+                    <li><a href="../resources.html">参考資料</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <main class="container session-content">
+        <div class="session-header intermediate">
+            <span class="session-label">中級編第9回</span>
+            <h1>アカウント管理とアクセス制御</h1>
+            <p class="session-meta">所要時間: 90分 | レベル: 中級</p>
+        </div>
+
+        <section class="objectives">
+            <h2>📘 学習目標</h2>
+            <ul>
+                <li>学校におけるアカウント管理の重要性と方法を理解する</li>
+                <li>Google Workspace / Microsoft 365のアカウント管理機能を説明できる</li>
+                <li>適切なパスワード管理とセキュリティ対策を習得する</li>
+                <li>MDM（モバイルデバイス管理）の役割と機能を理解する</li>
+            </ul>
+        </section>
+
+        <section class="content-section">
+            <h2>1. アカウント管理の基本</h2>
+            
+            <h3>1.1 アカウント管理の重要性</h3>
+            
+            <div class="info-box">
+                <h4>💡 なぜアカウント管理が重要か</h4>
+                <ul>
+                    <li><strong>個人情報保護</strong>：児童生徒・教員の情報を守る</li>
+                    <li><strong>不正アクセス防止</strong>：なりすまし、情報漏洩の防止</li>
+                    <li><strong>適切な権限管理</strong>：必要な人に必要な権限のみ付与</li>
+                    <li><strong>利用状況の把握</strong>：誰がいつ何をしたか記録</li>
+                    <li><strong>コンプライアンス</strong>：法令・ガイドラインの遵守</li>
+                </ul>
+            </div>
+
+            <h3>1.2 学校で管理するアカウントの種類</h3>
+            
+            <table style="width: 100%; border-collapse: collapse; margin: 1rem 0;">
+                <thead>
+                    <tr style="background: #f5f5f5;">
+                        <th style="padding: 0.75rem; border: 1px solid #ddd;">種類</th>
+                        <th style="padding: 0.75rem; border: 1px solid #ddd;">対象</th>
+                        <th style="padding: 0.75rem; border: 1px solid #ddd;">用途</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td style="padding: 0.75rem; border: 1px solid #ddd;"><strong>児童生徒アカウント</strong></td>
+                        <td style="padding: 0.75rem; border: 1px solid #ddd;">全児童生徒</td>
+                        <td style="padding: 0.75rem; border: 1px solid #ddd;">学習用端末ログイン、Google / Microsoft 365</td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 0.75rem; border: 1px solid #ddd;"><strong>教員アカウント</strong></td>
+                        <td style="padding: 0.75rem; border: 1px solid #ddd;">全教職員</td>
+                        <td style="padding: 0.75rem; border: 1px solid #ddd;">校務用PC、校務支援システム、学習系システム</td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 0.75rem; border: 1px solid #ddd;"><strong>管理者アカウント</strong></td>
+                        <td style="padding: 0.75rem; border: 1px solid #ddd;">情報担当教員、ICT支援員</td>
+                        <td style="padding: 0.75rem; border: 1px solid #ddd;">アカウント作成・削除、設定変更</td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 0.75rem; border: 1px solid #ddd;"><strong>デジタル教材アカウント</strong></td>
+                        <td style="padding: 0.75rem; border: 1px solid #ddd;">利用者</td>
+                        <td style="padding: 0.75rem; border: 1px solid #ddd;">デジタルドリル、学習アプリ</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <section class="content-section">
+            <h2>2. Google Workspace for Education</h2>
+            
+            <h3>2.1 組織構造（OU：組織単位）</h3>
+            
+            <div class="point-box">
+                <h4>🎯 組織単位（OU）の設計例</h4>
+                <table style="width: 100%; border-collapse: collapse; margin: 1rem 0;">
+                    <thead>
+                        <tr style="background: #f5f5f5;">
+                            <th style="padding: 0.75rem; border: 1px solid #ddd;">階層</th>
+                            <th style="padding: 0.75rem; border: 1px solid #ddd;">組織単位</th>
+                            <th style="padding: 0.75rem; border: 1px solid #ddd;">説明</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td style="padding: 0.75rem; border: 1px solid #ddd;" rowspan="7"><strong>○○市立○○小学校</strong></td>
+                            <td style="padding: 0.75rem; border: 1px solid #ddd;"><strong>教職員</strong></td>
+                            <td style="padding: 0.75rem; border: 1px solid #ddd;">教職員全体のグループ</td>
+                        </tr>
+                        <tr>
+                            <td style="padding: 0.75rem; border: 1px solid #ddd; padding-left: 2rem;">└ 管理職</td>
+                            <td style="padding: 0.75rem; border: 1px solid #ddd;">校長、副校長、教頭</td>
+                        </tr>
+                        <tr>
+                            <td style="padding: 0.75rem; border: 1px solid #ddd; padding-left: 2rem;">└ 教員</td>
+                            <td style="padding: 0.75rem; border: 1px solid #ddd;">担任、専科教員</td>
+                        </tr>
+                        <tr>
+                            <td style="padding: 0.75rem; border: 1px solid #ddd; padding-left: 2rem;">└ 事務職員</td>
+                            <td style="padding: 0.75rem; border: 1px solid #ddd;">事務、用務員等</td>
+                        </tr>
+                        <tr>
+                            <td style="padding: 0.75rem; border: 1px solid #ddd;"><strong>児童生徒</strong></td>
+                            <td style="padding: 0.75rem; border: 1px solid #ddd;">児童生徒全体のグループ</td>
+                        </tr>
+                        <tr>
+                            <td style="padding: 0.75rem; border: 1px solid #ddd; padding-left: 2rem;">└ 1年生～6年生</td>
+                            <td style="padding: 0.75rem; border: 1px solid #ddd;">学年ごとに分類</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <p><strong>OUごとに異なる設定が可能：</strong></p>
+                <ul>
+                    <li>利用可能なアプリの制限</li>
+                    <li>共有設定（外部共有の可否）</li>
+                    <li>YouTubeの制限モード</li>
+                </ul>
+            </div>
+
+            <h3>2.2 主要な管理機能</h3>
+            
+            <ul>
+                <li><strong>ユーザー管理</strong>
+                    <ul>
+                        <li>アカウントの一括作成（CSVインポート）</li>
+                        <li>パスワードのリセット</li>
+                        <li>アカウントの停止・削除</li>
+                    </ul>
+                </li>
+                <li><strong>グループ管理</strong>
+                    <ul>
+                        <li>クラスごと、学年ごとのグループ作成</li>
+                        <li>メーリングリスト機能</li>
+                        <li>グループでの共有設定</li>
+                    </ul>
+                </li>
+                <li><strong>アプリの制御</strong>
+                    <ul>
+                        <li>Gmail、Google ドライブ、YouTube等の利用制限</li>
+                        <li>Marketplace アプリの許可・ブロック</li>
+                    </ul>
+                </li>
+                <li><strong>セキュリティ設定</strong>
+                    <ul>
+                        <li>2段階認証の強制</li>
+                        <li>パスワードポリシー（長さ、複雑さ）</li>
+                        <li>ログイン試行回数制限</li>
+                    </ul>
+                </li>
+            </ul>
+
+            <h3>2.3 Google Classroom との連携</h3>
+            <ul>
+                <li>クラスへの児童生徒の自動追加</li>
+                <li>教員権限の管理</li>
+                <li>クラスデータのアーカイブ</li>
+            </ul>
+        </section>
+
+        <section class="content-section">
+            <h2>3. Microsoft 365 Education</h2>
+            
+            <h3>3.1 管理センター</h3>
+            
+            <p><strong>主要な管理画面</strong></p>
+            <ul>
+                <li><strong>Microsoft 365 管理センター</strong>：ユーザー・ライセンス管理</li>
+                <li><strong>Azure Active Directory</strong>：認証・セキュリティ管理</li>
+                <li><strong>Intune 管理センター</strong>：デバイス管理（MDM）</li>
+                <li><strong>Teams 管理センター</strong>：Teams の設定</li>
+            </ul>
+
+            <h3>3.2 ライセンス管理</h3>
+            
+            <table style="width: 100%; border-collapse: collapse; margin: 1rem 0;">
+                <thead>
+                    <tr style="background: #f5f5f5;">
+                        <th style="padding: 0.75rem; border: 1px solid #ddd;">ライセンス</th>
+                        <th style="padding: 0.75rem; border: 1px solid #ddd;">対象</th>
+                        <th style="padding: 0.75rem; border: 1px solid #ddd;">主な機能</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td style="padding: 0.75rem; border: 1px solid #ddd;"><strong>A1（無料）</strong></td>
+                        <td style="padding: 0.75rem; border: 1px solid #ddd;">学生・教員</td>
+                        <td style="padding: 0.75rem; border: 1px solid #ddd;">Web版Office、Teams、OneDrive（100GB以上）</td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 0.75rem; border: 1px solid #ddd;"><strong>A3（有料）</strong></td>
+                        <td style="padding: 0.75rem; border: 1px solid #ddd;">学生・教員</td>
+                        <td style="padding: 0.75rem; border: 1px solid #ddd;">デスクトップ版Office、高度なセキュリティ</td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 0.75rem; border: 1px solid #ddd;"><strong>A5（有料）</strong></td>
+                        <td style="padding: 0.75rem; border: 1px solid #ddd;">学生・教員</td>
+                        <td style="padding: 0.75rem; border: 1px solid #ddd;">A3のすべて＋電話システム</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3>3.3 条件付きアクセス</h3>
+            <ul>
+                <li><strong>場所による制限</strong>：学校外からのアクセス制限</li>
+                <li><strong>デバイスによる制限</strong>：登録端末のみアクセス許可</li>
+                <li><strong>多要素認証（MFA）</strong>：パスワード＋SMSコード等</li>
+            </ul>
+        </section>
+
+        <section class="content-section">
+            <h2>4. パスワード管理</h2>
+            
+            <h3>4.1 強固なパスワードの条件</h3>
+            
+            <div class="info-box">
+                <h4>💡 推奨されるパスワード要件</h4>
+                <ul>
+                    <li><strong>長さ</strong>：8文字以上（12文字以上推奨）</li>
+                    <li><strong>複雑さ</strong>：大文字、小文字、数字、記号を組み合わせる</li>
+                    <li><strong>推測されにくい</strong>：誕生日、名前、辞書の単語を避ける</li>
+                    <li><strong>使い回ししない</strong>：サービスごとに異なるパスワード</li>
+                </ul>
+            </div>
+
+            <h3>4.2 児童生徒のパスワード管理</h3>
+            
+            <p><strong>年齢に応じた方法</strong></p>
+            <ul>
+                <li><strong>小学校低学年</strong>：
+                    <ul>
+                        <li>覚えやすい8文字程度</li>
+                        <li>パスワードカードを配布（保管注意）</li>
+                        <li>ブラウザの保存機能を活用</li>
+                    </ul>
+                </li>
+                <li><strong>小学校高学年〜中学生</strong>：
+                    <ul>
+                        <li>自分で設定・管理させる</li>
+                        <li>定期的な変更を指導</li>
+                        <li>パスワードマネージャーの利用検討</li>
+                    </ul>
+                </li>
+            </ul>
+
+            <h3>4.3 パスワード忘れへの対応</h3>
+            
+            <div class="point-box">
+                <h4>🎯 ICT支援員の対応手順</h4>
+                <ol>
+                    <li><strong>本人確認</strong>：氏名、学年、クラスを確認</li>
+                    <li><strong>リセット実施</strong>：管理コンソールからパスワードリセット</li>
+                    <li><strong>仮パスワード発行</strong>：初回ログイン時に変更を促す</li>
+                    <li><strong>記録</strong>：対応日時、対象者を記録</li>
+                    <li><strong>指導</strong>：パスワード管理の重要性を説明</li>
+                </ol>
+            </div>
+
+            <h3>4.4 多要素認証（MFA）</h3>
+            <ul>
+                <li><strong>知識要素</strong>：パスワード</li>
+                <li><strong>所持要素</strong>：スマートフォン、セキュリティキー</li>
+                <li><strong>生体要素</strong>：指紋、顔認証</li>
+            </ul>
+            <p>※教員アカウントには多要素認証の導入を推奨</p>
+        </section>
+
+        <section class="content-section">
+            <h2>5. MDM（モバイルデバイス管理）</h2>
+            
+            <h3>5.1 MDMとは</h3>
+            
+            <div class="info-box">
+                <h4>💡 MDM（Mobile Device Management）</h4>
+                <p>スマートフォンやタブレットなどのモバイル端末を一元管理するシステム。設定配布、アプリ管理、セキュリティ対策を遠隔で実施できる。</p>
+            </div>
+
+            <h3>5.2 MDMの主要機能</h3>
+            
+            <ul>
+                <li><strong>デバイス登録・管理</strong>
+                    <ul>
+                        <li>端末の一括登録</li>
+                        <li>資産管理（シリアル番号、利用者記録）</li>
+                    </ul>
+                </li>
+                <li><strong>設定の一括配布</strong>
+                    <ul>
+                        <li>Wi-Fi設定の自動配布</li>
+                        <li>メール設定</li>
+                        <li>壁紙、ホーム画面のカスタマイズ</li>
+                    </ul>
+                </li>
+                <li><strong>アプリ管理</strong>
+                    <ul>
+                        <li>アプリの一括インストール・削除</li>
+                        <li>アプリの利用制限</li>
+                        <li>アプリのアップデート管理</li>
+                    </ul>
+                </li>
+                <li><strong>セキュリティ機能</strong>
+                    <ul>
+                        <li>パスコードの強制</li>
+                        <li>遠隔ロック・ワイプ（データ消去）</li>
+                        <li>位置情報の取得（紛失時）</li>
+                        <li>不適切なサイトのブロック</li>
+                    </ul>
+                </li>
+                <li><strong>利用制限</strong>
+                    <ul>
+                        <li>カメラ、スクリーンショットの無効化</li>
+                        <li>アプリ内課金の禁止</li>
+                        <li>利用時間の制限</li>
+                    </ul>
+                </li>
+            </ul>
+
+            <h3>5.3 主要なMDM製品</h3>
+            
+            <table style="width: 100%; border-collapse: collapse; margin: 1rem 0;">
+                <thead>
+                    <tr style="background: #f5f5f5;">
+                        <th style="padding: 0.75rem; border: 1px solid #ddd;">製品名</th>
+                        <th style="padding: 0.75rem; border: 1px solid #ddd;">対応OS</th>
+                        <th style="padding: 0.75rem; border: 1px solid #ddd;">特徴</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td style="padding: 0.75rem; border: 1px solid #ddd;"><strong>Google Workspace（MDM機能）</strong></td>
+                        <td style="padding: 0.75rem; border: 1px solid #ddd;">Android、iOS、Chrome OS</td>
+                        <td style="padding: 0.75rem; border: 1px solid #ddd;">Google Workspace に統合</td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 0.75rem; border: 1px solid #ddd;"><strong>Microsoft Intune</strong></td>
+                        <td style="padding: 0.75rem; border: 1px solid #ddd;">Windows、iOS、Android</td>
+                        <td style="padding: 0.75rem; border: 1px solid #ddd;">Microsoft 365 と統合</td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 0.75rem; border: 1px solid #ddd;"><strong>SKYSEA Client View</strong></td>
+                        <td style="padding: 0.75rem; border: 1px solid #ddd;">Windows、iPad、Android</td>
+                        <td style="padding: 0.75rem; border: 1px solid #ddd;">国内シェア大、教育機関向け</td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 0.75rem; border: 1px solid #ddd;"><strong>MobiConnect</strong></td>
+                        <td style="padding: 0.75rem; border: 1px solid #ddd;">iOS、Android、Windows</td>
+                        <td style="padding: 0.75rem; border: 1px solid #ddd;">教育機関での導入実績多数</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <section class="content-section">
+            <h2>6. アカウントのライフサイクル管理</h2>
+            
+            <h3>6.1 アカウント作成（入学・転入時）</h3>
+            <ul>
+                <li>名簿データからアカウント一括作成</li>
+                <li>初期パスワードの設定・配布</li>
+                <li>適切なOUへの配置</li>
+                <li>必要なグループへの追加</li>
+            </ul>
+
+            <h3>6.2 年度更新時</h3>
+            <ul>
+                <li>学年・クラスの変更</li>
+                <li>OU の移動</li>
+                <li>グループの再編成</li>
+                <li>前年度データのアーカイブ</li>
+            </ul>
+
+            <h3>6.3 アカウント削除（卒業・転出時）</h3>
+            
+            <div class="warning-box">
+                <h4>⚠️ アカウント削除の注意点</h4>
+                <ul>
+                    <li><strong>即時削除は避ける</strong>：まず停止してデータ移行期間を設ける</li>
+                    <li><strong>データのバックアップ</strong>：必要なデータは保存</li>
+                    <li><strong>共有データの確認</strong>：他のユーザーと共有しているファイルがないか</li>
+                    <li><strong>記録の保持</strong>：削除日時、対象者を記録</li>
+                </ul>
+            </div>
+        </section>
+
+        <section class="content-section">
+            <h2>7. ICT支援員の役割</h2>
+            
+            <h3>7.1 日常的なアカウント管理業務</h3>
+            <ul>
+                <li>パスワードリセット対応</li>
+                <li>アカウントロック解除</li>
+                <li>新規アカウント作成（転入生）</li>
+                <li>アカウント停止（転出生、休学）</li>
+            </ul>
+
+            <h3>7.2 セキュリティ啓発</h3>
+            <ul>
+                <li>パスワード管理の指導</li>
+                <li>なりすまし防止の注意喚起</li>
+                <li>ログアウトの習慣化</li>
+                <li>不審なメール・リンクへの警戒</li>
+            </ul>
+
+            <h3>7.3 トラブル対応</h3>
+            <ul>
+                <li>ログインできない問題の切り分け</li>
+                <li>アカウント乗っ取りへの対応</li>
+                <li>不正利用の報告・対処</li>
+            </ul>
+
+            <h3>7.4 記録・報告</h3>
+            <ul>
+                <li>アカウント作成・削除の記録</li>
+                <li>パスワードリセット対応履歴</li>
+                <li>セキュリティインシデントの報告</li>
+            </ul>
+        </section>
+
+        <section class="exercises">
+            <h2>📝 演習問題</h2>
+            
+            <div class="exercise-item">
+                <h3>演習1: アカウント構造の設計</h3>
+                <p>300人規模の小学校（各学年2クラス）で Google Workspace を導入します。組織単位（OU）をどのように設計しますか？理由とともに説明してください。</p>
+            </div>
+
+            <div class="exercise-item">
+                <h3>演習2: パスワード忘れ対応</h3>
+                <p>小学2年生の児童が「パスワードを忘れてログインできない」と相談してきました。ICT支援員としてどのように対応しますか？手順を説明してください。</p>
+            </div>
+
+            <div class="exercise-item">
+                <h3>演習3: セキュリティインシデント</h3>
+                <p>ある児童のアカウントで、本人が知らない間に大量のメールが送信されていることが発覚しました。どのような原因が考えられますか？また、どのように対応すべきですか？</p>
+            </div>
+        </section>
+
+        <section class="summary">
+            <h2>📌 まとめ</h2>
+            <ul>
+                <li>アカウント管理は個人情報保護と不正アクセス防止のために重要</li>
+                <li>Google Workspace / Microsoft 365 は組織単位（OU）で階層的にアカウントを管理</li>
+                <li>強固なパスワードは長さ・複雑さ・使い回ししないことが重要</li>
+                <li>MDMによりモバイル端末の設定、アプリ、セキュリティを一元管理できる</li>
+                <li>ICT支援員はパスワードリセット、セキュリティ啓発、トラブル対応を担う</li>
+            </ul>
+        </section>
+
+        <section class="references">
+            <h2>📚 参考資料</h2>
+            <ul>
+                <li><a href="https://workspace.google.com/intl/ja/products/admin/" target="_blank">Google Workspace 管理者ヘルプ</a></li>
+                <li><a href="https://learn.microsoft.com/ja-jp/microsoft-365/admin/" target="_blank">Microsoft 365 管理者向けドキュメント</a></li>
+                <li><a href="https://www.ipa.go.jp/security/measures/password.html" target="_blank">パスワードに関する情報（IPA）</a></li>
+                <li><a href="https://www.mext.go.jp/content/20200911-mxt_jogai01-000009772_16.pdf" target="_blank">教育情報セキュリティポリシーに関するガイドライン（文部科学省）</a></li>
+            </ul>
+        </section>
+
+        <nav class="session-nav">
+            <a href="session_c08.html" class="prev-session">← 中級編 第8回: ネットワークとインフラ管理</a>
+            <a href="../intermediate2.html" class="back-to-course">中級編コース一覧へ</a>
+            <a href="session_c10.html" class="next-session">中級編 第10回: データ活用と学習分析 →</a>
+        </nav>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>講座について</h4>
+                    <ul>
+                        <li><a href="../beginner.html">入門編（第1回～第10回）</a></li>
+                        <li><a href="../intermediate.html">基礎編（第11回～第24回）</a></li>
+                        <li><a href="../intermediate2.html">中級編（第1回～第14回）</a></li>
+                        <li><a href="../advanced.html">発展編（第25回～第36回）</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>参考リソース</h4>
+                    <ul>
+                        <li><a href="../resources.html">主要参考資料</a></li>
+                        <li><a href="../resources.html#government">国・行政機関</a></li>
+                        <li><a href="../resources.html#organizations">専門機関・団体</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>お問い合わせ</h4>
+                    <p>本講座に関するお問い合わせは、櫻井までお願いいたします。</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 ICT支援員・企画員のための教育講座. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../js/main.js"></script>
+</body>
+</html>

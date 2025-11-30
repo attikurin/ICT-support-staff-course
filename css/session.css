@@ -1,0 +1,479 @@
+/* セッション詳細ページ用のスタイル */
+
+.session-content {
+    padding: 2rem 0 4rem;
+}
+
+.session-header-content {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    padding: 3rem 2rem;
+    border-radius: 1rem;
+    margin-bottom: 3rem;
+    box-shadow: var(--shadow-lg);
+}
+
+.session-label {
+    display: inline-block;
+    padding: 0.5rem 1rem;
+    border-radius: 2rem;
+    font-weight: 600;
+    font-size: 0.9rem;
+    margin-bottom: 1rem;
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+.session-label.beginner {
+    background-color: rgba(59, 130, 246, 0.3);
+}
+
+.session-label.intermediate {
+    background-color: rgba(139, 92, 246, 0.3);
+}
+
+.session-label.advanced {
+    background-color: rgba(236, 72, 153, 0.3);
+}
+
+.session-header-content h1 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    color: white;
+}
+
+.session-meta {
+    font-size: 1.1rem;
+    opacity: 0.9;
+}
+
+/* セクションスタイル */
+.content-section {
+    background-color: white;
+    padding: 2rem;
+    border-radius: 1rem;
+    margin-bottom: 2rem;
+    box-shadow: var(--shadow);
+}
+
+.content-section h2 {
+    color: var(--primary-color);
+    border-bottom: 3px solid var(--primary-color);
+    padding-bottom: 0.5rem;
+    margin-top: 3rem;
+    margin-bottom: 1.5rem;
+}
+
+.content-section h2:first-child {
+    margin-top: 0;
+}
+
+.content-section h3 {
+    color: var(--dark);
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+    font-size: 1.4rem;
+}
+
+.content-section h4 {
+    color: var(--gray);
+    margin-top: 1.5rem;
+    margin-bottom: 0.75rem;
+    font-size: 1.1rem;
+}
+
+.content-section p {
+    line-height: 1.8;
+    margin-bottom: 1rem;
+    color: var(--dark);
+}
+
+.content-section ul,
+.content-section ol {
+    margin-left: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+.content-section li {
+    line-height: 1.8;
+    margin-bottom: 0.5rem;
+    color: var(--dark);
+}
+
+.content-section ul ul,
+.content-section ol ul {
+    margin-top: 0.5rem;
+}
+
+/* 情報ボックス */
+.info-box,
+.point-box,
+.role-box,
+.warning-box {
+    padding: 1.5rem;
+    border-radius: 0.75rem;
+    margin: 1.5rem 0;
+    border-left: 4px solid;
+}
+
+.info-box {
+    background-color: #eff6ff;
+    border-left-color: #3b82f6;
+}
+
+.info-box h4 {
+    color: #1e40af;
+    margin-top: 0;
+}
+
+.point-box {
+    background-color: #f0fdf4;
+    border-left-color: #10b981;
+}
+
+.point-box h4 {
+    color: #065f46;
+    margin-top: 0;
+}
+
+.role-box {
+    background-color: #fef3c7;
+    border-left-color: #f59e0b;
+}
+
+.role-box h4 {
+    color: #78350f;
+    margin-top: 0;
+}
+
+.warning-box {
+    background-color: #fef2f2;
+    border-left-color: #ef4444;
+}
+
+.warning-box h4 {
+    color: #991b1b;
+    margin-top: 0;
+}
+
+/* 学習目標 */
+.objectives {
+    background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+    padding: 2rem;
+    border-radius: 1rem;
+    margin-bottom: 2rem;
+    border-left: 4px solid var(--primary-color);
+}
+
+.objectives h2 {
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+}
+
+.objectives ul {
+    list-style: none;
+    margin-left: 0;
+}
+
+.objectives li {
+    padding-left: 2rem;
+    position: relative;
+    margin-bottom: 0.75rem;
+    line-height: 1.7;
+}
+
+.objectives li::before {
+    content: "✓";
+    position: absolute;
+    left: 0;
+    color: var(--success-color);
+    font-weight: bold;
+    font-size: 1.2rem;
+}
+
+/* 演習課題 */
+.exercises {
+    background-color: #fef3c7;
+    padding: 2rem;
+    border-radius: 1rem;
+    margin-bottom: 2rem;
+    border-left: 4px solid var(--warning-color);
+}
+
+.exercises h2 {
+    color: var(--warning-color);
+    margin-bottom: 1.5rem;
+}
+
+.exercise-box {
+    background-color: white;
+    padding: 1.5rem;
+    border-radius: 0.75rem;
+    margin-bottom: 1.5rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.exercise-box:last-child {
+    margin-bottom: 0;
+}
+
+.exercise-box h3 {
+    color: var(--dark);
+    margin-top: 0;
+    margin-bottom: 1rem;
+    font-size: 1.2rem;
+}
+
+.exercise-box p {
+    margin-bottom: 0.75rem;
+}
+
+.exercise-box ul {
+    margin-left: 1.5rem;
+}
+
+.exercise-box li {
+    margin-bottom: 0.5rem;
+}
+
+/* まとめ */
+.summary {
+    background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
+    padding: 2rem;
+    border-radius: 1rem;
+    margin-bottom: 2rem;
+    border-left: 4px solid var(--success-color);
+}
+
+.summary h2 {
+    color: var(--success-color);
+    margin-bottom: 1rem;
+}
+
+.summary ul {
+    list-style: none;
+    margin-left: 0;
+}
+
+.summary li {
+    padding-left: 2rem;
+    position: relative;
+    margin-bottom: 0.75rem;
+    line-height: 1.7;
+}
+
+.summary li::before {
+    content: "📌";
+    position: absolute;
+    left: 0;
+}
+
+/* 参考資料 */
+.references {
+    background-color: var(--light-gray);
+    padding: 2rem;
+    border-radius: 1rem;
+    margin-bottom: 2rem;
+}
+
+.references h2 {
+    color: var(--dark);
+    margin-bottom: 1rem;
+}
+
+.references ul {
+    list-style: none;
+    margin-left: 0;
+}
+
+.references li {
+    margin-bottom: 0.5rem;
+}
+
+.references a {
+    color: var(--primary-color);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.references a:hover {
+    color: var(--secondary-color);
+    text-decoration: underline;
+}
+
+/* ナビゲーション */
+.navigation {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-top: 3rem;
+    flex-wrap: wrap;
+}
+
+.navigation .btn {
+    flex: 1;
+    min-width: 200px;
+    text-align: center;
+}
+
+/* テーブル */
+.content-section table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1.5rem 0;
+    background-color: white;
+    box-shadow: var(--shadow);
+    border-radius: 0.5rem;
+    overflow: hidden;
+}
+
+.content-section th {
+    background-color: var(--primary-color);
+    color: white;
+    padding: 1rem;
+    text-align: left;
+    font-weight: 600;
+}
+
+.content-section td {
+    padding: 1rem;
+    border-bottom: 1px solid var(--light-gray);
+}
+
+.content-section tr:last-child td {
+    border-bottom: none;
+}
+
+.content-section tr:hover {
+    background-color: var(--light-gray);
+}
+
+/* コードブロック */
+.content-section pre {
+    background-color: #1f2937;
+    color: #e5e7eb;
+    padding: 1.5rem;
+    border-radius: 0.75rem;
+    overflow-x: auto;
+    margin: 1.5rem 0;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 0.9rem;
+    line-height: 1.6;
+}
+
+.content-section code {
+    background-color: #f3f4f6;
+    color: #dc2626;
+    padding: 0.2rem 0.4rem;
+    border-radius: 0.25rem;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 0.9em;
+}
+
+.content-section pre code {
+    background-color: transparent;
+    color: inherit;
+    padding: 0;
+}
+
+/* 画像 */
+.content-section img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 0.75rem;
+    box-shadow: var(--shadow);
+    margin: 1.5rem 0;
+}
+
+/* 引用 */
+.content-section blockquote {
+    border-left: 4px solid var(--primary-color);
+    padding-left: 1.5rem;
+    margin: 1.5rem 0;
+    font-style: italic;
+    color: var(--gray);
+}
+
+/* レスポンシブデザイン */
+@media (max-width: 768px) {
+    .session-header-content {
+        padding: 2rem 1.5rem;
+    }
+
+    .session-header-content h1 {
+        font-size: 1.75rem;
+    }
+
+    .content-section {
+        padding: 1.5rem;
+    }
+
+    .content-section h2 {
+        font-size: 1.5rem;
+    }
+
+    .content-section h3 {
+        font-size: 1.25rem;
+    }
+
+    .navigation {
+        flex-direction: column;
+    }
+
+    .navigation .btn {
+        width: 100%;
+    }
+
+    .info-box,
+    .point-box,
+    .role-box,
+    .warning-box,
+    .exercise-box {
+        padding: 1rem;
+    }
+
+    .objectives,
+    .exercises,
+    .summary,
+    .references {
+        padding: 1.5rem;
+    }
+}
+
+/* プリント用スタイル */
+@media print {
+    .navbar,
+    .navigation,
+    footer {
+        display: none;
+    }
+
+    .session-header-content {
+        background: white !important;
+        color: black !important;
+        border: 2px solid black;
+    }
+
+    .session-label {
+        border: 1px solid black;
+        background: white !important;
+        color: black !important;
+    }
+
+    .info-box,
+    .point-box,
+    .role-box,
+    .warning-box {
+        border: 1px solid black;
+        background: white !important;
+    }
+
+    .content-section {
+        box-shadow: none;
+        page-break-inside: avoid;
+    }
+
+    a {
+        color: black;
+        text-decoration: underline;
+    }
+}

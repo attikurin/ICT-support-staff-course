@@ -1,0 +1,1098 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>第37回：ICT支援員A領域試験対策①（技術基礎編） - ICT支援員教育講座</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/session.css">
+    <link rel="stylesheet" href="../css/advanced.css">
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="container">
+                <div class="logo">
+                    <h1>🎓 ICT支援員教育講座</h1>
+                </div>
+                <ul class="nav-menu">
+                    <li><a href="../index.html">ホーム</a></li>
+                    <li><a href="../beginner.html">入門編</a></li>
+                    <li><a href="../intermediate.html">基礎編</a></li>
+                    <li><a href="../intermediate2.html">中級編</a></li>
+                    <li><a href="../advanced.html">発展編</a></li>
+                    <li><a href="../certification.html" class="active">試験対策</a></li>
+                    <li><a href="../resources.html">参考資料</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <main class="session-content">
+        <div class="container">
+            <div class="session-header-content">
+                <span class="session-label" style="background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);">試験対策</span>
+                <h1>第37回：ICT支援員A領域試験対策①（技術基礎編）</h1>
+                <p class="session-meta">試験対策講座 第1回 | 学習時間目安：90分</p>
+            </div>
+
+            <section class="objectives">
+                <h2>🎯 学習目標</h2>
+                <ul>
+                    <li>GIGA端末（iPad、Chromebook、Windows）の特徴と選定ポイントを理解できる</li>
+                    <li>MDM、BYOD、LMS、CBT等の教育ICT用語を正確に説明できる</li>
+                    <li>Google Workspace、Microsoft 365の基本操作とトラブル対応ができる</li>
+                    <li>Wi-Fi接続、アカウント設定、プリンター設定等の技術サポートができる</li>
+                    <li>ICT支援員能力認定試験A領域（技術基礎）で65%以上の得点を目指せる</li>
+                </ul>
+            </section>
+
+            <section class="content-section">
+                <h2>📋 本講座の目的と位置づけ</h2>
+                <p>本講座は、<strong>ICT支援員認定試験のA領域（技術力）</strong>における基礎的な内容を対策するものです。特に以下の試験範囲に重点を置いています：</p>
+                <ul>
+                    <li><strong>a) 教育現場や情報技術などでの基本的用語</strong></li>
+                    <li><strong>b) アプリケーション操作</strong></li>
+                    <li><strong>d) ハードウェア・ソフトの設定</strong></li>
+                </ul>
+                <p>既存講座（第6回、第7回、第23回）で学習した内容を、試験対策として体系的に整理し、実践的な演習問題を通じて理解を深めます。</p>
+            </section>
+
+            <section class="content-section">
+                <h2>第1部：教育ICT基本用語の整理</h2>
+                
+                <h3>1.1 GIGA端末の理解</h3>
+                <div class="table-container">
+                    <h4>3大GIGA端末の特徴比較</h4>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>項目</th>
+                                <th>iPad</th>
+                                <th>Chromebook</th>
+                                <th>Windows端末</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>OS</strong></td>
+                                <td>iPadOS(iOS系)</td>
+                                <td>Chrome OS</td>
+                                <td>Windows 10/11</td>
+                            </tr>
+                            <tr>
+                                <td><strong>起動速度</strong></td>
+                                <td>高速(数秒)</td>
+                                <td>非常に高速(数秒)</td>
+                                <td>やや遅い(数十秒)</td>
+                            </tr>
+                            <tr>
+                                <td><strong>バッテリー</strong></td>
+                                <td>優秀(8-10時間)</td>
+                                <td>優秀(8-12時間)</td>
+                                <td>中程度(5-8時間)</td>
+                            </tr>
+                            <tr>
+                                <td><strong>操作性</strong></td>
+                                <td>タッチ中心、直感的</td>
+                                <td>キーボード+タッチ</td>
+                                <td>キーボード+マウス中心</td>
+                            </tr>
+                            <tr>
+                                <td><strong>アプリ環境</strong></td>
+                                <td>App Store</td>
+                                <td>Webアプリ中心、Play Store</td>
+                                <td>従来型ソフト+Webアプリ</td>
+                            </tr>
+                            <tr>
+                                <td><strong>価格帯</strong></td>
+                                <td>高価(4万円~)</td>
+                                <td>低価格(3万円~)</td>
+                                <td>中高価(4万円~)</td>
+                            </tr>
+                            <tr>
+                                <td><strong>管理</strong></td>
+                                <td>Apple School Manager</td>
+                                <td>Google Admin Console</td>
+                                <td>Intune、WSUS等</td>
+                            </tr>
+                            <tr>
+                                <td><strong>主な用途</strong></td>
+                                <td>クリエイティブ、直感操作</td>
+                                <td>協働学習、クラウド活用</td>
+                                <td>従来型教材、専門ソフト</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="point-box">
+                    <h4>💡 選定のポイント</h4>
+                    <ul>
+                        <li><strong>iPad:</strong> 直感的操作が必要な小学校低学年、創作活動重視の学校に適する</li>
+                        <li><strong>Chromebook:</strong> コスト重視、Google Workspace活用校に最適</li>
+                        <li><strong>Windows:</strong> 既存の教育ソフト資産を活かしたい学校、専門教科（情報科等）に適する</li>
+                    </ul>
+                </div>
+
+                <h3>1.2 教育ICT管理用語</h3>
+                
+                <div class="info-box">
+                    <h4>📱 MDM（Mobile Device Management：モバイル端末管理）</h4>
+                    <p><strong>定義：</strong>学校で配布するタブレットやPCを一括管理するシステム</p>
+                    <p><strong>主な機能：</strong></p>
+                    <ul>
+                        <li>アプリの一括配信・削除</li>
+                        <li>設定の一括適用（Wi-Fi、パスワードポリシー等）</li>
+                        <li>端末の位置情報追跡（紛失時）</li>
+                        <li>使用制限（特定サイトやアプリのブロック）</li>
+                        <li>リモートロック・ワイプ（遠隔で端末をロックまたは初期化）</li>
+                    </ul>
+                    <p><strong>主要製品例：</strong></p>
+                    <ul>
+                        <li>Apple School Manager + MDMソリューション（iPad）</li>
+                        <li>Google Admin Console（Chromebook）</li>
+                        <li>Microsoft Intune（Windows）</li>
+                    </ul>
+                    <p><strong>ICT支援員の役割：</strong></p>
+                    <ul>
+                        <li>MDM経由での設定変更作業</li>
+                        <li>端末の登録・削除作業</li>
+                        <li>不具合発生時の一次対応</li>
+                    </ul>
+                </div>
+
+                <div class="info-box">
+                    <h4>📲 BYOD（Bring Your Own Device）</h4>
+                    <p><strong>定義：</strong>個人所有の端末を学校に持ち込んで学習に活用する方式</p>
+                    <p><strong>メリット：</strong></p>
+                    <ul>
+                        <li>予算削減（自治体の端末購入費用が不要）</li>
+                        <li>児童生徒が使い慣れた端末で学習できる</li>
+                        <li>家庭学習との連続性</li>
+                    </ul>
+                    <p><strong>デメリット・課題：</strong></p>
+                    <ul>
+                        <li>端末スペックの差による学習格差</li>
+                        <li>家庭の経済的負担</li>
+                        <li>セキュリティリスク（私物端末へのフィルタリング設定等）</li>
+                        <li>故障時の対応責任の所在</li>
+                    </ul>
+                    <p><strong>運用のポイント：</strong></p>
+                    <ul>
+                        <li>最低限のスペック要件の設定</li>
+                        <li>MDM導入による一定の管理</li>
+                        <li>家庭の経済状況への配慮（貸出端末の用意）</li>
+                    </ul>
+                </div>
+
+                <div class="table-container">
+                    <h4>☁️ クラウドとオンプレミス</h4>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>項目</th>
+                                <th>クラウド</th>
+                                <th>オンプレミス</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>設置場所</strong></td>
+                                <td>インターネット上（事業者のサーバー）</td>
+                                <td>学校・自治体内のサーバー室</td>
+                            </tr>
+                            <tr>
+                                <td><strong>初期費用</strong></td>
+                                <td>低い（サーバー購入不要）</td>
+                                <td>高い（サーバー、設備投資）</td>
+                            </tr>
+                            <tr>
+                                <td><strong>運用費用</strong></td>
+                                <td>継続的な利用料</td>
+                                <td>保守・更新費用</td>
+                            </tr>
+                            <tr>
+                                <td><strong>拡張性</strong></td>
+                                <td>柔軟（必要に応じて増減）</td>
+                                <td>限定的（物理的制約）</td>
+                            </tr>
+                            <tr>
+                                <td><strong>災害対策</strong></td>
+                                <td>強い（地理的分散）</td>
+                                <td>弱い（被災リスク）</td>
+                            </tr>
+                            <tr>
+                                <td><strong>カスタマイズ</strong></td>
+                                <td>限定的</td>
+                                <td>自由度高い</td>
+                            </tr>
+                            <tr>
+                                <td><strong>主な例</strong></td>
+                                <td>Google Workspace、Microsoft 365</td>
+                                <td>自治体独自の学習eポータル</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <p><strong>💡 ハイブリッド型：</strong>重要データはオンプレミス、協働学習はクラウドという組み合わせも増加</p>
+                </div>
+
+                <h3>1.3 学習活動関連用語</h3>
+                
+                <div class="info-box">
+                    <h4>📚 LMS（Learning Management System：学習管理システム）</h4>
+                    <p><strong>定義：</strong>オンラインで学習教材の配信、課題管理、成績管理を行うシステム</p>
+                    <p><strong>主な機能：</strong></p>
+                    <ul>
+                        <li>教材・動画の配信</li>
+                        <li>課題の提出・採点</li>
+                        <li>小テスト・アンケート作成</li>
+                        <li>学習履歴の記録</li>
+                        <li>出席管理</li>
+                    </ul>
+                    <p><strong>代表例：</strong></p>
+                    <ul>
+                        <li><strong>Google Classroom:</strong> Google Workspace環境での標準LMS</li>
+                        <li><strong>Microsoft Teams for Education:</strong> Office 365環境でのLMS機能</li>
+                        <li><strong>Moodle:</strong> オープンソースLMS（大学・高校で利用多い）</li>
+                        <li><strong>Classi、Studyplus:</strong> 日本の教育ベンダーのLMS</li>
+                    </ul>
+                </div>
+
+                <div class="info-box">
+                    <h4>💻 CBT（Computer Based Testing）</h4>
+                    <p><strong>定義：</strong>コンピュータを使用した試験方式</p>
+                    <p><strong>従来の紙試験との違い：</strong></p>
+                    <ul>
+                        <li>即時採点・結果フィードバック（選択問題）</li>
+                        <li>問題のランダム出題（不正防止）</li>
+                        <li>音声・動画を使った出題が可能</li>
+                        <li>答案用紙の保管が不要</li>
+                    </ul>
+                    <p><strong>活用例：</strong></p>
+                    <ul>
+                        <li>全国学力・学習状況調査のCBT化（段階的導入）</li>
+                        <li>英語4技能試験（スピーキングテスト含む）</li>
+                        <li>大学入学共通テストでの検討</li>
+                    </ul>
+                    <p><strong>ICT支援員の役割：</strong></p>
+                    <ul>
+                        <li>試験実施時のネットワーク安定性確保</li>
+                        <li>端末の動作確認</li>
+                        <li>トラブル発生時の迅速な対応</li>
+                    </ul>
+                </div>
+
+                <div class="info-box">
+                    <h4>🎯 アダプティブラーニング（適応学習）</h4>
+                    <p><strong>定義：</strong>学習者一人ひとりの理解度に応じて、出題内容や難易度を自動調整する学習方式</p>
+                    <p><strong>仕組み：</strong></p>
+                    <ol>
+                        <li>児童生徒が問題に解答</li>
+                        <li>AIが正答率や解答時間を分析</li>
+                        <li>理解度が低い分野を重点的に出題</li>
+                        <li>得意分野は発展問題へ</li>
+                    </ol>
+                    <p><strong>代表的なサービス：</strong></p>
+                    <ul>
+                        <li><strong>Qubena（キュビナ）:</strong> 算数・数学のAI型教材</li>
+                        <li><strong>すらら:</strong> 無学年式デジタル教材</li>
+                        <li><strong>スタディサプリ:</strong> 動画+アダプティブ問題</li>
+                    </ul>
+                    <p><strong>効果：</strong></p>
+                    <ul>
+                        <li>個別最適な学びの実現</li>
+                        <li>教員の負担軽減（自動採点・分析）</li>
+                        <li>学習意欲の向上（適切な難易度）</li>
+                    </ul>
+                </div>
+
+                <h3>1.4 その他の重要用語</h3>
+                <ul>
+                    <li><strong>SSO（Single Sign-On：シングルサインオン）</strong> - 一度の認証で複数のサービスにログインできる仕組み。Google Workspace、Microsoft 365で実装されている。</li>
+                    <li><strong>フィルタリング</strong> - 有害サイトへのアクセスを制限する機能。学校では法的義務あり。</li>
+                    <li><strong>学習eポータル</strong> - 複数の学習コンテンツを一元的に利用できるプラットフォーム（MEXCBTなど）。</li>
+                    <li><strong>デジタル教科書</strong> - 教科書内容をデジタル化したもの。2024年度から本格導入開始。</li>
+                </ul>
+            </section>
+
+            <section class="content-section">
+                <h2>第2部：アプリケーション操作の実践</h2>
+                
+                <h3>2.1 Google Workspace for Education</h3>
+                
+                <h4>📝 Google Classroom（課題管理）</h4>
+                <div class="info-box">
+                    <p><strong>基本操作：</strong></p>
+                    <ol>
+                        <li><strong>クラスの作成</strong>
+                            <ul>
+                                <li>右上の「+」→「クラスを作成」</li>
+                                <li>クラス名、セクション、科目を入力</li>
+                                <li>クラスコードを生徒に共有</li>
+                            </ul>
+                        </li>
+                        <li><strong>課題の作成</strong>
+                            <ul>
+                                <li>「授業」タブ→「作成」→「課題」</li>
+                                <li>タイトル、説明、添付ファイル（Docs、PDF等）を追加</li>
+                                <li>配点、期限を設定</li>
+                                <li>「トピック」で単元ごとに整理</li>
+                            </ul>
+                        </li>
+                        <li><strong>採点とフィードバック</strong>
+                            <ul>
+                                <li>提出された課題をクリック</li>
+                                <li>点数入力、コメント記入</li>
+                                <li>「返却」で生徒に通知</li>
+                            </ul>
+                        </li>
+                    </ol>
+                    <p><strong>便利機能：</strong></p>
+                    <ul>
+                        <li><strong>テンプレート課題:</strong> 次年度に再利用可能</li>
+                        <li><strong>ルーブリック:</strong> 評価基準を明示</li>
+                        <li><strong>限定公開コメント:</strong> 個別の生徒のみに表示</li>
+                    </ul>
+                </div>
+
+                <h4>📁 Google Drive（ファイル管理）</h4>
+                <div class="info-box">
+                    <div class="table-container">
+                        <p><strong>共有設定の理解（重要）：</strong></p>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>設定</th>
+                                    <th>権限内容</th>
+                                    <th>使用場面</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>閲覧者</td>
+                                    <td>見るだけ、ダウンロード可</td>
+                                    <td>教材配布</td>
+                                </tr>
+                                <tr>
+                                    <td>閲覧者（コメント可）</td>
+                                    <td>コメント追加可、編集不可</td>
+                                    <td>レビュー依頼</td>
+                                </tr>
+                                <tr>
+                                    <td>編集者</td>
+                                    <td>内容の変更、削除可</td>
+                                    <td>協働編集</td>
+                                </tr>
+                                <tr>
+                                    <td>特定のユーザー</td>
+                                    <td>指定した人のみ</td>
+                                    <td>個人情報含む資料</td>
+                                </tr>
+                                <tr>
+                                    <td>リンクを知っている全員</td>
+                                    <td>URL知っていれば誰でも</td>
+                                    <td>校内限定共有</td>
+                                </tr>
+                                <tr>
+                                    <td>一般公開</td>
+                                    <td>インターネット上の誰でも</td>
+                                    <td>学校HP掲載資料</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <p><strong>フォルダ管理のベストプラクティス：</strong></p>
+                    <pre style="background: #1e293b; color: #e2e8f0; padding: 1rem; border-radius: 0.5rem; overflow-x: auto; font-family: 'Courier New', monospace;">
+マイドライブ/
+├─ 2024年度/
+│  ├─ 1年生/
+│  │  ├─ 国語/
+│  │  ├─ 算数/
+│  │  └─ 生活/
+│  └─ 2年生/
+│     └─ ...
+└─ 校務関係/
+   ├─ 会議資料/
+   └─ 研修資料/
+                    </pre>
+                    <p><strong>容量管理（注意点）：</strong></p>
+                    <ul>
+                        <li>Education版：教員・生徒とも容量制限あり（学校ドメイン全体で共有）</li>
+                        <li>不要ファイルの定期削除</li>
+                        <li>大容量ファイル（動画等）はGoogle Drive外のストレージ検討</li>
+                    </ul>
+                </div>
+
+                <h4>📊 Google Forms（アンケート・小テスト）</h4>
+                <div class="info-box">
+                    <p><strong>小テスト作成手順：</strong></p>
+                    <ol>
+                        <li>Formsを開く→「新しいフォーム」</li>
+                        <li>設定→「テストにする」をON</li>
+                        <li>問題作成：
+                            <ul>
+                                <li><strong>選択問題:</strong> 正解を選択→「正解」マークを付ける</li>
+                                <li><strong>記述問題:</strong> 採点は手動（部分点付与可能）</li>
+                            </ul>
+                        </li>
+                        <li>自動採点設定：
+                            <ul>
+                                <li>各問題に配点を設定</li>
+                                <li>「回答に応じたフィードバック」で解説追加</li>
+                            </ul>
+                        </li>
+                        <li>配布：Classroomに課題として投稿、またはリンク共有</li>
+                    </ol>
+                    <p><strong>アンケート機能：</strong></p>
+                    <ul>
+                        <li>授業評価アンケート</li>
+                        <li>行事の出欠確認</li>
+                        <li>端末トラブル報告フォーム</li>
+                    </ul>
+                </div>
+
+                <h3>2.2 Microsoft 365 Education</h3>
+                
+                <h4>👥 Microsoft Teams（チーム・チャネル管理）</h4>
+                <div class="info-box">
+                    <p><strong>基本構造：</strong></p>
+                    <pre style="background: #1e293b; color: #e2e8f0; padding: 1rem; border-radius: 0.5rem; font-family: 'Courier New', monospace;">
+チーム(= クラス、学年、委員会)
+ └─ チャネル(= 科目、トピックごと)
+     ├─ 投稿(会話)
+     ├─ ファイル(OneDrive連携)
+     └─ タブ(Forms、OneNote等)
+                    </pre>
+                    <p><strong>授業での活用：</strong></p>
+                    <ul>
+                        <li><strong>投稿での連絡</strong>
+                            <ul>
+                                <li>課題指示、連絡事項を投稿</li>
+                                <li>@メンション機能で特定生徒に通知</li>
+                                <li>「重要」マークで目立たせる</li>
+                            </ul>
+                        </li>
+                        <li><strong>課題機能</strong>
+                            <ul>
+                                <li>「課題」タブ→「作成」</li>
+                                <li>Word、PowerPoint等を課題として配布</li>
+                                <li>提出された課題をTeams内で採点</li>
+                            </ul>
+                        </li>
+                        <li><strong>会議機能（オンライン授業）</strong>
+                            <ul>
+                                <li>ビデオ会議の開催</li>
+                                <li>画面共有、ホワイトボード</li>
+                                <li>録画機能（欠席者への配慮）</li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <p><strong>注意点：</strong></p>
+                    <ul>
+                        <li>チーム作成は教員のみ（生徒は参加のみ）</li>
+                        <li>チャネルの適切な整理（科目ごと、単元ごと等）</li>
+                    </ul>
+                </div>
+
+                <h3>2.3 学習支援ソフト</h3>
+                
+                <div class="point-box">
+                    <h4>🎨 ロイロノート・スクール</h4>
+                    <p><strong>特徴：</strong>カード型のシンプルな操作で思考を可視化</p>
+                    <p><strong>基本操作：</strong></p>
+                    <ul>
+                        <li><strong>カード作成:</strong> テキスト、写真、動画、Webカード</li>
+                        <li><strong>線でつなぐ:</strong> 思考の流れを表現</li>
+                        <li><strong>提出箱:</strong> 生徒の作品を一覧表示</li>
+                        <li><strong>シンキングツール:</strong> ベン図、Yチャート等</li>
+                    </ul>
+                    <p><strong>活用場面：</strong></p>
+                    <ul>
+                        <li>プレゼンテーション作成（小学生でも簡単）</li>
+                        <li>グループワークでの情報整理</li>
+                        <li>ポートフォリオ蓄積</li>
+                    </ul>
+                </div>
+
+                <div class="point-box">
+                    <h4>🖼️ Canva for Education</h4>
+                    <p><strong>特徴：</strong>デザイン作成ツール（無料版でも高機能）</p>
+                    <p><strong>できること：</strong></p>
+                    <ul>
+                        <li>ポスター、スライド、動画編集</li>
+                        <li>テンプレート豊富（教育向けテンプレートあり）</li>
+                        <li>共同編集機能</li>
+                    </ul>
+                    <p><strong>教育現場での用途：</strong></p>
+                    <ul>
+                        <li>学級新聞、委員会ポスター</li>
+                        <li>プレゼン資料作成</li>
+                        <li>動画作品の編集</li>
+                    </ul>
+                </div>
+
+                <div class="point-box">
+                    <h4>📌 Padlet</h4>
+                    <p><strong>特徴：</strong>オンライン掲示板</p>
+                    <p><strong>基本形式：</strong></p>
+                    <ul>
+                        <li><strong>ウォール:</strong> 付箋のように自由配置</li>
+                        <li><strong>ストリーム:</strong> 時系列表示（SNS風）</li>
+                        <li><strong>グリッド:</strong> カード型で整理</li>
+                    </ul>
+                    <p><strong>活用例：</strong></p>
+                    <ul>
+                        <li>ブレインストーミング</li>
+                        <li>意見の可視化・共有</li>
+                        <li>作品ギャラリー</li>
+                    </ul>
+                </div>
+            </section>
+
+            <section class="content-section">
+                <h2>第3部：ハードウェア設定とトラブル対応</h2>
+                
+                <h3>3.1 Wi-Fi接続設定</h3>
+                
+                <div class="table-container">
+                    <h4>基礎知識：周波数帯の理解</h4>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>項目</th>
+                                <th>2.4GHz</th>
+                                <th>5GHz</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>速度</strong></td>
+                                <td>遅い</td>
+                                <td>速い</td>
+                            </tr>
+                            <tr>
+                                <td><strong>障害物</strong></td>
+                                <td>強い（壁を超えやすい）</td>
+                                <td>弱い</td>
+                            </tr>
+                            <tr>
+                                <td><strong>混雑</strong></td>
+                                <td>多い（電子レンジ等と干渉）</td>
+                                <td>少ない</td>
+                            </tr>
+                            <tr>
+                                <td><strong>到達距離</strong></td>
+                                <td>長い</td>
+                                <td>短い</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <p><strong>💡 学校での推奨：</strong>教室内は5GHz、廊下・体育館は2.4GHzと使い分け</p>
+                </div>
+
+                <h4>接続手順（iPad例）</h4>
+                <div class="example-box">
+                    <ol>
+                        <li>設定→Wi-Fi</li>
+                        <li>ネットワーク名（SSID）を選択</li>
+                        <li>パスワード入力</li>
+                        <li>「接続」→接続完了マーク確認</li>
+                        <li>自動接続の設定：「自動接続」をON→次回から自動で接続</li>
+                    </ol>
+                </div>
+
+                <div class="table-container">
+                    <h4>🔧 トラブルシューティング</h4>
+                    <p><strong>症状：Wi-Fiに繋がらない</strong></p>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>確認項目</th>
+                                <th>対処法</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>① 機内モードON</td>
+                                <td>設定→機内モードOFF</td>
+                            </tr>
+                            <tr>
+                                <td>② Wi-FiスイッチOFF</td>
+                                <td>設定→Wi-Fi ON</td>
+                            </tr>
+                            <tr>
+                                <td>③ 誤ったSSIDに接続</td>
+                                <td>正しいSSIDを選び直し</td>
+                            </tr>
+                            <tr>
+                                <td>④ パスワード誤り</td>
+                                <td>パスワード再入力（大文字・小文字注意）</td>
+                            </tr>
+                            <tr>
+                                <td>⑤ IPアドレス未取得</td>
+                                <td>Wi-Fi OFF→再度ON、または端末再起動</td>
+                            </tr>
+                            <tr>
+                                <td>⑥ ルーター側の問題</td>
+                                <td>ルーター再起動（管理者に連絡）</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <p><strong>高度な確認：</strong></p>
+                    <ul>
+                        <li><strong>IPアドレス確認:</strong> 設定→Wi-Fi→接続中のネットワーク名→「IPアドレス」が「169.254.x.x」なら未取得（異常）</li>
+                        <li><strong>DNS設定:</strong> 自動取得になっているか確認</li>
+                    </ul>
+                </div>
+
+                <h3>3.2 アカウント設定</h3>
+                
+                <h4>📧 Googleアカウント</h4>
+                <div class="info-box">
+                    <p><strong>初回ログイン手順：</strong></p>
+                    <ol>
+                        <li>ブラウザまたはアプリで「ログイン」</li>
+                        <li>メールアドレス入力（例：taro.yamada@xxxx-school.ed.jp）</li>
+                        <li>初期パスワード入力（学校から配布）</li>
+                        <li>パスワード変更を求められる→新しいパスワード設定</li>
+                    </ol>
+                    <p><strong>パスワードポリシー（学校により異なる）：</strong></p>
+                    <ul>
+                        <li>8文字以上</li>
+                        <li>英大文字、小文字、数字、記号を含む</li>
+                        <li>過去のパスワードは使用不可</li>
+                    </ul>
+                    <p><strong>パスワードリセット：</strong></p>
+                    <ul>
+                        <li>管理者に依頼（ICT支援員が対応する場合あり）</li>
+                        <li>Google Admin Consoleから仮パスワード発行</li>
+                    </ul>
+                </div>
+
+                <h4>🔐 Microsoftアカウント</h4>
+                <div class="info-box">
+                    <p><strong>組織アカウントと個人アカウントの違い：</strong></p>
+                    <ul>
+                        <li><strong>学校発行:</strong> xxxxx@xxxx-school.ed.jp（組織アカウント）</li>
+                        <li><strong>個人:</strong> xxxxx@outlook.jp等（個人アカウント）</li>
+                        <li>混同しないよう注意（特に教員の端末）</li>
+                    </ul>
+                    <p><strong>多要素認証（MFA）：</strong></p>
+                    <ul>
+                        <li>セキュリティ強化のため、パスワード+スマホ認証</li>
+                        <li>初回設定時にAuthenticatorアプリ登録</li>
+                    </ul>
+                </div>
+
+                <h3>3.3 プリンター設定</h3>
+                
+                <h4>🖨️ ネットワークプリンター接続（Windows例）</h4>
+                <div class="example-box">
+                    <ol>
+                        <li>設定→デバイス→プリンターとスキャナー</li>
+                        <li>「プリンターまたはスキャナーを追加します」</li>
+                        <li>検索されたプリンター名を選択</li>
+                        <li>ドライバー自動インストール（未対応なら手動でダウンロード）</li>
+                    </ol>
+                    <p><strong>接続方式：</strong></p>
+                    <ul>
+                        <li><strong>有線LAN:</strong> IPアドレス指定で接続</li>
+                        <li><strong>無線LAN:</strong> Wi-Fi経由で接続</li>
+                        <li><strong>USB接続:</strong> 直接PCと接続（職員室で多い）</li>
+                    </ul>
+                </div>
+
+                <div class="table-container">
+                    <h4>🔧 トラブル対応</h4>
+                    <p><strong>症状：印刷できない</strong></p>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>原因</th>
+                                <th>確認方法</th>
+                                <th>対処法</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>プリンター電源OFF</td>
+                                <td>ランプ確認</td>
+                                <td>電源ON</td>
+                            </tr>
+                            <tr>
+                                <td>用紙切れ・紙詰まり</td>
+                                <td>トレイ確認</td>
+                                <td>用紙補充、詰まり除去</td>
+                            </tr>
+                            <tr>
+                                <td>トナー切れ</td>
+                                <td>エラーメッセージ</td>
+                                <td>トナー交換</td>
+                            </tr>
+                            <tr>
+                                <td>印刷ジョブ詰まり</td>
+                                <td>印刷キュー確認</td>
+                                <td>キュー削除後、再印刷</td>
+                            </tr>
+                            <tr>
+                                <td>ドライバー不具合</td>
+                                <td>デバイスマネージャー</td>
+                                <td>ドライバー再インストール</td>
+                            </tr>
+                            <tr>
+                                <td>ネットワーク切断</td>
+                                <td>Ping確認</td>
+                                <td>ネットワーク接続確認</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <p><strong>印刷キューの削除方法：</strong></p>
+                    <ol>
+                        <li>設定→プリンター→該当プリンター右クリック</li>
+                        <li>「印刷ジョブの表示」</li>
+                        <li>溜まっているジョブを選択→キャンセル</li>
+                    </ol>
+                </div>
+
+                <h3>3.4 周辺機器接続</h3>
+                
+                <h4>📽️ プロジェクター・大型提示装置</h4>
+                <div class="info-box">
+                    <p><strong>接続方式：</strong></p>
+                    <ul>
+                        <li><strong>HDMI:</strong> 最も一般的、映像+音声</li>
+                        <li><strong>VGA（D-Sub15ピン）:</strong> 古いプロジェクター、映像のみ</li>
+                        <li><strong>USB-C:</strong> 新しいノートPCに多い</li>
+                        <li><strong>無線接続:</strong> Miracast、AirPlay、Chromecast</li>
+                    </ul>
+                    <p><strong>トラブル：映らない</strong></p>
+                    <ul>
+                        <li>ケーブルの差し込み確認</li>
+                        <li>プロジェクターの入力切替（HDMI1、HDMI2等）</li>
+                        <li>PC側の表示設定（Windowsキー+P）
+                            <ul>
+                                <li><strong>複製:</strong> 同じ画面を表示</li>
+                                <li><strong>拡張:</strong> プロジェクターを第2画面として使用</li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+
+                <h4>📷 実物投影機（書画カメラ）</h4>
+                <div class="info-box">
+                    <p><strong>接続手順：</strong></p>
+                    <ol>
+                        <li>USB接続 or HDMI接続</li>
+                        <li>カメラアプリ起動、またはプロジェクターに直接映す</li>
+                        <li>ズーム、明るさ調整</li>
+                    </ol>
+                    <p><strong>活用場面：</strong></p>
+                    <ul>
+                        <li>ノート・教科書の拡大提示</li>
+                        <li>実験の手元操作を見せる</li>
+                        <li>児童生徒の作品共有</li>
+                    </ul>
+                </div>
+
+                <h4>🔌 タブレット充電保管庫</h4>
+                <div class="info-box">
+                    <p><strong>管理のポイント：</strong></p>
+                    <ul>
+                        <li>過充電防止機能の確認（タイマー設定）</li>
+                        <li>通気性確保（熱がこもらないよう）</li>
+                        <li>施錠管理（盗難防止）</li>
+                    </ul>
+                    <p><strong>トラブル：充電されない</strong></p>
+                    <ul>
+                        <li>電源タップON確認</li>
+                        <li>各スロットの接触確認</li>
+                        <li>ブレーカー落ちていないか</li>
+                    </ul>
+                </div>
+            </section>
+
+            <section class="content-section">
+                <h2>第4部：演習問題（過去問形式）</h2>
+                
+                <div class="example-box">
+                    <h3>問題1：用語理解（選択問題）</h3>
+                    <p><strong>問：次の説明に最も適する用語を選べ。</strong></p>
+                    
+                    <p><strong>(1)</strong> 学習者の理解度に応じて、出題内容や難易度を自動調整する学習方式。</p>
+                    <p>A) LMS　B) CBT　C) アダプティブラーニング　D) BYOD</p>
+                    <details style="margin: 1rem 0; padding: 1rem; background: #f0f9ff; border-left: 3px solid #3b82f6; border-radius: 0.5rem;">
+                        <summary style="cursor: pointer; font-weight: bold; color: #1e40af;">解答・解説を見る</summary>
+                        <div style="margin-top: 1rem;">
+                            <p><strong>解答：C) アダプティブラーニング</strong></p>
+                            <p><strong>解説：</strong></p>
+                            <ul>
+                                <li>LMS：学習管理システム（教材配信・成績管理）</li>
+                                <li>CBT：コンピュータベースのテスト</li>
+                                <li>BYOD：個人端末の持ち込み</li>
+                            </ul>
+                        </div>
+                    </details>
+
+                    <p><strong>(2)</strong> 学校で配布する端末を一括管理し、アプリの配信や設定の適用を行うシステム。</p>
+                    <p>A) SSO　B) MDM　C) DNS　D) VPN</p>
+                    <details style="margin: 1rem 0; padding: 1rem; background: #f0f9ff; border-left: 3px solid #3b82f6; border-radius: 0.5rem;">
+                        <summary style="cursor: pointer; font-weight: bold; color: #1e40af;">解答・解説を見る</summary>
+                        <div style="margin-top: 1rem;">
+                            <p><strong>解答：B) MDM</strong></p>
+                            <p><strong>解説：</strong></p>
+                            <ul>
+                                <li>SSO：シングルサインオン（一度の認証で複数サービス利用）</li>
+                                <li>DNS：ドメイン名とIPアドレスの変換</li>
+                                <li>VPN：仮想プライベートネットワーク</li>
+                            </ul>
+                        </div>
+                    </details>
+
+                    <p><strong>(3)</strong> GIGAスクール構想で配布された3大端末に含まれないものはどれか。</p>
+                    <p>A) iPad　B) Chromebook　C) Android tablet　D) Windows PC</p>
+                    <details style="margin: 1rem 0; padding: 1rem; background: #f0f9ff; border-left: 3px solid #3b82f6; border-radius: 0.5rem;">
+                        <summary style="cursor: pointer; font-weight: bold; color: #1e40af;">解答・解説を見る</summary>
+                        <div style="margin-top: 1rem;">
+                            <p><strong>解答：C) Android tablet</strong></p>
+                            <p><strong>解説：</strong>GIGA端末の主流はiPad、Chromebook、Windows PC。Androidタブレットは一部の自治体で採用されているが、主流ではない。</p>
+                        </div>
+                    </details>
+                </div>
+
+                <div class="example-box">
+                    <h3>問題2：アプリケーション操作（選択問題）</h3>
+                    <p><strong>問：次の操作に関する記述で正しいものを選べ。</strong></p>
+                    
+                    <p><strong>(1)</strong> Google Classroomで課題を作成する際、「トピック」機能を使うことで何ができるか。</p>
+                    <p>A) 自動採点　B) 課題を単元ごとに整理　C) 生徒の進捗を自動通知　D) 課題の一括削除</p>
+                    <details style="margin: 1rem 0; padding: 1rem; background: #f0f9ff; border-left: 3px solid #3b82f6; border-radius: 0.5rem;">
+                        <summary style="cursor: pointer; font-weight: bold; color: #1e40af;">解答・解説を見る</summary>
+                        <div style="margin-top: 1rem;">
+                            <p><strong>解答：B) 課題を単元ごとに整理</strong></p>
+                            <p><strong>解説：</strong>トピックは課題を分類・整理するためのフォルダのような機能。</p>
+                        </div>
+                    </details>
+
+                    <p><strong>(2)</strong> Google Driveでファイルを共有する際、「閲覧者（コメント可）」権限を付与すると、相手は何ができるか。</p>
+                    <p>A) ファイルの削除　B) ファイルの編集　C) コメントの追加のみ　D) ファイルのダウンロードのみ</p>
+                    <details style="margin: 1rem 0; padding: 1rem; background: #f0f9ff; border-left: 3px solid #3b82f6; border-radius: 0.5rem;">
+                        <summary style="cursor: pointer; font-weight: bold; color: #1e40af;">解答・解説を見る</summary>
+                        <div style="margin-top: 1rem;">
+                            <p><strong>解答：C) コメントの追加のみ</strong></p>
+                            <p><strong>解説：</strong>この権限では、ファイル本体の編集はできず、コメントを付けることのみ可能。編集するには「編集者」権限が必要。</p>
+                        </div>
+                    </details>
+
+                    <p><strong>(3)</strong> Microsoft Teamsの「チャネル」の説明として正しいものはどれか。</p>
+                    <p>A) チーム内の特定のトピックごとに会話を整理する場所　B) 学校全体の掲示板　C) 教員専用の会議室　D) 個人のタスク管理ツール</p>
+                    <details style="margin: 1rem 0; padding: 1rem; background: #f0f9ff; border-left: 3px solid #3b82f6; border-radius: 0.5rem;">
+                        <summary style="cursor: pointer; font-weight: bold; color: #1e40af;">解答・解説を見る</summary>
+                        <div style="margin-top: 1rem;">
+                            <p><strong>解答：A) チーム内の特定のトピックごとに会話を整理する場所</strong></p>
+                            <p><strong>解説：</strong>チャネルは、チーム内を科目やプロジェクトごとに区切るための機能。</p>
+                        </div>
+                    </details>
+                </div>
+
+                <div class="example-box">
+                    <h3>問題3：トラブルシューティング（選択・記述）</h3>
+                    
+                    <p><strong>(1)</strong> 児童が「Wi-Fiに繋がらない」と訴えてきた。最初に確認すべきことは何か。（複数選択可）</p>
+                    <p>A) 機内モードがONになっていないか</p>
+                    <p>B) Wi-FiスイッチがOFFになっていないか</p>
+                    <p>C) ルーターの故障</p>
+                    <p>D) 正しいSSIDに接続しているか</p>
+                    <details style="margin: 1rem 0; padding: 1rem; background: #f0f9ff; border-left: 3px solid #3b82f6; border-radius: 0.5rem;">
+                        <summary style="cursor: pointer; font-weight: bold; color: #1e40af;">解答・解説を見る</summary>
+                        <div style="margin-top: 1rem;">
+                            <p><strong>解答：A, B, D</strong></p>
+                            <p><strong>解説：</strong></p>
+                            <ul>
+                                <li>最初は端末側の設定を確認（A, B, D）</li>
+                                <li>ルーター故障（C）は他の児童も繋がらない場合に疑う</li>
+                                <li><strong>確認順序：</strong>機内モード→Wi-Fiスイッチ→SSID→パスワード→端末再起動→ルーター確認</li>
+                            </ul>
+                        </div>
+                    </details>
+
+                    <p><strong>(2)</strong> 教員から「プリンターで印刷できない」と連絡があった。確認すべき項目を3つ挙げよ。（記述）</p>
+                    <details style="margin: 1rem 0; padding: 1rem; background: #f0f9ff; border-left: 3px solid #3b82f6; border-radius: 0.5rem;">
+                        <summary style="cursor: pointer; font-weight: bold; color: #1e40af;">解答例を見る</summary>
+                        <div style="margin-top: 1rem;">
+                            <p><strong>解答例：</strong></p>
+                            <ul>
+                                <li>プリンターの電源が入っているか、エラーランプが点灯していないか</li>
+                                <li>用紙切れ、紙詰まり、トナー切れが発生していないか</li>
+                                <li>印刷キューに古いジョブが溜まっていないか、PCとプリンターがネットワークで接続されているか</li>
+                            </ul>
+                            <p><strong>評価ポイント：</strong>物理的確認（電源、用紙）→ソフト的確認（キュー）→ネットワーク確認の順序</p>
+                        </div>
+                    </details>
+
+                    <p><strong>(3)</strong> Chromebookの動作が非常に遅い。考えられる原因と対処法を記述せよ。（記述）</p>
+                    <details style="margin: 1rem 0; padding: 1rem; background: #f0f9ff; border-left: 3px solid #3b82f6; border-radius: 0.5rem;">
+                        <summary style="cursor: pointer; font-weight: bold; color: #1e40af;">解答例を見る</summary>
+                        <div style="margin-top: 1rem;">
+                            <p><strong>原因：</strong></p>
+                            <ul>
+                                <li>開いているタブが多すぎる（メモリ不足）</li>
+                                <li>拡張機能が多数インストールされている</li>
+                                <li>ストレージ容量不足</li>
+                                <li>バックグラウンドアプリの動作</li>
+                            </ul>
+                            <p><strong>対処法：</strong></p>
+                            <ul>
+                                <li>不要なタブを閉じる</li>
+                                <li>拡張機能を削除または無効化（設定→拡張機能）</li>
+                                <li>ダウンロードフォルダやキャッシュのクリア</li>
+                                <li>端末の再起動</li>
+                                <li>Powerwash（初期化）を検討（最終手段）</li>
+                            </ul>
+                            <p><strong>評価ポイント：</strong>原因分析と段階的な対処法の提示</p>
+                        </div>
+                    </details>
+                </div>
+            </section>
+
+            <section class="content-section">
+                <h2>第5部：A領域試験対策のまとめ</h2>
+                
+                <h3>5.1 試験範囲の重点ポイント</h3>
+                <div class="point-box">
+                    <h4>a) 基本的用語（配点高い）</h4>
+                    <ul>
+                        <li>GIGA端末の特徴比較（iPad、Chromebook、Windows）</li>
+                        <li>MDM、BYOD、クラウド/オンプレミスの定義と違い</li>
+                        <li>LMS、CBT、アダプティブラーニングの理解</li>
+                        <li>教育情報セキュリティ関連用語（SSO、フィルタリング等）</li>
+                    </ul>
+                </div>
+
+                <div class="point-box">
+                    <h4>b) アプリケーション操作（実践重視）</h4>
+                    <ul>
+                        <li>Google Workspace：Classroom、Drive、Formsの基本操作</li>
+                        <li>Microsoft 365：Teams、OneDrive、Formsの基本操作</li>
+                        <li>共有設定（閲覧・編集権限）の理解</li>
+                        <li>学習支援ソフト（ロイロノート、Canva等）の特徴</li>
+                    </ul>
+                </div>
+
+                <div class="point-box">
+                    <h4>d) ハードウェア・ソフトの設定（トラブル対応）</h4>
+                    <ul>
+                        <li>Wi-Fi接続設定と周波数帯（2.4GHz/5GHz）の違い</li>
+                        <li>アカウント設定（Google、Microsoft）の初期設定手順</li>
+                        <li>プリンター接続とトラブルシューティング</li>
+                        <li>周辺機器（プロジェクター、実物投影機）の接続</li>
+                    </ul>
+                </div>
+
+                <h3>5.2 試験対策の学習方法</h3>
+                <div class="example-box">
+                    <h4>📅 学習スケジュール</h4>
+                    <p><strong>1週間前まで</strong></p>
+                    <ul>
+                        <li>本教材の用語集を繰り返し読む（赤シート等で暗記）</li>
+                        <li>既存講座（第6回、第7回、第23回）の復習</li>
+                        <li>各アプリの操作動画を視聴（YouTube等）</li>
+                    </ul>
+                    
+                    <p><strong>3日前まで</strong></p>
+                    <ul>
+                        <li>演習問題を繰り返し解く（本教材+過去問）</li>
+                        <li>間違えた問題の解説を熟読</li>
+                        <li>実際に端末を触って操作確認（可能なら）</li>
+                    </ul>
+                    
+                    <p><strong>前日</strong></p>
+                    <ul>
+                        <li>重要用語の最終チェック</li>
+                        <li>トラブルシューティングの手順を復習</li>
+                        <li>早めに就寝（体調管理）</li>
+                    </ul>
+                    
+                    <p><strong>当日</strong></p>
+                    <ul>
+                        <li>試験開始前に深呼吸（落ち着いて臨む）</li>
+                        <li>選択問題は消去法を活用</li>
+                        <li>記述問題は箇条書きでもOK（部分点狙い）</li>
+                    </ul>
+                </div>
+
+                <h3>5.3 次回予告</h3>
+                <div class="info-box">
+                    <h4>📘 第38回：ICT支援員A領域試験対策②（教育理解・セキュリティ編）</h4>
+                    <p>次回は以下の内容を扱います：</p>
+                    <ul>
+                        <li>e) 学校特有の問題に関する理解</li>
+                        <li>f) 情報モラル・セキュリティ</li>
+                        <li>教育行政と学校組織の理解</li>
+                        <li>情報セキュリティインシデント対応</li>
+                    </ul>
+                    <p>第37回で基礎を固め、第38回で応用力を高めることで、A領域試験の完全対策を目指しましょう。</p>
+                </div>
+            </section>
+
+            <section class="content-section">
+                <h2>📚 参考文献・資料</h2>
+                <ul class="reference-list">
+                    <li><a href="https://www.mext.go.jp/a_menu/other/index_00001.htm" target="_blank">文部科学省「GIGAスクール構想の実現について」</a></li>
+                    <li><a href="https://jnk4.info/itce/" target="_blank">ICT支援員能力認定試験 公式サイト</a></li>
+                    <li><a href="https://support.google.com/edu/" target="_blank">Google for Education ヘルプセンター</a></li>
+                    <li><a href="https://www.microsoft.com/ja-jp/education" target="_blank">Microsoft Education センター</a></li>
+                    <li><a href="https://www.mext.go.jp/a_menu/shotou/zyouhou/detail/1397369.htm" target="_blank">文部科学省「「教育情報セキュリティポリシーに関するガイドライン」公表について」</a></li>
+                </ul>
+            </section>
+
+            <div class="info-box" style="margin-top: 3rem;">
+                <h3>💡 本講座の学習時間目安</h3>
+                <p><strong>学習時間：</strong>3〜4時間</p>
+                <p><strong>推奨復習回数：</strong>試験前に最低2回</p>
+                <p><strong>質問・不明点：</strong>講座フォーラムまたは担当講師にお問い合わせください</p>
+            </div>
+
+            <div class="navigation">
+                <a href="../certification.html" class="nav-button">試験対策一覧へ</a>
+                <a href="session38.html" class="nav-button next">次の講座 →</a>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>ICT支援員教育講座</h3>
+                    <p>日本の教育現場の実情に即した包括的なカリキュラム</p>
+                </div>
+                <div class="footer-section">
+                    <h4>講座レベル</h4>
+                    <ul>
+                        <li><a href="../beginner.html">入門編（第1回～第10回）</a></li>
+                        <li><a href="../intermediate.html">基礎編（第11回～第24回）</a></li>
+                        <li><a href="../intermediate2.html">中級編（第1回～第14回）</a></li>
+                        <li><a href="../advanced.html">発展編（第25回～第36回）</a></li>
+                        <li><a href="../certification.html">試験対策（第37回～第48回）</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>リソース</h4>
+                    <ul>
+                        <li><a href="../resources.html">参考資料</a></li>
+                        <li><a href="../index.html#course-overview">講座概要</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>お問い合わせ</h4>
+                    <p>Email: info@ict-support-training.jp</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 ICT支援員教育講座. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
