@@ -31,8 +31,16 @@
     background-color: rgba(139, 92, 246, 0.3);
 }
 
+.session-label.intermediate2 {
+    background-color: rgba(6, 182, 212, 0.3);
+}
+
 .session-label.advanced {
     background-color: rgba(236, 72, 153, 0.3);
+}
+
+.session-label.supplement {
+    background-color: rgba(16, 185, 129, 0.3);
 }
 
 .session-header-content h1 {
@@ -153,6 +161,73 @@
 .warning-box h4 {
     color: #991b1b;
     margin-top: 0;
+}
+
+/* カラーバリエーション */
+.info-box.blue {
+    background-color: #eff6ff;
+    border-left-color: #3b82f6;
+}
+
+.info-box.green {
+    background-color: #ecfdf5;
+    border-left-color: #10b981;
+}
+
+.info-box.yellow {
+    background-color: #fef3c7;
+    border-left-color: #f59e0b;
+}
+
+.info-box.red {
+    background-color: #fee2e2;
+    border-left-color: #dc2626;
+}
+
+.info-box.purple {
+    background-color: #f5f3ff;
+    border-left-color: #8b5cf6;
+}
+
+/* テーブル用スタイル */
+.responsive-table-wrapper {
+    overflow-x: auto;
+    margin: 1.5rem 0;
+}
+
+.spec-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.spec-table thead tr {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+.spec-table th,
+.spec-table td {
+    padding: 0.75rem;
+    border: 1px solid #ddd;
+    text-align: left;
+}
+
+.spec-table tbody tr:nth-child(even) {
+    background-color: #f9fafb;
+}
+
+.spec-table th {
+    font-weight: 600;
+}
+
+.spec-table td[style*="text-align: center"],
+.spec-table th[style*="text-align: center"] {
+    text-align: center !important;
+}
+
+.spec-table td[style*="text-align: right"],
+.spec-table th[style*="text-align: right"] {
+    text-align: right !important;
 }
 
 /* 学習目標 */
@@ -358,6 +433,25 @@
     font-family: 'Courier New', Courier, monospace;
     font-size: 0.9rem;
     line-height: 1.6;
+}
+
+/* 図解・フローチャート用preタグ（info-box/point-box/warning-box内） */
+.info-box pre,
+.point-box pre,
+.warning-box pre {
+    background-color: #f9fafb !important;
+    color: #111827 !important;
+    padding: 1.5rem !important;
+    border-radius: 0.5rem !important;
+    border: 2px solid #d1d5db !important;
+    overflow-x: auto;
+    margin: 1rem 0;
+    font-family: 'Courier New', Consolas, 'Monaco', monospace !important;
+    font-size: 1.05em !important;
+    line-height: 1.6 !important;
+    font-weight: 600 !important;
+    white-space: pre;
+    word-wrap: normal;
 }
 
 .content-section code {

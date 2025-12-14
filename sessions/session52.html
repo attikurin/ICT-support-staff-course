@@ -1,0 +1,825 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>第52回：アルゴリズムと情報科学の基礎 - ICT支援員教育講座</title>
+    <meta name="description" content="アルゴリズムの基本概念から計算量、データ構造、プログラミング教育への応用まで、情報科学の基礎を体系的に学習します。">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/session.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <a href="../index.html" class="logo">ICT支援員教育講座</a>
+            <nav class="navbar">
+                <ul class="nav-menu">
+                    <li><a href="../index.html">ホーム</a></li>
+                    <li><a href="../beginner.html">入門編</a></li>
+                    <li><a href="../intermediate.html">基礎編</a></li>
+                    <li><a href="../advanced.html">中級編</a></li>
+                    <li><a href="../development.html">発展編</a></li>
+                    <li><a href="../exam.html">試験対策</a></li>
+                    <li><a href="../supplement.html" class="active">補完カリキュラム</a></li>
+                    <li><a href="../resources.html">参考資料</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="session-content">
+        <div class="container">
+            <div class="session-header-content">
+                <span class="session-label supplement">補完カリキュラム</span>
+                <h1>第52回：アルゴリズムと情報科学の基礎</h1>
+                <p class="session-meta">情報科学・CS基礎編（全8回）の第4回 | 学習時間目安：120分（講義90分、演習30分） | 難易度：★★★☆☆</p>
+            </div>
+
+            <div class="info-box">
+                <h3>📋 講座概要</h3>
+                <ul>
+                    <li><strong>対象者：</strong>ICT支援員、教育情報化コーディネータ、学校ICT管理者、プログラミング教育担当教員</li>
+                    <li><strong>受講前提：</strong>基礎編（第1回〜第48回）修了、第49回〜第51回の履修を推奨、または同等の知識</li>
+                    <li><strong>学習時間：</strong>120分（講義90分、演習30分）</li>
+                    <li><strong>難易度：</strong>★★★☆☆（中級）</li>
+                    <li><strong>最終更新：</strong>2025年12月</li>
+                </ul>
+            </div>
+
+            <div class="warning-box">
+                <h3>⚠️ 本講座における情報の取り扱いについて</h3>
+                <ul>
+                    <li><strong>プログラミング言語・ツール：</strong>各製品の公式サイトで最新情報をご確認ください。</li>
+                    <li><strong>アルゴリズムの実装例：</strong>使用する言語により表記が異なる場合があります。</li>
+                    <li><strong>教育政策・ガイドライン：</strong>文部科学省等の公式発表をご確認ください。</li>
+                    <li><strong>学習指導要領：</strong>最新の改訂内容をご確認ください。</li>
+                </ul>
+            </div>
+
+            <section class="objectives">
+                <h2>🎯 学習目標</h2>
+                <p>本講座を修了することで、以下のことができるようになります：</p>
+                <ul>
+                    <li>アルゴリズムの基本概念を理解し、問題解決の手順を論理的に考えることができる</li>
+                    <li>計算量と効率性の考え方を学び、最適なアルゴリズムを選択できる</li>
+                    <li>プログラミング教育における指導に活かせる実践的な知識を習得している</li>
+                    <li>フローチャートや疑似コードでアルゴリズムを表現できる</li>
+                    <li>Scratchなどのビジュアルプログラミング環境でアルゴリズムを実装できる</li>
+                </ul>
+            </section>
+
+            <!-- 本文コンテンツ -->
+            <div class="session-content">
+                
+                <!-- イントロダクション -->
+                <section id="introduction">
+                    <h2>🎯 イントロダクション</h2>
+                    
+                    <p>アルゴリズムは、コンピュータサイエンスの中核をなす概念であり、プログラミング教育においても極めて重要な要素です。</p>
+                    
+                    <p>小学校から高等学校まで、学習指導要領においてプログラミング教育が段階的に導入される中、ICT支援員として、アルゴリズムの基本概念を理解し、教員のプログラミング指導を適切にサポートすることが求められています。</p>
+
+                    <div class="info-box">
+                        <h3>💡 なぜアルゴリズムを学ぶのか？</h3>
+                        <p><strong>ICT支援員にとって、アルゴリズムの理解は以下の点で重要です：</strong></p>
+                        <ul>
+                            <li><strong>プログラミング教育の支援</strong>：教員の授業づくりを効果的にサポート</li>
+                            <li><strong>問題解決能力の育成</strong>：論理的思考力を養う指導方法の理解</li>
+                            <li><strong>教材・ツールの選択</strong>：発達段階に応じた適切な教材の提案</li>
+                            <li><strong>トラブルシューティング</strong>：プログラムの誤りを見つける手法の理解</li>
+                            <li><strong>最新技術の理解</strong>：AI・機械学習などの基礎概念の把握</li>
+                        </ul>
+                    </div>
+
+                    <div class="point-box">
+                        <h3>🎓 本講座で学ぶこと</h3>
+                        <ol>
+                            <li><strong>アルゴリズムの基礎</strong>：定義、基本構造、フローチャート、疑似コード</li>
+                            <li><strong>基本的なアルゴリズム</strong>：探索（線形・二分）、整列（バブル・選択・クイック）、再帰</li>
+                            <li><strong>データ構造</strong>：配列、リスト、スタック、キュー、木構造、グラフ</li>
+                            <li><strong>計算量</strong>：Big-O記法、効率性の評価、アルゴリズムの選択</li>
+                            <li><strong>プログラミング教育への応用</strong>：Scratchでの実装、小中学校での指導例</li>
+                            <li><strong>実践演習</strong>：フローチャート作成、Scratchでの実装、効率性比較実験</li>
+                        </ol>
+                    </div>
+
+                </section>
+
+                <!-- 第1章: アルゴリズムとは -->
+                <section id="chapter1">
+                    <h2>第1章：アルゴリズムとは</h2>
+
+                    <h3>1.1 アルゴリズムの定義</h3>
+                    
+                    <p><strong>アルゴリズム（Algorithm）</strong>とは、問題を解決するための明確な手順や計算方法のことです。料理のレシピや数学の公式も、広い意味でアルゴリズムといえます。</p>
+
+                    <p>コンピュータサイエンスにおいては、特定の問題や課題を解決するための手順や処理方法を指します。</p>
+
+                    <div class="info-box">
+                        <h3>📘 文部科学省の定義</h3>
+                        <p>文部科学省「小学校プログラミング教育の手引き（第三版）」では、<strong>「プログラムを作成する上でのアルゴリズム（問題を解決する手順を表したもの）の考え方やその表現の仕方」</strong>の重要性が示されています。</p>
+                        <p style="margin-top: 0.5rem;"><a href="https://www.mext.go.jp/a_menu/shotou/zyouhou/detail/1403162.htm" target="_blank" rel="noopener">文部科学省「小学校プログラミング教育の手引（第三版）」</a></p>
+                    </div>
+
+                    <div class="point-box">
+                        <h3>🔍 アルゴリズムの例</h3>
+                        <ul>
+                            <li><strong>日常生活</strong>：料理のレシピ、目的地への行き方、探し物をする手順</li>
+                            <li><strong>数学</strong>：筆算の手順、最大公約数を求める方法（ユークリッドの互除法）</li>
+                            <li><strong>コンピュータ</strong>：データの検索、並べ替え、最短経路の計算</li>
+                        </ul>
+                    </div>
+
+                    <h3>1.2 問題解決の手順</h3>
+
+                    <p>アルゴリズムは以下の<strong>3つの基本構造（制御構造）</strong>から構成されます。これは構造化プログラミングの基本であり、あらゆるプログラムはこの3つの組み合わせで表現できます。</p>
+
+                    <h4>① 順次（Sequence）</h4>
+                    <p>処理を上から順番に実行する構造です。</p>
+                    <div class="info-box">
+                        <p><strong>例：朝の準備</strong></p>
+                        <ol>
+                            <li>起きる</li>
+                            <li>顔を洗う</li>
+                            <li>朝食を食べる</li>
+                            <li>着替える</li>
+                            <li>家を出る</li>
+                        </ol>
+                    </div>
+
+                    <h4>② 分岐（Selection）</h4>
+                    <p>条件によって異なる処理を選択する構造です。</p>
+                    <div class="info-box">
+                        <p><strong>例：天気による判断</strong></p>
+                        <ul>
+                            <li><strong>もし</strong>雨が降っている<strong>ならば</strong>傘を持つ</li>
+                            <li><strong>そうでなければ</strong>傘を持たない</li>
+                        </ul>
+                    </div>
+
+                    <h4>③ 反復（Iteration）</h4>
+                    <p>同じ処理を繰り返す構造です。</p>
+                    <div class="info-box">
+                        <p><strong>例：目的地への移動</strong></p>
+                        <ul>
+                            <li>目的地に着くまで歩き続ける</li>
+                            <li>1から10までの数を順番に表示する</li>
+                        </ul>
+                    </div>
+
+                    <div class="point-box">
+                        <h3>💡 教育現場での活用</h3>
+                        <p>情報処理学会 IPSJ MOOCでは、これらの基本構造を用いたアルゴリズム教育教材が提供されています。</p>
+                        <p style="margin-top: 0.5rem;"><a href="https://sites.google.com/view/ipsjmooc/" target="_blank" rel="noopener">情報処理学会 IPSJ MOOC</a></p>
+                    </div>
+
+                    <h3>1.3 フローチャートと疑似コード</h3>
+
+                    <h4>フローチャート（流れ図）</h4>
+                    <p><strong>フローチャート</strong>は、アルゴリズムの流れを視覚的に表現する方法です。JIS X 0121（情報処理用流れ図・プログラム網図・システム資源図記号）で標準化されています。</p>
+
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>記号</th>
+                                <th>名称</th>
+                                <th>用途</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>楕円形</strong></td>
+                                <td>端子記号</td>
+                                <td>処理の開始と終了を表す</td>
+                            </tr>
+                            <tr>
+                                <td><strong>長方形</strong></td>
+                                <td>処理記号</td>
+                                <td>計算や代入などの処理を表す</td>
+                            </tr>
+                            <tr>
+                                <td><strong>ひし形</strong></td>
+                                <td>判断記号</td>
+                                <td>条件分岐を表す（Yes/No）</td>
+                            </tr>
+                            <tr>
+                                <td><strong>平行四辺形</strong></td>
+                                <td>データ記号</td>
+                                <td>入力・出力を表す</td>
+                            </tr>
+                            <tr>
+                                <td><strong>矢印</strong></td>
+                                <td>流れ線</td>
+                                <td>処理の流れを表す</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <div class="info-box">
+                        <h3>📌 参考資料</h3>
+                        <p>京都産業大学 安田研究室では、フローチャートによるアルゴリズムの表現方法が詳しく解説されています。</p>
+                    </div>
+
+                    <h4>疑似コード（擬似言語）</h4>
+                    <p><strong>疑似コード</strong>は、プログラミング言語に似た形式でアルゴリズムを記述する方法です。特定の言語に依存せず、アルゴリズムの本質を表現できます。</p>
+
+                    <div class="info-box">
+                        <p><strong>例：最大値を求める疑似コード</strong></p>
+                        <pre style="background: #f3f4f6; padding: 1rem; border-radius: 0.5rem; overflow-x: auto;">
+max ← 配列[0]
+for i ← 1 to 配列の長さ-1
+    if 配列[i] > max then
+        max ← 配列[i]
+    end if
+end for
+出力: max</pre>
+                    </div>
+
+                    <div class="point-box">
+                        <h3>💡 基本情報技術者試験</h3>
+                        <p>基本情報技術者試験の擬似言語は、日本の情報処理技術者試験で採用されている標準的な表現方法です。試験対策としても有用です。</p>
+                    </div>
+
+                    <h3>1.4 プログラミング的思考との関係</h3>
+
+                    <p><strong>プログラミング的思考</strong>とは、文部科学省の定義によれば、<strong>「自分が意図する一連の活動を実現するために、どのような動きの組み合わせが必要であり、一つ一つの動きに対応した記号を、どのように組み合わせたらいいのか、記号の組み合わせをどのように改善していけば、より意図した活動に近づくのか、といったことを論理的に考えていく力」</strong>です。</p>
+
+                    <div class="info-box">
+                        <h3>🧠 プログラミング的思考の5つの要素</h3>
+                        <p>以下は、インソース Pythonプログラミング学院で示されている要素です：</p>
+                        <ol>
+                            <li><strong>分解（Decomposition）</strong>：大きな問題を小さな問題に分ける</li>
+                            <li><strong>抽象化（Abstraction）</strong>：本質的な要素を抽出する</li>
+                            <li><strong>一般化（Pattern Recognition）</strong>：パターンを見つける</li>
+                            <li><strong>順序立て（Algorithm Design）</strong>：手順を論理的に並べる</li>
+                            <li><strong>シミュレーション（Evaluation）</strong>：結果を予測する</li>
+                        </ol>
+                    </div>
+
+                    <div class="point-box">
+                        <h3>🎯 アルゴリズムとプログラミング的思考</h3>
+                        <p>アルゴリズムを学ぶことは、プログラミング的思考を育成する最も効果的な方法の一つです。</p>
+                        <ul>
+                            <li>問題を分解し、順序立てて考える力</li>
+                            <li>効率的な解決方法を見つける力</li>
+                            <li>論理的に考え、表現する力</li>
+                        </ul>
+                    </div>
+
+                </section>
+
+                <!-- 第2章: 基本的なアルゴリズム -->
+                <section id="chapter2">
+                    <h2>第2章：基本的なアルゴリズム</h2>
+
+                    <h3>2.1 探索アルゴリズム</h3>
+
+                    <p>探索アルゴリズムは、データの集合から特定の値を見つけ出すための手法です。データ量や状態に応じて、適切な探索方法を選択することが重要です。</p>
+
+                    <h4>線形探索（逐次探索）</h4>
+                    <p><strong>線形探索（Linear Search）</strong>は、配列の先頭から順番に目的の値を探す最もシンプルな方法です。</p>
+
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>項目</th>
+                                <th>内容</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>時間計算量</strong></td>
+                                <td>O(n) - データ数に比例</td>
+                            </tr>
+                            <tr>
+                                <td><strong>利点</strong></td>
+                                <td>・実装が簡単<br>・データが整列されていなくても使える<br>・小規模データに適している</td>
+                            </tr>
+                            <tr>
+                                <td><strong>欠点</strong></td>
+                                <td>・データ量が多いと時間がかかる<br>・効率が悪い</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <div class="info-box">
+                        <p><strong>線形探索の疑似コード</strong></p>
+                        <pre style="background: #f3f4f6; padding: 1rem; border-radius: 0.5rem; overflow-x: auto;">
+function linearSearch(配列, 探索値)
+    for i ← 0 to 配列の長さ-1
+        if 配列[i] == 探索値 then
+            return i  // 見つかった位置を返す
+        end if
+    end for
+    return -1  // 見つからなかった
+end function</pre>
+                    </div>
+
+                    <h4>二分探索（バイナリサーチ）</h4>
+                    <p><strong>二分探索（Binary Search）</strong>は、整列済みのデータを半分ずつ絞り込んで探索する効率的な方法です。</p>
+
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>項目</th>
+                                <th>内容</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>時間計算量</strong></td>
+                                <td>O(log n) - 非常に高速</td>
+                            </tr>
+                            <tr>
+                                <td><strong>利点</strong></td>
+                                <td>・大量のデータでも高速に探索できる<br>・効率的</td>
+                            </tr>
+                            <tr>
+                                <td><strong>欠点</strong></td>
+                                <td>・データが整列されている必要がある<br>・実装がやや複雑</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <div class="info-box">
+                        <p><strong>二分探索の疑似コード</strong></p>
+                        <pre style="background: #f3f4f6; padding: 1rem; border-radius: 0.5rem; overflow-x: auto;">
+function binarySearch(配列, 探索値)
+    left ← 0
+    right ← 配列の長さ-1
+    
+    while left ≤ right
+        middle ← (left + right) / 2
+        
+        if 配列[middle] == 探索値 then
+            return middle
+        else if 配列[middle] < 探索値 then
+            left ← middle + 1
+        else
+            right ← middle - 1
+        end if
+    end while
+    
+    return -1
+end function</pre>
+                    </div>
+
+                    <div class="point-box">
+                        <h3>📚 参考資料</h3>
+                        <p>東京大学 数理・情報教育研究センターの教材では、二分探索の詳細なアルゴリズムが紹介されています。</p>
+                        <p style="margin-top: 0.5rem;">文部科学省「コンピュータとプログラミング」の資料では、高等学校「情報Ⅰ」における探索アルゴリズムの比較学習が示されています。</p>
+                    </div>
+
+                    <h3>2.2 整列アルゴリズム</h3>
+
+                    <p>整列アルゴリズム（ソートアルゴリズム）は、データを特定の順序（昇順・降順）に並べ替えるための手法です。</p>
+
+                    <h4>バブルソート（Bubble Sort）</h4>
+                    <p><strong>バブルソート</strong>は、隣接する要素を比較し、必要に応じて入れ替えを繰り返す方法です。</p>
+
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>項目</th>
+                                <th>内容</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>時間計算量</strong></td>
+                                <td>O(n²)</td>
+                            </tr>
+                            <tr>
+                                <td><strong>利点</strong></td>
+                                <td>・実装が非常に簡単<br>・安定ソート<br>・教育用に適している</td>
+                            </tr>
+                            <tr>
+                                <td><strong>欠点</strong></td>
+                                <td>・大量のデータには不向き</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <h4>選択ソート（Selection Sort）</h4>
+                    <p><strong>選択ソート</strong>は、未整列部分から最小値を探して整列済み部分の最後尾に追加する方法です。</p>
+
+                    <h4>クイックソート（Quick Sort）</h4>
+                    <p><strong>クイックソート</strong>は、基準値（ピボット）を選び、再帰的にソートする高速な方法です。</p>
+
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>項目</th>
+                                <th>内容</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>時間計算量</strong></td>
+                                <td>平均 O(n log n)、最悪 O(n²)</td>
+                            </tr>
+                            <tr>
+                                <td><strong>利点</strong></td>
+                                <td>・実用的に最も高速<br>・平均的に高速</td>
+                            </tr>
+                            <tr>
+                                <td><strong>欠点</strong></td>
+                                <td>・最悪の場合の性能が悪い<br>・不安定ソート</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <div class="point-box">
+                        <h3>📚 参考資料</h3>
+                        <p>Zenn「ソートアルゴリズム徹底解説」では、各ソートアルゴリズムの詳細な比較が行われています。</p>
+                    </div>
+
+                    <h3>2.3 再帰アルゴリズム</h3>
+
+                    <p><strong>再帰（Recursion）</strong>とは、関数が自分自身を呼び出す手法です。複雑な問題を小さな同じ構造の問題に分解できます。</p>
+
+                    <div class="info-box">
+                        <h4>再帰の構成要素</h4>
+                        <ul>
+                            <li><strong>基底条件（Base Case）</strong>：再帰を終了する条件。これがないと無限ループになる</li>
+                            <li><strong>再帰呼び出し（Recursive Case）</strong>：自分自身を呼び出す部分。問題を小さくする</li>
+                        </ul>
+                    </div>
+
+                    <h4>階乗の計算</h4>
+                    <div class="info-box">
+                        <p><strong>階乗の疑似コード</strong></p>
+                        <pre style="background: #f3f4f6; padding: 1rem; border-radius: 0.5rem; overflow-x: auto;">
+function factorial(n)
+    if n == 0 then
+        return 1  // 基底条件
+    else
+        return n × factorial(n-1)  // 再帰呼び出し
+    end if
+end function</pre>
+                        <p style="margin-top: 1rem;"><strong>例：5! = 5 × 4 × 3 × 2 × 1 = 120</strong></p>
+                    </div>
+
+                    <h4>フィボナッチ数列</h4>
+                    <div class="info-box">
+                        <p><strong>フィボナッチ数列の疑似コード</strong></p>
+                        <pre style="background: #f3f4f6; padding: 1rem; border-radius: 0.5rem; overflow-x: auto;">
+function fibonacci(n)
+    if n == 0 then return 0
+    else if n == 1 then return 1
+    else return fibonacci(n-1) + fibonacci(n-2)
+end function</pre>
+                        <p style="margin-top: 1rem;"><strong>数列：0, 1, 1, 2, 3, 5, 8, 13, 21, 34, ...</strong></p>
+                    </div>
+
+                    <div class="warning-box">
+                        <h3>⚠️ 再帰の注意点</h3>
+                        <ul>
+                            <li><strong>スタックオーバーフロー</strong>：再帰が深すぎるとメモリ不足になる</li>
+                            <li><strong>効率性の問題</strong>：単純な再帰は同じ計算を繰り返すため非効率</li>
+                            <li><strong>解決策</strong>：メモ化（動的計画法）や反復処理への変換を検討</li>
+                        </ul>
+                    </div>
+
+                </section>
+
+                <!-- 第3章: データ構造の基礎 -->
+                <section id="chapter3">
+                    <h2>第3章：データ構造の基礎</h2>
+
+                    <h3>3.1 配列とリスト</h3>
+
+                    <h4>配列（Array）</h4>
+                    <ul>
+                        <li>同じ型のデータを連続したメモリ領域に格納</li>
+                        <li>インデックスで高速アクセス（O(1)）</li>
+                        <li>サイズが固定的</li>
+                    </ul>
+
+                    <h4>リスト（List）</h4>
+                    <ul>
+                        <li>データとポインタ（次の要素への参照）を持つ</li>
+                        <li>要素の追加・削除が柔軟</li>
+                        <li>特定要素へのアクセスは順次探索が必要</li>
+                    </ul>
+
+                    <div class="point-box">
+                        <h3>📚 参考資料</h3>
+                        <p>Qiita「データ構造（キュー・スタック・配列・連結リスト・木構造）について」では、基本的なデータ構造の比較が行われています。</p>
+                    </div>
+
+                    <h3>3.2 スタックとキュー</h3>
+
+                    <h4>スタック（Stack） - LIFO（Last In First Out）</h4>
+                    <p>後に入れたものを先に出す構造</p>
+                    <ul>
+                        <li><strong>操作</strong>：Push（追加）、Pop（取り出し）</li>
+                        <li><strong>用途</strong>：関数呼び出しの管理、Undo機能、括弧の対応チェック</li>
+                    </ul>
+
+                    <h4>キュー（Queue） - FIFO（First In First Out）</h4>
+                    <p>先に入れたものを先に出す構造</p>
+                    <ul>
+                        <li><strong>操作</strong>：Enqueue（追加）、Dequeue（取り出し）</li>
+                        <li><strong>用途</strong>：プリンタの印刷待ち、タスクスケジューリング</li>
+                    </ul>
+
+                    <h3>3.3 木構造とグラフ</h3>
+
+                    <h4>木構造（Tree Structure）</h4>
+                    <p>階層的にデータを管理する構造</p>
+                    <ul>
+                        <li><strong>根（Root）</strong>：最上位のノード</li>
+                        <li><strong>葉（Leaf）</strong>：子を持たないノード</li>
+                        <li><strong>親（Parent）・子（Child）</strong>：ノード間の関係</li>
+                        <li><strong>二分木（Binary Tree）</strong>：各ノードが最大2つの子を持つ木</li>
+                    </ul>
+
+                    <h4>グラフ（Graph）</h4>
+                    <p>ノード（頂点）とエッジ（辺）で表現されるデータ構造</p>
+                    <ul>
+                        <li><strong>有向グラフ</strong>：辺に方向がある</li>
+                        <li><strong>無向グラフ</strong>：辺に方向がない</li>
+                        <li><strong>重み付きグラフ</strong>：辺に重みがある</li>
+                        <li><strong>用途</strong>：地図、SNSのつながり、Webページのリンク構造</li>
+                    </ul>
+
+                    <div class="point-box">
+                        <h3>📚 参考資料</h3>
+                        <p>Zenn「データ構造入門：基本概念と主要なデータ構造」では、様々なデータ構造が体系的に紹介されています。</p>
+                    </div>
+
+                </section>
+
+                <!-- 第4章: 計算量 -->
+                <section id="chapter4">
+                    <h2>第4章：計算量（オーダー記法）</h2>
+
+                    <h3>4.1 計算量の意味</h3>
+                    <p><strong>計算量</strong>とは、アルゴリズムが問題を解決するために必要な時間やメモリの量を表す指標です。</p>
+
+                    <h3>4.2 オーダー記法（Big-O記法）</h3>
+
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>記法</th>
+                                <th>名称</th>
+                                <th>特徴</th>
+                                <th>例</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>O(1)</strong></td>
+                                <td>定数時間</td>
+                                <td>データ量に関わらず一定時間</td>
+                                <td>配列の要素への直接アクセス</td>
+                            </tr>
+                            <tr>
+                                <td><strong>O(log n)</strong></td>
+                                <td>対数時間</td>
+                                <td>データ量が倍になっても処理時間はわずかに増加</td>
+                                <td>二分探索</td>
+                            </tr>
+                            <tr>
+                                <td><strong>O(n)</strong></td>
+                                <td>線形時間</td>
+                                <td>データ量に比例して処理時間が増加</td>
+                                <td>線形探索</td>
+                            </tr>
+                            <tr>
+                                <td><strong>O(n log n)</strong></td>
+                                <td>線形対数時間</td>
+                                <td>効率的なソートアルゴリズム</td>
+                                <td>クイックソート（平均）、マージソート</td>
+                            </tr>
+                            <tr>
+                                <td><strong>O(n²)</strong></td>
+                                <td>二次時間</td>
+                                <td>データ量の二乗に比例</td>
+                                <td>バブルソート、選択ソート</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <h3>4.3 効率的なアルゴリズムの選択</h3>
+
+                    <p>データ量と計算量の関係を理解し、状況に応じて最適なアルゴリズムを選択することが重要です。</p>
+
+                    <div class="point-box">
+                        <h3>💡 選択基準</h3>
+                        <ul>
+                            <li><strong>データ量</strong>：小規模なら単純なアルゴリズム、大規模なら効率的なアルゴリズム</li>
+                            <li><strong>データの状態</strong>：整列済みか、ランダムか</li>
+                            <li><strong>メモリ制約</strong>：利用可能なメモリ量</li>
+                            <li><strong>実装の複雑さ</strong>：開発時間とのバランス</li>
+                        </ul>
+                    </div>
+
+                    <div class="info-box">
+                        <h3>📚 参考資料</h3>
+                        <p>Qiita「計算量とオーダー記法」では、オーダー記法の基本概念が詳しく解説されています。</p>
+                        <p style="margin-top: 0.5rem;">Zenn「プログラムの計算量とは?」では、計算量を意識したプログラミングの重要性が示されています。</p>
+                    </div>
+
+                </section>
+
+                <!-- 第5章: プログラミング教育への応用 -->
+                <section id="chapter5">
+                    <h2>第5章：プログラミング教育への応用</h2>
+
+                    <h3>5.1 Scratchでのアルゴリズム表現</h3>
+
+                    <p><strong>Scratch</strong>は、ビジュアルプログラミング言語として小中学校のプログラミング教育で広く使用されています。</p>
+
+                    <div class="info-box">
+                        <h3>💡 Scratchでソートアルゴリズムを実装</h3>
+                        <p>「並び替えのプログラムをスクラッチでつくろう!」では、バブルソートをScratchで実装する方法が紹介されています。</p>
+                        <p style="margin-top: 0.5rem;">ICT教育ニュース「スクラッチで大きい順に並べかえ」では、データを並べ替えるソートプログラムの作成方法が詳しく解説されています。</p>
+                    </div>
+
+                    <h3>5.2 小・中学校での指導例</h3>
+
+                    <h4>小学校（算数・理科）</h4>
+                    <ul>
+                        <li><strong>正多角形の作図（算数）</strong>：繰り返しの概念を学ぶ</li>
+                        <li><strong>条件分岐の理解（理科）</strong>：センサーを使った計測・制御</li>
+                    </ul>
+
+                    <div class="info-box">
+                        <h3>📘 文部科学省の資料</h3>
+                        <p>文部科学省「小学校プログラミング教育の手引き」では、各教科でのプログラミング教育の実践例が紹介されています。</p>
+                    </div>
+
+                    <h4>中学校（技術・家庭科）</h4>
+                    <ul>
+                        <li><strong>計測・制御プログラミング</strong>：センサーとアクチュエータを使った問題解決</li>
+                        <li><strong>ネットワークを利用した双方向性のあるコンテンツのプログラミング</strong></li>
+                    </ul>
+
+                    <h3>5.3 論理的思考力の育成</h3>
+
+                    <p>プログラミング教育を通じて育成される論理的思考力の要素：</p>
+                    <ul>
+                        <li><strong>分析力</strong>：問題を分解して考える</li>
+                        <li><strong>抽象化能力</strong>：本質を見抜く</li>
+                        <li><strong>パターン認識</strong>：規則性を発見する</li>
+                        <li><strong>アルゴリズム設計</strong>：手順を組み立てる</li>
+                        <li><strong>デバッグ能力</strong>：誤りを見つけて修正する</li>
+                    </ul>
+
+                    <div class="info-box">
+                        <h3>📚 参考資料</h3>
+                        <p>コエテコ「プログラミング教育で論理的思考力を鍛える」では、プログラミング教育と論理的思考力の関係が詳しく説明されています。</p>
+                        <p style="margin-top: 0.5rem;">文部科学省「第3章 プログラミング教育の推進」では、論理的思考力の育成が教育目標として明示されています。</p>
+                    </div>
+
+                </section>
+
+                <!-- 第6章: 実践演習 -->
+                <section id="chapter6">
+                    <h2>第6章：実践演習</h2>
+
+                    <h3>演習1：フローチャートを使った日常的な手順の可視化</h3>
+
+                    <div class="info-box">
+                        <h4>課題</h4>
+                        <p>以下の日常的な活動をフローチャートで表現してください。</p>
+                        <ol>
+                            <li><strong>朝の準備の手順</strong>：起床から出発までの流れ、条件分岐：天気による傘の判断</li>
+                            <li><strong>買い物の手順</strong>：商品の選択、予算との比較、購入の判断</li>
+                        </ol>
+                        <p><strong>ポイント</strong>：順次、分岐、反復の基本構造を意識して作成しましょう。</p>
+                    </div>
+
+                    <h3>演習2：Scratchで簡単なソートアルゴリズムを実装</h3>
+
+                    <div class="info-box">
+                        <h4>課題</h4>
+                        <p>Scratchを使って、リストに格納された数値を並べ替えるプログラムを作成してください。</p>
+                        <ol>
+                            <li>リストに数値を格納する</li>
+                            <li>隣接する2つの数値を比較する</li>
+                            <li>大きい方を右側に移動する</li>
+                            <li>これを繰り返す（バブルソート）</li>
+                        </ol>
+                    </div>
+
+                    <h3>演習3：アルゴリズムの効率性比較実験</h3>
+
+                    <div class="info-box">
+                        <h4>課題</h4>
+                        <p>線形探索と二分探索の実行時間を比較してください。</p>
+                        <ol>
+                            <li>1000個の整列済みデータを用意</li>
+                            <li>線形探索で特定の値を探す時間を測定</li>
+                            <li>二分探索で同じ値を探す時間を測定</li>
+                            <li>結果を比較し、考察する</li>
+                        </ol>
+                        <p><strong>考察のポイント</strong>：</p>
+                        <ul>
+                            <li>データ量を増やすとどうなるか</li>
+                            <li>なぜ二分探索の方が速いのか</li>
+                            <li>どのような場合に線形探索が適しているか</li>
+                        </ul>
+                    </div>
+
+                </section>
+
+                <!-- 第7章: 既存講座との関連 -->
+                <section id="chapter7">
+                    <h2>第7章：既存講座との関連</h2>
+
+                    <div class="info-box">
+                        <h3>第4回（情報活用能力の育成）との関連</h3>
+                        <p>第4回で学んだ情報活用能力の実践的な応用として、アルゴリズムを活用した問題解決の手法を学びます。</p>
+                        <p style="margin-top: 0.5rem;"><a href="session04.html">第4回：情報活用能力の育成</a></p>
+                    </div>
+
+                    <div class="info-box" style="margin-top: 1rem;">
+                        <h3>第18回（STEAM教育とプログラミング教育）との関連</h3>
+                        <p>第18回で学んだSTEAM教育の理論的基盤として、アルゴリズムと計算的思考の考え方が位置づけられます。</p>
+                        <p style="margin-top: 0.5rem;"><a href="session18.html">第18回：STEAM教育とプログラミング教育</a></p>
+                    </div>
+
+                </section>
+
+                <!-- 第8章: 参考資料・引用元 -->
+                <section id="chapter8" class="section-references">
+                    <h2>第8章：参考資料・引用元</h2>
+
+                    <h3>公的機関の資料</h3>
+                    <ul>
+                        <li><a href="https://www.mext.go.jp/a_menu/shotou/zyouhou/detail/1403162.htm" target="_blank" rel="noopener">文部科学省「小学校プログラミング教育の手引き(第三版)」</a></li>
+                        <li><a href="https://www.mext.go.jp/a_menu/shotou/zyouhou/detail/1416408.htm" target="_blank" rel="noopener">文部科学省「コンピュータとプログラミング」高等学校情報科</a></li>
+                        <li><a href="https://www.mext.go.jp/content/20210805-mxt_jogai01-000009827_003.pdf" target="_blank" rel="noopener">文部科学省「第3章 プログラミング教育の推進」</a></li>
+                    </ul>
+
+                    <h3>学会・教育機関の資料</h3>
+                    <ul>
+                        <li><a href="https://sites.google.com/view/ipsjmooc/" target="_blank" rel="noopener">情報処理学会 IPSJ MOOC</a></li>
+                        <li>東京大学 数理・情報教育研究センター「アルゴリズム」</li>
+                        <li>京都産業大学 安田研究室「フローチャートによるアルゴリズムの表現」</li>
+                    </ul>
+
+                    <h3>専門サイト・技術解説</h3>
+                    <ul>
+                        <li>Qiita「計算量とオーダー記法：コンピュータ科学の基礎」</li>
+                        <li>Zenn「ソートアルゴリズム徹底解説」</li>
+                        <li>Zenn「データ構造入門：基本概念と主要なデータ構造」</li>
+                        <li>IT企画研究所「定番アルゴリズム：線形探索法と二分探索法」</li>
+                    </ul>
+
+                    <h3>教育実践の資料</h3>
+                    <ul>
+                        <li>ICT教育ニュース「ユーバーのScratchでプログラミング」</li>
+                        <li>アルスクール「アルゴリズムとは|プログラミングをする上での使い方」</li>
+                        <li>コエテコ「プログラミング教育で論理的思考力を鍛える」</li>
+                    </ul>
+
+                </section>
+
+                <!-- 第9章: まとめ -->
+                <section id="chapter9" class="section-summary">
+                    <h2>第9章：まとめ</h2>
+
+                    <p>本講座では、アルゴリズムと情報科学の基礎について広範かつ詳細に学習しました。</p>
+
+                    <div class="point-box">
+                        <h3>🎯 重要ポイント</h3>
+                        <ul>
+                            <li><strong>アルゴリズムの基本</strong>：順次・分岐・反復の3つの基本構造</li>
+                            <li><strong>探索と整列</strong>：線形探索、二分探索、バブルソート、クイックソートなどの実装</li>
+                            <li><strong>データ構造</strong>：配列、リスト、スタック、キュー、木構造の理解</li>
+                            <li><strong>計算量</strong>：O記法による効率性の評価</li>
+                            <li><strong>教育への応用</strong>：Scratchを使った実践的な指導方法</li>
+                        </ul>
+                    </div>
+
+                    <div class="info-box">
+                        <h3>💡 ICT支援員としての活用</h3>
+                        <p>これらの知識は、ICT支援員として教員のプログラミング教育を支援する際に不可欠です。</p>
+                        <ul>
+                            <li>児童・生徒の発達段階に応じた適切な指導方法を選択</li>
+                            <li>論理的思考力を育成する授業づくりに活かす</li>
+                            <li>教員からの技術的な質問に的確に対応</li>
+                            <li>最新の教育用ツールやプラットフォームの評価・選定</li>
+                        </ul>
+                    </div>
+
+                </section>
+
+            </div>
+        </div>
+    </main>
+
+    <!-- フッター -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 ICT支援員教育講座. All rights reserved.</p>
+        </div>
+    </footer>
+
+</body>
+</html>

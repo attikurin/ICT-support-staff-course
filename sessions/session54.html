@@ -1,0 +1,1584 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>第54回：計算機ハードウェア - ICT支援員教育講座</title>
+    <meta name="description" content="コンピュータの内部構造理解と実践的診断・保守管理を学びます。フォン・ノイマン型アーキテクチャ、主要コンポーネント、トラブルシューティング、資産管理まで包括的に習得します。">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/session.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <a href="../index.html" class="logo">ICT支援員教育講座</a>
+            <nav class="navbar">
+                <ul class="nav-menu">
+                    <li><a href="../index.html">ホーム</a></li>
+                    <li><a href="../beginner.html">入門編</a></li>
+                    <li><a href="../intermediate.html">基礎編</a></li>
+                    <li><a href="../advanced.html">中級編</a></li>
+                    <li><a href="../development.html">発展編</a></li>
+                    <li><a href="../exam.html">試験対策</a></li>
+                    <li><a href="../supplement.html" class="active">補完カリキュラム</a></li>
+                    <li><a href="../resources.html">参考資料</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="session-content">
+        <div class="container">
+            <div class="session-header-content">
+                <span class="session-label supplement">補完カリキュラム</span>
+                <h1>第54回：計算機ハードウェア</h1>
+                <p class="session-meta">情報科学・CS基礎編（全8回）の第6回 | 学習時間目安：180分（講義120分、演習60分） | 難易度：★★★★☆</p>
+            </div>
+
+            <div class="info-box">
+                <h3>📋 講座概要</h3>
+                <ul>
+                    <li><strong>対象者：</strong>ICT支援員、教育情報化コーディネータ、学校ICT管理者、保守管理担当者</li>
+                    <li><strong>受講前提：</strong>第6回「学校のICT環境とハードウェア基礎」修了、第49回〜第53回の履修を推奨、または同等の知識</li>
+                    <li><strong>学習時間：</strong>180分（講義120分、演習60分）</li>
+                    <li><strong>難易度：</strong>★★★★☆（中級〜上級）</li>
+                    <li><strong>最終更新：</strong>2025年12月</li>
+                </ul>
+            </div>
+
+            <div class="warning-box">
+                <h3>⚠️ 本講座における情報の取り扱いについて</h3>
+                <ul>
+                    <li><strong>技術仕様・性能値：</strong>本講座に記載されているハードウェア仕様、性能値は公開情報に基づく参考値です。実際の性能は環境により変動します。</li>
+                    <li><strong>製品情報：</strong>記載されている製品名、型番は執筆時点のものです。最新情報はメーカー公式サイトでご確認ください。</li>
+                    <li><strong>価格情報：</strong>記載されている価格は概算であり、時期・地域・調達方法により異なります。</li>
+                    <li><strong>保証・修理：</strong>保証内容、修理対応はメーカー・販売店により異なります。必ず契約内容をご確認ください。</li>
+                    <li><strong>推奨事項：</strong>本講座の推奨内容は一般的な指針であり、各学校の実情に応じて適切に判断してください。</li>
+                </ul>
+            </div>
+
+            <section class="objectives">
+                <h2>🎯 学習目標</h2>
+                <p>本講座を修了することで、以下のことができるようになります：</p>
+                <ul>
+                    <li>コンピュータ内部構造（フォン・ノイマン型アーキテクチャ、CPU動作原理）を理解し、主要コンポーネントの機能と相互関係を説明できる</li>
+                    <li>ハードウェアトラブル（起動不良、画面不表示、異音、発熱）の症状から原因を特定し、適切な対処法を判断できる</li>
+                    <li>学校の教育活動に適した機器選定の基準を理解し、計画的な保守管理とライフサイクル管理を実践できる</li>
+                    <li>USB、HDMI、DisplayPort、Thunderboltなどの規格を理解し、接続トラブルを解決できる</li>
+                    <li>PC分解・組立て、部品交換、定期清掃などの実践的な保守作業ができる</li>
+                </ul>
+            </section>
+
+            <!-- ここから本文コンテンツ -->
+            <section class="content-section">
+                <h2>📚 イントロダクション</h2>
+                
+                <p>本講座は、ICT支援員・教育ICT講師が学校現場で必要とされる計算機ハードウェアの専門知識を体系的に習得することを目的としています。</p>
+                
+                <p>コンピュータの基本アーキテクチャから始まり、主要コンポーネントの役割と仕様、入出力インターフェースの理解、周辺機器との接続、実践的なトラブルシューティング、そして保守管理の実務まで、包括的かつ詳細に学習します。</p>
+
+                <div class="info-box">
+                    <h4>💡 既存講座との関連</h4>
+                    <ul>
+                        <li><strong>第6回「学校のICT環境とハードウェア基礎」の深化：</strong>基礎知識を前提に、より専門的な内部構造と診断技術へ発展</li>
+                        <li><strong>第23回「トラブルシューティングの実践」の理論的基盤：</strong>本講座で学ぶハードウェア知識が、実践的トラブル対応の技術的根拠となります</li>
+                        <li><strong>第49回〜第53回との連携：</strong>コンピュータシステム概論、OS論、データベース論、アルゴリズム、システムプログラミングの知識を実機ハードウェアレベルで理解</li>
+                    </ul>
+                </div>
+            </section>
+
+            <section class="content-section">
+                <h2>📚 第1章：ハードウェアアーキテクチャ</h2>
+                
+                <h3>1.1 フォン・ノイマン型アーキテクチャ</h3>
+                <p>現代のほぼすべてのコンピュータは、数学者ジョン・フォン・ノイマンが1945年に提唱した「フォン・ノイマン型アーキテクチャ」に基づいて設計されています。</p>
+
+                <h4>1.1.1 基本概念</h4>
+                <p>フォン・ノイマン型アーキテクチャの最も重要な特徴は以下の2点です：</p>
+                <ul>
+                    <li><strong>プログラム内蔵方式(Stored Program)：</strong>プログラム(命令列)とデータを同一のメモリ空間に格納する</li>
+                    <li><strong>逐次制御方式(Sequential Control)：</strong>メモリに格納された命令を順番に読み出して実行する</li>
+                </ul>
+                <p>この設計により、プログラムを外部から読み込んで実行することが可能となり、現代の汎用コンピュータの基礎が確立されました。</p>
+
+                <h4>1.1.2 5つの構成要素</h4>
+                <p>フォン・ノイマン型コンピュータは、以下の5つの基本要素で構成されます：</p>
+
+                <div class="info-box">
+                    <h5>フォン・ノイマン型アーキテクチャの5大要素</h5>
+                    <table style="width: 100%; border-collapse: collapse; margin-top: 1rem;">
+                        <thead>
+                            <tr style="background-color: #f3f4f6;">
+                                <th style="border: 1px solid #ddd; padding: 8px;">構成要素</th>
+                                <th style="border: 1px solid #ddd; padding: 8px;">英語名称</th>
+                                <th style="border: 1px solid #ddd; padding: 8px;">主な役割</th>
+                                <th style="border: 1px solid #ddd; padding: 8px;">学校ICT環境での具体例</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td style="border: 1px solid #ddd; padding: 8px;"><strong>演算装置</strong></td>
+                                <td style="border: 1px solid #ddd; padding: 8px;">Arithmetic Logic Unit (ALU)</td>
+                                <td style="border: 1px solid #ddd; padding: 8px;">算術演算(加減乗除)と論理演算(AND/OR/NOT)を実行</td>
+                                <td style="border: 1px solid #ddd; padding: 8px;">CPUのALU部分:計算処理、画像処理、データ分析</td>
+                            </tr>
+                            <tr>
+                                <td style="border: 1px solid #ddd; padding: 8px;"><strong>制御装置</strong></td>
+                                <td style="border: 1px solid #ddd; padding: 8px;">Control Unit (CU)</td>
+                                <td style="border: 1px solid #ddd; padding: 8px;">命令の解釈と実行順序の制御、各装置への指令送信</td>
+                                <td style="border: 1px solid #ddd; padding: 8px;">CPUの制御部:プログラムの流れ制御、タイミング調整</td>
+                            </tr>
+                            <tr>
+                                <td style="border: 1px solid #ddd; padding: 8px;"><strong>記憶装置</strong></td>
+                                <td style="border: 1px solid #ddd; padding: 8px;">Memory Unit</td>
+                                <td style="border: 1px solid #ddd; padding: 8px;">プログラムとデータを保存(主記憶RAM、補助記憶HDD/SSD)</td>
+                                <td style="border: 1px solid #ddd; padding: 8px;">RAM:実行中プログラム、SSD:OS・アプリ・ファイル</td>
+                            </tr>
+                            <tr>
+                                <td style="border: 1px solid #ddd; padding: 8px;"><strong>入力装置</strong></td>
+                                <td style="border: 1px solid #ddd; padding: 8px;">Input Unit</td>
+                                <td style="border: 1px solid #ddd; padding: 8px;">外部からコンピュータへデータを入力</td>
+                                <td style="border: 1px solid #ddd; padding: 8px;">キーボード、マウス、書画カメラ、マイク、タッチパネル</td>
+                            </tr>
+                            <tr>
+                                <td style="border: 1px solid #ddd; padding: 8px;"><strong>出力装置</strong></td>
+                                <td style="border: 1px solid #ddd; padding: 8px;">Output Unit</td>
+                                <td style="border: 1px solid #ddd; padding: 8px;">処理結果を外部へ出力</td>
+                                <td style="border: 1px solid #ddd; padding: 8px;">ディスプレイ、プロジェクター、プリンター、スピーカー</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="point-box">
+                    <h5>💡 アーキテクチャ図解</h5>
+                    <pre>
+┌──────────────────────────────────────────────┐
+│         記憶装置 (Memory Unit)              │
+│  ┌─────────────────────────────┐           │
+│  │ プログラム(命令列) + データ │           │
+│  └─────────────────────────────┘           │
+└──────────────┬───────────────┬─────────────┘
+               │               │
+       ┌───────┴───────┐ ┌─────┴─────┐
+       │  制御装置(CU)  │ │  演算装置  │
+       │ 命令解釈・制御  │ │   (ALU)   │
+       └───────┬───────┘ └─────┬─────┘
+               │               │
+               └───────┬───────┘
+                       │
+         ┌─────────────┴─────────────┐
+         │                           │
+    ┌────┴────┐               ┌──────┴──────┐
+    │入力装置  │               │  出力装置    │
+    │(Input)  │               │ (Output)    │
+    └─────────┘               └─────────────┘
+</pre>
+                </div>
+
+                <h4>1.1.3 フォン・ノイマン・ボトルネック</h4>
+                <p>フォン・ノイマン型アーキテクチャには構造的な制約があります：</p>
+                <ul>
+                    <li><strong>問題点：</strong>CPUとメモリ間のデータ転送速度(バス帯域幅)が、CPU処理速度に追いつかない</li>
+                    <li><strong>影響：</strong>CPUが高速化してもメモリからのデータ供給が間に合わず、性能向上が頭打ちになる</li>
+                </ul>
+
+                <div class="info-box">
+                    <h5>対策技術</h5>
+                    <ul>
+                        <li><strong>キャッシュメモリ：</strong>CPU内部に高速小容量メモリ(L1/L2/L3キャッシュ)を配置し、頻繁に使うデータを保持</li>
+                        <li><strong>パイプライン処理：</strong>命令実行を複数ステージに分割し並列化</li>
+                        <li><strong>マルチコアCPU：</strong>複数のCPUコアで並列処理</li>
+                        <li><strong>高速バス：</strong>PCIe 4.0/5.0、DDR4/DDR5など高帯域幅インターフェース</li>
+                    </ul>
+                </div>
+
+                <div class="point-box">
+                    <h5>🏫 学校現場での重要性</h5>
+                    <p>大量の生徒データ処理やマルチメディアコンテンツ再生時に、このボトルネックが顕在化します。機器選定時には、CPU性能だけでなくメモリ速度・容量、ストレージ転送速度のバランスが重要です。</p>
+                </div>
+
+                <h3>1.2 CPU(中央処理装置)の内部構造</h3>
+                
+                <h4>1.2.1 CPUの基本構成</h4>
+                <p>CPU(Central Processing Unit)は、「コンピュータの頭脳」として、すべての演算と制御を担当します。</p>
+
+                <div class="info-box">
+                    <h5>主要構成要素</h5>
+                    <pre>
+┌────────────────────────────────────────┐
+│         CPU (チップ内部)              │
+│                                        │
+│  ┌──────────────────────────────┐    │
+│  │   制御装置 (Control Unit)   │    │
+│  │  - 命令デコーダ              │    │
+│  │  - プログラムカウンタ(PC)    │    │
+│  │  - 命令レジスタ(IR)          │    │
+│  └───────────┬──────────────────┘    │
+│              │                         │
+│  ┌───────────┴──────────────────┐    │
+│  │ 演算装置 (ALU: Arithmetic    │    │
+│  │        Logic Unit)           │    │
+│  │  - 加算器/乗算器             │    │
+│  │  - 論理演算回路              │    │
+│  │  - シフト演算器              │    │
+│  └───────────┬──────────────────┘    │
+│              │                         │
+│  ┌───────────┴──────────────────┐    │
+│  │    レジスタ群 (Registers)    │    │
+│  │  - 汎用レジスタ (R0-R15等)  │    │
+│  │  - 特殊レジスタ (SP, FP等)  │    │
+│  └──────────────────────────────┘    │
+│                                        │
+│  ┌──────────────────────────────┐    │
+│  │    キャッシュメモリ階層      │    │
+│  │  L1キャッシュ: 数十KB(最速)  │    │
+│  │  L2キャッシュ: 数百KB〜数MB  │    │
+│  │  L3キャッシュ: 数MB〜数十MB  │    │
+│  └──────────────────────────────┘    │
+└────────────────────────────────────────┘
+</pre>
+
+                    <h6>各要素の詳細：</h6>
+                    <ul>
+                        <li><strong>制御装置(CU)：</strong>
+                            <ul>
+                                <li>プログラムカウンタ(PC): 次に実行する命令のメモリアドレスを保持</li>
+                                <li>命令レジスタ(IR): 現在実行中の命令を保持</li>
+                                <li>命令デコーダ: 機械語命令を解釈し、制御信号を生成</li>
+                            </ul>
+                        </li>
+                        <li><strong>演算装置(ALU)：</strong>
+                            <ul>
+                                <li>算術演算: 加算、減算、乗算、除算</li>
+                                <li>論理演算: AND、OR、NOT、XOR</li>
+                                <li>シフト演算: ビット単位の左シフト・右シフト</li>
+                                <li>比較演算: 大小比較、等号判定</li>
+                            </ul>
+                        </li>
+                        <li><strong>キャッシュメモリ階層：</strong>
+                            <ul>
+                                <li>L1キャッシュ: CPUコア直結、最速(1-2クロック)、容量小(32-64KB)</li>
+                                <li>L2キャッシュ: コア専用または共有、中速(数クロック)、容量中(256KB-1MB)</li>
+                                <li>L3キャッシュ: 全コア共有、やや遅い(十数クロック)、容量大(8-64MB)</li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+
+                <h4>1.2.2 命令実行サイクル</h4>
+                <p>CPUは以下の4段階サイクル(フェッチ→デコード→実行→ライトバック)を高速で繰り返してプログラムを実行します。</p>
+
+                <div class="point-box">
+                    <h5>命令実行サイクルの4ステージ</h5>
+                    <pre>
+ ステージ1      ステージ2      ステージ3      ステージ4
+┌──────────┐ ┌──────────┐ ┌──────────┐ ┌──────────┐
+│          │ │          │ │          │ │          │
+│ Fetch    │→│ Decode   │→│ Execute  │→│ Write-   │
+│ (取得)   │ │ (解読)   │ │ (実行)   │ │  Back    │
+│          │ │          │ │          │ │ (書戻し) │
+└──────────┘ └──────────┘ └──────────┘ └──────────┘
+     │            │            │            │
+     ↓            ↓            ↓            ↓
+メモリから    命令を解釈    演算実行      結果を
+命令読出し    制御信号生成  ALUで処理    レジスタ/
+PCインクリ    オペランド    条件分岐判定  メモリへ
+メント        取得準備                    書込み
+</pre>
+
+                    <h6>各ステージの詳細：</h6>
+                    <ol>
+                        <li><strong>Fetch(フェッチ/命令取得)：</strong>プログラムカウンタ(PC)が指すメモリアドレスから命令を読み出し、命令レジスタ(IR)に格納。PCをインクリメント。</li>
+                        <li><strong>Decode(デコード/命令解読)：</strong>命令レジスタの内容を命令デコーダで解析。オペコード(操作の種類)とオペランド(データ/アドレス)を識別。</li>
+                        <li><strong>Execute(実行)：</strong>ALUで算術・論理演算を実行。メモリアクセス(Load/Store)を実行。条件分岐判定。</li>
+                        <li><strong>Write-Back(ライトバック/結果書込み)：</strong>演算結果をレジスタに書き戻す。または、メモリへ書き込む。フラグレジスタを更新。</li>
+                    </ol>
+                </div>
+
+                <div class="info-box">
+                    <h5>パイプライン処理による高速化</h5>
+                    <p>現代のCPUは、複数の命令を同時に異なるステージで処理する「パイプライン処理」を採用しています：</p>
+                    <pre>
+時刻 →  T1    T2    T3    T4    T5    T6    T7    T8
+命令1  [F]   [D]   [E]   [W]
+命令2        [F]   [D]   [E]   [W]
+命令3              [F]   [D]   [E]   [W]
+命令4                    [F]   [D]   [E]   [W]
+命令5                          [F]   [D]   [E]   [W]
+
+F=Fetch, D=Decode, E=Execute, W=Write-Back
+</pre>
+                    <p>これにより、理論上は毎クロックで1命令を完了できます(スーパースカラ設計では複数命令/クロック)。</p>
+                </div>
+
+            </section>
+
+            <section class="content-section">
+                <h2>📚 第2章：主要コンポーネント</h2>
+                
+                <h3>2.1 マザーボード(Motherboard)</h3>
+                <p>マザーボードは、コンピュータのすべてのハードウェアコンポーネントを接続する「基板」であり、電源供給、データ通信、制御信号伝達を担います。</p>
+
+                <div class="info-box">
+                    <h4>主要構成要素</h4>
+                    <ul>
+                        <li><strong>CPUソケット：</strong>CPUを物理的に搭載する場所（Intel: LGA1700、AMD: AM5等）</li>
+                        <li><strong>メモリスロット(DIMM)：</strong>RAMモジュールを挿入（DDR4/DDR5対応）</li>
+                        <li><strong>チップセット：</strong>CPUと周辺デバイスの間でデータ転送を仲介</li>
+                        <li><strong>拡張スロット：</strong>PCIe x16(GPU用)、PCIe x1(拡張カード用)</li>
+                        <li><strong>ストレージ接続：</strong>M.2スロット(NVMe SSD)、SATAポート(HDD/SSD)</li>
+                        <li><strong>I/Oパネル：</strong>背面外部接続端子（USB、HDMI、LAN、Audio等）</li>
+                    </ul>
+                </div>
+
+                <div class="point-box">
+                    <h4>フォームファクター（サイズ規格）</h4>
+                    <table style="width: 100%; border-collapse: collapse; margin-top: 1rem;">
+                        <thead>
+                            <tr style="background-color: #f3f4f6;">
+                                <th style="border: 1px solid #ddd; padding: 8px;">規格</th>
+                                <th style="border: 1px solid #ddd; padding: 8px;">サイズ(mm)</th>
+                                <th style="border: 1px solid #ddd; padding: 8px;">拡張スロット数</th>
+                                <th style="border: 1px solid #ddd; padding: 8px;">用途</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td style="border: 1px solid #ddd; padding: 8px;">ATX</td>
+                                <td style="border: 1px solid #ddd; padding: 8px;">305×244</td>
+                                <td style="border: 1px solid #ddd; padding: 8px;">最大7スロット</td>
+                                <td style="border: 1px solid #ddd; padding: 8px;">デスクトップPC、高拡張性</td>
+                            </tr>
+                            <tr>
+                                <td style="border: 1px solid #ddd; padding: 8px;"><strong>Micro-ATX</strong></td>
+                                <td style="border: 1px solid #ddd; padding: 8px;">244×244</td>
+                                <td style="border: 1px solid #ddd; padding: 8px;">最大4スロット</td>
+                                <td style="border: 1px solid #ddd; padding: 8px;"><strong>学校標準PC推奨</strong></td>
+                            </tr>
+                            <tr>
+                                <td style="border: 1px solid #ddd; padding: 8px;">Mini-ITX</td>
+                                <td style="border: 1px solid #ddd; padding: 8px;">170×170</td>
+                                <td style="border: 1px solid #ddd; padding: 8px;">1スロットのみ</td>
+                                <td style="border: 1px solid #ddd; padding: 8px;">超小型PC、デジタルサイネージ</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <h3>2.2 チップセット(Chipset)</h3>
+                <p>チップセットは、CPUと周辺デバイス(メモリ、ストレージ、USB等)の間でデータ転送を仲介する重要な集積回路です。</p>
+
+                <div class="info-box">
+                    <h4>現代のチップセット構成</h4>
+                    <p>現代では多くの機能がCPUに統合され、単一チップセット(PCH: Platform Controller Hub)となっています：</p>
+                    <ul>
+                        <li><strong>CPUが直接管理：</strong>メモリコントローラ、PCIe レーン×16〜20（GPU直結）</li>
+                        <li><strong>チップセットが管理：</strong>追加のPCIeレーン、SATAポート、USBコントローラ、ネットワーク、オーディオ</li>
+                        <li><strong>DMI(Direct Media Interface)：</strong>CPUとチップセット間の専用高速リンク（DMI 4.0: 8GB/s）</li>
+                    </ul>
+                </div>
+
+                <div class="point-box">
+                    <h4>🏫 学校現場での選定基準</h4>
+                    <ul>
+                        <li><strong>教員PC/管理PC：</strong>B760(Intel)またはB650(AMD)で必要十分</li>
+                        <li><strong>サーバー：</strong>Z790/X670E（多数の拡張デバイス接続が必要な場合）</li>
+                    </ul>
+                </div>
+
+                <h3>2.3 拡張スロット(Expansion Slots)</h3>
+                
+                <h4>2.3.1 PCIe(PCI Express)規格</h4>
+                <p>PCIeは、現代の高速拡張バス規格です。レーン数(x1, x4, x8, x16)で帯域幅が変わります。</p>
+
+                <div class="info-box">
+                    <h5>世代別転送速度（片方向/レーンあたり）</h5>
+                    <table style="width: 100%; border-collapse: collapse; margin-top: 1rem;">
+                        <thead>
+                            <tr style="background-color: #f3f4f6;">
+                                <th style="border: 1px solid #ddd; padding: 8px;">世代</th>
+                                <th style="border: 1px solid #ddd; padding: 8px;">1レーンあたり</th>
+                                <th style="border: 1px solid #ddd; padding: 8px;">x16スロット</th>
+                                <th style="border: 1px solid #ddd; padding: 8px;">登場年</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td style="border: 1px solid #ddd; padding: 8px;">PCIe 3.0</td>
+                                <td style="border: 1px solid #ddd; padding: 8px;">約1GB/s</td>
+                                <td style="border: 1px solid #ddd; padding: 8px;">約16GB/s</td>
+                                <td style="border: 1px solid #ddd; padding: 8px;">2010年</td>
+                            </tr>
+                            <tr>
+                                <td style="border: 1px solid #ddd; padding: 8px;"><strong>PCIe 4.0</strong></td>
+                                <td style="border: 1px solid #ddd; padding: 8px;">約2GB/s</td>
+                                <td style="border: 1px solid #ddd; padding: 8px;">約32GB/s</td>
+                                <td style="border: 1px solid #ddd; padding: 8px;">2017年</td>
+                            </tr>
+                            <tr>
+                                <td style="border: 1px solid #ddd; padding: 8px;">PCIe 5.0</td>
+                                <td style="border: 1px solid #ddd; padding: 8px;">約4GB/s</td>
+                                <td style="border: 1px solid #ddd; padding: 8px;">約64GB/s</td>
+                                <td style="border: 1px solid #ddd; padding: 8px;">2022年</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <p><strong>下位互換性：</strong>PCIe 4.0カードはPCIe 3.0スロットでも動作（速度は遅い方に合わせる）</p>
+                </div>
+
+                <h3>2.4 電源ユニット(PSU: Power Supply Unit)</h3>
+                <p>電源ユニットは、家庭用AC 100V(日本)をコンピュータ内部で使用するDC(+12V, +5V, +3.3V)に変換します。</p>
+
+                <div class="info-box">
+                    <h4>電源容量の計算</h4>
+                    <p><strong>推奨電源容量 = 合計消費電力 × 1.5〜2.0</strong></p>
+                    <h5>標準的な学校PCの例：</h5>
+                    <ul>
+                        <li>CPU(Core i5): 65W</li>
+                        <li>GPU(内蔵): 15W</li>
+                        <li>マザーボード: 50W</li>
+                        <li>RAM(8GB×2): 10W</li>
+                        <li>SSD(NVMe): 5W</li>
+                        <li>その他: 30W</li>
+                        <li><strong>合計: 175W → 推奨電源: 450W</strong></li>
+                    </ul>
+                </div>
+
+                <div class="point-box">
+                    <h4>80PLUS認証と効率</h4>
+                    <p>80PLUSは、電源変換効率(AC→DC)を保証する国際認証です：</p>
+                    <ul>
+                        <li><strong>80PLUS Silver：</strong>効率85-88%（学校標準PC推奨）</li>
+                        <li><strong>80PLUS Gold：</strong>効率87-90%（サーバー/ワークステーション）</li>
+                        <li><strong>80PLUS Bronze：</strong>効率82-85%（一般PC）</li>
+                    </ul>
+                    <p>効率90%の電源で100W供給する場合、111W(100W÷0.9)をコンセントから消費します。差の11Wは熱として放出されます。</p>
+                </div>
+
+                <h3>2.5 冷却システム(Cooling System)</h3>
+                <p>コンピュータ内部の熱管理は、性能維持と寿命延長に直結します。</p>
+
+                <div class="info-box">
+                    <h4>CPUクーラーの構造</h4>
+                    <ul>
+                        <li><strong>サーマルグリス：</strong>CPUとクーラー間の微小な隙間を埋め、熱抵抗を低減。2〜3年で再塗布推奨。</li>
+                        <li><strong>ヒートパイプ：</strong>内部の液体が蒸発・凝縮を繰り返して熱を運ぶ。熱伝導率が銅の数十倍。</li>
+                        <li><strong>ヒートシンク：</strong>表面積を増やして空気へ熱を放出（アルミ製または銅製）</li>
+                        <li><strong>冷却ファン：</strong>強制対流で放熱効率向上。PWM制御で回転数調整。</li>
+                    </ul>
+                </div>
+
+                <div class="point-box">
+                    <h4>温度管理基準</h4>
+                    <table style="width: 100%; border-collapse: collapse; margin-top: 1rem;">
+                        <thead>
+                            <tr style="background-color: #f3f4f6;">
+                                <th style="border: 1px solid #ddd; padding: 8px;">状態</th>
+                                <th style="border: 1px solid #ddd; padding: 8px;">Intel Core</th>
+                                <th style="border: 1px solid #ddd; padding: 8px;">AMD Ryzen</th>
+                                <th style="border: 1px solid #ddd; padding: 8px;">対処</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td style="border: 1px solid #ddd; padding: 8px;">アイドル</td>
+                                <td style="border: 1px solid #ddd; padding: 8px;">30〜50℃</td>
+                                <td style="border: 1px solid #ddd; padding: 8px;">35〜50℃</td>
+                                <td style="border: 1px solid #ddd; padding: 8px;">正常</td>
+                            </tr>
+                            <tr>
+                                <td style="border: 1px solid #ddd; padding: 8px;">通常負荷</td>
+                                <td style="border: 1px solid #ddd; padding: 8px;">50〜75℃</td>
+                                <td style="border: 1px solid #ddd; padding: 8px;">50〜75℃</td>
+                                <td style="border: 1px solid #ddd; padding: 8px;">正常</td>
+                            </tr>
+                            <tr>
+                                <td style="border: 1px solid #ddd; padding: 8px;">高負荷</td>
+                                <td style="border: 1px solid #ddd; padding: 8px;">75〜85℃</td>
+                                <td style="border: 1px solid #ddd; padding: 8px;">75〜85℃</td>
+                                <td style="border: 1px solid #ddd; padding: 8px;">正常（継続監視）</td>
+                            </tr>
+                            <tr style="background-color: #fef3c7;">
+                                <td style="border: 1px solid #ddd; padding: 8px;"><strong>注意</strong></td>
+                                <td style="border: 1px solid #ddd; padding: 8px;">85〜100℃</td>
+                                <td style="border: 1px solid #ddd; padding: 8px;">85〜95℃</td>
+                                <td style="border: 1px solid #ddd; padding: 8px;"><strong>冷却改善推奨</strong></td>
+                            </tr>
+                            <tr style="background-color: #fee2e2;">
+                                <td style="border: 1px solid #ddd; padding: 8px;"><strong>危険</strong></td>
+                                <td style="border: 1px solid #ddd; padding: 8px;">100℃</td>
+                                <td style="border: 1px solid #ddd; padding: 8px;">95℃</td>
+                                <td style="border: 1px solid #ddd; padding: 8px;"><strong>サーマルスロットリング</strong></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="warning-box">
+                    <h4>🏫 学校現場での温度監視</h4>
+                    <ul>
+                        <li><strong>推奨ツール：</strong>HWMonitor, Open Hardware Monitor, Core Temp</li>
+                        <li><strong>定期点検：</strong>夏季前(5月)と冬季前(11月)に温度ログ確認</li>
+                        <li><strong>警告閾値設定：</strong>CPU 85℃超で管理者へ通知</li>
+                    </ul>
+                </div>
+
+                <h3>2.6 CPU(中央処理装置)の実装</h3>
+                <p>学校現場で使用される主なCPUとその特性を理解します。</p>
+
+                <div class="info-box">
+                    <h4>GIGA端末向けCPUの実例</h4>
+                    <table style="width: 100%; border-collapse: collapse; margin-top: 1rem;">
+                        <thead>
+                            <tr style="background-color: #f3f4f6;">
+                                <th style="border: 1px solid #ddd; padding: 8px;">CPU</th>
+                                <th style="border: 1px solid #ddd; padding: 8px;">コア/スレッド</th>
+                                <th style="border: 1px solid #ddd; padding: 8px;">ベース/ブースト</th>
+                                <th style="border: 1px solid #ddd; padding: 8px;">TDP</th>
+                                <th style="border: 1px solid #ddd; padding: 8px;">適用</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td style="border: 1px solid #ddd; padding: 8px;"><strong>Intel N100</strong></td>
+                                <td style="border: 1px solid #ddd; padding: 8px;">4コア/4スレッド</td>
+                                <td style="border: 1px solid #ddd; padding: 8px;">1.0GHz / 3.4GHz</td>
+                                <td style="border: 1px solid #ddd; padding: 8px;">6W</td>
+                                <td style="border: 1px solid #ddd; padding: 8px;">Chromebook、軽量Windows PC</td>
+                            </tr>
+                            <tr>
+                                <td style="border: 1px solid #ddd; padding: 8px;"><strong>Intel Celeron N4020</strong></td>
+                                <td style="border: 1px solid #ddd; padding: 8px;">2コア/2スレッド</td>
+                                <td style="border: 1px solid #ddd; padding: 8px;">1.1GHz / 2.8GHz</td>
+                                <td style="border: 1px solid #ddd; padding: 8px;">6W</td>
+                                <td style="border: 1px solid #ddd; padding: 8px;">エントリーChromebook</td>
+                            </tr>
+                            <tr>
+                                <td style="border: 1px solid #ddd; padding: 8px;"><strong>Intel Core i3-N305</strong></td>
+                                <td style="border: 1px solid #ddd; padding: 8px;">8コア/8スレッド</td>
+                                <td style="border: 1px solid #ddd; padding: 8px;">1.8GHz / 3.8GHz</td>
+                                <td style="border: 1px solid #ddd; padding: 8px;">15W</td>
+                                <td style="border: 1px solid #ddd; padding: 8px;">高性能GIGA端末</td>
+                            </tr>
+                            <tr>
+                                <td style="border: 1px solid #ddd; padding: 8px;"><strong>MediaTek MT8183</strong></td>
+                                <td style="border: 1px solid #ddd; padding: 8px;">8コア(ARM)</td>
+                                <td style="border: 1px solid #ddd; padding: 8px;">2.0GHz</td>
+                                <td style="border: 1px solid #ddd; padding: 8px;">5W</td>
+                                <td style="border: 1px solid #ddd; padding: 8px;">ARM版Chromebook(例:Lenovo IdeaPad Duet)</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="point-box">
+                    <h4>CPU性能の判断基準</h4>
+                    <ul>
+                        <li><strong>Webブラウジング・文書作成：</strong>Intel N100、Celeron N4020で十分</li>
+                        <li><strong>動画編集・プログラミング：</strong>Core i3-N305以上を推奨</li>
+                        <li><strong>3D設計・高度な演算：</strong>Core i5以上またはRyzen 5以上が必要</li>
+                    </ul>
+                    <p><strong>学校端末の選定目安：</strong>通常の授業用途では、コストパフォーマンスに優れたN100が主流(2024-2025年度)</p>
+                </div>
+
+                <h3>2.7 メモリ(RAM)の実装</h3>
+                <p>メモリは、CPUが直接アクセスできる高速な作業領域です。</p>
+
+                <div class="info-box">
+                    <h4>メモリの種類と特性</h4>
+                    <table style="width: 100%; border-collapse: collapse; margin-top: 1rem;">
+                        <thead>
+                            <tr style="background-color: #f3f4f6;">
+                                <th style="border: 1px solid #ddd; padding: 8px;">規格</th>
+                                <th style="border: 1px solid #ddd; padding: 8px;">転送速度</th>
+                                <th style="border: 1px solid #ddd; padding: 8px;">電圧</th>
+                                <th style="border: 1px solid #ddd; padding: 8px;">登場年</th>
+                                <th style="border: 1px solid #ddd; padding: 8px;">学校端末での使用状況</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td style="border: 1px solid #ddd; padding: 8px;">DDR4-2400</td>
+                                <td style="border: 1px solid #ddd; padding: 8px;">19.2GB/s</td>
+                                <td style="border: 1px solid #ddd; padding: 8px;">1.2V</td>
+                                <td style="border: 1px solid #ddd; padding: 8px;">2014</td>
+                                <td style="border: 1px solid #ddd; padding: 8px;">旧世代GIGA端末</td>
+                            </tr>
+                            <tr>
+                                <td style="border: 1px solid #ddd; padding: 8px;"><strong>DDR4-3200</strong></td>
+                                <td style="border: 1px solid #ddd; padding: 8px;">25.6GB/s</td>
+                                <td style="border: 1px solid #ddd; padding: 8px;">1.2V</td>
+                                <td style="border: 1px solid #ddd; padding: 8px;">2017</td>
+                                <td style="border: 1px solid #ddd; padding: 8px;"><strong>現行GIGA端末主流</strong></td>
+                            </tr>
+                            <tr>
+                                <td style="border: 1px solid #ddd; padding: 8px;">DDR5-4800</td>
+                                <td style="border: 1px solid #ddd; padding: 8px;">38.4GB/s</td>
+                                <td style="border: 1px solid #ddd; padding: 8px;">1.1V</td>
+                                <td style="border: 1px solid #ddd; padding: 8px;">2021</td>
+                                <td style="border: 1px solid #ddd; padding: 8px;">次世代端末、教員PC</td>
+                            </tr>
+                            <tr>
+                                <td style="border: 1px solid #ddd; padding: 8px;">LPDDR4X</td>
+                                <td style="border: 1px solid #ddd; padding: 8px;">17〜34GB/s</td>
+                                <td style="border: 1px solid #ddd; padding: 8px;">0.6V</td>
+                                <td style="border: 1px solid #ddd; padding: 8px;">2019</td>
+                                <td style="border: 1px solid #ddd; padding: 8px;">タブレット、ARM版Chromebook</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="point-box">
+                    <h4>🏫 学校端末のメモリ容量基準</h4>
+                    <table style="width: 100%; border-collapse: collapse; margin-top: 1rem;">
+                        <thead>
+                            <tr style="background-color: #f3f4f6;">
+                                <th style="border: 1px solid #ddd; padding: 8px;">容量</th>
+                                <th style="border: 1px solid #ddd; padding: 8px;">用途</th>
+                                <th style="border: 1px solid #ddd; padding: 8px;">快適度</th>
+                                <th style="border: 1px solid #ddd; padding: 8px;">推奨OS</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td style="border: 1px solid #ddd; padding: 8px;">4GB</td>
+                                <td style="border: 1px solid #ddd; padding: 8px;">Webブラウジング、軽量な文書作成</td>
+                                <td style="border: 1px solid #ddd; padding: 8px;">△ 最低限</td>
+                                <td style="border: 1px solid #ddd; padding: 8px;">Chrome OS専用</td>
+                            </tr>
+                            <tr>
+                                <td style="border: 1px solid #ddd; padding: 8px;"><strong>8GB</strong></td>
+                                <td style="border: 1px solid #ddd; padding: 8px;">複数タブ、Office、ビデオ会議</td>
+                                <td style="border: 1px solid #ddd; padding: 8px;"><strong>◯ 標準</strong></td>
+                                <td style="border: 1px solid #ddd; padding: 8px;">Chrome OS、Windows 11</td>
+                            </tr>
+                            <tr>
+                                <td style="border: 1px solid #ddd; padding: 8px;">16GB</td>
+                                <td style="border: 1px solid #ddd; padding: 8px;">動画編集、プログラミング、マルチタスク</td>
+                                <td style="border: 1px solid #ddd; padding: 8px;">◎ 快適</td>
+                                <td style="border: 1px solid #ddd; padding: 8px;">Windows 11、macOS</td>
+                            </tr>
+                            <tr>
+                                <td style="border: 1px solid #ddd; padding: 8px;">32GB以上</td>
+                                <td style="border: 1px solid #ddd; padding: 8px;">3D設計、高度なデータ分析</td>
+                                <td style="border: 1px solid #ddd; padding: 8px;">◎ 専門用途</td>
+                                <td style="border: 1px solid #ddd; padding: 8px;">ワークステーション用</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <p><strong>GIGA第2期(2024-2029年)の推奨：</strong>8GB以上、DDR4-3200またはDDR5-4800</p>
+                </div>
+
+                <h3>2.8 ストレージの実装</h3>
+                <p>ストレージは、データを長期保存する不揮発性記憶装置です。</p>
+
+                <div class="info-box">
+                    <h4>学校端末で使用されるストレージ比較</h4>
+                    <table style="width: 100%; border-collapse: collapse; margin-top: 1rem;">
+                        <thead>
+                            <tr style="background-color: #f3f4f6;">
+                                <th style="border: 1px solid #ddd; padding: 8px;">種類</th>
+                                <th style="border: 1px solid #ddd; padding: 8px;">読込速度</th>
+                                <th style="border: 1px solid #ddd; padding: 8px;">書込速度</th>
+                                <th style="border: 1px solid #ddd; padding: 8px;">寿命</th>
+                                <th style="border: 1px solid #ddd; padding: 8px;">価格</th>
+                                <th style="border: 1px solid #ddd; padding: 8px;">学校での使用</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td style="border: 1px solid #ddd; padding: 8px;"><strong>NVMe SSD(PCIe 4.0)</strong></td>
+                                <td style="border: 1px solid #ddd; padding: 8px;">7000MB/s</td>
+                                <td style="border: 1px solid #ddd; padding: 8px;">5000MB/s</td>
+                                <td style="border: 1px solid #ddd; padding: 8px;">600〜1200TBW</td>
+                                <td style="border: 1px solid #ddd; padding: 8px;">高</td>
+                                <td style="border: 1px solid #ddd; padding: 8px;">教員PC、サーバー</td>
+                            </tr>
+                            <tr>
+                                <td style="border: 1px solid #ddd; padding: 8px;"><strong>NVMe SSD(PCIe 3.0)</strong></td>
+                                <td style="border: 1px solid #ddd; padding: 8px;">3500MB/s</td>
+                                <td style="border: 1px solid #ddd; padding: 8px;">3000MB/s</td>
+                                <td style="border: 1px solid #ddd; padding: 8px;">600TBW</td>
+                                <td style="border: 1px solid #ddd; padding: 8px;">中</td>
+                                <td style="border: 1px solid #ddd; padding: 8px;"><strong>現行GIGA端末主流</strong></td>
+                            </tr>
+                            <tr>
+                                <td style="border: 1px solid #ddd; padding: 8px;">SATA SSD</td>
+                                <td style="border: 1px solid #ddd; padding: 8px;">550MB/s</td>
+                                <td style="border: 1px solid #ddd; padding: 8px;">520MB/s</td>
+                                <td style="border: 1px solid #ddd; padding: 8px;">300TBW</td>
+                                <td style="border: 1px solid #ddd; padding: 8px;">低</td>
+                                <td style="border: 1px solid #ddd; padding: 8px;">旧型PC換装</td>
+                            </tr>
+                            <tr style="background-color: #fef3c7;">
+                                <td style="border: 1px solid #ddd; padding: 8px;">eMMC</td>
+                                <td style="border: 1px solid #ddd; padding: 8px;">200〜300MB/s</td>
+                                <td style="border: 1px solid #ddd; padding: 8px;">100MB/s</td>
+                                <td style="border: 1px solid #ddd; padding: 8px;">短</td>
+                                <td style="border: 1px solid #ddd; padding: 8px;">最低</td>
+                                <td style="border: 1px solid #ddd; padding: 8px;">廉価版Chromebook(非推奨)</td>
+                            </tr>
+                            <tr style="background-color: #fee2e2;">
+                                <td style="border: 1px solid #ddd; padding: 8px;">HDD</td>
+                                <td style="border: 1px solid #ddd; padding: 8px;">150MB/s</td>
+                                <td style="border: 1px solid #ddd; padding: 8px;">150MB/s</td>
+                                <td style="border: 1px solid #ddd; padding: 8px;">3-5年</td>
+                                <td style="border: 1px solid #ddd; padding: 8px;">最低</td>
+                                <td style="border: 1px solid #ddd; padding: 8px;"><strong>新規導入非推奨</strong>(振動に弱い)</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="warning-box">
+                    <h4>⚠️ ストレージ容量不足の診断と対処</h4>
+                    <h5>症状</h5>
+                    <ul>
+                        <li>「空き容量が不足しています」という警告</li>
+                        <li>アプリのインストール・更新ができない</li>
+                        <li>動作が極端に遅くなる</li>
+                    </ul>
+                    <h5>対処法</h5>
+                    <ol>
+                        <li><strong>一時ファイル削除：</strong>Windows: ディスククリーンアップ実行、Chrome OS: キャッシュクリア</li>
+                        <li><strong>不要アプリ削除：</strong>使用していないアプリをアンインストール</li>
+                        <li><strong>大きなファイルの特定：</strong>WinDirStat(Windows)、DiskUsage(Chrome OS)で容量消費の大きいファイル/フォルダを特定</li>
+                        <li><strong>クラウド移行：</strong>Google Drive、OneDriveへファイル移動</li>
+                        <li><strong>最終手段：</strong>ストレージ交換・増設(可能な機種の場合)</li>
+                    </ol>
+                    <p><strong>GIGA端末の推奨容量：</strong>128GB以上(256GB推奨)。64GB以下は運用上支障が出やすい。</p>
+                </div>
+
+            </section>
+
+            <section class="content-section">
+                <h2>📚 第3章：入出力インターフェース</h2>
+                
+                <h3>3.1 USB(Universal Serial Bus)</h3>
+                
+                <h4>3.1.1 USB規格の変遷と転送速度</h4>
+                <p>USBは世代ごとに性能が向上していますが、命名規則が複雑なため注意が必要です。</p>
+
+                <div class="info-box">
+                    <h5>USB規格一覧表</h5>
+                    <table style="width: 100%; border-collapse: collapse; margin-top: 1rem;">
+                        <thead>
+                            <tr style="background-color: #f3f4f6;">
+                                <th style="border: 1px solid #ddd; padding: 8px;">マーケティング名称</th>
+                                <th style="border: 1px solid #ddd; padding: 8px;">技術仕様名</th>
+                                <th style="border: 1px solid #ddd; padding: 8px;">最大転送速度</th>
+                                <th style="border: 1px solid #ddd; padding: 8px;">登場年</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td style="border: 1px solid #ddd; padding: 8px;">USB 2.0</td>
+                                <td style="border: 1px solid #ddd; padding: 8px;">USB 2.0</td>
+                                <td style="border: 1px solid #ddd; padding: 8px;">480Mbps (60MB/s)</td>
+                                <td style="border: 1px solid #ddd; padding: 8px;">2000年</td>
+                            </tr>
+                            <tr>
+                                <td style="border: 1px solid #ddd; padding: 8px;">USB 3.0 / USB 3.1 Gen 1</td>
+                                <td style="border: 1px solid #ddd; padding: 8px;">USB 3.2 Gen 1</td>
+                                <td style="border: 1px solid #ddd; padding: 8px;">5Gbps (625MB/s)</td>
+                                <td style="border: 1px solid #ddd; padding: 8px;">2008年</td>
+                            </tr>
+                            <tr>
+                                <td style="border: 1px solid #ddd; padding: 8px;">USB 3.1 / USB 3.1 Gen 2</td>
+                                <td style="border: 1px solid #ddd; padding: 8px;">USB 3.2 Gen 2</td>
+                                <td style="border: 1px solid #ddd; padding: 8px;">10Gbps (1.25GB/s)</td>
+                                <td style="border: 1px solid #ddd; padding: 8px;">2013年</td>
+                            </tr>
+                            <tr>
+                                <td style="border: 1px solid #ddd; padding: 8px;">USB4</td>
+                                <td style="border: 1px solid #ddd; padding: 8px;">USB4</td>
+                                <td style="border: 1px solid #ddd; padding: 8px;">40Gbps (5GB/s)</td>
+                                <td style="border: 1px solid #ddd; padding: 8px;">2019年</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <p style="margin-top: 1rem;"><strong>重要な注意点：</strong></p>
+                    <ul>
+                        <li>"USB 3.0"と"USB 3.1 Gen 1"は同一(5Gbps)</li>
+                        <li>USB4以降はType-Cコネクタのみ</li>
+                        <li>Type-Cコネクタは上下対称(リバーシブル)、最大100W給電</li>
+                    </ul>
+                </div>
+
+                <h3>3.2 映像出力インターフェース</h3>
+                
+                <h4>3.2.1 HDMI</h4>
+                <div class="info-box">
+                    <h5>HDMI規格比較</h5>
+                    <table style="width: 100%; border-collapse: collapse; margin-top: 1rem;">
+                        <thead>
+                            <tr style="background-color: #f3f4f6;">
+                                <th style="border: 1px solid #ddd; padding: 8px;">規格</th>
+                                <th style="border: 1px solid #ddd; padding: 8px;">最大帯域幅</th>
+                                <th style="border: 1px solid #ddd; padding: 8px;">解像度・リフレッシュレート</th>
+                                <th style="border: 1px solid #ddd; padding: 8px;">登場年</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td style="border: 1px solid #ddd; padding: 8px;">HDMI 1.4</td>
+                                <td style="border: 1px solid #ddd; padding: 8px;">10.2Gbps</td>
+                                <td style="border: 1px solid #ddd; padding: 8px;">4K@30Hz / 1080p@120Hz</td>
+                                <td style="border: 1px solid #ddd; padding: 8px;">2009年</td>
+                            </tr>
+                            <tr>
+                                <td style="border: 1px solid #ddd; padding: 8px;"><strong>HDMI 2.0</strong></td>
+                                <td style="border: 1px solid #ddd; padding: 8px;">18Gbps</td>
+                                <td style="border: 1px solid #ddd; padding: 8px;">4K@60Hz / 1440p@144Hz</td>
+                                <td style="border: 1px solid #ddd; padding: 8px;">2013年</td>
+                            </tr>
+                            <tr>
+                                <td style="border: 1px solid #ddd; padding: 8px;">HDMI 2.1</td>
+                                <td style="border: 1px solid #ddd; padding: 8px;">48Gbps</td>
+                                <td style="border: 1px solid #ddd; padding: 8px;">4K@120Hz / 8K@60Hz</td>
+                                <td style="border: 1px solid #ddd; padding: 8px;">2017年</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <p style="margin-top: 1rem;"><strong>学校現場での用途：</strong>プロジェクター接続（最も普及）、電子黒板・大型ディスプレイ接続</p>
+                </div>
+
+                <h4>3.2.2 DisplayPort</h4>
+                <div class="info-box">
+                    <p><strong>DisplayPortの特徴：</strong></p>
+                    <ul>
+                        <li>PC向け高性能規格(HDMIより高帯域幅)</li>
+                        <li><strong>MST(Multi-Stream Transport)：</strong>1つのDP出力から複数モニターへ接続可能(デイジーチェーン)</li>
+                        <li><strong>Adaptive-Sync：</strong>可変リフレッシュレート対応</li>
+                    </ul>
+                    <p><strong>学校現場での用途：</strong>教員用高解像度モニター(4K以上)、マルチディスプレイ環境、動画編集用ワークステーション</p>
+                </div>
+
+                <h4>3.2.3 Thunderbolt</h4>
+                <div class="info-box">
+                    <p><strong>Thunderboltの特徴：</strong></p>
+                    <ul>
+                        <li>オールインワン: データ+映像(DisplayPort)+電源+PCIeを1本で伝送</li>
+                        <li>Thunderbolt 4: 40Gbps、最大100W給電、DP 1.4対応</li>
+                        <li>デイジーチェーン: 最大6デバイスまで数珠つなぎ接続</li>
+                        <li>外付けGPU(eGPU)対応: PCIe接続で外部グラフィックカード使用可能</li>
+                    </ul>
+                    <p><strong>⚠️ 注意：</strong>すべてのUSB Type-CポートがThunderboltではない。⚡マーク確認必須。</p>
+                    <p><strong>学校現場での用途：</strong>Apple環境(MacBook + ドック)、高速ストレージ、外付けGPU</p>
+                </div>
+
+            </section>
+
+            <section class="content-section">
+                <h2>📚 第4章：周辺機器との接続</h2>
+                
+                <h3>4.1 プロジェクター接続</h3>
+                
+                <h4>接続トラブルシューティング</h4>
+                <div class="point-box">
+                    <h5>投影されない場合の診断フロー</h5>
+                    <pre>
+[投影されない]
+    │
+    ├→ プロジェクター電源確認
+    │     ├→ [ランプ点灯] → OK
+    │     └→ [消灯] → 電源ケーブル確認
+    │
+    ├→ 入力選択確認
+    │     └→ リモコンで正しい入力(HDMI1等)へ切替
+    │
+    ├→ PCの映像出力確認
+    │     ├→ Windows: [Win]+[P]で「複製」または「拡張」選択
+    │     └→ Mac: システム環境設定 → ディスプレイ
+    │
+    └→ ケーブル接続確認
+          └→ 両端しっかり挿入、別ケーブルで試行
+</pre>
+                </div>
+
+                <div class="info-box">
+                    <h5>よくある問題と対策</h5>
+                    <table style="width: 100%; border-collapse: collapse; margin-top: 1rem;">
+                        <thead>
+                            <tr style="background-color: #f3f4f6;">
+                                <th style="border: 1px solid #ddd; padding: 8px;">問題</th>
+                                <th style="border: 1px solid #ddd; padding: 8px;">原因</th>
+                                <th style="border: 1px solid #ddd; padding: 8px;">対策</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td style="border: 1px solid #ddd; padding: 8px;">画面がちらつく</td>
+                                <td style="border: 1px solid #ddd; padding: 8px;">ケーブル不良、解像度不一致</td>
+                                <td style="border: 1px solid #ddd; padding: 8px;">ケーブル交換、解像度を1024x768へ下げる</td>
+                            </tr>
+                            <tr>
+                                <td style="border: 1px solid #ddd; padding: 8px;">音声が出ない</td>
+                                <td style="border: 1px solid #ddd; padding: 8px;">HDMI音声設定、プロジェクター音量</td>
+                                <td style="border: 1px solid #ddd; padding: 8px;">サウンド設定でHDMI選択、外部スピーカー接続</td>
+                            </tr>
+                            <tr>
+                                <td style="border: 1px solid #ddd; padding: 8px;">無線接続が切れる</td>
+                                <td style="border: 1px solid #ddd; padding: 8px;">Wi-Fi干渉、帯域不足</td>
+                                <td style="border: 1px solid #ddd; padding: 8px;">5GHz帯使用、有線接続へ切替</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <h3>4.2 電子黒板(IWB)</h3>
+                <div class="info-box">
+                    <h5>接続構成</h5>
+                    <p>電子黒板は通常、以下の3本のケーブルで接続：</p>
+                    <ul>
+                        <li><strong>HDMI：</strong>映像・音声伝送</li>
+                        <li><strong>USB：</strong>タッチパネル信号伝送(HID: Human Interface Device)</li>
+                        <li><strong>電源：</strong>IWB本体への給電(AC100V)</li>
+                    </ul>
+                </div>
+
+                <h3>4.3 Webカメラ・マイク</h3>
+                <div class="warning-box">
+                    <h5>音声トラブル対策</h5>
+                    <ul>
+                        <li><strong>マイクが認識されない：</strong>サウンド設定で入力デバイス確認、物理ミュートボタン確認</li>
+                        <li><strong>ハウリング(キーン音)：</strong>スピーカー音量下げる、ヘッドセット使用</li>
+                        <li><strong>ノイズが多い：</strong>USBマイクへ変更、ノイズ抑制機能ON</li>
+                    </ul>
+                    <p><strong>Zoom/Teams用推奨設定：</strong>ノイズ抑制ON、エコーキャンセルON、自動ゲイン調整ON</p>
+                </div>
+
+            </section>
+
+            <section class="content-section">
+                <h2>📚 第5章：ハードウェアトラブルシューティング</h2>
+                
+                <h3>5.1 起動しない(電源が入らない)</h3>
+                
+                <div class="point-box">
+                    <h5>診断フローチャート</h5>
+                    <pre>
+[電源ボタン押下]
+    │
+    ├→ ランプ点灯・ファン回転するか？
+    │     │
+    │     ├→ [YES] → 「5.2 画面に何も表示されない」へ
+    │     │
+    │     └→ [NO] → 電源系統トラブル
+    │           │
+    │           ├→ コンセント通電確認
+    │           ├→ 電源ケーブル確認
+    │           ├→ 電源ユニット故障確認
+    │           └→ マザーボード故障
+</pre>
+                </div>
+
+                <div class="info-box">
+                    <h5>原因別対処法</h5>
+                    <ul>
+                        <li><strong>コンセント・電源ケーブル：</strong>別機器で通電確認、ケーブル交換</li>
+                        <li><strong>電源ユニット故障：</strong>ペーパークリップテスト実施、PSU交換</li>
+                        <li><strong>CMOS電池切れ：</strong>CR2032ボタン電池を交換、BIOS設定再設定</li>
+                        <li><strong>マザーボード故障：</strong>ビープコード確認、最小構成起動テスト、保証期間確認</li>
+                    </ul>
+                </div>
+
+                <h3>5.2 画面に何も表示されない(電源は入る)</h3>
+                
+                <div class="info-box">
+                    <h5>確認順序</h5>
+                    <ol>
+                        <li>モニター電源LED確認(緑=通電、橙=スタンバイ)</li>
+                        <li>モニター入力切替確認(HDMI1/HDMI2等)</li>
+                        <li>ケーブル抜き差し(両端)</li>
+                        <li>別のケーブル・別のモニターで試行</li>
+                        <li>ビープ音確認（長音連続→メモリ問題、短音複数回→GPU問題）</li>
+                        <li>メモリ抜き差し、1枚ずつ起動テスト</li>
+                        <li>GPU取り外し、マザーボード側映像出力で試行</li>
+                    </ol>
+                </div>
+
+                <h3>5.3 異音がする</h3>
+                
+                <div class="warning-box">
+                    <h5>音の種類別対処</h5>
+                    <table style="width: 100%; border-collapse: collapse; margin-top: 1rem;">
+                        <thead>
+                            <tr style="background-color: #f3f4f6;">
+                                <th style="border: 1px solid #ddd; padding: 8px;">音の種類</th>
+                                <th style="border: 1px solid #ddd; padding: 8px;">発生源</th>
+                                <th style="border: 1px solid #ddd; padding: 8px;">緊急度</th>
+                                <th style="border: 1px solid #ddd; padding: 8px;">対処法</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr style="background-color: #fee2e2;">
+                                <td style="border: 1px solid #ddd; padding: 8px;"><strong>カタカタ音</strong></td>
+                                <td style="border: 1px solid #ddd; padding: 8px;">HDD</td>
+                                <td style="border: 1px solid #ddd; padding: 8px;">★★★★★(最高)</td>
+                                <td style="border: 1px solid #ddd; padding: 8px;"><strong>即座にシャットダウン、データバックアップ、HDD交換</strong></td>
+                            </tr>
+                            <tr>
+                                <td style="border: 1px solid #ddd; padding: 8px;">キーン音(高音)</td>
+                                <td style="border: 1px solid #ddd; padding: 8px;">コイル鳴き</td>
+                                <td style="border: 1px solid #ddd; padding: 8px;">★☆☆☆☆(低)</td>
+                                <td style="border: 1px solid #ddd; padding: 8px;">動作に支障なければ継続使用可、保証期間内なら交換申請</td>
+                            </tr>
+                            <tr style="background-color: #fef3c7;">
+                                <td style="border: 1px solid #ddd; padding: 8px;">ゴォー音(大音量)</td>
+                                <td style="border: 1px solid #ddd; padding: 8px;">冷却ファン</td>
+                                <td style="border: 1px solid #ddd; padding: 8px;">★★★☆☆(中)</td>
+                                <td style="border: 1px solid #ddd; padding: 8px;">ファン清掃、軸受け劣化ならファン交換</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <h3>5.4 発熱・オーバーヒート</h3>
+                
+                <div class="info-box">
+                    <h5>冷却改善手順</h5>
+                    <h6>ステップ1: 内部清掃</h6>
+                    <ul>
+                        <li>エアダスターでホコリを吹き飛ばす（ファンを手で押さえながら噴射）</li>
+                        <li>吸気フィルター取り外し、水洗い乾燥</li>
+                        <li>配線整理(エアフロー改善)</li>
+                    </ul>
+                    <p><strong>清掃頻度推奨：</strong>教室PC 3ヶ月に1回、職員室PC 6ヶ月に1回、サーバー 1ヶ月に1回</p>
+
+                    <h6>ステップ2: サーマルグリス再塗布</h6>
+                    <p>2年以上交換していない場合、サーマルグリスが劣化している可能性あり。CPU中央に米粒大(0.1ml程度)塗布。</p>
+
+                    <h6>ステップ3: ファン増設・交換</h6>
+                    <p>前面吸気ファン増設、天面排気ファン追加、または大型空冷クーラー・簡易水冷へアップグレード。</p>
+                </div>
+
+            </section>
+
+            <section class="content-section">
+                <h2>📚 第6章：保守管理</h2>
+                
+                <h3>6.1 定期清掃</h3>
+                
+                <div class="info-box">
+                    <h5>学校環境別推奨清掃頻度</h5>
+                    <table style="width: 100%; border-collapse: collapse; margin-top: 1rem;">
+                        <thead>
+                            <tr style="background-color: #f3f4f6;">
+                                <th style="border: 1px solid #ddd; padding: 8px;">設置場所</th>
+                                <th style="border: 1px solid #ddd; padding: 8px;">環境要因</th>
+                                <th style="border: 1px solid #ddd; padding: 8px;">清掃頻度</th>
+                                <th style="border: 1px solid #ddd; padding: 8px;">作業内容</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td style="border: 1px solid #ddd; padding: 8px;">普通教室</td>
+                                <td style="border: 1px solid #ddd; padding: 8px;">チョーク粉、窓開放によるホコリ</td>
+                                <td style="border: 1px solid #ddd; padding: 8px;"><strong>2ヶ月に1回</strong></td>
+                                <td style="border: 1px solid #ddd; padding: 8px;">エアダスター、フィルター清掃</td>
+                            </tr>
+                            <tr>
+                                <td style="border: 1px solid #ddd; padding: 8px;">コンピュータ室</td>
+                                <td style="border: 1px solid #ddd; padding: 8px;">空調管理、利用頻度高</td>
+                                <td style="border: 1px solid #ddd; padding: 8px;">3ヶ月に1回</td>
+                                <td style="border: 1px solid #ddd; padding: 8px;">内部清掃、端子清掃</td>
+                            </tr>
+                            <tr>
+                                <td style="border: 1px solid #ddd; padding: 8px;">職員室</td>
+                                <td style="border: 1px solid #ddd; padding: 8px;">書類・紙粉多い</td>
+                                <td style="border: 1px solid #ddd; padding: 8px;">3ヶ月に1回</td>
+                                <td style="border: 1px solid #ddd; padding: 8px;">PC内部清掃、周辺クリーニング</td>
+                            </tr>
+                            <tr>
+                                <td style="border: 1px solid #ddd; padding: 8px;">サーバー室</td>
+                                <td style="border: 1px solid #ddd; padding: 8px;">空調完備、密閉環境</td>
+                                <td style="border: 1px solid #ddd; padding: 8px;">6ヶ月に1回</td>
+                                <td style="border: 1px solid #ddd; padding: 8px;">フィルター交換、ラック清掃</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <h3>6.2 パーツ交換のタイミング</h3>
+                
+                <div class="info-box">
+                    <h5>消耗部品の寿命目安</h5>
+                    <table style="width: 100%; border-collapse: collapse; margin-top: 1rem;">
+                        <thead>
+                            <tr style="background-color: #f3f4f6;">
+                                <th style="border: 1px solid #ddd; padding: 8px;">部品</th>
+                                <th style="border: 1px solid #ddd; padding: 8px;">平均寿命</th>
+                                <th style="border: 1px solid #ddd; padding: 8px;">交換検討時期</th>
+                                <th style="border: 1px solid #ddd; padding: 8px;">故障兆候</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td style="border: 1px solid #ddd; padding: 8px;"><strong>HDD</strong></td>
+                                <td style="border: 1px solid #ddd; padding: 8px;">3-5年</td>
+                                <td style="border: 1px solid #ddd; padding: 8px;">3年目以降</td>
+                                <td style="border: 1px solid #ddd; padding: 8px;">異音、SMART警告、読込遅延</td>
+                            </tr>
+                            <tr>
+                                <td style="border: 1px solid #ddd; padding: 8px;">SSD</td>
+                                <td style="border: 1px solid #ddd; padding: 8px;">5-10年</td>
+                                <td style="border: 1px solid #ddd; padding: 8px;">TBW80%到達時</td>
+                                <td style="border: 1px solid #ddd; padding: 8px;">書込速度低下、認識不良</td>
+                            </tr>
+                            <tr>
+                                <td style="border: 1px solid #ddd; padding: 8px;">冷却ファン</td>
+                                <td style="border: 1px solid #ddd; padding: 8px;">3-5年</td>
+                                <td style="border: 1px solid #ddd; padding: 8px;">異音発生時</td>
+                                <td style="border: 1px solid #ddd; padding: 8px;">ガラガラ音、回転不安定</td>
+                            </tr>
+                            <tr>
+                                <td style="border: 1px solid #ddd; padding: 8px;">電源ユニット</td>
+                                <td style="border: 1px solid #ddd; padding: 8px;">5-10年</td>
+                                <td style="border: 1px solid #ddd; padding: 8px;">7年目以降</td>
+                                <td style="border: 1px solid #ddd; padding: 8px;">異音、電圧不安定、焦げ臭</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <h3>6.3 修理 vs 買い替えの判断基準</h3>
+                
+                <div class="point-box">
+                    <h5>判断フローチャート</h5>
+                    <pre>
+[ハードウェア故障発生]
+    │
+    ├→ 保証期間内か？
+    │    ├→ [YES] → メーカー修理(無償)
+    │    └→ [NO] → コスト分析へ
+    │
+    ├→ 修理費用見積もり
+    │    └→ 新品購入価格の50%以上か?
+    │         ├→ [YES] → 買い替え検討
+    │         └→ [NO] → 修理実施
+    │
+    ├→ 使用年数確認
+    │    └→ 5年以上経過か?
+    │         ├→ [YES] → 買い替え推奨
+    │         └→ [NO] → 修理検討
+    │
+    └→ 性能要件確認
+         └→ 現在のスペックで今後3年使えるか?
+              ├→ [NO] → 買い替え(スペック不足)
+              └→ [YES] → 修理実施
+</pre>
+                </div>
+
+                <div class="info-box">
+                    <h5>判断基準のまとめ</h5>
+                    <ul>
+                        <li><strong>修理費 &lt; 新品価格の30%：</strong>修理推奨</li>
+                        <li><strong>修理費 30〜50%：</strong>使用年数・性能で判断</li>
+                        <li><strong>修理費 &gt; 50%：</strong>買い替え推奨</li>
+                    </ul>
+                </div>
+
+                <h3>6.4 学校資産管理</h3>
+                
+                <div class="info-box">
+                    <h5>資産台帳の管理項目</h5>
+                    <ul>
+                        <li><strong>基本情報：</strong>資産番号、購入日、機器種別、メーカー/型番</li>
+                        <li><strong>性能情報：</strong>CPU、メモリ、ストレージ、OS</li>
+                        <li><strong>財務情報：</strong>購入価格、保証期間</li>
+                        <li><strong>配置情報：</strong>設置場所、使用者、IPアドレス、MACアドレス</li>
+                        <li><strong>保守情報：</strong>最終点検日、状態、修理履歴</li>
+                    </ul>
+                </div>
+
+                <div class="point-box">
+                    <h5>標準的な更新サイクル</h5>
+                    <ul>
+                        <li><strong>生徒用PC/タブレット：</strong>4-5年（OSサポート、物理的損耗）</li>
+                        <li><strong>教員用PC：</strong>5-6年（性能要求、ソフトウェア対応）</li>
+                        <li><strong>サーバー：</strong>5-7年（安定性重視、保守契約）</li>
+                        <li><strong>プロジェクター：</strong>5-8年（ランプ寿命×交換回数）</li>
+                        <li><strong>電子黒板：</strong>7-10年（高額、タッチパネル劣化）</li>
+                    </ul>
+                </div>
+
+            </section>
+
+            <section class="content-section">
+                <h2>📚 第7章：実践演習</h2>
+                
+                <h3>7.1 PC分解・組立て演習</h3>
+                <div class="info-box">
+                    <h5>演習手順（180分）</h5>
+                    <ol>
+                        <li><strong>分解フェーズ(60分)：</strong>外部ケーブル取り外し → サイドパネル開放 → 拡張カード取り外し → メモリ/ストレージ/CPUクーラー/電源ユニット/マザーボード取り外し</li>
+                        <li><strong>観察・記録フェーズ(30分)：</strong>各部品の型番・仕様を記録、接続インターフェース確認、内部のホコリ堆積状況観察</li>
+                        <li><strong>組立てフェーズ(60分)：</strong>分解と逆順で組み立て、ケーブル接続の確認、ネジの締め忘れチェック</li>
+                        <li><strong>動作確認フェーズ(30分)：</strong>電源投入、POST通過確認、BIOS起動、全コンポーネント認識確認、OS起動確認</li>
+                    </ol>
+                </div>
+
+                <div class="point-box">
+                    <h5>📋 分解前チェックリスト</h5>
+                    <ul>
+                        <li>☐ 静電気対策完了（リストストラップ装着または金属製品に触れて放電）</li>
+                        <li>☐ 作業場所の整理整頓（明るく、広い作業台を確保）</li>
+                        <li>☐ 必要工具の準備（プラスドライバー#1/#2、マイナスドライバー、ピンセット、懐中電灯）</li>
+                        <li>☐ 部品保管容器の準備（ネジ・小部品用の小皿やトレイ）</li>
+                        <li>☐ 記録用具の準備（カメラ、メモ用紙、ラベルシール）</li>
+                        <li>☐ 安全確認（電源ケーブル抜線、電源ユニットスイッチOFF）</li>
+                    </ul>
+                </div>
+
+                <div class="warning-box">
+                    <h5>⚠️ 分解作業の注意事項</h5>
+                    <ul>
+                        <li><strong>力を入れすぎない：</strong>コネクタは「カチッ」という音がするまで引く。無理に引っ張るとピンが折れる。</li>
+                        <li><strong>ネジの混同防止：</strong>取り外したネジは、取り外した部品の近くに置く。型番と長さが異なるネジが混在。</li>
+                        <li><strong>ケーブルの向き：</strong>コネクタには向きがある。無理に押し込まない。</li>
+                        <li><strong>CPUクーラー取り外し：</strong>サーマルグリスが固着しているため、ゆっくり回転させながら外す。</li>
+                        <li><strong>静電気破壊：</strong>特にメモリ、CPU、マザーボードは静電気に弱い。金属部分を持つ。</li>
+                    </ul>
+                </div>
+
+                <div class="example-box">
+                    <h5>📸 記録すべき情報</h5>
+                    <table style="width: 100%; border-collapse: collapse; margin-top: 1rem;">
+                        <thead>
+                            <tr style="background-color: #f3f4f6;">
+                                <th style="border: 1px solid #ddd; padding: 8px;">部品</th>
+                                <th style="border: 1px solid #ddd; padding: 8px;">記録項目</th>
+                                <th style="border: 1px solid #ddd; padding: 8px;">具体例</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td style="border: 1px solid #ddd; padding: 8px;">CPU</td>
+                                <td style="border: 1px solid #ddd; padding: 8px;">型番、コア数、クロック数</td>
+                                <td style="border: 1px solid #ddd; padding: 8px;">Intel Core i5-12400, 6コア/12スレッド, 2.5GHz</td>
+                            </tr>
+                            <tr>
+                                <td style="border: 1px solid #ddd; padding: 8px;">メモリ</td>
+                                <td style="border: 1px solid #ddd; padding: 8px;">型番、容量、規格、枚数</td>
+                                <td style="border: 1px solid #ddd; padding: 8px;">Crucial DDR4-3200, 8GB×2枚=16GB</td>
+                            </tr>
+                            <tr>
+                                <td style="border: 1px solid #ddd; padding: 8px;">ストレージ</td>
+                                <td style="border: 1px solid #ddd; padding: 8px;">型番、容量、接続方式</td>
+                                <td style="border: 1px solid #ddd; padding: 8px;">Samsung 970 EVO Plus, 500GB, M.2 NVMe</td>
+                            </tr>
+                            <tr>
+                                <td style="border: 1px solid #ddd; padding: 8px;">マザーボード</td>
+                                <td style="border: 1px solid #ddd; padding: 8px;">メーカー、型番、チップセット</td>
+                                <td style="border: 1px solid #ddd; padding: 8px;">ASUS PRIME B760M-A, Intel B760</td>
+                            </tr>
+                            <tr>
+                                <td style="border: 1px solid #ddd; padding: 8px;">電源</td>
+                                <td style="border: 1px solid #ddd; padding: 8px;">型番、容量、80PLUS認証</td>
+                                <td style="border: 1px solid #ddd; padding: 8px;">玄人志向 KRPW-BK650W/85+, 650W, 80PLUS Bronze</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="info-box">
+                    <h5>✅ 組立て後の動作確認チェックリスト</h5>
+                    <ol>
+                        <li>☐ 電源投入時に電源LEDが点灯する</li>
+                        <li>☐ 全ての冷却ファン(CPU/ケース/電源)が回転する</li>
+                        <li>☐ POST画面が表示される（メーカーロゴまたはBIOS情報）</li>
+                        <li>☐ BIOSでCPU型番・動作周波数が正しく表示される</li>
+                        <li>☐ BIOSでメモリ容量が正しく認識される（例: 16GB＝16384MB）</li>
+                        <li>☐ BIOSでストレージ(M.2/SATA)が全て認識される</li>
+                        <li>☐ USB端子動作確認（キーボード・マウス接続）</li>
+                        <li>☐ 映像出力確認（HDMI/DisplayPort）</li>
+                        <li>☐ OSが正常起動する</li>
+                        <li>☐ デバイスマネージャーで全デバイスが正常認識（黄色い!マークなし）</li>
+                    </ol>
+                    <p><strong>評価基準：</strong>10項目中9項目以上で合格。不合格の場合は再組立て。</p>
+                </div>
+
+                <h3>7.2 トラブルシューティングフローチャート作成</h3>
+                <div class="point-box">
+                    <h5>課題</h5>
+                    <p>以下のトラブルについて、診断フローチャートを作成してください：</p>
+                    <ul>
+                        <li>「プロジェクターに何も映らない」</li>
+                        <li>「インターネットに接続できない」</li>
+                        <li>「PCが異常に遅い」</li>
+                    </ul>
+                    <p><strong>評価基準：</strong>網羅性(想定される原因を漏れなくカバー)、実用性(現場で即使える具体性)、効率性(最も可能性が高い原因から順に診断)</p>
+                </div>
+
+                <h3>7.3 学校設備保守計画の立案</h3>
+                <div class="info-box">
+                    <h5>想定条件</h5>
+                    <ul>
+                        <li>生徒数: 600名、教員数: 50名</li>
+                        <li>PC台数: 生徒用タブレット600台、教員用PC50台、サーバー3台</li>
+                        <li>プロジェクター: 30台、電子黒板: 10台</li>
+                        <li>予算: 年間200万円(保守費用)</li>
+                    </ul>
+                    <p><strong>策定内容：</strong>定期清掃スケジュール、機器更新計画(5年間)、保守契約の選定、故障予測と予備機確保、緊急時対応フロー</p>
+                </div>
+
+            </section>
+
+            <section class="content-section">
+                <h2>📚 第8章：参考資料とさらなる学習</h2>
+                
+                <h3>8.1 推奨書籍</h3>
+                <div class="info-box">
+                    <ul>
+                        <li><strong>「コンピュータアーキテクチャ入門」(日経BP社)：</strong>初級〜中級、フォン・ノイマン型からRISC/CISCまで体系的解説</li>
+                        <li><strong>「コンピュータの構成と設計 第6版」(パターソン&ヘネシー)：</strong>中級〜上級、世界標準の教科書</li>
+                        <li><strong>「自作PCパーツパーフェクトカタログ2024」(晋遊舎)：</strong>実務向け、最新パーツの仕様・互換性情報</li>
+                    </ul>
+                </div>
+
+                <h3>8.2 オンライン技術資料</h3>
+                <div class="info-box">
+                    <h5>メーカー公式ドキュメント</h5>
+                    <ul>
+                        <li><strong>Intel製品仕様：</strong><a href="https://www.intel.co.jp/content/www/jp/ja/products/docs.html" target="_blank">https://www.intel.co.jp/content/www/jp/ja/products/docs.html</a></li>
+                        <li><strong>AMD製品仕様：</strong><a href="https://www.amd.com/ja/support" target="_blank">https://www.amd.com/ja/support</a></li>
+                        <li><strong>USB-IF（USB規格）：</strong><a href="https://www.usb.org/" target="_blank">https://www.usb.org/</a></li>
+                    </ul>
+                    
+                    <h5>技術解説サイト（日本語）</h5>
+                    <ul>
+                        <li><strong>PC Watch：</strong><a href="https://pc.watch.impress.co.jp/" target="_blank">https://pc.watch.impress.co.jp/</a>（「分解レポート」シリーズ推奨）</li>
+                        <li><strong>@IT ハードウェア基礎講座：</strong><a href="https://atmarkit.itmedia.co.jp/" target="_blank">https://atmarkit.itmedia.co.jp/</a></li>
+                    </ul>
+                </div>
+
+                <h3>8.3 診断・監視ツール(無料)</h3>
+                <div class="info-box">
+                    <table style="width: 100%; border-collapse: collapse; margin-top: 1rem;">
+                        <thead>
+                            <tr style="background-color: #f3f4f6;">
+                                <th style="border: 1px solid #ddd; padding: 8px;">ツール名</th>
+                                <th style="border: 1px solid #ddd; padding: 8px;">用途</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td style="border: 1px solid #ddd; padding: 8px;"><strong>CrystalDiskInfo</strong></td>
+                                <td style="border: 1px solid #ddd; padding: 8px;">HDD/SSD健康状態確認、SMART値表示</td>
+                            </tr>
+                            <tr>
+                                <td style="border: 1px solid #ddd; padding: 8px;"><strong>HWMonitor</strong></td>
+                                <td style="border: 1px solid #ddd; padding: 8px;">CPU/GPU/マザーボード温度監視</td>
+                            </tr>
+                            <tr>
+                                <td style="border: 1px solid #ddd; padding: 8px;"><strong>CPU-Z</strong></td>
+                                <td style="border: 1px solid #ddd; padding: 8px;">CPU詳細情報表示</td>
+                            </tr>
+                            <tr>
+                                <td style="border: 1px solid #ddd; padding: 8px;"><strong>Memtest86+</strong></td>
+                                <td style="border: 1px solid #ddd; padding: 8px;">メモリエラーチェック(起動USBから実行)</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <h3>8.4 関連講座</h3>
+                <div class="info-box">
+                    <ul>
+                        <li><a href="session06.html">第6回：学校のICT環境とハードウェア基礎</a> - 本講座の基礎となる知識</li>
+                        <li><a href="session23.html">第23回：トラブルシューティングの実践</a> - 本講座の知識を実践で応用</li>
+                        <li><a href="session49.html">第49回：コンピュータシステム概論</a> - アーキテクチャの全体像</li>
+                        <li><a href="session50.html">第50回：オペレーティングシステム論</a> - OSとハードウェアの関係</li>
+                        <li><a href="session53.html">第53回：システムプログラミング</a> - ソフトウェアからのハードウェア制御</li>
+                    </ul>
+                </div>
+
+            </section>
+
+            <section class="content-section">
+                <h2>📚 第9章：用語集</h2>
+                
+                <p>本講座で使用する主要な技術用語を五十音順に整理しました。</p>
+
+                <div class="info-box">
+                    <h3>🔤 ア行</h3>
+                    <dl style="margin-left: 1rem;">
+                        <dt><strong>アーキテクチャ(Architecture)</strong></dt>
+                        <dd>コンピュータの基本設計思想と構造。フォン・ノイマン型が代表例。</dd>
+                        
+                        <dt><strong>演算装置(ALU: Arithmetic Logic Unit)</strong></dt>
+                        <dd>CPU内部で算術演算(加減乗除)と論理演算(AND/OR/NOT)を実行する回路。</dd>
+                        
+                        <dt><strong>eMMC(embedded Multi Media Card)</strong></dt>
+                        <dd>フラッシュメモリとコントローラを一体化した小型ストレージ。低速だがコストが安い。</dd>
+                    </dl>
+
+                    <h3>🔤 カ行</h3>
+                    <dl style="margin-left: 1rem;">
+                        <dt><strong>キャッシュメモリ(Cache Memory)</strong></dt>
+                        <dd>CPUとメモリの速度差を埋めるための高速小容量メモリ。L1/L2/L3の階層構造。</dd>
+                        
+                        <dt><strong>クロック周波数(Clock Frequency)</strong></dt>
+                        <dd>CPUの動作速度を示す指標。単位はGHz(ギガヘルツ)。1GHz=10億回/秒。</dd>
+                        
+                        <dt><strong>コア(Core)</strong></dt>
+                        <dd>CPUの演算実行ユニット。マルチコアCPUは複数の命令を同時実行可能。</dd>
+                    </dl>
+
+                    <h3>🔤 サ行</h3>
+                    <dl style="margin-left: 1rem;">
+                        <dt><strong>サーマルグリス(Thermal Grease)</strong></dt>
+                        <dd>CPUとクーラーの接触面に塗布する熱伝導性ペースト。熱抵抗を低減。</dd>
+                        
+                        <dt><strong>サーマルスロットリング(Thermal Throttling)</strong></dt>
+                        <dd>CPU温度上昇時に自動的にクロック周波数を下げて発熱を抑制する保護機能。</dd>
+                        
+                        <dt><strong>制御装置(CU: Control Unit)</strong></dt>
+                        <dd>CPU内部で命令の解釈と実行順序を管理し、各装置へ制御信号を送る回路。</dd>
+                    </dl>
+
+                    <h3>🔤 タ行</h3>
+                    <dl style="margin-left: 1rem;">
+                        <dt><strong>チップセット(Chipset)</strong></dt>
+                        <dd>CPUと周辺デバイス(メモリ、ストレージ、USB等)の間でデータ転送を仲介する集積回路。</dd>
+                        
+                        <dt><strong>TDP(Thermal Design Power)</strong></dt>
+                        <dd>熱設計電力。CPUが通常動作時に発生する熱量の目安。単位はW(ワット)。</dd>
+                        
+                        <dt><strong>TBW(Total Bytes Written)</strong></dt>
+                        <dd>SSDの総書き込み量の保証値。例: 600TBW = 600テラバイトまで書き込み可能。</dd>
+                    </dl>
+
+                    <h3>🔤 ナ行</h3>
+                    <dl style="margin-left: 1rem;">
+                        <dt><strong>NVMe(Non-Volatile Memory Express)</strong></dt>
+                        <dd>PCIe接続SSD向けの高速通信プロトコル。SATA(600MB/s)より10倍以上高速。</dd>
+                    </dl>
+
+                    <h3>🔤 ハ行</h3>
+                    <dl style="margin-left: 1rem;">
+                        <dt><strong>パイプライン処理(Pipelining)</strong></dt>
+                        <dd>複数の命令を異なるステージで同時処理する高速化技術。理論上は毎クロック1命令完了。</dd>
+                        
+                        <dt><strong>BIOS/UEFI(Basic Input/Output System / Unified Extensible Firmware Interface)</strong></dt>
+                        <dd>マザーボードのROMに格納されたファームウェア。ハードウェア初期化とOS起動を担当。</dd>
+                        
+                        <dt><strong>POST(Power-On Self Test)</strong></dt>
+                        <dd>電源投入直後にBIOS/UEFIが実行するハードウェア診断テスト。</dd>
+                        
+                        <dt><strong>フォン・ノイマン型アーキテクチャ(Von Neumann Architecture)</strong></dt>
+                        <dd>プログラムとデータを同一メモリに格納し、逐次実行する方式。現代コンピュータの基本設計。</dd>
+                    </dl>
+
+                    <h3>🔤 マ行</h3>
+                    <dl style="margin-left: 1rem;">
+                        <dt><strong>マザーボード(Motherboard)</strong></dt>
+                        <dd>コンピュータの全ハードウェアを接続する基板。別名: メインボード。</dd>
+                        
+                        <dt><strong>メモリコントローラ(Memory Controller)</strong></dt>
+                        <dd>CPUとメモリ間のデータ転送を管理する回路。現代CPUはCPU内蔵が主流。</dd>
+                    </dl>
+
+                    <h3>🔤 ラ行</h3>
+                    <dl style="margin-left: 1rem;">
+                        <dt><strong>RAM(Random Access Memory)</strong></dt>
+                        <dd>読み書き可能な揮発性メモリ。電源OFF時にデータ消失。主記憶装置として使用。</dd>
+                        
+                        <dt><strong>レジスタ(Register)</strong></dt>
+                        <dd>CPU内部の超高速小容量記憶回路。演算データや命令アドレスを一時保持。</dd>
+                    </dl>
+
+                    <h3>🔤 アルファベット・数字</h3>
+                    <dl style="margin-left: 1rem;">
+                        <dt><strong>80PLUS認証</strong></dt>
+                        <dd>電源ユニットの変換効率(AC→DC)を保証する国際認証。Bronze/Silver/Gold等のランクがある。</dd>
+                        
+                        <dt><strong>DDR4/DDR5(Double Data Rate 4/5)</strong></dt>
+                        <dd>現代の主流メモリ規格。DDR5はDDR4の2倍の転送速度。</dd>
+                        
+                        <dt><strong>DIMM(Dual Inline Memory Module)</strong></dt>
+                        <dd>デスクトップPC用メモリモジュールの標準規格。両面に端子がある。</dd>
+                        
+                        <dt><strong>GIGA端末</strong></dt>
+                        <dd>GIGAスクール構想で児童生徒に1人1台配備されるPC/タブレット端末。</dd>
+                        
+                        <dt><strong>HDD(Hard Disk Drive)</strong></dt>
+                        <dd>磁気ディスクを回転させてデータを読み書きする記憶装置。SSDより低速だが大容量。</dd>
+                        
+                        <dt><strong>HDMI(High-Definition Multimedia Interface)</strong></dt>
+                        <dd>映像・音声をデジタル伝送する標準規格。家電機器との接続で普及。</dd>
+                        
+                        <dt><strong>PCIe(PCI Express)</strong></dt>
+                        <dd>高速拡張バス規格。GPU、NVMe SSD、拡張カード等の接続に使用。</dd>
+                        <dt><strong>PSU(Power Supply Unit)</strong></dt>
+                        <dd>電源ユニット。AC 100VをDC +12V/+5V/+3.3Vに変換する装置。</dd>
+                        
+                        <dt><strong>SATA(Serial ATA)</strong></dt>
+                        <dd>HDD/SSD接続用の規格。最大600MB/s。M.2 NVMeより低速。</dd>
+                        
+                        <dt><strong>SSD(Solid State Drive)</strong></dt>
+                        <dd>フラッシュメモリを使用する記憶装置。HDDより高速・低消費電力・耐衝撃性が高い。</dd>
+                        
+                        <dt><strong>TBW → タ行を参照</strong></dt>
+                        <dt><strong>TDP → タ行を参照</strong></dt>
+                        
+                        <dt><strong>USB(Universal Serial Bus)</strong></dt>
+                        <dd>汎用データ転送・給電規格。USB 2.0(480Mbps)からUSB4(40Gbps)まで。</dd>
+                    </dl>
+                </div>
+
+            </section>
+
+            <section class="content-section">
+                <h2>📚 まとめ</h2>
+                
+                <p>本講座「第54回：計算機ハードウェア」では、コンピュータの内部構造から実践的な診断・保守管理まで、学校現場のICT支援員・教育ICT講師に必要な専門知識を体系的に学習しました。</p>
+
+                <div class="info-box">
+                    <h4>本講座で習得した知識とスキル</h4>
+                    <ul>
+                        <li><strong>理論：</strong>フォン・ノイマン型アーキテクチャの原理と現代CPUへの応用、ハードウェアコンポーネントの役割と相互作用、入出力インターフェースの技術仕様と互換性</li>
+                        <li><strong>実践：</strong>症状別トラブルシューティングの診断手法、定期保守と部品交換のタイミング判断、学校資産としてのライフサイクル管理</li>
+                        <li><strong>管理：</strong>修理 vs 買替の費用対効果分析、予算制約下での優先順位付け、教育活動継続を最優先とした緊急時対応</li>
+                    </ul>
+                </div>
+
+                <div class="point-box">
+                    <h4>継続的成長へのメッセージ</h4>
+                    <p>ハードウェア技術は日進月歩です。本講座で学んだ「基本原理」は不変ですが、「具体的な製品仕様」は数年で刷新されます。</p>
+                    <p>重要なのは以下の3点です：</p>
+                    <ul>
+                        <li><strong>原理原則の理解：</strong>フォン・ノイマン型アーキテクチャ、電気信号の伝達、熱管理の物理法則は変わりません。この基盤があれば、新技術も理解できます。</li>
+                        <li><strong>実践経験の蓄積：</strong>座学だけでは真の理解に至りません。実機を触り、トラブルに遭遇し、試行錯誤する中で「現場の感覚」が身につきます。</li>
+                        <li><strong>学び続ける姿勢：</strong>新しいUSB規格、新世代CPU、次世代インターフェースが登場するたびに、情報をキャッチアップする習慣を持ちましょう。</li>
+                    </ul>
+                </div>
+
+                <div class="warning-box">
+                    <h4>🏫 学校ICT環境を支える専門家として</h4>
+                    <p>ICT支援員・教育ICT講師の皆さんは、「子どもたちの学びを技術で支える」という重要な役割を担っています。ハードウェアの専門知識は、その役割を果たすための強力な武器です。</p>
+                    <ul>
+                        <li><strong>授業が止まらない：</strong>迅速なトラブル対応で、教員と生徒の時間を守る</li>
+                        <li><strong>最適な環境を提案：</strong>技術的知見に基づく機器選定で、限られた予算を有効活用</li>
+                        <li><strong>長期的視点：</strong>計画的な保守管理で、ICT環境の持続可能性を確保</li>
+                    </ul>
+                    <p>本講座で学んだ知識とスキルを、ぜひ明日からの現場で活かしてください。</p>
+                </div>
+
+            </section>
+
+            <!-- セクション間の区切り線が自動的に挿入されます（CSSで定義） -->
+
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 ICT支援員教育講座. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>

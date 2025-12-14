@@ -1,0 +1,1889 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>第51回：データベース論 - ICT支援員教育講座</title>
+    <meta name="description" content="データベースの基本概念から校務支援システムのデータ構造、SQL基礎、バックアップ戦略まで、教育現場でのデータ管理に必要な知識を包括的に学習します。">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/session.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <a href="../index.html" class="logo">ICT支援員教育講座</a>
+            <nav class="navbar">
+                <ul class="nav-menu">
+                    <li><a href="../index.html">ホーム</a></li>
+                    <li><a href="../beginner.html">入門編</a></li>
+                    <li><a href="../intermediate.html">基礎編</a></li>
+                    <li><a href="../advanced.html">中級編</a></li>
+                    <li><a href="../development.html">発展編</a></li>
+                    <li><a href="../exam.html">試験対策</a></li>
+                    <li><a href="../supplement.html" class="active">補完カリキュラム</a></li>
+                    <li><a href="../resources.html">参考資料</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="session-content">
+        <div class="container">
+            <div class="session-header-content">
+                <span class="session-label supplement">補完カリキュラム</span>
+                <h1>第51回：データベース論</h1>
+                <p class="session-meta">情報科学・CS基礎編（全8回）の第3回 | 学習時間目安：120分（講義90分、演習30分） | 難易度：★★★☆☆</p>
+            </div>
+
+            <div class="info-box">
+                <h3>📋 講座概要</h3>
+                <ul>
+                    <li><strong>対象者：</strong>ICT支援員、教育情報化コーディネータ、学校ICT管理者</li>
+                    <li><strong>受講前提：</strong>基礎編（第1回〜第48回）修了、第49回・第50回の履修を推奨、または同等の知識</li>
+                    <li><strong>学習時間：</strong>120分（講義90分、演習30分）</li>
+                    <li><strong>難易度：</strong>★★★☆☆（中級）</li>
+                    <li><strong>最終更新：</strong>2025年12月（広範囲ファクトチェック実施済み）</li>
+                </ul>
+            </div>
+
+            <div class="warning-box">
+                <h3>⚠️ 本講座における情報の取り扱いについて</h3>
+                <ul>
+                    <li><strong>DBMS製品の仕様・機能：</strong>各製品の公式サイトで最新情報をご確認ください。</li>
+                    <li><strong>SQL構文：</strong>DBMS製品により方言（dialect）が存在する場合があります。</li>
+                    <li><strong>教育政策・ガイドライン：</strong>文部科学省等の公式発表をご確認ください。</li>
+                    <li><strong>学習指導要領の評価観点：</strong>令和元年度以降は3観点評価が適用されています。</li>
+                    <li><strong>推奨事項：</strong>各学校・自治体の状況に応じて適切に判断してください。</li>
+                </ul>
+            </div>
+
+            <section class="objectives">
+                <h2>🎯 学習目標</h2>
+                <p>本講座を修了することで、以下のことができるようになります：</p>
+                <ul>
+                    <li>データベースの基本概念と種類（DBMS、リレーショナルDB、NoSQL）を理解し、使い分けができる</li>
+                    <li>リレーショナルデータベースの設計（テーブル設計、主キー・外部キー、正規化）ができる</li>
+                    <li>校務支援システムのデータ構造（児童生徒情報、成績管理、出欠管理）を理解できる</li>
+                    <li>基本的なSQLを用いてデータの取得・挿入・更新・削除ができる</li>
+                    <li>データバックアップとリカバリーの重要性を理解し、3-2-1ルールを説明できる</li>
+                </ul>
+            </section>
+
+            <!-- 本文コンテンツ -->
+            <div class="session-content">
+                
+                <!-- イントロダクション -->
+                <section id="introduction">
+                    <h2>🎯 イントロダクション</h2>
+                    
+                    <p>データベース（Database, DB）は、現代の情報システムを支える基盤技術です。教育現場においても、校務支援システム、学習管理システム（LMS）、GIGA端末の学習ログ管理など、あらゆるシステムがデータベースを利用しています。</p>
+                    
+                    <p>学校では、児童生徒情報、成績データ、出欠記録、健康診断結果、図書貸出記録など、膨大な情報を日常的に扱います。これらを紙ベースやバラバラのExcelファイルで管理するのではなく、体系的に管理するのがデータベースの役割です。</p>
+
+                    <div class="info-box">
+                        <h3>💡 なぜデータベースを学ぶのか？</h3>
+                        <p><strong>ICT支援員にとって、データベースの理解は以下の点で極めて重要です：</strong></p>
+                        <ul>
+                            <li><strong>校務支援システムの仕組みを理解</strong>：システムがどのようにデータを管理しているかを把握</li>
+                            <li><strong>データの整合性を保つ</strong>：入力ミスや不整合を防ぐための知識</li>
+                            <li><strong>バックアップの重要性</strong>：データ損失のリスクと対策を理解</li>
+                            <li><strong>データ活用の基礎</strong>：教育データ分析の前提知識</li>
+                            <li><strong>システム選定への助言</strong>：校務支援システム導入時の仕様確認</li>
+                        </ul>
+                    </div>
+
+                    <div class="point-box">
+                        <h3>🎓 本講座で学ぶこと</h3>
+                        <ol>
+                            <li><strong>データベースの基礎</strong>：定義、DBMS、整合性と冗長性</li>
+                            <li><strong>リレーショナルデータベース</strong>：テーブル構造、主キー・外部キー、正規化</li>
+                            <li><strong>SQL基礎</strong>：データの取得・挿入・更新・削除</li>
+                            <li><strong>校務支援システム</strong>：児童生徒情報、成績管理（3観点評価）、出欠管理</li>
+                            <li><strong>NoSQLデータベース</strong>：種類と教育現場での活用例</li>
+                            <li><strong>バックアップとリカバリー</strong>：3-2-1ルール、復元手順</li>
+                            <li><strong>実践演習</strong>：図書管理システムの設計、SQL演習</li>
+                        </ol>
+                    </div>
+
+                </section>
+
+                <!-- 第1章: データベースの基礎 -->
+                <section id="chapter1">
+                    <h2>第1章：データベースの基礎</h2>
+
+                    <h3>1.1 データベースとは何か</h3>
+                    
+                    <p><strong>データベース（Database, DB）</strong>とは、組織的に整理され、効率的にアクセス・管理できるデータの集合体です。学校現場では、児童生徒情報、成績データ、出欠記録など、膨大な情報を扱います。これらを紙ベースやバラバラのファイルで管理するのではなく、体系的に管理するのがデータベースの役割です。</p>
+
+                    <div class="point-box">
+                        <h3>🎯 データベースの利点</h3>
+                        <ul>
+                            <li><strong>データの一元管理が可能</strong>：散在していたデータを1か所で管理</li>
+                            <li><strong>複数のユーザーが同時にアクセス可能</strong>：担任、管理職、事務職員が同時に利用</li>
+                            <li><strong>データの整合性を保ちやすい</strong>：矛盾や重複を防ぐ仕組み</li>
+                            <li><strong>検索・集計が高速かつ正確</strong>：大量データから必要な情報を素早く取得</li>
+                            <li><strong>セキュリティ管理が容易</strong>：アクセス権限を細かく設定可能</li>
+                        </ul>
+                    </div>
+
+                    <div class="info-box">
+                        <h3>💡 教育現場での具体例</h3>
+                        <p><strong>データベースがない場合の問題：</strong></p>
+                        <ul>
+                            <li>各教員がExcelで個別に成績を管理 → 集計時に転記ミスや計算ミスが発生</li>
+                            <li>児童生徒の住所変更が複数の書類に反映されず → 書類ごとに異なる住所が記載</li>
+                            <li>出欠記録が学級日誌のみ → 学期末の集計に膨大な時間がかかる</li>
+                        </ul>
+                        <p><strong>データベース導入後：</strong></p>
+                        <ul>
+                            <li>成績入力は校務支援システムで一元管理 → 自動集計、通知表・指導要録への自動出力</li>
+                            <li>住所変更は1か所で入力 → 全ての帳票に自動反映</li>
+                            <li>出欠記録は日々システムに入力 → リアルタイムで集計、欠席傾向の早期発見</li>
+                        </ul>
+                    </div>
+
+                    <h3>1.2 DBMS（データベース管理システム）</h3>
+
+                    <p><strong>DBMS（Database Management System）</strong>は、データベースを作成・操作・管理するためのソフトウェアです。</p>
+
+                    <h4>（1）主要なDBMSの種類</h4>
+
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>分類</th>
+                                <th>製品名</th>
+                                <th>特徴</th>
+                                <th>教育現場での利用例</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>商用DBMS</strong></td>
+                                <td>Oracle Database<br>Microsoft SQL Server<br>IBM Db2</td>
+                                <td>高機能、高信頼性<br>有償ライセンス<br>大規模システム向け</td>
+                                <td>自治体統合型校務支援システム<br>教育委員会の基幹システム</td>
+                            </tr>
+                            <tr>
+                                <td><strong>オープンソースDBMS</strong></td>
+                                <td>MySQL<br>PostgreSQL<br>MariaDB</td>
+                                <td>無償<br>コミュニティサポート<br>柔軟なカスタマイズ</td>
+                                <td>学校Webサイト<br>小規模な校務システム<br>学習管理システム（Moodle等）</td>
+                            </tr>
+                            <tr>
+                                <td><strong>軽量DBMS</strong></td>
+                                <td>SQLite</td>
+                                <td>サーバー不要<br>単一ファイル型<br>小規模アプリ向け</td>
+                                <td>スタンドアロンアプリ<br>GIGA端末のローカルデータ</td>
+                            </tr>
+                            <tr>
+                                <td><strong>クラウドDBMS</strong></td>
+                                <td>Amazon RDS<br>Google Cloud SQL<br>Azure SQL Database</td>
+                                <td>サーバー管理不要<br>自動バックアップ<br>スケーラブル</td>
+                                <td>学習eポータル<br>クラウド型校務支援システム<br>MEXCBTデータ管理</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <h4>（2）DBMSの主な機能</h4>
+
+                    <ul>
+                        <li><strong>データの保存・取得・更新・削除（CRUD操作）</strong>：
+                            <ul>
+                                <li><strong>C</strong>reate（作成）: 新しいデータの追加</li>
+                                <li><strong>R</strong>ead（読み取り）: データの検索・表示</li>
+                                <li><strong>U</strong>pdate（更新）: 既存データの変更</li>
+                                <li><strong>D</strong>elete（削除）: 不要なデータの削除</li>
+                            </ul>
+                        </li>
+                        <li><strong>トランザクション管理（データの整合性保証）</strong>：
+                            <ul>
+                                <li>複数の操作をまとめて実行し、途中で失敗した場合は全体をキャンセル（ロールバック）</li>
+                                <li>例：銀行口座の振込（引き落としと入金を両方成功させる、または両方キャンセル）</li>
+                            </ul>
+                        </li>
+                        <li><strong>同時実行制御（複数ユーザーの同時アクセス管理）</strong>：
+                            <ul>
+                                <li>ロック機能により、同じデータを複数人が同時に編集する際の競合を防ぐ</li>
+                            </ul>
+                        </li>
+                        <li><strong>バックアップとリカバリー</strong>：
+                            <ul>
+                                <li>定期的なデータバックアップと、障害発生時の復旧機能</li>
+                            </ul>
+                        </li>
+                        <li><strong>セキュリティとアクセス制御</strong>：
+                            <ul>
+                                <li>ユーザーごとに権限を設定し、不正なアクセスを防止</li>
+                            </ul>
+                        </li>
+                    </ul>
+
+                    <div class="info-box" style="background-color: #fef3c7; border-left-color: #f59e0b;">
+                        <h3>💡 教育現場でのトランザクション例</h3>
+                        <p><strong>成績入力のトランザクション：</strong></p>
+                        <ol>
+                            <li>教員が成績データを入力</li>
+                            <li>システムが評価基準に基づいて自動計算</li>
+                            <li>通知表データに反映</li>
+                            <li>指導要録データに反映</li>
+                        </ol>
+                        <p><strong>途中でエラーが発生した場合：</strong></p>
+                        <ul>
+                            <li>❌ 一部だけ保存されると、データの不整合が発生</li>
+                            <li>✅ トランザクション機能により、すべて成功するか、すべてキャンセルされる</li>
+                        </ul>
+                    </div>
+
+                    <h3>1.3 データの整合性と冗長性</h3>
+
+                    <h4>（1）データの整合性（Data Integrity）</h4>
+
+                    <p><strong>データの整合性</strong>とは、データベース内のデータが正確で一貫性があり、信頼できる状態を保つことです。</p>
+
+                    <p><strong>整合性の種類：</strong></p>
+
+                    <ul>
+                        <li><strong>実体整合性（Entity Integrity）</strong>：各レコードを一意に識別できる（主キーの設定）
+                            <ul>
+                                <li>例：生徒IDは重複してはならない、NULL（空白）であってはならない</li>
+                            </ul>
+                        </li>
+                        <li><strong>参照整合性（Referential Integrity）</strong>：関連するテーブル間のデータの一貫性（外部キーの設定）
+                            <ul>
+                                <li>例：成績テーブルの生徒IDは、生徒情報テーブルに存在する生徒IDでなければならない</li>
+                            </ul>
+                        </li>
+                        <li><strong>ドメイン整合性（Domain Integrity）</strong>：データ型や値の範囲が適切（例：年齢は0〜150の整数）
+                            <ul>
+                                <li>例：学年は1〜6の整数、性別は「男」「女」「その他」のいずれか</li>
+                            </ul>
+                        </li>
+                        <li><strong>ユーザー定義整合性</strong>：業務ルールに基づく制約（例：卒業年度は入学年度より後）
+                            <ul>
+                                <li>例：成績の評価は「A」「B」「C」のいずれか、出欠区分は「出席」「欠席」「遅刻」「早退」「忌引」「出停」のいずれか</li>
+                            </ul>
+                        </li>
+                    </ul>
+
+                    <div class="warning-box">
+                        <h3>⚠️ 整合性が崩れた場合の問題</h3>
+                        <p><strong>教育現場での実例：</strong></p>
+                        <ul>
+                            <li><strong>参照整合性違反</strong>：転出した生徒の成績データが残っており、存在しない生徒IDが参照される</li>
+                            <li><strong>ドメイン整合性違反</strong>：学年に「7」が入力され、通知表出力時にエラーが発生</li>
+                            <li><strong>ユーザー定義整合性違反</strong>：卒業年度が入学年度より前になっており、在籍期間の計算が誤る</li>
+                        </ul>
+                    </div>
+
+                    <h4>（2）データの冗長性（Data Redundancy）</h4>
+
+                    <p><strong>データの冗長性</strong>とは、同じデータが複数の場所に重複して存在することです。</p>
+
+                    <p><strong>冗長性の問題点：</strong></p>
+
+                    <ul>
+                        <li><strong>ストレージの無駄遣い</strong>：同じ情報が何度も保存される</li>
+                        <li><strong>更新時の不整合</strong>：ある場所だけ更新され、他が古いまま残る
+                            <ul>
+                                <li>例：生徒の住所が複数のテーブルに記載されている場合、1か所だけ変更すると不整合が発生</li>
+                            </ul>
+                        </li>
+                        <li><strong>データメンテナンスの複雑化</strong>：変更時に複数の場所を更新する必要がある</li>
+                    </ul>
+
+                    <p><strong>解決策：</strong> データベースの<strong>正規化</strong>によって冗長性を最小化します（第2章で詳しく解説）。</p>
+
+                    <div class="info-box">
+                        <h3>💡 冗長性の例</h3>
+                        <p><strong>問題のある設計（冗長性あり）：</strong></p>
+                        <p>成績テーブルに生徒IDだけでなく、氏名、学年、クラスも保存している場合：</p>
+                        <pre style="background: #f3f4f6; padding: 1rem; border-radius: 0.5rem; overflow-x: auto;">
++----------+----------+------+--------+--------+------+
+| 成績ID   | 生徒ID   | 氏名 | 学年   | クラス | 点数 |
++----------+----------+------+--------+--------+------+
+| G001     | S001     | 山田 | 3      | A      | 85   |
+| G002     | S001     | 山田 | 3      | A      | 92   |
++----------+----------+------+--------+--------+------+</pre>
+                        <p>→ 氏名、学年、クラスが重複して記録されている（冗長性）</p>
+                        
+                        <p><strong>改善後（正規化済み）：</strong></p>
+                        <p>成績テーブルには生徒IDのみを保存し、詳細情報は生徒情報テーブルから参照：</p>
+                        <pre style="background: #f3f4f6; padding: 1rem; border-radius: 0.5rem; overflow-x: auto;">
+【成績テーブル】
++----------+----------+------+
+| 成績ID   | 生徒ID   | 点数 |
++----------+----------+------+
+| G001     | S001     | 85   |
+| G002     | S001     | 92   |
++----------+----------+------+
+
+【生徒情報テーブル】
++----------+------+------+--------+
+| 生徒ID   | 氏名 | 学年 | クラス |
++----------+------+------+--------+
+| S001     | 山田 | 3    | A      |
++----------+------+------+--------+</pre>
+                        <p>→ 氏名、学年、クラスは生徒情報テーブルに1回だけ保存</p>
+                    </div>
+
+                </section>
+
+                <!-- 第2章: リレーショナルデータベース -->
+                <section id="chapter2">
+                    <h2>第2章：リレーショナルデータベース</h2>
+
+                    <h3>2.1 テーブル、レコード、フィールド</h3>
+                    
+                    <p><strong>リレーショナルデータベース（RDB）</strong>は、データを<strong>表（テーブル）</strong>の形式で管理します。</p>
+
+                    <p><strong>基本構造：</strong></p>
+
+                    <pre style="background: #f3f4f6; padding: 1rem; border-radius: 0.5rem; overflow-x: auto;">
+【生徒情報テーブル】
++----------+----------+------+--------+------------+
+| 生徒ID   | 氏名     | 学年 | クラス | 生年月日   |
++----------+----------+------+--------+------------+
+| S001     | 山田太郎 | 3    | A      | 2012-04-15 |
+| S002     | 佐藤花子 | 3    | A      | 2012-07-22 |
+| S003     | 鈴木一郎 | 3    | B      | 2012-05-10 |
++----------+----------+------+--------+------------+</pre>
+
+                    <ul>
+                        <li><strong>テーブル（Table）</strong>：データを格納する表全体</li>
+                        <li><strong>レコード（Record）／行（Row）</strong>：テーブルの1つの行（1人の生徒情報）</li>
+                        <li><strong>フィールド（Field）／列（Column）</strong>：テーブルの1つの列（氏名、学年など）</li>
+                        <li><strong>セル（Cell）</strong>：行と列の交差点にある個々のデータ</li>
+                    </ul>
+
+                    <div class="info-box">
+                        <h3>💡 Excelとの違い</h3>
+                        <p><strong>一見Excelの表と似ていますが、以下の点で異なります：</strong></p>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>項目</th>
+                                    <th>Excel</th>
+                                    <th>リレーショナルDB</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>データ型</td>
+                                    <td>緩い（何でも入力可能）</td>
+                                    <td>厳密（文字列、数値、日付など明確に定義）</td>
+                                </tr>
+                                <tr>
+                                    <td>複数テーブルの関連付け</td>
+                                    <td>VLOOKUP等で手動</td>
+                                    <td>主キー・外部キーで自動</td>
+                                </tr>
+                                <tr>
+                                    <td>同時編集</td>
+                                    <td>制限あり</td>
+                                    <td>複数ユーザーが同時にアクセス可能</td>
+                                </tr>
+                                <tr>
+                                    <td>データ整合性</td>
+                                    <td>ユーザーに依存</td>
+                                    <td>システムが自動的に保証</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <h3>2.2 主キーと外部キー</h3>
+
+                    <h4>（1）主キー（Primary Key, PK）</h4>
+
+                    <p><strong>主キー</strong>は、テーブル内の各レコードを一意に識別するためのフィールドです。</p>
+
+                    <p><strong>主キーの条件：</strong></p>
+                    <ul>
+                        <li><strong>一意性</strong>：重複する値がない</li>
+                        <li><strong>NOT NULL</strong>：空白（NULL）値を持たない</li>
+                        <li><strong>不変性</strong>：値が変更されない</li>
+                    </ul>
+
+                    <div class="point-box">
+                        <h3>🎯 主キーの例</h3>
+                        <p><strong>適切な主キー：</strong></p>
+                        <ul>
+                            <li><strong>生徒ID</strong>：生徒ごとに異なる固有の識別子</li>
+                            <li><strong>教員番号</strong>：教員ごとに割り当てられた番号</li>
+                            <li><strong>書籍ID</strong>：図書館の蔵書管理用のID</li>
+                        </ul>
+                        <p><strong>不適切な主キー：</strong></p>
+                        <ul>
+                            <li>❌ <strong>氏名</strong>：同姓同名の可能性がある</li>
+                            <li>❌ <strong>学年</strong>：複数の生徒が同じ学年</li>
+                            <li>❌ <strong>電話番号</strong>：変更される可能性がある</li>
+                        </ul>
+                    </div>
+
+                    <h4>（2）外部キー（Foreign Key, FK）</h4>
+
+                    <p><strong>外部キー</strong>は、別のテーブルの主キーを参照するフィールドで、テーブル間の関連付けを実現します。外部キーによって<strong>参照整合性</strong>が保たれ、データの一貫性が確保されます。</p>
+
+                    <p><strong>例：成績テーブル</strong></p>
+
+                    <pre style="background: #f3f4f6; padding: 1rem; border-radius: 0.5rem; overflow-x: auto;">
+【成績テーブル】
++----------+---------+--------+------+
+| 成績ID   | 生徒ID  | 科目   | 点数 |
++----------+---------+--------+------+
+| G001     | S001    | 国語   | 85   |
+| G002     | S001    | 算数   | 92   |
+| G003     | S002    | 国語   | 78   |
++----------+---------+--------+------+</pre>
+
+                    <p>この場合、成績テーブルの「生徒ID」は生徒情報テーブルの主キーを参照する<strong>外部キー</strong>です。これにより、成績データと生徒情報が関連付けられます。</p>
+
+                    <div class="warning-box">
+                        <h3>⚠️ 参照整合性違反の例</h3>
+                        <p><strong>外部キーが参照整合性を保つことで、以下のような問題を防ぎます：</strong></p>
+                        <ul>
+                            <li>❌ 存在しない生徒ID「S999」の成績を登録しようとする → エラーで登録拒否</li>
+                            <li>❌ 成績データが残っている生徒を生徒情報テーブルから削除しようとする → エラーで削除拒否</li>
+                        </ul>
+                        <p><strong>これにより、「誰の成績かわからない」という状態を防ぎます。</strong></p>
+                    </div>
+
+                    <h3>2.3 正規化の概念</h3>
+
+                    <p><strong>正規化（Normalization）</strong>とは、データの冗長性を排除し、整合性を保つためにテーブル構造を最適化することです。</p>
+
+                    <h4>（1）非正規形の例（問題あり）</h4>
+
+                    <pre style="background: #fee2e2; padding: 1rem; border-radius: 0.5rem; overflow-x: auto;">
++----------+----------+------------------+------------------+
+| 生徒ID   | 氏名     | 科目             | 点数             |
++----------+----------+------------------+------------------+
+| S001     | 山田太郎 | 国語,算数,理科   | 85,92,78         |
++----------+----------+------------------+------------------+</pre>
+
+                    <p><strong>問題点：</strong></p>
+                    <ul>
+                        <li>1つのセルに複数の値が入っている（科目、点数）</li>
+                        <li>特定の科目の点数を検索・更新するのが困難</li>
+                        <li>集計処理が複雑になる</li>
+                    </ul>
+
+                    <h4>（2）第1正規形（1NF）</h4>
+
+                    <p><strong>第1正規形</strong>は、繰り返し項目を排除し、各セルに単一の値のみを格納します。</p>
+
+                    <pre style="background: #f0fdf4; padding: 1rem; border-radius: 0.5rem; overflow-x: auto;">
++----------+----------+--------+------+
+| 生徒ID   | 氏名     | 科目   | 点数 |
++----------+----------+--------+------+
+| S001     | 山田太郎 | 国語   | 85   |
+| S001     | 山田太郎 | 算数   | 92   |
+| S001     | 山田太郎 | 理科   | 78   |
++----------+----------+--------+------+</pre>
+
+                    <p><strong>改善点：</strong> 各セルに単一の値のみが格納され、検索・更新が容易になった</p>
+                    <p><strong>残る問題：</strong> 氏名が繰り返し出現している（冗長性）</p>
+
+                    <h4>（3）第2正規形（2NF）</h4>
+
+                    <p><strong>第2正規形</strong>は、部分関数従属を排除します。複合主キーの一部にのみ依存する属性を別テーブルに分離します。</p>
+
+                    <p>上記の例では、「氏名」は「生徒ID」のみに依存しているため、別テーブルに分離します。</p>
+
+                    <h4>（4）第3正規形（3NF）</h4>
+
+                    <p><strong>第3正規形</strong>は、推移的関数従属を排除します。主キーではない属性が他の非キー属性に依存する関係を排除します。</p>
+
+                    <p><strong>正規化後：</strong></p>
+
+                    <pre style="background: #f0fdf4; padding: 1rem; border-radius: 0.5rem; overflow-x: auto;">
+【生徒テーブル】
++----------+----------+
+| 生徒ID   | 氏名     |
++----------+----------+
+| S001     | 山田太郎 |
++----------+----------+
+
+【成績テーブル】
++----------+---------+--------+------+
+| 成績ID   | 生徒ID  | 科目   | 点数 |
++----------+---------+--------+------+
+| G001     | S001    | 国語   | 85   |
+| G002     | S001    | 算数   | 92   |
+| G003     | S001    | 理科   | 78   |
++----------+---------+--------+------+</pre>
+
+                    <div class="point-box">
+                        <h3>🎯 正規化のメリット</h3>
+                        <ul>
+                            <li><strong>データの冗長性削減</strong>：同じ情報を何度も保存する必要がない</li>
+                            <li><strong>更新時の不整合防止</strong>：1か所を変更すれば全体に反映される</li>
+                            <li><strong>データの整合性向上</strong>：矛盾するデータが存在しにくい</li>
+                            <li><strong>柔軟なデータ構造</strong>：新しい要件にも対応しやすい</li>
+                        </ul>
+                    </div>
+
+                    <div class="info-box" style="background-color: #fef3c7; border-left-color: #f59e0b;">
+                        <h3>💡 教育現場での正規化の実例</h3>
+                        <p><strong>校務支援システムでの応用：</strong></p>
+                        <ul>
+                            <li><strong>生徒情報テーブル</strong>：生徒ID、氏名、生年月日など基本情報</li>
+                            <li><strong>クラステーブル</strong>：クラスID、学年、組、担任教員ID</li>
+                            <li><strong>在籍テーブル</strong>：生徒ID、クラスID、年度（多対多の関係を管理）</li>
+                            <li><strong>成績テーブル</strong>：成績ID、生徒ID、科目ID、点数</li>
+                        </ul>
+                        <p><strong>生徒が進級してクラスが変わる場合：</strong></p>
+                        <ul>
+                            <li>在籍テーブルに新しいレコードを追加するだけ</li>
+                            <li>過去のクラス情報も履歴として残る</li>
+                            <li>氏名等の基本情報は1か所に保存されているため、更新が容易</li>
+                        </ul>
+                    </div>
+
+                </section>
+
+                <!-- 第3章: SQL基礎 -->
+                <section id="chapter3">
+                    <h2>第3章：SQL（構造化照会言語）の基礎</h2>
+
+                    <h3>3.1 SQLとは</h3>
+                    
+                    <p><strong>SQL（Structured Query Language）</strong>は、リレーショナルデータベースを操作するための標準言語です。</p>
+
+                    <p><strong>SQLの主な分類：</strong></p>
+                    <ul>
+                        <li><strong>DDL（Data Definition Language）</strong>：データ定義言語（CREATE, ALTER, DROP）</li>
+                        <li><strong>DML（Data Manipulation Language）</strong>：データ操作言語（SELECT, INSERT, UPDATE, DELETE）</li>
+                        <li><strong>DCL（Data Control Language）</strong>：データ制御言語（GRANT, REVOKE）</li>
+                        <li><strong>TCL（Transaction Control Language）</strong>：トランザクション制御言語（COMMIT, ROLLBACK）</li>
+                    </ul>
+
+                    <div class="info-box">
+                        <h3>💡 ICT支援員が知っておくべきSQL</h3>
+                        <p><strong>実際にSQL文を書く機会は少ないかもしれませんが、以下の知識は重要です：</strong></p>
+                        <ul>
+                            <li>校務支援システムがどのようにデータを取得・更新しているかを理解</li>
+                            <li>システム障害時の調査や、ベンダーとの技術的なコミュニケーションに役立つ</li>
+                            <li>Google スプレッドシートの QUERY 関数など、SQL風の記述を使う場面がある</li>
+                        </ul>
+                    </div>
+
+                    <h3>3.2 SELECT文（データの取得）</h3>
+
+                    <p><strong>基本構文：</strong></p>
+                    <pre style="background: #1e293b; color: #e2e8f0; padding: 1rem; border-radius: 0.5rem; overflow-x: auto;"><code>SELECT フィールド名 FROM テーブル名 WHERE 条件;</code></pre>
+
+                    <h4>例1：全生徒の情報を取得</h4>
+                    <pre style="background: #1e293b; color: #e2e8f0; padding: 1rem; border-radius: 0.5rem; overflow-x: auto;"><code>SELECT * FROM 生徒情報;</code></pre>
+                    <p><code>*</code> は「すべてのフィールド」を意味します。</p>
+
+                    <h4>例2：3年A組の生徒を取得</h4>
+                    <pre style="background: #1e293b; color: #e2e8f0; padding: 1rem; border-radius: 0.5rem; overflow-x: auto;"><code>SELECT 生徒ID, 氏名 FROM 生徒情報 
+WHERE 学年 = 3 AND クラス = 'A';</code></pre>
+
+                    <h4>例3：国語の点数が80点以上の生徒</h4>
+                    <pre style="background: #1e293b; color: #e2e8f0; padding: 1rem; border-radius: 0.5rem; overflow-x: auto;"><code>SELECT 生徒.氏名, 成績.点数 
+FROM 生徒情報 AS 生徒
+JOIN 成績 ON 生徒.生徒ID = 成績.生徒ID
+WHERE 成績.科目 = '国語' AND 成績.点数 >= 80;</code></pre>
+
+                    <h4>よく使う句</h4>
+                    <ul>
+                        <li><strong>ORDER BY</strong>：並べ替え
+                            <pre style="background: #1e293b; color: #e2e8f0; padding: 1rem; border-radius: 0.5rem; overflow-x: auto;"><code>ORDER BY 点数 DESC  -- 降順（高い順）
+ORDER BY 点数 ASC   -- 昇順（低い順）</code></pre>
+                        </li>
+                        <li><strong>GROUP BY</strong>：グループ化
+                            <pre style="background: #1e293b; color: #e2e8f0; padding: 1rem; border-radius: 0.5rem; overflow-x: auto;"><code>GROUP BY クラス</code></pre>
+                        </li>
+                        <li><strong>HAVING</strong>：グループ化後の条件
+                            <pre style="background: #1e293b; color: #e2e8f0; padding: 1rem; border-radius: 0.5rem; overflow-x: auto;"><code>HAVING AVG(点数) >= 70</code></pre>
+                        </li>
+                        <li><strong>LIMIT</strong>：取得件数の制限
+                            <pre style="background: #1e293b; color: #e2e8f0; padding: 1rem; border-radius: 0.5rem; overflow-x: auto;"><code>LIMIT 10</code></pre>
+                        </li>
+                    </ul>
+
+                    <h3>3.3 INSERT、UPDATE、DELETE</h3>
+
+                    <h4>（1）INSERT（データの挿入）</h4>
+
+                    <pre style="background: #1e293b; color: #e2e8f0; padding: 1rem; border-radius: 0.5rem; overflow-x: auto;"><code>INSERT INTO 生徒情報 (生徒ID, 氏名, 学年, クラス) 
+VALUES ('S004', '高橋美咲', 3, 'B');</code></pre>
+
+                    <h4>（2）UPDATE（データの更新）</h4>
+
+                    <pre style="background: #1e293b; color: #e2e8f0; padding: 1rem; border-radius: 0.5rem; overflow-x: auto;"><code>UPDATE 生徒情報 
+SET クラス = 'C' 
+WHERE 生徒ID = 'S004';</code></pre>
+
+                    <h4>（3）DELETE（データの削除）</h4>
+
+                    <pre style="background: #1e293b; color: #e2e8f0; padding: 1rem; border-radius: 0.5rem; overflow-x: auto;"><code>DELETE FROM 生徒情報 
+WHERE 生徒ID = 'S004';</code></pre>
+
+                    <div class="warning-box">
+                        <h3>⚠️ 注意点</h3>
+                        <ul>
+                            <li><strong>WHERE句を忘れると全レコードが対象になる</strong>：
+                                <pre style="background: #1e293b; color: #e2e8f0; padding: 1rem; border-radius: 0.5rem; overflow-x: auto;"><code>DELETE FROM 生徒情報;  -- 全データが削除される！</code></pre>
+                            </li>
+                            <li><strong>削除前は必ずバックアップを取る</strong></li>
+                            <li><strong>本番環境では慎重に実行する</strong>：テスト環境で動作確認してから</li>
+                            <li><strong>トランザクションを使う</strong>：間違えた場合にROLLBACKできるように</li>
+                        </ul>
+                    </div>
+
+                    <h3>3.4 簡単なクエリの作成</h3>
+
+                    <h4>実践例：クラス別の平均点を求める</h4>
+
+                    <pre style="background: #1e293b; color: #e2e8f0; padding: 1rem; border-radius: 0.5rem; overflow-x: auto;"><code>SELECT 
+  生徒情報.クラス,
+  AVG(成績.点数) AS 平均点,
+  COUNT(*) AS 人数
+FROM 生徒情報
+JOIN 成績 ON 生徒情報.生徒ID = 成績.生徒ID
+WHERE 成績.科目 = '算数'
+GROUP BY 生徒情報.クラス
+ORDER BY 平均点 DESC;</code></pre>
+
+                    <p><strong>結果イメージ：</strong></p>
+                    <pre style="background: #f3f4f6; padding: 1rem; border-radius: 0.5rem; overflow-x: auto;">
++--------+----------+------+
+| クラス | 平均点   | 人数 |
++--------+----------+------+
+| A      | 85.5     | 30   |
+| B      | 82.3     | 28   |
+| C      | 79.8     | 29   |
++--------+----------+------+</pre>
+
+                    <div class="point-box">
+                        <h3>🎯 教育現場でのSQLクエリ例</h3>
+                        <p><strong>1. 欠席が多い生徒を抽出</strong></p>
+                        <pre style="background: #1e293b; color: #e2e8f0; padding: 1rem; border-radius: 0.5rem; overflow-x: auto;"><code>SELECT 
+  生徒情報.氏名,
+  COUNT(*) AS 欠席日数
+FROM 出欠記録
+JOIN 生徒情報 ON 出欠記録.生徒ID = 生徒情報.生徒ID
+WHERE 出欠記録.出欠区分 = '欠席'
+  AND 出欠記録.記録日 >= '2025-04-01'
+GROUP BY 生徒情報.氏名
+HAVING COUNT(*) >= 10
+ORDER BY 欠席日数 DESC;</code></pre>
+
+                        <p><strong>2. 図書の貸出ランキング</strong></p>
+                        <pre style="background: #1e293b; color: #e2e8f0; padding: 1rem; border-radius: 0.5rem; overflow-x: auto;"><code>SELECT 
+  蔵書.タイトル,
+  蔵書.著者,
+  COUNT(*) AS 貸出回数
+FROM 貸出記録
+JOIN 蔵書 ON 貸出記録.書籍ID = 蔵書.書籍ID
+WHERE 貸出記録.貸出日 >= '2025-04-01'
+GROUP BY 蔵書.タイトル, 蔵書.著者
+ORDER BY 貸出回数 DESC
+LIMIT 10;</code></pre>
+                    </div>
+
+                </section>
+
+                <!-- 第4章: 校務支援システムのデータ構造 -->
+                <section id="chapter4">
+                    <h2>第4章：校務支援システムのデータ構造</h2>
+
+                    <h3>4.1 児童生徒情報の管理</h3>
+                    
+                    <p>校務支援システムの中核となるのが児童生徒情報です。</p>
+
+                    <h4>児童生徒マスタテーブルの例</h4>
+
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>フィールド名</th>
+                                <th>データ型</th>
+                                <th>説明</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>児童生徒ID</td>
+                                <td>文字列(PK)</td>
+                                <td>一意識別子</td>
+                            </tr>
+                            <tr>
+                                <td>氏名</td>
+                                <td>文字列</td>
+                                <td>フルネーム</td>
+                            </tr>
+                            <tr>
+                                <td>氏名カナ</td>
+                                <td>文字列</td>
+                                <td>フリガナ</td>
+                            </tr>
+                            <tr>
+                                <td>性別</td>
+                                <td>文字列</td>
+                                <td>男/女/その他</td>
+                            </tr>
+                            <tr>
+                                <td>生年月日</td>
+                                <td>日付</td>
+                                <td>生年月日</td>
+                            </tr>
+                            <tr>
+                                <td>入学年度</td>
+                                <td>整数</td>
+                                <td>入学年度</td>
+                            </tr>
+                            <tr>
+                                <td>現在学年</td>
+                                <td>整数</td>
+                                <td>現在の学年</td>
+                            </tr>
+                            <tr>
+                                <td>クラスID</td>
+                                <td>文字列(FK)</td>
+                                <td>クラステーブルへの参照</td>
+                            </tr>
+                            <tr>
+                                <td>保護者ID</td>
+                                <td>文字列(FK)</td>
+                                <td>保護者テーブルへの参照</td>
+                            </tr>
+                            <tr>
+                                <td>住所</td>
+                                <td>文字列</td>
+                                <td>現住所</td>
+                            </tr>
+                            <tr>
+                                <td>緊急連絡先</td>
+                                <td>文字列</td>
+                                <td>電話番号</td>
+                            </tr>
+                            <tr>
+                                <td>アレルギー情報</td>
+                                <td>テキスト</td>
+                                <td>アレルギー詳細</td>
+                            </tr>
+                            <tr>
+                                <td>在籍状態</td>
+                                <td>文字列</td>
+                                <td>在籍/転出/卒業</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <p><strong>関連テーブル：</strong></p>
+                    <ul>
+                        <li><strong>クラステーブル</strong>：クラスID、学年、組、担任教員ID</li>
+                        <li><strong>保護者テーブル</strong>：保護者ID、保護者氏名、続柄、連絡先</li>
+                        <li><strong>住所履歴テーブル</strong>：転居記録（履歴管理）</li>
+                    </ul>
+
+                    <h3>4.2 成績データの管理</h3>
+
+                    <div class="warning-box" style="background-color: #fef3c7; border-left-color: #f59e0b;">
+                        <h3>【重要】学習指導要領改訂と評価観点の変更</h3>
+                        <p>平成29年〜31年（2017年〜2019年）の学習指導要領改訂により、<strong>観点別評価が4観点から3観点に変更</strong>されました。</p>
+                        
+                        <p><strong>改訂前（旧4観点）：</strong></p>
+                        <ol>
+                            <li>関心・意欲・態度</li>
+                            <li>思考・判断・表現</li>
+                            <li>技能</li>
+                            <li>知識・理解</li>
+                        </ol>
+
+                        <p><strong>改訂後（新3観点）：</strong></p>
+                        <ol>
+                            <li><strong>知識・技能</strong></li>
+                            <li><strong>思考・判断・表現</strong></li>
+                            <li><strong>主体的に学習に取り組む態度</strong></li>
+                        </ol>
+
+                        <p>この変更は、資質・能力の3つの柱（「知識及び技能」「思考力、判断力、表現力等」「学びに向かう力、人間性等」）に対応するものです。</p>
+                    </div>
+
+                    <h4>成績テーブルの設計例</h4>
+
+                    <p><strong>【評価マスタテーブル】</strong></p>
+                    <ul>
+                        <li>評価ID（PK）</li>
+                        <li>学年</li>
+                        <li>科目名</li>
+                        <li>評価観点（知識・技能、思考・判断・表現、主体的に学習に取り組む態度）</li>
+                        <li>評価基準</li>
+                        <li>適用開始年度</li>
+                    </ul>
+
+                    <p><strong>【成績記録テーブル】</strong></p>
+                    <ul>
+                        <li>成績記録ID（PK）</li>
+                        <li>児童生徒ID（FK）</li>
+                        <li>評価ID（FK）</li>
+                        <li>学期</li>
+                        <li>評価値（A/B/C または 数値）</li>
+                        <li>所見</li>
+                        <li>記録日時</li>
+                        <li>記録教員ID（FK）</li>
+                    </ul>
+
+                    <div class="point-box">
+                        <h3>🎯 考慮すべきポイント</h3>
+                        <ul>
+                            <li><strong>学習指導要領に基づく評価観点の設定</strong>（3観点）</li>
+                            <li><strong>学期ごと、単元ごとの記録</strong></li>
+                            <li><strong>教科ごとの評価方法の違い</strong></li>
+                            <li><strong>絶対評価の実施</strong></li>
+                            <li><strong>通知表・指導要録への出力形式</strong></li>
+                        </ul>
+                    </div>
+
+                    <h3>4.3 出欠データの管理</h3>
+
+                    <p>日々の出欠記録を正確に管理します。</p>
+
+                    <h4>出欠記録テーブルの例</h4>
+
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>フィールド名</th>
+                                <th>データ型</th>
+                                <th>説明</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>出欠記録ID</td>
+                                <td>整数(PK)</td>
+                                <td>自動採番</td>
+                            </tr>
+                            <tr>
+                                <td>児童生徒ID</td>
+                                <td>文字列(FK)</td>
+                                <td>対象児童生徒</td>
+                            </tr>
+                            <tr>
+                                <td>記録日</td>
+                                <td>日付</td>
+                                <td>出欠日</td>
+                            </tr>
+                            <tr>
+                                <td>時限</td>
+                                <td>整数</td>
+                                <td>何時間目か</td>
+                            </tr>
+                            <tr>
+                                <td>出欠区分</td>
+                                <td>文字列</td>
+                                <td>出席/欠席/遅刻/早退/忌引/出停</td>
+                            </tr>
+                            <tr>
+                                <td>理由</td>
+                                <td>テキスト</td>
+                                <td>欠席理由など</td>
+                            </tr>
+                            <tr>
+                                <td>記録者ID</td>
+                                <td>文字列(FK)</td>
+                                <td>記録した教員</td>
+                            </tr>
+                            <tr>
+                                <td>記録日時</td>
+                                <td>日時</td>
+                                <td>記録タイムスタンプ</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <h4>集計のためのビュー作成例</h4>
+
+                    <pre style="background: #1e293b; color: #e2e8f0; padding: 1rem; border-radius: 0.5rem; overflow-x: auto;"><code>CREATE VIEW 月別出欠集計 AS
+SELECT 
+  児童生徒ID,
+  YEAR(記録日) AS 年度,
+  MONTH(記録日) AS 月,
+  SUM(CASE WHEN 出欠区分 = '出席' THEN 1 ELSE 0 END) AS 出席日数,
+  SUM(CASE WHEN 出欠区分 = '欠席' THEN 1 ELSE 0 END) AS 欠席日数,
+  SUM(CASE WHEN 出欠区分 = '遅刻' THEN 1 ELSE 0 END) AS 遅刻回数
+FROM 出欠記録
+GROUP BY 児童生徒ID, YEAR(記録日), MONTH(記録日);</code></pre>
+
+                    <h3>4.4 個人情報保護の観点</h3>
+
+                    <p>校務支援システムは機微な個人情報を扱うため、データベース設計段階から保護対策が必要です。</p>
+
+                    <div class="info-box">
+                        <h3>📌 文部科学省「教育情報セキュリティポリシーに関するガイドライン」</h3>
+                        <p><strong>令和6年（2024年）3月に改訂された第5回改訂版</strong>では、GIGAスクール構想の進展を踏まえたセキュリティ対策が強化されています。</p>
+                    </div>
+
+                    <h4>技術的対策</h4>
+
+                    <p><strong>1. アクセス制御</strong></p>
+                    <ul>
+                        <li>ユーザーごとの権限設定（教員、管理職、事務職員）</li>
+                        <li>閲覧・編集・削除権限の分離</li>
+                        <li>SQLでのGRANT/REVOKE制御</li>
+                    </ul>
+
+                    <pre style="background: #1e293b; color: #e2e8f0; padding: 1rem; border-radius: 0.5rem; overflow-x: auto;"><code>-- 例：一般教員には自分のクラスのみ閲覧権限
+GRANT SELECT ON 生徒情報 
+TO 教員ユーザー 
+WHERE クラスID = '担当クラス';</code></pre>
+
+                    <p><strong>2. データの暗号化</strong></p>
+                    <ul>
+                        <li>通信の暗号化（SSL/TLS）</li>
+                        <li>データベース内の機密情報の暗号化</li>
+                        <li>パスワードのハッシュ化（不可逆的な暗号化）</li>
+                    </ul>
+
+                    <p><strong>3. 監査ログ（アクセスログ）</strong></p>
+                    <ul>
+                        <li>全てのアクセスと操作の記録</li>
+                        <li>いつ、誰が、何を、どうしたかを追跡</li>
+                    </ul>
+
+                    <p><strong>【監査ログテーブル】</strong></p>
+                    <ul>
+                        <li>ログID（PK）</li>
+                        <li>ユーザーID</li>
+                        <li>操作種別（SELECT/INSERT/UPDATE/DELETE）</li>
+                        <li>テーブル名</li>
+                        <li>レコードID</li>
+                        <li>操作日時</li>
+                        <li>IPアドレス</li>
+                    </ul>
+
+                    <p><strong>4. データマスキング</strong></p>
+                    <ul>
+                        <li>開発環境や検証環境では個人情報を仮名化</li>
+                        <li>統計処理時の個人情報の匿名化</li>
+                    </ul>
+
+                    <h4>運用的対策</h4>
+                    <ul>
+                        <li>定期的なアクセス権の見直し</li>
+                        <li>パスワードポリシーの徹底</li>
+                        <li>退職者のアカウント即時削除</li>
+                        <li>データの持ち出し制限</li>
+                        <li>多要素認証（MFA）の導入</li>
+                    </ul>
+
+                </section>
+
+                <!-- 第5章: NoSQLデータベース -->
+                <section id="chapter5">
+                    <h2>第5章：NoSQLデータベース</h2>
+
+                    <h3>5.1 NoSQLとは</h3>
+                    
+                    <p><strong>NoSQL（Not Only SQL）</strong>は、リレーショナルデータベース以外のデータベースの総称です。固定されたスキーマを必要とせず、柔軟なデータ構造に対応できることが特徴です。</p>
+
+                    <h4>NoSQLの種類</h4>
+
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>種類</th>
+                                <th>代表的な製品</th>
+                                <th>特徴</th>
+                                <th>教育現場での用途例</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>ドキュメント型</strong></td>
+                                <td>MongoDB<br>Firestore</td>
+                                <td>JSON/BSON形式でデータを保存<br>柔軟なスキーマ設計</td>
+                                <td>CMS、カタログ管理<br>学習ログ、教材管理</td>
+                            </tr>
+                            <tr>
+                                <td><strong>キー・バリュー型</strong></td>
+                                <td>Redis<br>DynamoDB</td>
+                                <td>シンプルなキーと値のペア<br>高速なデータアクセス</td>
+                                <td>セッション管理<br>キャッシュ</td>
+                            </tr>
+                            <tr>
+                                <td><strong>カラム指向型</strong></td>
+                                <td>Cassandra<br>HBase</td>
+                                <td>列単位でデータを保存<br>大規模データの分析に適する</td>
+                                <td>時系列データ<br>ログ分析</td>
+                            </tr>
+                            <tr>
+                                <td><strong>グラフ型</strong></td>
+                                <td>Neo4j</td>
+                                <td>ノードと関係性を表現<br>ソーシャルネットワーク分析</td>
+                                <td>推薦システム<br>ナレッジグラフ</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <h3>5.2 クラウドサービスでの利用</h3>
+
+                    <h4>（1）Google Firestore（ドキュメント型）</h4>
+
+                    <p><strong>教育現場での活用例：学習ログの記録</strong></p>
+
+                    <pre style="background: #1e293b; color: #e2e8f0; padding: 1rem; border-radius: 0.5rem; overflow-x: auto;"><code>// Firestoreでの学習記録の例
+{
+  studentId: "S001",
+  subject: "算数",
+  timestamp: "2025-11-23T10:30:00Z",
+  activities: [
+    {
+      type: "exercise",
+      problemId: "P123",
+      answer: "42",
+      isCorrect: true,
+      timeSpent: 120
+    }
+  ],
+  deviceInfo: {
+    type: "tablet",
+    os: "iPadOS"
+  }
+}</code></pre>
+
+                    <p><strong>Firestoreの特徴：</strong></p>
+                    <ul>
+                        <li>リアルタイムデータ同期</li>
+                        <li>オフライン対応</li>
+                        <li>自動スケーリング</li>
+                        <li>Googleアカウントとの統合</li>
+                        <li>マルチリージョンで99.999%の可用性</li>
+                    </ul>
+
+                    <h4>（2）MongoDB</h4>
+
+                    <p>柔軟なスキーマ設計が可能で、以下のような用途に適しています：</p>
+                    <ul>
+                        <li>学習教材のコンテンツ管理</li>
+                        <li>多様な形式のポートフォリオ保存</li>
+                        <li>IoT機器からのセンサーデータ蓄積</li>
+                    </ul>
+
+                    <h4>（3）RDBとNoSQLの使い分け</h4>
+
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>特性</th>
+                                <th>RDB（SQL）</th>
+                                <th>NoSQL</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>データ構造</strong></td>
+                                <td>固定的な表形式</td>
+                                <td>柔軟な形式（JSON等）</td>
+                            </tr>
+                            <tr>
+                                <td><strong>スケーラビリティ</strong></td>
+                                <td>垂直方向（サーバー強化）</td>
+                                <td>水平方向（台数増加）</td>
+                            </tr>
+                            <tr>
+                                <td><strong>トランザクション</strong></td>
+                                <td>強力なACID保証</td>
+                                <td>最終的整合性（BASE）</td>
+                            </tr>
+                            <tr>
+                                <td><strong>適用例</strong></td>
+                                <td>校務支援システム<br>成績管理</td>
+                                <td>学習ログ<br>教材管理</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <div class="info-box">
+                        <h3>💡 ACID vs BASE</h3>
+                        <p><strong>ACID（RDBの特性）：</strong></p>
+                        <ul>
+                            <li><strong>A</strong>tomicity（原子性）：全て成功するか、全て失敗するか</li>
+                            <li><strong>C</strong>onsistency（一貫性）：常に整合性のある状態</li>
+                            <li><strong>I</strong>solation（独立性）：トランザクションが互いに影響しない</li>
+                            <li><strong>D</strong>urability（永続性）：コミット後は永続的に保存</li>
+                        </ul>
+
+                        <p><strong>BASE（NoSQLの特性）：</strong></p>
+                        <ul>
+                            <li><strong>B</strong>asically <strong>A</strong>vailable（基本的に利用可能）</li>
+                            <li><strong>S</strong>oft state（柔軟な状態）</li>
+                            <li><strong>E</strong>ventually consistent（最終的整合性）</li>
+                        </ul>
+                    </div>
+
+                </section>
+
+                <!-- 第6章: データバックアップとリカバリー -->
+                <section id="chapter6">
+                    <h2>第6章：データバックアップとリカバリー</h2>
+
+                    <h3>6.1 バックアップの重要性</h3>
+                    
+                    <p>学校データは失われてはならない重要な資産です。</p>
+
+                    <p><strong>バックアップが必要な理由：</strong></p>
+                    <ul>
+                        <li>ハードウェア障害（ディスク故障、サーバー停止）</li>
+                        <li>ソフトウェア障害（バグ、不正操作）</li>
+                        <li>人的ミス（誤削除、誤更新）</li>
+                        <li>災害（火災、地震、水害）</li>
+                        <li>セキュリティ侵害（ランサムウェア、不正アクセス）</li>
+                    </ul>
+
+                    <div class="point-box">
+                        <h3>🎯 バックアップの3-2-1ルール</h3>
+                        <ul>
+                            <li><strong>3</strong>つのデータコピーを保持（本番用1つ+バックアップ2つ）</li>
+                            <li><strong>2</strong>種類の異なるメディアに保存（例：ディスクとテープ）</li>
+                            <li><strong>1</strong>つはオフサイト（遠隔地）に保管</li>
+                        </ul>
+                        <p style="margin-top: 1rem;"><strong>近年は3-2-1-1-0ルールに拡張されています：</strong></p>
+                        <ul>
+                            <li>さらに<strong>1</strong>つのオフラインまたはイミュータブル（変更不可）コピー</li>
+                            <li>バックアップからのリストア時にエラーが<strong>0</strong>であることを確認</li>
+                        </ul>
+                    </div>
+
+                    <h3>6.2 バックアップの種類</h3>
+
+                    <h4>（1）フルバックアップ</h4>
+                    <ul>
+                        <li>全データを完全にコピー</li>
+                        <li>復元が簡単だが時間とストレージを消費</li>
+                        <li>基準となるバックアップ</li>
+                    </ul>
+
+                    <h4>（2）差分バックアップ</h4>
+                    <ul>
+                        <li>前回のフルバックアップ以降の変更分のみ</li>
+                        <li>フルバックアップと最新の差分で復元</li>
+                        <li>復元時間は中程度</li>
+                    </ul>
+
+                    <h4>（3）増分バックアップ</h4>
+                    <ul>
+                        <li>前回のバックアップ（フルまたは増分）以降の変更分のみ</li>
+                        <li>ストレージ効率が良いが復元が複雑</li>
+                        <li>フルバックアップと全ての増分を順番に復元</li>
+                    </ul>
+
+                    <h4>比較表</h4>
+
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>バックアップ種類</th>
+                                <th>バックアップ時間</th>
+                                <th>ストレージ使用量</th>
+                                <th>復元時間</th>
+                                <th>復元の複雑さ</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>フル</strong></td>
+                                <td>長い</td>
+                                <td>大きい</td>
+                                <td>短い</td>
+                                <td>簡単</td>
+                            </tr>
+                            <tr>
+                                <td><strong>差分</strong></td>
+                                <td>中程度</td>
+                                <td>中程度</td>
+                                <td>中程度</td>
+                                <td>中程度</td>
+                            </tr>
+                            <tr>
+                                <td><strong>増分</strong></td>
+                                <td>短い</td>
+                                <td>小さい</td>
+                                <td>長い</td>
+                                <td>複雑</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <div class="info-box" style="background-color: #fef3c7; border-left-color: #f59e0b;">
+                        <h3>💡 バックアップスケジュール例</h3>
+                        <ul>
+                            <li><strong>毎日</strong>：増分バックアップ（深夜2:00）</li>
+                            <li><strong>毎週</strong>：差分バックアップ（日曜深夜）</li>
+                            <li><strong>毎月</strong>：フルバックアップ（月末）</li>
+                            <li><strong>学期末</strong>：フルバックアップをオフサイト保管</li>
+                        </ul>
+                    </div>
+
+                    <h3>6.3 復元手順</h3>
+
+                    <p><strong>リカバリーの基本手順：</strong></p>
+
+                    <ol>
+                        <li><strong>事象の確認</strong>
+                            <ul>
+                                <li>何が失われたか特定</li>
+                                <li>影響範囲の調査</li>
+                                <li>復元時点の決定（RPO：目標復旧時点）</li>
+                            </ul>
+                        </li>
+                        <li><strong>適切なバックアップの選択</strong>
+                            <ul>
+                                <li>復元時点の決定</li>
+                                <li>必要なバックアップファイルの確認</li>
+                            </ul>
+                        </li>
+                        <li><strong>復元の実行</strong>
+                            <pre style="background: #1e293b; color: #e2e8f0; padding: 1rem; border-radius: 0.5rem; overflow-x: auto;"><code>-- MySQLでの復元例
+mysql -u root -p データベース名 < backup_file.sql</code></pre>
+                        </li>
+                        <li><strong>整合性の検証</strong>
+                            <ul>
+                                <li>データの完全性チェック</li>
+                                <li>アプリケーションの動作確認</li>
+                                <li>ユーザー受入テスト</li>
+                            </ul>
+                        </li>
+                        <li><strong>ログの確認と記録</strong>
+                            <ul>
+                                <li>復元作業の記録</li>
+                                <li>再発防止策の検討</li>
+                            </ul>
+                        </li>
+                    </ol>
+
+                    <div class="warning-box">
+                        <h3>⚠️ RTO と RPO</h3>
+                        <ul>
+                            <li><strong>RTO（Recovery Time Objective）</strong>：目標復旧時間<br>
+                                → システム停止から復旧までの許容時間</li>
+                            <li><strong>RPO（Recovery Point Objective）</strong>：目標復旧時点<br>
+                                → どの時点のデータまで復旧するか</li>
+                        </ul>
+                        <p style="margin-top: 1rem;"><strong>例：</strong> 校務支援システムのRTO=4時間、RPO=24時間の場合<br>
+                        → 障害発生から4時間以内に復旧、前日のデータまで復元できれば許容範囲</p>
+                    </div>
+
+                    <div class="point-box">
+                        <h3>🎯 復元テストの実施</h3>
+                        <ul>
+                            <li>定期的に復元テストを実施（年2回以上）</li>
+                            <li>テスト環境での復元確認</li>
+                            <li>復元手順書の更新</li>
+                            <li><strong>「テストなしのバックアップは存在しないも同然」</strong></li>
+                        </ul>
+                    </div>
+
+                    <h3>6.4 データ移行</h3>
+
+                    <p>システム更改時のデータ移行手順は以下の通りです。</p>
+
+                    <h4>（1）移行計画の策定</h4>
+                    <ul>
+                        <li>移行対象データの洗い出し</li>
+                        <li>移行スケジュールの策定</li>
+                        <li>ロールバック計画の準備</li>
+                        <li>関係者への周知と合意形成</li>
+                    </ul>
+
+                    <h4>（2）データクレンジング</h4>
+                    <p>移行前にデータを整理・修正します。</p>
+                    <ul>
+                        <li><strong>不要データの削除</strong>：卒業生の古いデータなど</li>
+                        <li><strong>データ形式の統一</strong>：半角・全角、日付形式の統一</li>
+                        <li><strong>矛盾データの修正</strong>：存在しないクラスIDへの参照など</li>
+                        <li><strong>重複データの統合</strong>：同一人物の重複レコード整理</li>
+                    </ul>
+
+                    <h4>（3）移行ツールの準備</h4>
+
+                    <p><strong>CSV形式でのエクスポート例：</strong></p>
+                    <pre style="background: #1e293b; color: #e2e8f0; padding: 1rem; border-radius: 0.5rem; overflow-x: auto;"><code>-- CSV形式でエクスポート
+SELECT * INTO OUTFILE '/tmp/students.csv'
+FIELDS TERMINATED BY ',' 
+ENCLOSED BY '"'
+LINES TERMINATED BY '\n'
+FROM 生徒情報;</code></pre>
+
+                    <p><strong>新システムへインポート例：</strong></p>
+                    <pre style="background: #1e293b; color: #e2e8f0; padding: 1rem; border-radius: 0.5rem; overflow-x: auto;"><code>-- 新システムへインポート
+LOAD DATA INFILE '/tmp/students.csv'
+INTO TABLE 生徒情報_新
+FIELDS TERMINATED BY ',' 
+ENCLOSED BY '"'
+LINES TERMINATED BY '\n'
+IGNORE 1 ROWS;  -- ヘッダー行をスキップ</code></pre>
+
+                    <h4>（4）段階的移行</h4>
+                    <ol>
+                        <li><strong>テストデータでの検証</strong>：少量のテストデータで動作確認</li>
+                        <li><strong>一部データでの本番移行</strong>：特定の学年やクラスのみ先行移行</li>
+                        <li><strong>全データの移行</strong>：問題がなければ全データを移行</li>
+                    </ol>
+
+                    <h4>（5）並行運用と検証</h4>
+                    <ul>
+                        <li><strong>旧システムと新システムの並行稼働</strong></li>
+                        <li><strong>データの整合性確認</strong>：両システムで同じ結果が得られるか</li>
+                        <li><strong>ユーザー受入テスト</strong>：実際の利用者による動作確認</li>
+                        <li><strong>一定期間の監視</strong>：移行後の問題発生に備える</li>
+                    </ul>
+
+                    <div class="warning-box">
+                        <h3>⚠️ データ移行の注意点</h3>
+                        <ul>
+                            <li><strong>必ず移行前のバックアップを取得</strong></li>
+                            <li><strong>外部キー制約違反のチェック</strong>：参照先のデータが存在するか確認</li>
+                            <li><strong>文字コードの統一</strong>：文字化けを防ぐ</li>
+                            <li><strong>個人情報の取り扱いに注意</strong>：移行データの保管・廃棄方法</li>
+                            <li><strong>ロールバック手順の準備</strong>：問題発生時に元に戻せるようにする</li>
+                        </ul>
+                    </div>
+
+                    <div class="info-box" style="background-color: #f0f9ff; border-left-color: #0ea5e9;">
+                        <h3>💡 ICT支援員の役割</h3>
+                        <p>システム更改時、ICT支援員は以下のような役割を果たします：</p>
+                        <ul>
+                            <li>先生方への移行スケジュールの周知</li>
+                            <li>データ入力作業の支援</li>
+                            <li>新旧システムの操作方法の比較説明</li>
+                            <li>移行後のトラブル初動対応</li>
+                            <li>ベンダーと学校の橋渡し</li>
+                        </ul>
+                    </div>
+
+                </section>
+
+                <!-- 第7章: 実践演習 -->
+                <section id="chapter7" class="section-exercise">
+                    <h2>第7章：実践演習</h2>
+
+                    <h3>7.1 図書管理システムのデータベース設計</h3>
+
+                    <div class="point-box" style="background: #f0f9ff; border-left-color: #0ea5e9;">
+                        <h3>📝 演習課題</h3>
+                        <p><strong>学校図書館の管理システムを設計してください。</strong></p>
+                        <p>以下のテーブルを含むER図を作成し、主キーと外部キーを明確にしてください。</p>
+                    </div>
+
+                    <h4>必要なテーブル</h4>
+
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>テーブル名</th>
+                                <th>格納する情報</th>
+                                <th>主な項目例</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>蔵書マスタ</strong></td>
+                                <td>所蔵している書籍の情報</td>
+                                <td>書籍ID、タイトル、著者、出版社、ISBN、分類番号</td>
+                            </tr>
+                            <tr>
+                                <td><strong>利用者マスタ</strong></td>
+                                <td>図書館利用者の情報</td>
+                                <td>利用者ID、氏名、学年、クラス、連絡先</td>
+                            </tr>
+                            <tr>
+                                <td><strong>貸出記録</strong></td>
+                                <td>書籍の貸出・返却履歴</td>
+                                <td>貸出ID、書籍ID、利用者ID、貸出日、返却予定日、返却日</td>
+                            </tr>
+                            <tr>
+                                <td><strong>予約記録</strong></td>
+                                <td>貸出中の書籍の予約状況</td>
+                                <td>予約ID、書籍ID、利用者ID、予約日、状態</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <h4>設計のポイント</h4>
+                    <ul>
+                        <li><strong>主キー</strong>：各テーブルに一意の識別子を設定</li>
+                        <li><strong>外部キー</strong>：テーブル間の関連を定義</li>
+                        <li><strong>データ型</strong>：適切なデータ型を選択（文字列、整数、日付）</li>
+                        <li><strong>正規化</strong>：重複を排除し、第3正規形まで正規化</li>
+                    </ul>
+
+                    <div class="info-box" style="background-color: #f0fdf4; border-left-color: #10b981;">
+                        <h3>💡 解答例</h3>
+                        <p><strong>蔵書テーブル：</strong></p>
+                        <pre style="background: #1e293b; color: #e2e8f0; padding: 1rem; border-radius: 0.5rem; overflow-x: auto;"><code>CREATE TABLE 蔵書 (
+    書籍ID VARCHAR(10) PRIMARY KEY,
+    タイトル VARCHAR(200) NOT NULL,
+    著者 VARCHAR(100),
+    出版社 VARCHAR(100),
+    ISBN VARCHAR(13) UNIQUE,
+    分類番号 VARCHAR(10),
+    出版年 INT,
+    価格 INT,
+    所蔵場所 VARCHAR(50),
+    登録日 DATE DEFAULT CURRENT_DATE,
+    貸出可能 BOOLEAN DEFAULT TRUE
+);</code></pre>
+
+                        <p style="margin-top: 1rem;"><strong>貸出記録テーブル：</strong></p>
+                        <pre style="background: #1e293b; color: #e2e8f0; padding: 1rem; border-radius: 0.5rem; overflow-x: auto;"><code>CREATE TABLE 貸出記録 (
+    貸出ID INT AUTO_INCREMENT PRIMARY KEY,
+    書籍ID VARCHAR(10) NOT NULL,
+    児童生徒ID VARCHAR(10) NOT NULL,
+    貸出日 DATE NOT NULL,
+    返却予定日 DATE NOT NULL,
+    返却日 DATE,
+    FOREIGN KEY (書籍ID) REFERENCES 蔵書(書籍ID),
+    FOREIGN KEY (児童生徒ID) REFERENCES 生徒情報(生徒ID)
+);</code></pre>
+
+                        <p style="margin-top: 1rem;"><strong>予約テーブル：</strong></p>
+                        <pre style="background: #1e293b; color: #e2e8f0; padding: 1rem; border-radius: 0.5rem; overflow-x: auto;"><code>CREATE TABLE 予約 (
+    予約ID INT AUTO_INCREMENT PRIMARY KEY,
+    書籍ID VARCHAR(10) NOT NULL,
+    児童生徒ID VARCHAR(10) NOT NULL,
+    予約日 DATE NOT NULL,
+    予約状態 VARCHAR(20) DEFAULT '予約中',
+    FOREIGN KEY (書籍ID) REFERENCES 蔵書(書籍ID),
+    FOREIGN KEY (児童生徒ID) REFERENCES 生徒情報(生徒ID)
+);</code></pre>
+                    </div>
+
+                    <h3>7.2 SQL演習</h3>
+
+                    <h4>演習1：データ抽出</h4>
+                    <p><strong>課題1：</strong>現在貸出中の書籍と借りている児童生徒名を表示するSQL文を作成してください。</p>
+
+                    <div class="info-box" style="background-color: #f0fdf4; border-left-color: #10b981;">
+                        <h3>💡 解答例</h3>
+                        <pre style="background: #1e293b; color: #e2e8f0; padding: 1rem; border-radius: 0.5rem; overflow-x: auto;"><code>SELECT 
+  蔵書.タイトル,
+  生徒情報.氏名,
+  貸出記録.貸出日,
+  貸出記録.返却予定日,
+  DATEDIFF(CURDATE(), 貸出記録.返却予定日) AS 延滞日数
+FROM 貸出記録
+JOIN 蔵書 ON 貸出記録.書籍ID = 蔵書.書籍ID
+JOIN 生徒情報 ON 貸出記録.児童生徒ID = 生徒情報.生徒ID
+WHERE 貸出記録.返却日 IS NULL
+ORDER BY 貸出記録.返却予定日;</code></pre>
+                        <p style="margin-top: 0.5rem; font-size: 0.9rem;"><strong>解説：</strong></p>
+                        <ul style="font-size: 0.9rem;">
+                            <li><code>返却日 IS NULL</code>：まだ返却されていない（現在貸出中の）レコードを抽出</li>
+                            <li><code>DATEDIFF(CURDATE(), 返却予定日)</code>：延滞日数を計算（負の値なら期限内）</li>
+                            <li>3つのテーブルをJOINして、書籍情報と児童生徒情報を統合</li>
+                        </ul>
+                    </div>
+
+                    <p><strong>課題2：</strong>2025年11月に貸し出された書籍の一覧を、貸出日の降順で取得してください。</p>
+
+                    <div class="info-box" style="background-color: #f0fdf4; border-left-color: #10b981;">
+                        <h3>💡 解答例</h3>
+                        <pre style="background: #1e293b; color: #e2e8f0; padding: 1rem; border-radius: 0.5rem; overflow-x: auto;"><code>SELECT 
+  貸出記録.貸出ID,
+  蔵書.タイトル,
+  蔵書.著者,
+  生徒情報.氏名,
+  貸出記録.貸出日
+FROM 貸出記録
+JOIN 蔵書 ON 貸出記録.書籍ID = 蔵書.書籍ID
+JOIN 生徒情報 ON 貸出記録.児童生徒ID = 生徒情報.生徒ID
+WHERE 貸出記録.貸出日 BETWEEN '2025-11-01' AND '2025-11-30'
+ORDER BY 貸出記録.貸出日 DESC;</code></pre>
+                    </div>
+
+                    <h4>演習2：集計クエリ</h4>
+
+                    <p><strong>問題1：</strong>学年ごとの貸出冊数を集計し、多い順に表示してください。</p>
+
+                    <div class="info-box" style="background-color: #f0fdf4; border-left-color: #10b981;">
+                        <h3>💡 解答例</h3>
+                        <pre style="background: #1e293b; color: #e2e8f0; padding: 1rem; border-radius: 0.5rem; overflow-x: auto;"><code>SELECT 
+  利用者マスタ.学年,
+  COUNT(*) AS 貸出冊数
+FROM 貸出記録
+JOIN 利用者マスタ ON 貸出記録.利用者ID = 利用者マスタ.利用者ID
+GROUP BY 利用者マスタ.学年
+ORDER BY 貸出冊数 DESC;</code></pre>
+                    </div>
+
+                    <p><strong>問題2：</strong>延滞している貸出記録を抽出してください（返却予定日を過ぎても返却されていない書籍）。</p>
+
+                    <div class="info-box" style="background-color: #f0fdf4; border-left-color: #10b981;">
+                        <h3>💡 解答例</h3>
+                        <pre style="background: #1e293b; color: #e2e8f0; padding: 1rem; border-radius: 0.5rem; overflow-x: auto;"><code>SELECT 
+  生徒情報.氏名,
+  生徒情報.クラス,
+  蔵書.タイトル,
+  貸出記録.返却予定日,
+  DATEDIFF(CURDATE(), 貸出記録.返却予定日) AS 延滞日数
+FROM 貸出記録
+JOIN 生徒情報 ON 貸出記録.児童生徒ID = 生徒情報.生徒ID
+JOIN 蔵書 ON 貸出記録.書籍ID = 蔵書.書籍ID
+WHERE 貸出記録.返却日 IS NULL
+  AND 貸出記録.返却予定日 < CURDATE()
+ORDER BY 延滞日数 DESC;</code></pre>
+                        <p style="margin-top: 0.5rem; font-size: 0.9rem;"><strong>解説：</strong></p>
+                        <ul style="font-size: 0.9rem;">
+                            <li><code>CURDATE()</code>：現在の日付を取得</li>
+                            <li><code>DATEDIFF(日付1, 日付2)</code>：2つの日付の差を日数で返す</li>
+                            <li><code>返却日 IS NULL</code>：まだ返却されていないレコードを抽出</li>
+                            <li><code>返却予定日 < CURDATE()</code>：返却予定日を過ぎているものを抽出</li>
+                        </ul>
+                    </div>
+
+                    <h4>演習3：データ更新</h4>
+                    <p><strong>問題：</strong>書籍ID「B001」が返却されました。返却日を本日の日付に更新してください。</p>
+
+                    <div class="info-box" style="background-color: #f0fdf4; border-left-color: #10b981;">
+                        <h3>💡 解答例</h3>
+                        <pre style="background: #1e293b; color: #e2e8f0; padding: 1rem; border-radius: 0.5rem; overflow-x: auto;"><code>-- まず対象レコードを確認
+SELECT * FROM 貸出記録 WHERE 書籍ID = 'B001' AND 返却日 IS NULL;
+
+-- 返却日を更新
+UPDATE 貸出記録 
+SET 返却日 = CURRENT_DATE 
+WHERE 書籍ID = 'B001' AND 返却日 IS NULL;
+
+-- 更新を確認
+SELECT * FROM 貸出記録 WHERE 書籍ID = 'B001';</code></pre>
+                    </div>
+
+                    <h3>7.3 データのエクスポート・インポート</h3>
+
+                    <p>校務支援システムのデータをエクスポート・インポートする際の実践的な手順を学びます。</p>
+
+                    <h4>（1）データ選択とフィルタリング</h4>
+                    <p><strong>例：2024年度3年生の成績データをエクスポート</strong></p>
+                    <pre style="background: #1e293b; color: #e2e8f0; padding: 1rem; border-radius: 0.5rem; overflow-x: auto;"><code>-- 特定の学年・年度のデータをエクスポート
+SELECT * FROM 成績記録
+WHERE 児童生徒ID IN (
+  SELECT 生徒ID FROM 生徒情報
+  WHERE 入学年度 = 2022 AND 現在学年 = 3
+)
+INTO OUTFILE '/backup/成績_2024_3年生.csv'
+FIELDS TERMINATED BY ',' 
+ENCLOSED BY '"'
+LINES TERMINATED BY '\n';</code></pre>
+
+                    <h4>（2）個人情報の匿名化処理</h4>
+                    <p>統計分析用にデータをエクスポートする場合、個人情報を除外または匿名化します。</p>
+                    <pre style="background: #1e293b; color: #e2e8f0; padding: 1rem; border-radius: 0.5rem; overflow-x: auto;"><code>-- 統計分析用に氏名を除外し、匿名IDを付与
+SELECT 
+  CONCAT('S', LPAD(ROW_NUMBER() OVER(), 4, '0')) AS 匿名ID,
+  学年, 
+  クラス, 
+  科目, 
+  点数, 
+  評価
+FROM 成績記録
+JOIN 生徒情報 ON 成績記録.児童生徒ID = 生徒情報.生徒ID
+INTO OUTFILE '/export/成績_匿名化.csv'
+FIELDS TERMINATED BY ',' 
+ENCLOSED BY '"'
+LINES TERMINATED BY '\n';</code></pre>
+
+                    <h4>（3）インポート手順</h4>
+
+                    <p><strong>ステップ1：データ形式の確認</strong></p>
+                    <ul>
+                        <li>文字コード（UTF-8推奨）</li>
+                        <li>区切り文字（カンマ、タブなど）</li>
+                        <li>ヘッダー行の有無</li>
+                    </ul>
+
+                    <p><strong>ステップ2：テーブル構造の一致確認</strong></p>
+                    <pre style="background: #1e293b; color: #e2e8f0; padding: 1rem; border-radius: 0.5rem; overflow-x: auto;"><code>-- テーブル構造を確認
+DESCRIBE 生徒情報;</code></pre>
+
+                    <p><strong>ステップ3：インポート実行</strong></p>
+                    <pre style="background: #1e293b; color: #e2e8f0; padding: 1rem; border-radius: 0.5rem; overflow-x: auto;"><code>-- CSVファイルからデータをインポート
+LOAD DATA INFILE '/import/成績データ.csv'
+INTO TABLE 成績記録
+FIELDS TERMINATED BY ','
+ENCLOSED BY '"'
+LINES TERMINATED BY '\n'
+IGNORE 1 ROWS;  -- ヘッダー行をスキップ</code></pre>
+
+                    <h4>（4）整合性チェック</h4>
+                    <p>インポート後、データの整合性を確認します。</p>
+                    <pre style="background: #1e293b; color: #e2e8f0; padding: 1rem; border-radius: 0.5rem; overflow-x: auto;"><code>-- 外部キー制約違反のチェック（存在しない生徒IDへの参照）
+SELECT 児童生徒ID 
+FROM 成績記録
+WHERE 児童生徒ID NOT IN (SELECT 生徒ID FROM 生徒情報);
+
+-- 重複レコードのチェック
+SELECT 生徒ID, 科目, 学期, COUNT(*) AS 重複数
+FROM 成績記録
+GROUP BY 生徒ID, 科目, 学期
+HAVING COUNT(*) > 1;
+
+-- NULL値のチェック（必須項目）
+SELECT COUNT(*) AS NULL件数
+FROM 生徒情報
+WHERE 氏名 IS NULL OR 生年月日 IS NULL;</code></pre>
+
+                    <div class="warning-box">
+                        <h3>⚠️ エクスポート・インポートの注意点</h3>
+                        <ul>
+                            <li><strong>文字コードの統一</strong>：UTF-8推奨（文字化け防止）</li>
+                            <li><strong>バックアップの取得</strong>：インポート前に必ず実施</li>
+                            <li><strong>トランザクションの使用</strong>：大量データはトランザクションで実行</li>
+                            <li><strong>テスト環境での検証</strong>：本番環境で実行する前に必ずテスト</li>
+                            <li><strong>個人情報の取り扱い</strong>：エクスポートファイルの保管・廃棄方法を決めておく</li>
+                            <li><strong>ファイルアクセス権限</strong>：エクスポートファイルへのアクセスを制限</li>
+                        </ul>
+                    </div>
+
+                    <div class="info-box" style="background-color: #f0f9ff; border-left-color: #0ea5e9;">
+                        <h3>💡 実務での活用</h3>
+                        <p>ICT支援員として、以下のような場面でエクスポート・インポートの知識が役立ちます：</p>
+                        <ul>
+                            <li><strong>年度更新時のデータ移行</strong>：旧年度データのアーカイブ</li>
+                            <li><strong>統計資料の作成</strong>：個人情報を除いた集計用データの抽出</li>
+                            <li><strong>バックアップデータの検証</strong>：定期的なデータ取得テスト</li>
+                            <li><strong>システム間のデータ連携</strong>：校務支援システムと学習eポータルのデータ連携</li>
+                        </ul>
+                    </div>
+
+                </section>
+
+                <!-- 第8章: 既存コンテンツとの関連 -->
+                <section id="chapter8" class="section-related">
+                    <h2>第8章：既存コンテンツとの関連</h2>
+
+                    <h3>本講座で学んだ内容と関連する既存の講座</h3>
+
+                    <div class="point-box" style="background: #fef3c7; border-left-color: #f59e0b;">
+                        <h3>🔗 関連講座</h3>
+
+                        <h4><a href="session11.html">第11回：校務支援システムとは</a></h4>
+                        <ul>
+                            <li>本講座で学んだ「児童生徒情報」「成績管理」のデータ構造が、実際の校務支援システムでどのように活用されているかを理解できます</li>
+                            <li>データベースの知識があれば、校務支援システムの内部構造をより深く理解できます</li>
+                        </ul>
+
+                        <h4><a href="session13.html">第13回：校務支援システムの実践的活用</a></h4>
+                        <ul>
+                            <li>データベースからの効率的なデータ抽出・集計の知識を活用できます</li>
+                            <li>SQLの基礎があれば、カスタムレポートの作成が理解しやすくなります</li>
+                        </ul>
+
+                        <h4><a href="session23.html">第23回：教育データの分析と活用</a></h4>
+                        <ul>
+                            <li>データベースから取得したデータを分析する手法を学べます</li>
+                            <li>集計クエリの知識が、データ分析の基礎となります</li>
+                        </ul>
+
+                        <h4><a href="session49.html">第49回：コンピュータシステム概論</a></h4>
+                        <ul>
+                            <li>データベースサーバーのハードウェア構成やストレージの理解に役立ちます</li>
+                            <li>パフォーマンスチューニングの基礎知識となります</li>
+                        </ul>
+
+                        <h4><a href="session50.html">第50回：オペレーティングシステム論</a></h4>
+                        <ul>
+                            <li>データベース管理システム（DBMS）がOS上でどのように動作するかを理解できます</li>
+                            <li>ファイルシステムとデータベースの関係性を学べます</li>
+                        </ul>
+                    </div>
+
+                    <h3>発展的な学習へ</h3>
+                    <p>この講座で学んだ基礎知識をもとに、以下のような発展的な内容に進むことができます：</p>
+                    <ul>
+                        <li><strong>データウェアハウス</strong>：大規模データの蓄積と分析</li>
+                        <li><strong>ビッグデータ</strong>：大容量データの処理技術</li>
+                        <li><strong>機械学習とデータベース</strong>：学習データの管理と活用</li>
+                        <li><strong>クラウドデータベース</strong>：AWS RDS、Azure SQL、Google Cloud SQLの活用</li>
+                    </ul>
+
+                </section>
+
+                <!-- 第9章: まとめ -->
+                <section id="chapter9" class="section-summary">
+                    <h2>第9章：まとめ</h2>
+
+                    <h3>本講座で学んだこと</h3>
+
+                    <div class="point-box">
+                        <h3>📚 主要なポイント</h3>
+
+                        <h4>1. データベースの基礎</h4>
+                        <ul>
+                            <li>データベースは構造化されたデータを効率的に管理するシステム</li>
+                            <li>DBMSがデータの整合性とセキュリティを保証</li>
+                            <li>データの冗長性を排除し、効率的な管理を実現</li>
+                        </ul>
+
+                        <h4>2. リレーショナルデータベース</h4>
+                        <ul>
+                            <li>テーブル（表）を用いたデータ管理</li>
+                            <li>主キーと外部キーによるテーブル間の関連付け</li>
+                            <li>正規化によるデータの整理と最適化</li>
+                        </ul>
+
+                        <h4>3. SQL（構造化照会言語）</h4>
+                        <ul>
+                            <li>SELECT文でデータを取得</li>
+                            <li>INSERT、UPDATE、DELETEでデータを操作</li>
+                            <li>JOINで複数テーブルを結合</li>
+                            <li>GROUP BYで集計処理</li>
+                        </ul>
+
+                        <h4>4. 校務支援システムのデータ構造</h4>
+                        <ul>
+                            <li>児童生徒情報、成績情報、出欠情報の管理方法</li>
+                            <li>個人情報保護のための適切なアクセス制御</li>
+                            <li>データベース設計の実践例</li>
+                        </ul>
+
+                        <h4>5. NoSQLデータベース</h4>
+                        <ul>
+                            <li>柔軟なデータ構造に対応</li>
+                            <li>大規模データや高速アクセスに適する</li>
+                            <li>RDBとNoSQLの使い分けが重要</li>
+                        </ul>
+
+                        <h4>6. データバックアップとリカバリ</h4>
+                        <ul>
+                            <li>3-2-1ルール（3つのコピー、2種類のメディア、1つのオフサイト）</li>
+                            <li>フル・差分・増分バックアップの使い分け</li>
+                            <li>RPOとRTOの考え方</li>
+                            <li>定期的な復元テストの重要性</li>
+                        </ul>
+                    </div>
+
+                    <h3>ICT支援員としてのデータベース知識の活用</h3>
+
+                    <p><strong>実務での活かし方：</strong></p>
+                    <ul>
+                        <li><strong>システム理解</strong>：校務支援システムがどのようにデータを管理しているかを理解</li>
+                        <li><strong>トラブル対応</strong>：データベース関連のエラーを理解し、適切な初動対応ができる</li>
+                        <li><strong>ベンダーとのコミュニケーション</strong>：技術的な用語を理解し、円滑なやり取りが可能に</li>
+                        <li><strong>データ活用提案</strong>：データの効率的な活用方法を教員に提案できる</li>
+                        <li><strong>情報セキュリティ</strong>：データベースのセキュリティ対策を理解し、適切な運用を支援</li>
+                    </ul>
+
+                    <div class="info-box">
+                        <h3>💡 さらに学びを深めるために</h3>
+                        <ul>
+                            <li><strong>実際に手を動かす</strong>：無料のDBMS（SQLite、MySQL、PostgreSQL）を試してみる</li>
+                            <li><strong>オンライン演習</strong>：SQLの学習サイトで実践的な演習を行う</li>
+                            <li><strong>実務での活用</strong>：Googleスプレッドシートのクエリ関数でSQL的な操作を試す</li>
+                            <li><strong>技術書を読む</strong>：データベース設計やSQL入門書を読み進める</li>
+                        </ul>
+                    </div>
+
+                </section>
+
+                <!-- 第10章: 参考資料 -->
+                <section id="chapter10" class="section-references">
+                    <h2>第10章：参考資料</h2>
+
+                    <h3>公式ドキュメント</h3>
+
+                    <h4>データベース管理システム（DBMS）</h4>
+                    <ul>
+                        <li><a href="https://www.mysql.com/jp/" target="_blank" rel="noopener">MySQL 公式サイト</a> - オープンソースRDBMS</li>
+                        <li><a href="https://www.postgresql.org/" target="_blank" rel="noopener">PostgreSQL 公式サイト</a> - 高機能オープンソースRDBMS</li>
+                        <li><a href="https://www.sqlite.org/" target="_blank" rel="noopener">SQLite 公式サイト</a> - 軽量組み込みDB</li>
+                        <li><a href="https://www.microsoft.com/ja-jp/sql-server/" target="_blank" rel="noopener">Microsoft SQL Server</a> - Windows環境での標準RDBMS</li>
+                        <li><a href="https://www.oracle.com/jp/database/" target="_blank" rel="noopener">Oracle Database</a> - エンタープライズRDBMS</li>
+                    </ul>
+
+                    <h4>NoSQLデータベース</h4>
+                    <ul>
+                        <li><a href="https://www.mongodb.com/" target="_blank" rel="noopener">MongoDB</a> - ドキュメント型NoSQL</li>
+                        <li><a href="https://firebase.google.com/docs/firestore" target="_blank" rel="noopener">Google Firestore</a> - クラウドNoSQLデータベース</li>
+                        <li><a href="https://redis.io/" target="_blank" rel="noopener">Redis</a> - キー・バリュー型NoSQL</li>
+                    </ul>
+
+                    <h3>政府・省庁の関連資料</h3>
+
+                    <ul>
+                        <li><a href="https://www.mext.go.jp/a_menu/shotou/zyouhou/detail/1397369.htm" target="_blank" rel="noopener">文部科学省「教育情報セキュリティポリシーに関するガイドライン」（令和6年3月改訂版・第5回改訂）</a> - 個人情報保護とデータ管理の基準</li>
+                        <li><a href="https://www.mext.go.jp/a_menu/shotou/zyouhou/detail/1369794.htm" target="_blank" rel="noopener">文部科学省「統合型校務支援システム導入のための手引き」</a> - 校務支援システムのデータ構造解説</li>
+                        <li><a href="https://www.digital.go.jp/" target="_blank" rel="noopener">デジタル庁</a> - 教育DXとデータ活用の政策情報</li>
+                        <li><a href="https://www.ppc.go.jp/" target="_blank" rel="noopener">個人情報保護委員会</a> - 個人データの適切な管理に関するガイドライン</li>
+                    </ul>
+
+                    <h3>学習サイト・教材</h3>
+
+                    <h4>SQLの学習</h4>
+                    <ul>
+                        <li><a href="https://sqlzoo.net/" target="_blank" rel="noopener">SQLZOO</a> - インタラクティブなSQL学習サイト（英語）</li>
+                        <li><a href="https://www.w3schools.com/sql/" target="_blank" rel="noopener">W3Schools SQL Tutorial</a> - 基礎から学べるSQL入門</li>
+                        <li><a href="https://dotinstall.com/" target="_blank" rel="noopener">ドットインストール</a> - 動画でSQLを学ぶ（日本語）</li>
+                        <li><a href="https://prog-8.com/" target="_blank" rel="noopener">Progate</a> - SQLの基礎を実践的に学べる</li>
+                    </ul>
+
+                    <h4>データベース設計</h4>
+                    <ul>
+                        <li><a href="https://www.db-fiddle.com/" target="_blank" rel="noopener">DB Fiddle</a> - ブラウザでSQLを試せるオンラインツール</li>
+                        <li><a href="https://dbdiagram.io/" target="_blank" rel="noopener">dbdiagram.io</a> - ER図を簡単に作成できるツール</li>
+                    </ul>
+
+                    <h3>推奨書籍</h3>
+
+                    <ul>
+                        <li><strong>『達人に学ぶ DB設計 徹底指南書』</strong>（ミック、翔泳社） - データベース設計の定番書</li>
+                        <li><strong>『SQL 第2版 ゼロからはじめるデータベース操作』</strong>（ミック、翔泳社） - SQL初心者向けの入門書</li>
+                        <li><strong>『スッキリわかるSQL入門 第3版』</strong>（中山清喬、フレアリンク、インプレス） - 図解でわかりやすい入門書</li>
+                        <li><strong>『リレーショナルデータベース入門』</strong>（増永良文、サイエンス社） - データベース理論の基礎</li>
+                        <li><strong>『楽々ERDレッスン』</strong>（羽生章洋、翔泳社） - ER図の書き方を学ぶ</li>
+                    </ul>
+
+                    <h3>実践ツール</h3>
+
+                    <h4>無料で使えるデータベース環境</h4>
+                    <ul>
+                        <li><strong>XAMPP</strong> - Apache + MySQL + PHPの統合環境（Windows/Mac/Linux）</li>
+                        <li><strong>phpMyAdmin</strong> - WebベースのMySQL管理ツール（XAMPPに同梱）</li>
+                        <li><strong>pgAdmin</strong> - PostgreSQL管理ツール</li>
+                        <li><strong>DBeaver</strong> - 複数DBに対応した統合管理ツール</li>
+                    </ul>
+
+                    <h4>クラウドデータベース（無料枠あり）</h4>
+                    <ul>
+                        <li><strong>Google Cloud SQL</strong> - GoogleのマネージドRDBMS</li>
+                        <li><strong>Amazon RDS Free Tier</strong> - AWSの無料枠RDBサービス</li>
+                        <li><strong>Azure SQL Database</strong> - Microsoftのクラウドデータベース</li>
+                        <li><strong>Firebase Realtime Database / Firestore</strong> - Googleのクラウ</li>
+                    </ul>
+
+                    <div class="info-box">
+                        <h3>📖 情報の取り扱いについて</h3>
+                        <p><strong>本講座の情報は2025年12月時点のものです。</strong></p>
+                        <p>最新の情報については、以下の項目を公式サイトでご確認ください：</p>
+                        <ul>
+                            <li>各データベース製品の最新バージョンと機能</li>
+                            <li>クラウドサービスの料金体系と無料枠</li>
+                            <li>セキュリティガイドラインの改訂版</li>
+                            <li>SQLの標準規格（ISO/IEC 9075）の更新</li>
+                        </ul>
+                    </div>
+
+                </section>
+
+            </div>
+
+        </div>
+    </main>
+
+    <!-- フッター -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 ICT支援員・企画員のための教育講座. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="../js/main.js"></script>
+</body>
+</html>

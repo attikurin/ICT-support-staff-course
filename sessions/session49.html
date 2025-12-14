@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>第49回：コンピュータシステム概論【2025年最新版】 - ICT支援員教育講座</title>
+    <title>第49回：コンピュータシステム概論 - ICT支援員教育講座</title>
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="../css/session.css">
 </head>
@@ -32,7 +32,7 @@
         <div class="container">
             <div class="session-header-content">
                 <span class="session-label supplement">補完カリキュラム</span>
-                <h1>第49回：コンピュータシステム概論【2025年最新版】</h1>
+                <h1>第49回：コンピュータシステム概論</h1>
                 <p class="session-meta">情報科学・CS基礎編（全8回）の第1回 | 学習時間目安：120分（講義90分、演習30分） | 難易度：★★★☆☆</p>
             </div>
 
@@ -43,7 +43,18 @@
                     <li><strong>受講前提：</strong>基礎編（第1回〜第48回）修了、または同等の知識</li>
                     <li><strong>学習時間：</strong>120分（講義90分、演習30分）</li>
                     <li><strong>難易度：</strong>★★★☆☆（中級）</li>
-                    <li><strong>最終更新：</strong>2025年11月（GIGA第2期対応版）</li>
+                    <li><strong>最終更新：</strong>2025年12月（GIGA第2期対応版）</li>
+                </ul>
+            </div>
+
+            <div class="warning-box">
+                <h3>⚠️ 本講座における情報の取り扱いについて</h3>
+                <ul>
+                    <li><strong>技術仕様・性能値：</strong>本講座に記載されているCPU性能、ベンチマークスコア、速度等の数値は、公開情報に基づく参考値です。実際の性能は測定環境、使用状況により変動します。</li>
+                    <li><strong>価格情報：</strong>記載されている価格は概算であり、地域・時期・調達方法により異なります。</li>
+                    <li><strong>政策・基準：</strong>文部科学省等の公的機関の方針や基準は変更される可能性があります。最新情報は必ず公式サイトでご確認ください。</li>
+                    <li><strong>統計データ：</strong>故障率等の統計データは報道・調査時点のものであり、自治体・機種・使用環境により大きく異なります。</li>
+                    <li><strong>推奨事項：</strong>本講座の推奨内容は一般的な指針であり、各学校の実情に応じて適切に判断してください。</li>
                 </ul>
             </div>
 
@@ -263,8 +274,8 @@
                     <ul>
                         <li><strong>性能：</strong>約2.8〜3倍の性能向上（N4500比較）
                             <ul>
-                                <li>Intel N100：5,157点（PassMark）</li>
-                                <li>Intel N95：5,206点（PassMark）</li>
+                                <li>Intel N100：約5,000点前後（PassMark、測定環境により変動）</li>
+                                <li>Intel N95：約5,200点前後（PassMark、測定環境により変動）</li>
                                 <li>参考：第7世代デスクトップCore i5に匹敵する性能</li>
                             </ul>
                         </li>
@@ -353,24 +364,1082 @@
                 </div>
             </section>
 
-            <div class="info-box">
-                <h3>📝 続きは作成中</h3>
-                <p>この講座は以下の章で構成されます：</p>
+            <section class="content-section">
+                <h2>📚 第3章：メモリとストレージ</h2>
+                
+                <h3>3.1 メモリ（RAM：主記憶装置）</h3>
+                <p><strong>RAM（Random Access Memory）</strong>は、現在作業中のデータやプログラムを一時的に保存する高速メモリです。</p>
+                
+                <div class="info-box">
+                    <h4>📌 RAMの特性</h4>
+                    <ul>
+                        <li><strong>揮発性メモリ：</strong>電源を切るとデータが消える</li>
+                        <li><strong>高速アクセス：</strong>CPUが直接高速に読み書き</li>
+                        <li><strong>容量：</strong>4GB、8GB、16GB、32GBなど</li>
+                        <li><strong>規格：</strong>DDR4（現在の主流）、DDR5（次世代規格）</li>
+                    </ul>
+                </div>
+
+                <h4>教育現場での適切なRAM容量</h4>
+                <div style="overflow-x: auto;">
+                    <table style="width: 100%; border-collapse: collapse; margin: 1.5rem 0;">
+                        <thead>
+                            <tr style="background-color: var(--primary-color); color: white;">
+                                <th style="padding: 1rem; border: 1px solid #ddd; text-align: left;">用途</th>
+                                <th style="padding: 1rem; border: 1px solid #ddd; text-align: left;">推奨RAM容量</th>
+                                <th style="padding: 1rem; border: 1px solid #ddd; text-align: left;">具体例</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td style="padding: 0.75rem; border: 1px solid #ddd;">基本的な学習活動</td>
+                                <td style="padding: 0.75rem; border: 1px solid #ddd;">4GB</td>
+                                <td style="padding: 0.75rem; border: 1px solid #ddd;">文書作成、ブラウジング、Scratchプログラミング</td>
+                            </tr>
+                            <tr style="background-color: #f9fafb;">
+                                <td style="padding: 0.75rem; border: 1px solid #ddd;">標準的な学習活動</td>
+                                <td style="padding: 0.75rem; border: 1px solid #ddd;"><strong>8GB</strong></td>
+                                <td style="padding: 0.75rem; border: 1px solid #ddd;">動画視聴、オンライン授業、簡単な画像編集</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 0.75rem; border: 1px solid #ddd;">高度な学習活動</td>
+                                <td style="padding: 0.75rem; border: 1px solid #ddd;">16GB以上</td>
+                                <td style="padding: 0.75rem; border: 1px solid #ddd;">動画編集、3D CAD、データサイエンス、AI活用</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="warning-box">
+                    <h4>⚠️ 文部科学省 GIGA第2期基準（2024年4月）</h4>
+                    <ul>
+                        <li><strong>Windows端末：</strong>8GB以上（ブラウザ上での活用が前提かつ活用実態上支障がない場合は4GBも許容）</li>
+                        <li><strong>Chromebook：</strong>4GB以上</li>
+                        <li><strong>iPad：</strong>規定なし（OSによる最適化で効率的に動作）</li>
+                    </ul>
+                </div>
+
+                <div class="point-box">
+                    <h4>💡 RAMが不足すると起こる現象</h4>
+                    <ul>
+                        <li>アプリの起動・切り替えが遅い</li>
+                        <li>複数タブを開くとブラウザが固まる</li>
+                        <li>ビデオ会議中に画面共有すると動作が遅くなる</li>
+                        <li>「メモリ不足」のエラーメッセージが表示される</li>
+                    </ul>
+                    
+                    <h5>トラブルシューティング</h5>
+                    <ol>
+                        <li>タスクマネージャー（Windows）、アクティビティモニタ（Mac）でメモリ使用率を確認</li>
+                        <li>不要なアプリを終了する</li>
+                        <li>ブラウザのタブを減らす</li>
+                        <li>将来的にRAMの増設を検討（可能な機種の場合）</li>
+                    </ol>
+                </div>
+
+                <div class="info-box" style="background-color: #fef3c7;">
+                    <h4>📌 DDR4とDDR5について</h4>
+                    <ul>
+                        <li><strong>DDR4：</strong>現在の教育端末で主流（最大3200MHz）</li>
+                        <li><strong>DDR5：</strong>次世代規格（4800MHz〜、高性能モデルでは6400MHz以上も可能）、2025年時点では高価格帯のみ</li>
+                        <li><strong>教育現場での選定：</strong>現時点ではDDR4で十分。DDR5は将来的な選択肢として知識を持つことは有用ですが、コスト面から普及は限定的です。</li>
+                    </ul>
+                </div>
+
+                <h3>3.2 ストレージ（補助記憶装置）</h3>
+                <p><strong>ストレージ</strong>は、データやプログラムを永続的に保存する装置です。</p>
+
+                <h4>ストレージの種類</h4>
+
+                <div class="info-box" style="background-color: #ecfdf5;">
+                    <h4>💾 SSD（Solid State Drive）</h4>
+                    <ul>
+                        <li><strong>構造：</strong>フラッシュメモリ（半導体）</li>
+                        <li><strong>速度：</strong>⭐⭐⭐⭐⭐ 非常に高速（400MB/s〜2GB/s以上）</li>
+                        <li><strong>耐衝撃性：</strong>⭐⭐⭐⭐⭐ 可動部なし、衝撃に強い</li>
+                        <li><strong>騒音：</strong>⭐⭐⭐⭐⭐ 完全無音</li>
+                        <li><strong>消費電力：</strong>⭐⭐⭐⭐☆ 低い</li>
+                        <li><strong>価格：</strong>⭐⭐⭐☆☆ やや高い</li>
+                        <li><strong>寿命：</strong>書き込み回数に制限あり（通常5〜10年）</li>
+                        <li><strong>教育現場推奨度：</strong>⭐⭐⭐⭐⭐ 強く推奨</li>
+                    </ul>
+                </div>
+
+                <div class="info-box" style="background-color: #fef3c7;">
+                    <h4>💾 eMMC（embedded MultiMediaCard）</h4>
+                    <ul>
+                        <li><strong>構造：</strong>フラッシュメモリ（基板内蔵型）</li>
+                        <li><strong>速度：</strong>⭐⭐⭐☆☆ 中速（45MB/s〜400MB/s、eMMC 5.0規格）</li>
+                        <li><strong>特徴：</strong>SSDより遅いがHDDより速い、小型・省電力</li>
+                        <li><strong>採用例：</strong>一部の低価格Chromebook（32GB〜64GB）</li>
+                        <li><strong>注意点：</strong>SSDと比較して読み書き速度が遅く、容量も小さい</li>
+                        <li><strong>教育現場での評価：</strong>Chromebookはクラウドベースのため、eMMCでも基本利用は可能。ただし、大容量ファイルの保存や頻繁なローカル処理には不向き。</li>
+                    </ul>
+                </div>
+
+                <div class="info-box" style="background-color: #fee2e2;">
+                    <h4>💾 HDD（Hard Disk Drive）</h4>
+                    <ul>
+                        <li><strong>構造：</strong>磁気ディスク（機械式）</li>
+                        <li><strong>速度：</strong>⭐⭐☆☆☆ 遅い</li>
+                        <li><strong>耐衝撃性：</strong>⭐⭐☆☆☆ 衝撃に弱い</li>
+                        <li><strong>騒音：</strong>⭐⭐☆☆☆ 動作音あり</li>
+                        <li><strong>消費電力：</strong>⭐⭐⭐☆☆ 高い</li>
+                        <li><strong>価格：</strong>⭐⭐⭐⭐⭐ 安い（GB単価）</li>
+                        <li><strong>寿命：</strong>機械的摩耗で劣化（通常3〜4年）</li>
+                        <li><strong>教育現場推奨度：</strong>⭐⭐☆☆☆ 非推奨（GIGA端末では採用なし）</li>
+                    </ul>
+                </div>
+
+                <div class="point-box">
+                    <h4>💡 教育現場でSSDが推奨される理由</h4>
+                    <ol>
+                        <li><strong>起動時間短縮：</strong>OS起動が10〜20秒（HDDは1〜2分）</li>
+                        <li><strong>耐久性：</strong>児童生徒が持ち運ぶ際の落下・衝撃に強い</li>
+                        <li><strong>静音性：</strong>授業中の動作音がない</li>
+                        <li><strong>省電力：</strong>バッテリー駆動時間が延びる</li>
+                        <li><strong>学習体験向上：</strong>アプリの起動・保存が速く、ストレスフリー</li>
+                    </ol>
+                </div>
+
+                <h4>GIGA端末における適切なストレージ容量</h4>
+                <div style="overflow-x: auto;">
+                    <table style="width: 100%; border-collapse: collapse; margin: 1.5rem 0;">
+                        <thead>
+                            <tr style="background-color: var(--primary-color); color: white;">
+                                <th style="padding: 1rem; border: 1px solid #ddd; text-align: left;">OS</th>
+                                <th style="padding: 1rem; border: 1px solid #ddd; text-align: left;">最低基準</th>
+                                <th style="padding: 1rem; border: 1px solid #ddd; text-align: left;">推奨容量</th>
+                                <th style="padding: 1rem; border: 1px solid #ddd; text-align: left;">特記事項</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td style="padding: 0.75rem; border: 1px solid #ddd;">Chromebook</td>
+                                <td style="padding: 0.75rem; border: 1px solid #ddd;">32GB以上（文科省基準）</td>
+                                <td style="padding: 0.75rem; border: 1px solid #ddd;"><strong>64GB</strong></td>
+                                <td style="padding: 0.75rem; border: 1px solid #ddd;">クラウド保存前提、eMMC/SSD</td>
+                            </tr>
+                            <tr style="background-color: #f9fafb;">
+                                <td style="padding: 0.75rem; border: 1px solid #ddd;">iPad</td>
+                                <td style="padding: 0.75rem; border: 1px solid #ddd;">64GB以上（文科省基準）</td>
+                                <td style="padding: 0.75rem; border: 1px solid #ddd;"><strong>128GB</strong></td>
+                                <td style="padding: 0.75rem; border: 1px solid #ddd;">動画・写真を多用する場合は注意</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 0.75rem; border: 1px solid #ddd;">Windows</td>
+                                <td style="padding: 0.75rem; border: 1px solid #ddd;">64GB以上（文科省基準）</td>
+                                <td style="padding: 0.75rem; border: 1px solid #ddd;"><strong>128〜256GB</strong></td>
+                                <td style="padding: 0.75rem; border: 1px solid #ddd;">ローカルアプリ利用が多い場合</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="warning-box">
+                    <h4>⚠️ 容量管理のポイント</h4>
+                    <ul>
+                        <li>定期的なファイル整理（不要ファイルの削除）</li>
+                        <li>クラウドストレージの活用（Google Drive、OneDriveなど）</li>
+                        <li>大容量ファイル（動画）は外部ストレージやサーバーに保存</li>
+                        <li>ストレージ使用状況の定期チェック</li>
+                        <li><strong>【重要】</strong>特にeMMC搭載端末では、クラウド活用が必須</li>
+                    </ul>
+                </div>
+            </section>
+
+            <section class="content-section">
+                <h2>📚 第4章：コンピュータの性能指標</h2>
+                
+                <h3>4.1 ベンチマークとは</h3>
+                <p><strong>ベンチマーク</strong>は、コンピュータの性能を数値化して比較するための標準化されたテストです。</p>
+                
+                <div class="info-box">
+                    <h4>📌 主要なベンチマークツール</h4>
+                    
+                    <h5>Geekbench</h5>
+                    <ul>
+                        <li>CPU性能を測定</li>
+                        <li>シングルコア・マルチコアスコア</li>
+                        <li>クロスプラットフォーム対応</li>
+                        <li><strong>教育現場での活用：</strong>MediaTek社が教育向けChromebook選定でGeekbench 6を推奨</li>
+                    </ul>
+
+                    <h5>PassMark</h5>
+                    <ul>
+                        <li>CPU、GPU、メモリ、ストレージの総合評価</li>
+                        <li>教育機関でも広く利用</li>
+                        <li><strong>本講座での参考値：</strong>CPU性能比較に使用</li>
+                    </ul>
+
+                    <h5>CrystalDiskMark</h5>
+                    <ul>
+                        <li>SSD/HDDの読み書き速度測定</li>
+                        <li>教育現場のストレージ性能チェックに最適</li>
+                    </ul>
+
+                    <h5>3DMark</h5>
+                    <ul>
+                        <li>GPU（グラフィックス）性能測定</li>
+                        <li>3D教材、VR/AR利用時の参考</li>
+                    </ul>
+                </div>
+
+                <div class="point-box">
+                    <h4>💡 ベンチマークの読み方と注意点</h4>
+                    <ul>
+                        <li><strong>参考値として活用：</strong>絶対値よりも、比較対象との相対的な差を見る</li>
+                        <li><strong>実用シーンとの相関：</strong>実際の使用シーン（ブラウジング、文書作成など）での体感との相関を考慮</li>
+                        <li><strong>コストパフォーマンス評価：</strong>高スコア = 高額とは限らない</li>
+                        <li><strong>【重要】</strong>教育現場では、ベンチマークスコアよりも実際の使用感と予算のバランスが重要</li>
+                    </ul>
+                </div>
+
+                <h4>PassMark スコアの目安（教育用途）</h4>
+                <div style="overflow-x: auto;">
+                    <table style="width: 100%; border-collapse: collapse; margin: 1.5rem 0;">
+                        <thead>
+                            <tr style="background-color: var(--primary-color); color: white;">
+                                <th style="padding: 1rem; border: 1px solid #ddd; text-align: left;">用途</th>
+                                <th style="padding: 1rem; border: 1px solid #ddd; text-align: center;">PassMark推奨値</th>
+                                <th style="padding: 1rem; border: 1px solid #ddd; text-align: left;">参考CPU</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td style="padding: 0.75rem; border: 1px solid #ddd;">基本的な学習活動</td>
+                                <td style="padding: 0.75rem; border: 1px solid #ddd; text-align: center;">1,500〜3,000点</td>
+                                <td style="padding: 0.75rem; border: 1px solid #ddd;">Celeron N4020〜N5100</td>
+                            </tr>
+                            <tr style="background-color: #f9fafb;">
+                                <td style="padding: 0.75rem; border: 1px solid #ddd;">標準的な学習活動</td>
+                                <td style="padding: 0.75rem; border: 1px solid #ddd; text-align: center;"><strong>3,000〜8,000点</strong></td>
+                                <td style="padding: 0.75rem; border: 1px solid #ddd;"><strong>Intel N100、Core i3</strong></td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 0.75rem; border: 1px solid #ddd;">高度な学習活動</td>
+                                <td style="padding: 0.75rem; border: 1px solid #ddd; text-align: center;">8,000〜15,000点</td>
+                                <td style="padding: 0.75rem; border: 1px solid #ddd;">Core i5、Ryzen 5</td>
+                            </tr>
+                            <tr style="background-color: #f9fafb;">
+                                <td style="padding: 0.75rem; border: 1px solid #ddd;">専門的な学習活動</td>
+                                <td style="padding: 0.75rem; border: 1px solid #ddd; text-align: center;">15,000点以上</td>
+                                <td style="padding: 0.75rem; border: 1px solid #ddd;">Core i7、Ryzen 7以上</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <h3>4.2 教育用途での必要スペック</h3>
+                <p>用途別の推奨スペックを4つのレベルに分類します。</p>
+
+                <div class="info-box" style="background-color: #eff6ff;">
+                    <h4>📘 レベル1：基本的な学習活動</h4>
+                    <ul>
+                        <li><strong>対象学年：</strong>小学校低学年〜中学年</li>
+                        <li><strong>主な用途：</strong>ブラウジング、文書作成、Scratchプログラミング</li>
+                        <li><strong>推奨スペック：</strong>
+                            <ul>
+                                <li>CPU：Intel Celeron N4500以上、Intel N100推奨、ARM系</li>
+                                <li>RAM：4GB</li>
+                                <li>ストレージ：32GB（Chromebook）、64GB（Windows/iPad）、SSD推奨</li>
+                            </ul>
+                        </li>
+                        <li><strong>参考機種：</strong>Chromebook、エントリーiPad</li>
+                    </ul>
+                </div>
+
+                <div class="info-box" style="background-color: #f0fdf4;">
+                    <h4>📗 レベル2：標準的な学習活動</h4>
+                    <ul>
+                        <li><strong>対象学年：</strong>小学校高学年〜中学校</li>
+                        <li><strong>主な用途：</strong>オンライン授業、プレゼン作成、簡単な動画編集</li>
+                        <li><strong>推奨スペック：</strong>
+                            <ul>
+                                <li>CPU：Intel N100/N95、Core i3、AMD Ryzen 3</li>
+                                <li>RAM：<strong>8GB</strong></li>
+                                <li>ストレージ：128〜256GB（SSD）</li>
+                            </ul>
+                        </li>
+                        <li><strong>参考機種：</strong>標準的なWindows/Mac端末</li>
+                    </ul>
+                </div>
+
+                <div class="info-box" style="background-color: #fef3c7;">
+                    <h4>📙 レベル3：高度な学習活動</h4>
+                    <ul>
+                        <li><strong>対象学年：</strong>中学校〜高校、専門教育</li>
+                        <li><strong>主な用途：</strong>動画編集、3D CAD、データ分析、プログラミング（Python、Unity）</li>
+                        <li><strong>推奨スペック：</strong>
+                            <ul>
+                                <li>CPU：Intel Core i5以上、AMD Ryzen 5以上</li>
+                                <li>RAM：16GB</li>
+                                <li>ストレージ：512GB（SSD、NVMe推奨）</li>
+                                <li>GPU：専用グラフィックスカード推奨</li>
+                            </ul>
+                        </li>
+                        <li><strong>参考機種：</strong>ハイエンドWindows端末、MacBook Pro</li>
+                    </ul>
+                </div>
+
+                <div class="info-box" style="background-color: #fee2e2;">
+                    <h4>📕 レベル4：専門的・研究用途</h4>
+                    <ul>
+                        <li><strong>対象：</strong>STEAM専門コース、情報科専門</li>
+                        <li><strong>主な用途：</strong>AI/機械学習、ゲーム開発、VR/AR制作</li>
+                        <li><strong>推奨スペック：</strong>
+                            <ul>
+                                <li>CPU：Intel Core i7以上、AMD Ryzen 7以上</li>
+                                <li>RAM：32GB</li>
+                                <li>ストレージ：1TB（NVMe SSD）</li>
+                                <li>GPU：NVIDIA GeForce RTX / AMD Radeon RX</li>
+                            </ul>
+                        </li>
+                        <li><strong>参考機種：</strong>ワークステーション級端末</li>
+                    </ul>
+                </div>
+
+                <h3>4.3 性能とコストのバランス</h3>
+                <p>教育現場では、「最高性能の端末」ではなく、「目的に合った適切な性能の端末」を選ぶことが重要です。</p>
+
+                <div class="point-box">
+                    <h4>💡 コストパフォーマンス評価の視点</h4>
+                    
+                    <h5>1. 初期導入コスト</h5>
+                    <ul>
+                        <li>1台あたりの価格</li>
+                        <li>一括導入時の割引・教育機関特別価格</li>
+                        <li>周辺機器・保護ケース込みの総額</li>
+                    </ul>
+
+                    <h5>2. 運用コスト（TCO：Total Cost of Ownership）</h5>
+                    <ul>
+                        <li>保証期間と保証内容</li>
+                        <li>故障率と修理費用</li>
+                        <li>バッテリー交換コスト</li>
+                        <li>保守サポート費用</li>
+                    </ul>
+
+                    <h5>3. ライフサイクルコスト</h5>
+                    <ul>
+                        <li>端末の使用期間（3年、5年、7年）</li>
+                        <li>OSサポート期限</li>
+                        <li>将来的なソフトウェアの動作要件</li>
+                    </ul>
+
+                    <h5>4. 教育効果への投資対効果（ROI）</h5>
+                    <ul>
+                        <li>学習効率の向上</li>
+                        <li>教員の負担軽減</li>
+                        <li>児童生徒の満足度</li>
+                    </ul>
+                </div>
+
+                <h4>TCO（総所有コスト）の具体的計算例</h4>
+
+                <div class="info-box" style="background-color: #eff6ff;">
+                    <h5>📊 Windows端末（標準モデル）の5年間TCO試算</h5>
+                    <table style="width: 100%; border-collapse: collapse; margin-top: 1rem;">
+                        <thead>
+                            <tr style="background-color: #3b82f6; color: white;">
+                                <th style="padding: 0.75rem; border: 1px solid #ddd; text-align: left;">コスト項目</th>
+                                <th style="padding: 0.75rem; border: 1px solid #ddd; text-align: right;">金額</th>
+                                <th style="padding: 0.75rem; border: 1px solid #ddd; text-align: left;">備考</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr style="background-color: #f9fafb;">
+                                <td colspan="3" style="padding: 0.5rem; border: 1px solid #ddd; font-weight: bold;">初期費用</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 0.5rem; border: 1px solid #ddd;">端末本体（Intel N100搭載）</td>
+                                <td style="padding: 0.5rem; border: 1px solid #ddd; text-align: right;">60,000円</td>
+                                <td style="padding: 0.5rem; border: 1px solid #ddd;">GIGA第2期標準スペック</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 0.5rem; border: 1px solid #ddd;">周辺機器（ペン、ケース）</td>
+                                <td style="padding: 0.5rem; border: 1px solid #ddd; text-align: right;">8,000円</td>
+                                <td style="padding: 0.5rem; border: 1px solid #ddd;">タッチペン、保護ケース</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 0.5rem; border: 1px solid #ddd;">ライセンス（OS、Office）</td>
+                                <td style="padding: 0.5rem; border: 1px solid #ddd; text-align: right;">5,000円</td>
+                                <td style="padding: 0.5rem; border: 1px solid #ddd;">教育機関向けライセンス</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 0.5rem; border: 1px solid #ddd;">設定・キッティング</td>
+                                <td style="padding: 0.5rem; border: 1px solid #ddd; text-align: right;">2,000円</td>
+                                <td style="padding: 0.5rem; border: 1px solid #ddd;">初期設定作業</td>
+                            </tr>
+                            <tr style="background-color: #dbeafe;">
+                                <td style="padding: 0.5rem; border: 1px solid #ddd; font-weight: bold;">小計</td>
+                                <td style="padding: 0.5rem; border: 1px solid #ddd; text-align: right; font-weight: bold;">75,000円</td>
+                                <td style="padding: 0.5rem; border: 1px solid #ddd;"></td>
+                            </tr>
+                            <tr style="background-color: #f9fafb;">
+                                <td colspan="3" style="padding: 0.5rem; border: 1px solid #ddd; font-weight: bold;">運用費用（年額×5年）</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 0.5rem; border: 1px solid #ddd;">MDM管理費用</td>
+                                <td style="padding: 0.5rem; border: 1px solid #ddd; text-align: right;">1,500円</td>
+                                <td style="padding: 0.5rem; border: 1px solid #ddd;">300円×5年</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 0.5rem; border: 1px solid #ddd;">保守サポート</td>
+                                <td style="padding: 0.5rem; border: 1px solid #ddd; text-align: right;">25,000円</td>
+                                <td style="padding: 0.5rem; border: 1px solid #ddd;">5,000円×5年</td>
+                            </tr>
+                            <tr style="background-color: #dbeafe;">
+                                <td style="padding: 0.5rem; border: 1px solid #ddd; font-weight: bold;">小計</td>
+                                <td style="padding: 0.5rem; border: 1px solid #ddd; text-align: right; font-weight: bold;">26,500円</td>
+                                <td style="padding: 0.5rem; border: 1px solid #ddd;"></td>
+                            </tr>
+                            <tr style="background-color: #f9fafb;">
+                                <td colspan="3" style="padding: 0.5rem; border: 1px solid #ddd; font-weight: bold;">保守・修理費用</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 0.5rem; border: 1px solid #ddd;">予備費（故障対応）</td>
+                                <td style="padding: 0.5rem; border: 1px solid #ddd; text-align: right;">10,000円</td>
+                                <td style="padding: 0.5rem; border: 1px solid #ddd;">5年間の想定修理費</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 0.5rem; border: 1px solid #ddd;">バッテリー交換（4年目）</td>
+                                <td style="padding: 0.5rem; border: 1px solid #ddd; text-align: right;">8,000円</td>
+                                <td style="padding: 0.5rem; border: 1px solid #ddd;">劣化対応</td>
+                            </tr>
+                            <tr style="background-color: #dbeafe;">
+                                <td style="padding: 0.5rem; border: 1px solid #ddd; font-weight: bold;">小計</td>
+                                <td style="padding: 0.5rem; border: 1px solid #ddd; text-align: right; font-weight: bold;">18,000円</td>
+                                <td style="padding: 0.5rem; border: 1px solid #ddd;"></td>
+                            </tr>
+                            <tr style="background-color: #3b82f6; color: white;">
+                                <td style="padding: 0.75rem; border: 1px solid #ddd; font-weight: bold;">5年間TCO合計</td>
+                                <td style="padding: 0.75rem; border: 1px solid #ddd; text-align: right; font-weight: bold;">119,500円</td>
+                                <td style="padding: 0.75rem; border: 1px solid #ddd;">1台あたり</td>
+                            </tr>
+                            <tr style="background-color: #2563eb; color: white;">
+                                <td style="padding: 0.75rem; border: 1px solid #ddd; font-weight: bold;">年額換算</td>
+                                <td style="padding: 0.75rem; border: 1px solid #ddd; text-align: right; font-weight: bold;">23,900円</td>
+                                <td style="padding: 0.75rem; border: 1px solid #ddd;">1台あたり/年</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="warning-box">
+                    <h4>⚠️ 予備機の確保（重要）</h4>
+                    <ul>
+                        <li><strong>文部科学省推奨：</strong>整備台数の15%を予備機として確保</li>
+                        <li><strong>根拠：</strong>故障率の実態調査（自治体により1%〜44%と大きな格差、2024年朝日新聞調査）
+                            <ul>
+                                <li>名古屋市：44%（最高）</li>
+                                <li>広島市：1%（最低）</li>
+                            </ul>
+                        </li>
+                        <li><strong>授業継続：</strong>平均的な故障率を考慮すると、予備機は必須</li>
+                    </ul>
+                </div>
+
+                <h4>予算制約下での優先順位</h4>
+                <p>限られた予算で最大の効果を得るための優先順位：</p>
+
+                <div class="info-box">
+                    <h5>1️⃣ 必須項目（妥協不可）</h5>
+                    <ul>
+                        <li>SSD搭載（HDDは避ける、eMMCは用途次第）</li>
+                        <li>十分なバッテリー駆動時間（8時間以上、文科省基準）</li>
+                        <li>堅牢性（落下テスト合格、防塵防滴、MIL-STD-810G/810H推奨）</li>
+                        <li>USB Type-C PD対応（充電規格の統一）</li>
+                    </ul>
+
+                    <h5>2️⃣ 重要項目（可能な限り確保）</h5>
+                    <ul>
+                        <li>8GB RAM（4GBは将来性が低い）</li>
+                        <li>タッチパネル対応（低学年の直感的操作）</li>
+                        <li>ペン入力対応（手書き学習の重要性）</li>
+                        <li>Wi-Fi 6対応（IEEE 802.11ax、GIGA第2期基準）</li>
+                    </ul>
+
+                    <h5>3️⃣ 推奨項目（予算に余裕があれば）</h5>
+                    <ul>
+                        <li>カメラ性能（フィールドワーク、実験記録）</li>
+                        <li>高解像度ディスプレイ（目の負担軽減）</li>
+                        <li>長期保証・手厚いサポート（3年以上）</li>
+                        <li>Intel N100以上のCPU（将来の性能要件対応）</li>
+                    </ul>
+
+                    <h5>4️⃣ オプション項目（特定用途で必要）</h5>
+                    <ul>
+                        <li>専用GPU（3D、動画編集専門コースのみ）</li>
+                        <li>大容量ストレージ（通常は外部ストレージで対応可）</li>
+                        <li>LTE/5Gモバイル通信（校外学習頻度による）</li>
+                    </ul>
+                </div>
+            </section>
+
+            <section class="content-section">
+                <h2>📚 第5章：学校での機器選定のポイント</h2>
+                
+                <h3>5.1 機器選定のプロセス</h3>
+                <p>教育現場での端末選定は、体系的なプロセスで進めることが重要です。</p>
+
+                <div class="info-box">
+                    <h4>📌 ステップ1：ニーズ調査</h4>
+                    <ul>
+                        <li>対象学年と人数</li>
+                        <li>主な使用目的と頻度</li>
+                        <li>教科・単元での具体的な利用シーン</li>
+                        <li>教員のICTスキルレベル</li>
+                        <li>既存のICT環境（ネットワーク、既存端末、周辺機器）</li>
+                        <li><strong>【追加】</strong>GIGA第1期の総括（利活用状況、故障・トラブル実態）</li>
+                    </ul>
+
+                    <h4>📌 ステップ2：要件定義</h4>
+                    <ul>
+                        <li>必須機能のリストアップ</li>
+                        <li>性能要件の明確化（文部科学省最低スペック基準を参照）</li>
+                        <li>予算の上限設定（TCO含む）</li>
+                        <li>導入台数と配備計画（予備機15%を含む）</li>
+                        <li>運用体制（管理者、サポート体制）</li>
+                    </ul>
+
+                    <h4>📌 ステップ3：候補機種の選定</h4>
+                    <ul>
+                        <li>市場調査（3〜5機種を比較対象に）</li>
+                        <li>スペック表の比較</li>
+                        <li>実機デモ・トライアルの実施</li>
+                        <li>他校の導入事例調査</li>
+                        <li><strong>【追加】</strong>OSサポート期限の確認（Chromebook AUE、Windows EOL、iPadOS対応年数）</li>
+                    </ul>
+
+                    <h4>📌 ステップ4：総合評価</h4>
+                    <ul>
+                        <li>スペック評価（性能、機能）</li>
+                        <li>コスト評価（初期費用、運用費用、TCO）</li>
+                        <li>サポート評価（保証、修理体制、研修）</li>
+                        <li>将来性評価（OS更新、拡張性）</li>
+                        <li><strong>【追加】</strong>堅牢性評価（MIL規格準拠、落下試験データ）</li>
+                    </ul>
+
+                    <h4>📌 ステップ5：導入決定と調達</h4>
+                    <ul>
+                        <li>稟議書・予算申請</li>
+                        <li>入札・見積依頼（共同調達の検討）</li>
+                        <li>契約・発注</li>
+                        <li>納品・検収</li>
+                    </ul>
+                </div>
+
+                <h3>5.2 チェックリストの活用</h3>
+                <p>機器選定時には、以下のチェックリストを活用して漏れのない評価を行いましょう。</p>
+
+                <div class="info-box">
+                    <h4>✅ 機器選定チェックリスト（2025年版）</h4>
+
+                    <h5>□ ハードウェア仕様</h5>
+                    <ul>
+                        <li>☐ CPU：用途に適した性能か（Intel N100以上推奨）</li>
+                        <li>☐ RAM：8GB以上を推奨（4GBは最低限、Chromebookは4GBでも可）</li>
+                        <li>☐ ストレージ：SSD搭載必須（eMMCは用途次第）、容量は十分か</li>
+                        <li>☐ ディスプレイ：サイズ、解像度、タッチ対応</li>
+                        <li>☐ バッテリー：8時間以上の駆動時間（文科省基準）</li>
+                        <li>☐ 重量：児童生徒が持ち運べる重さか（1.5kg以下、理想は1.0〜1.3kg）</li>
+                    </ul>
+
+                    <h5>□ 堅牢性・耐久性</h5>
+                    <ul>
+                        <li>☐ 落下テスト合格（MIL-STD-810G/810H推奨、122cmからの落下試験）</li>
+                        <li>☐ 防塵・防滴性能（IP規格）</li>
+                        <li>☐ キーボード・タッチパッドの耐久性</li>
+                        <li>☐ ヒンジ・接続部の強度</li>
+                        <li>☐ <strong>【追加】</strong>実機での耐久性評価（他校の故障率データ参照）</li>
+                    </ul>
+
+                    <h5>□ OS・ソフトウェア</h5>
+                    <ul>
+                        <li>☐ OSの種類とバージョン</li>
+                        <li>☐ <strong>【追加】</strong>OSサポート期限
+                            <ul>
+                                <li>Chromebook：AUE（自動更新期限）10年（2021年以降モデル）</li>
+                                <li>Windows：Windows 11は2032年まで（予定）</li>
+                                <li>iPadOS：通常5〜7年（機種により異なる）</li>
+                            </ul>
+                        </li>
+                        <li>☐ 既存システムとの互換性</li>
+                        <li>☐ 教育用アプリの動作確認</li>
+                    </ul>
+
+                    <h5>□ ネットワーク・接続性</h5>
+                    <ul>
+                        <li>☐ Wi-Fi規格（Wi-Fi 6（IEEE 802.11ax）推奨、GIGA第2期基準）</li>
+                        <li>☐ Bluetooth対応</li>
+                        <li>☐ USB端子の数と種類（USB Type-C PD必須、文科省基準）</li>
+                        <li>☐ HDMI出力（大型提示装置接続）</li>
+                    </ul>
+
+                    <h5>□ セキュリティ</h5>
+                    <ul>
+                        <li>☐ OS標準のセキュリティ機能</li>
+                        <li>☐ MDM（モバイルデバイス管理）対応</li>
+                        <li>☐ 生体認証（指紋、顔認証）</li>
+                        <li>☐ 物理的なセキュリティスロット</li>
+                    </ul>
+
+                    <h5>□ サポート・保証</h5>
+                    <ul>
+                        <li>☐ 保証期間（3年以上推奨）</li>
+                        <li>☐ 修理対応（オンサイト、センドバック、代替機提供）</li>
+                        <li>☐ 教員向け研修サポート</li>
+                        <li>☐ 技術サポート窓口（電話、メール、チャット）</li>
+                        <li>☐ <strong>【追加】</strong>バッテリー交換費用と対応期間</li>
+                    </ul>
+
+                    <h5>□ コスト</h5>
+                    <ul>
+                        <li>☐ 1台あたりの価格</li>
+                        <li>☐ 教育機関割引の有無</li>
+                        <li>☐ 保守費用（年額）</li>
+                        <li>☐ 修理時の追加費用</li>
+                        <li>☐ アクセサリ・周辺機器の費用</li>
+                        <li>☐ <strong>【追加】</strong>5年間TCOの試算</li>
+                    </ul>
+
+                    <h5>□ 将来性・拡張性</h5>
+                    <ul>
+                        <li>☐ メモリ増設の可否</li>
+                        <li>☐ ストレージ交換・増設の可否</li>
+                        <li>☐ OSアップデート対応予定</li>
+                        <li>☐ メーカーの教育市場へのコミットメント</li>
+                        <li>☐ <strong>【追加】</strong>予備部品の供給期間</li>
+                    </ul>
+                </div>
+
+                <h3>5.3 実機評価の重要性</h3>
+                <p>カタログスペックだけでなく、実際に端末を触って評価することが重要です。</p>
+
+                <div class="point-box">
+                    <h4>💡 実機評価のポイント</h4>
+                    
+                    <h5>操作性</h5>
+                    <ul>
+                        <li>キーボードのタイピング感</li>
+                        <li>タッチパッドの反応</li>
+                        <li>タッチパネルの精度</li>
+                        <li>ペン入力の書き心地</li>
+                    </ul>
+
+                    <h5>画面品質</h5>
+                    <ul>
+                        <li>色再現性、明るさ</li>
+                        <li>視野角</li>
+                        <li>屋外での視認性</li>
+                        <li>ブルーライトカット機能</li>
+                    </ul>
+
+                    <h5>音質</h5>
+                    <ul>
+                        <li>スピーカーの音量・音質</li>
+                        <li>マイクの集音性能</li>
+                        <li>ビデオ会議での聞き取りやすさ</li>
+                    </ul>
+
+                    <h5>発熱・騒音</h5>
+                    <ul>
+                        <li>高負荷時の発熱具合</li>
+                        <li>ファンの騒音レベル</li>
+                        <li>長時間使用時の快適性</li>
+                    </ul>
+
+                    <h5>実際の使用シーン再現</h5>
+                    <ul>
+                        <li>ブラウザで複数タブを開く</li>
+                        <li>ビデオ会議をしながら資料を表示</li>
+                        <li>動画編集ソフトの動作</li>
+                        <li>プログラミング環境の動作</li>
+                    </ul>
+                </div>
+
+                <div class="warning-box">
+                    <h4>⚠️ 児童生徒による評価</h4>
+                    <ul>
+                        <li>実際に使用する児童生徒にも試用してもらう</li>
+                        <li>大人と子どもでは操作感が異なる</li>
+                        <li>重さ、持ちやすさ、画面サイズの適切性</li>
+                        <li>直感的に使えるか（ユーザビリティ）</li>
+                    </ul>
+                </div>
+
+                <h3>5.4 導入後の評価と見直し</h3>
+                <p>端末導入後も、継続的な評価と改善が重要です。</p>
+
+                <div class="info-box">
+                    <h4>📊 導入後評価の項目</h4>
+                    
+                    <h5>技術的評価</h5>
+                    <ul>
+                        <li>実際の性能は期待通りか</li>
+                        <li>故障率・トラブル発生率（自治体平均との比較）</li>
+                        <li>バッテリーの劣化状況（3〜5年後の充電持続時間）</li>
+                        <li>OSアップデート後の動作</li>
+                    </ul>
+
+                    <h5>教育的評価</h5>
+                    <ul>
+                        <li>学習目標の達成度</li>
+                        <li>児童生徒の満足度</li>
+                        <li>教員の使いやすさ</li>
+                        <li>授業での活用頻度</li>
+                    </ul>
+
+                    <h5>運用評価</h5>
+                    <ul>
+                        <li>サポート対応の質</li>
+                        <li>修理のスピード</li>
+                        <li>管理の負担</li>
+                        <li>ランニングコスト</li>
+                    </ul>
+
+                    <h5>次回更新への反映（GIGA第3期に向けて）</h5>
+                    <ul>
+                        <li>良かった点、改善点の整理</li>
+                        <li>次世代端末への要望</li>
+                        <li>予算計画の見直し</li>
+                        <li><strong>【追加】</strong>AUE/EOL到達時期の把握</li>
+                    </ul>
+                </div>
+
+                <h3>5.5 NEXT GIGA（第2期）の主要課題と対策</h3>
+                <p>文部科学省が示す「次期ICT環境整備方針」（2024年6月）より：</p>
+
+                <div class="warning-box">
+                    <h4>⚠️ 課題1：端末故障・バッテリー劣化への対応</h4>
+                    <p><strong>実態：</strong>GIGA第1期（2020〜2021年導入）の端末が4〜5年経過</p>
+                    <h5>対策：</h5>
+                    <ul>
+                        <li>予備機15%の確保</li>
+                        <li>バッテリー交換計画の策定</li>
+                        <li>教室内個別充電設備の整備（USB PD対応）</li>
+                        <li>保守契約の見直し</li>
+                    </ul>
+                </div>
+
+                <div class="warning-box">
+                    <h4>⚠️ 課題2：教職員のICT活用指導力の格差</h4>
+                    <p><strong>実態：</strong>教員間でICTリテラシーの差が大きい</p>
+                    <h5>対策：</h5>
+                    <ul>
+                        <li>段階的な研修プログラムの実施</li>
+                        <li>ICT支援員の配置拡充</li>
+                        <li>好事例の横展開</li>
+                    </ul>
+                </div>
+
+                <div class="warning-box">
+                    <h4>⚠️ 課題3：OSサポート期限の管理</h4>
+                    <ul>
+                        <li><strong>Chromebook：</strong>AUE（自動更新期限）の確認（機種ごとに異なる）</li>
+                        <li><strong>Windows：</strong>Windows 10のサポート終了（2025年10月）</li>
+                        <li><strong>対策：</strong>計画的な更新スケジュールの策定</li>
+                    </ul>
+                </div>
+            </section>
+
+            <section class="content-section">
+                <h2>🔧 実践演習</h2>
+                
+                <div class="info-box" style="background-color: #fef3c7;">
+                    <h3>演習1：端末スペック比較シート作成</h3>
+                    <p>以下の3つの架空端末スペックを比較し、小学校5〜6年生向けの端末として最適なものを選定してください。</p>
+                    
+                    <h4>【端末A：低価格モデル】</h4>
+                    <ul>
+                        <li>CPU: Intel Celeron N4020</li>
+                        <li>RAM: 4GB</li>
+                        <li>ストレージ: 64GB eMMC</li>
+                        <li>ディスプレイ: 11.6インチ HD (1366×768)</li>
+                        <li>重量: 1.2kg</li>
+                        <li>バッテリー: 10時間</li>
+                        <li>Wi-Fi: IEEE 802.11ac</li>
+                        <li>価格: 35,000円</li>
+                    </ul>
+
+                    <h4>【端末B：標準モデル（推奨）】</h4>
+                    <ul>
+                        <li>CPU: Intel Processor N100</li>
+                        <li>RAM: 8GB</li>
+                        <li>ストレージ: 128GB SSD (NVMe)</li>
+                        <li>ディスプレイ: 11.6インチ FHD (1920×1080) タッチ対応</li>
+                        <li>重量: 1.25kg</li>
+                        <li>バッテリー: 8時間</li>
+                        <li>Wi-Fi: IEEE 802.11ax（Wi-Fi 6）</li>
+                        <li>価格: 60,000円</li>
+                    </ul>
+
+                    <h4>【端末C：ハイエンドモデル】</h4>
+                    <ul>
+                        <li>CPU: Intel Core i5-1235U</li>
+                        <li>RAM: 16GB</li>
+                        <li>ストレージ: 512GB SSD (NVMe)</li>
+                        <li>ディスプレイ: 13.3インチ FHD (1920×1080) IPS タッチ対応</li>
+                        <li>重量: 1.35kg</li>
+                        <li>バッテリー: 8時間</li>
+                        <li>Wi-Fi: IEEE 802.11ax（Wi-Fi 6）</li>
+                        <li>価格: 95,000円</li>
+                    </ul>
+
+                    <h4>【評価の視点】</h4>
+                    <ol>
+                        <li>各端末の長所・短所をリストアップ</li>
+                        <li>文科省最低スペック基準との適合性チェック</li>
+                        <li>用途との適合性を5段階で評価</li>
+                        <li>5年間TCOの試算</li>
+                        <li>総合評価と推奨理由を200字程度でまとめる</li>
+                    </ol>
+
+                    <h5>【解答例のヒント】</h5>
+                    <ul>
+                        <li><strong>端末A：</strong>価格は魅力的だが、eMMC、CPUが旧世代、Wi-Fi 6非対応</li>
+                        <li><strong>端末B：</strong>GIGA第2期基準を満たし、コストパフォーマンス良好</li>
+                        <li><strong>端末C：</strong>性能は優秀だが、小学校5〜6年生には過剰スペック</li>
+                    </ul>
+                </div>
+
+                <div class="info-box" style="background-color: #ecfdf5;">
+                    <h3>演習2：既存端末のスペック調査</h3>
+                    <p>自校または支援校の既存端末について、以下の情報を調査してください。</p>
+                    
+                    <h4>【調査項目】</h4>
+                    <ul>
+                        <li>端末の型番・メーカー</li>
+                        <li>CPUの種類とクロック周波数</li>
+                        <li>RAM容量</li>
+                        <li>ストレージの種類（SSD/eMMC/HDD）と容量</li>
+                        <li>OSのバージョン</li>
+                        <li>導入年度と使用年数</li>
+                        <li>現在のストレージ使用状況</li>
+                        <li><strong>【追加】</strong>OSサポート期限（Chromebook AUE、Windows EOL）</li>
+                        <li><strong>【追加】</strong>故障・修理の実績</li>
+                        <li><strong>【追加】</strong>バッテリー駆動時間の劣化状況</li>
+                    </ul>
+
+                    <h4>【調査方法】</h4>
+                    <ul>
+                        <li><strong>Windows:</strong> 「設定」→「システム」→「詳細情報」</li>
+                        <li><strong>Mac:</strong> Appleメニュー → 「このMacについて」</li>
+                        <li><strong>Chromebook:</strong> 「設定」→「Chrome OSについて」、AUEは管理コンソールで確認</li>
+                        <li><strong>iPad:</strong> 「設定」→「一般」→「情報」</li>
+                    </ul>
+
+                    <h4>【評価と提案】</h4>
+                    <ol>
+                        <li>現在の性能で今後3年間使用可能か評価</li>
+                        <li>文科省GIGA第2期基準との比較</li>
+                        <li>不足している点を指摘</li>
+                        <li>改善策（RAM増設、ストレージ増設、買い替え、バッテリー交換）を提案</li>
+                        <li><strong>【追加】</strong>OSサポート期限到達時期と対応策</li>
+                    </ol>
+                </div>
+
+                <div class="info-box" style="background-color: #eff6ff;">
+                    <h3>演習3：予算別端末選定プラン作成</h3>
+                    <p>以下の3つのシナリオで、最適な端末選定プランを作成してください。</p>
+
+                    <h4>【シナリオA：予算重視】</h4>
+                    <ul>
+                        <li>学校: 公立小学校</li>
+                        <li>予算: 1台あたり40,000円以内（周辺機器含む）</li>
+                        <li>台数: 120台（全学年） + 予備機18台（15%）= 合計138台</li>
+                        <li>用途: 基本的な学習活動</li>
+                        <li>総予算: 5,520,000円</li>
+                    </ul>
+
+                    <h4>【シナリオB：標準モデル】</h4>
+                    <ul>
+                        <li>学校: 公立中学校</li>
+                        <li>予算: 1台あたり70,000円以内（周辺機器含む）</li>
+                        <li>台数: 200台（全学年） + 予備機30台（15%）= 合計230台</li>
+                        <li>用途: 標準的な学習活動 + 簡単なプログラミング</li>
+                        <li>総予算: 16,100,000円</li>
+                    </ul>
+
+                    <h4>【シナリオC：専門コース】</h4>
+                    <ul>
+                        <li>学校: 高校（情報科専門コース）</li>
+                        <li>予算: 1台あたり150,000円以内（周辺機器含む）</li>
+                        <li>台数: 40台（専門コース生徒のみ） + 予備機6台（15%）= 合計46台</li>
+                        <li>用途: プログラミング、動画編集、3Dモデリング、AI活用</li>
+                        <li>総予算: 6,900,000円</li>
+                    </ul>
+
+                    <h4>【プランに含める内容】</h4>
+                    <ol>
+                        <li>推奨端末の機種名とスペック（CPU、RAM、ストレージ、OS）</li>
+                        <li>選定理由（文科省基準適合、コストパフォーマンス、将来性）</li>
+                        <li>総コスト内訳（端末+周辺機器+保守+5年間TCO）</li>
+                        <li>OSサポート期限の確認</li>
+                        <li>運用計画（管理方法、MDM、サポート体制）</li>
+                        <li>リスクと対策（故障率、バッテリー劣化、AUE到達時期）</li>
+                        <li><strong>【追加】</strong>予備機確保計画（15%の根拠）</li>
+                    </ol>
+                </div>
+            </section>
+
+            <section class="content-section">
+                <h2>📖 既存講座との関連</h2>
+                <p>本講座は、既存カリキュラムの以下の講座と関連しています：</p>
+                
+                <div class="info-box">
+                    <ul>
+                        <li><strong>第6回：学校のICT環境とハードウェア基礎</strong> → 本講座はその発展版</li>
+                        <li><strong>第50回：オペレーティングシステム論</strong> → CPU・メモリとOSの関係</li>
+                        <li><strong>第51回：データベース論</strong> → ストレージとデータ管理</li>
+                        <li><strong>第52回：アルゴリズムと情報科学の基礎</strong> → CPUの演算処理</li>
+                        <li><strong>中級編第9回：アカウント管理とアクセス制御</strong> → ハードウェアレベルのセキュリティ</li>
+                    </ul>
+                    <p style="margin-top: 1rem;"><strong>本講座で学んだハードウェアの知識は、OSやネットワークを学ぶ際の土台となります。</strong></p>
+                </div>
+            </section>
+
+            <section class="content-section">
+                <h2>📚 参考資料</h2>
+                
+                <div class="info-box">
+                    <h3>【公式資料】</h3>
+                    <ul>
+                        <li><strong>文部科学省「GIGAスクール構想の実現 学習者用コンピュータ最低スペック基準」</strong>（令和6年4月17日）
+                            <br>GIGA第2期端末の最低基準
+                            <br><a href="https://www.mext.go.jp/" target="_blank" style="color: var(--primary-color);">https://www.mext.go.jp/</a>
+                        </li>
+                        <li><strong>文部科学省「次期ICT環境整備方針の在り方ワーキンググループ 取りまとめ」</strong>（令和6年6月）
+                            <br>NEXT GIGAの課題と対応策
+                        </li>
+                        <li><strong>文部科学省「教育情報セキュリティポリシーに関するガイドライン」</strong>
+                            <br>機器選定時のセキュリティ要件
+                        </li>
+                        <li><strong>各OSベンダーの技術仕様書</strong>
+                            <ul>
+                                <li>Microsoft Windows教育機関向けドキュメント</li>
+                                <li>Google for Education技術仕様（Chromebook AUEリスト含む）</li>
+                                <li>Apple教育向けリソース</li>
+                            </ul>
+                        </li>
+                    </ul>
+
+                    <h3>【推奨書籍】</h3>
+                    <ul>
+                        <li>「コンピュータはなぜ動くのか」矢沢久雄（日経BP社）</li>
+                        <li>「プログラムはなぜ動くのか」矢沢久雄（日経BP社）</li>
+                        <li>「教育ICT環境整備ハンドブック」（教育家庭新聞社）</li>
+                    </ul>
+
+                    <h3>【Webリソース】</h3>
+                    <ul>
+                        <li><strong>PassMark Software</strong>（<a href="https://www.cpubenchmark.net/" target="_blank" style="color: var(--primary-color);">https://www.cpubenchmark.net/</a>）
+                            <br>CPUベンチマークデータベース、本講座で参照
+                        </li>
+                        <li><strong>Notebookcheck.net</strong>
+                            <br>ノートPCの詳細レビュー、実機テスト結果
+                        </li>
+                        <li><strong>Chromebook Auto Update Expiration（AUE）リスト</strong>
+                            <br>Google公式サイトで機種別AUE確認
+                        </li>
+                        <li><strong>MediaTek教育向けChromebook選定ガイド</strong>
+                            <br>IT リーダーのためのベンチマークの基本
+                        </li>
+                    </ul>
+                </div>
+            </section>
+
+            <section class="objectives">
+                <h2>✅ 学習の振り返り</h2>
+                <p>本講座を通じて、以下のことを学びました：</p>
                 <ul>
-                    <li>✅ 第1章：コンピュータの基本構造</li>
-                    <li>✅ 第2章：CPU（プロセッサ）の仕組み</li>
-                    <li>⏳ 第3章：メモリとストレージ</li>
-                    <li>⏳ 第4章：コンピュータの性能指標</li>
-                    <li>⏳ 第5章：学校での機器選定のポイント</li>
-                    <li>⏳ 実践演習</li>
+                    <li>✓ コンピュータの5大機能とノイマン型アーキテクチャ</li>
+                    <li>✓ CPUの仕組みと性能指標の読み方</li>
+                    <li>✓ Intel、AMD、ARMの違いと教育現場での使い分け</li>
+                    <li>✓ <strong>【追加】</strong>Intel N100/N95の登場と教育端末への影響</li>
+                    <li>✓ メモリとストレージの役割と適切な容量</li>
+                    <li>✓ SSD、eMMC、HDDの違いと教育現場でのSSD推奨理由</li>
+                    <li>✓ ベンチマークを使った性能評価方法</li>
+                    <li>✓ 用途別の推奨スペックと予算配分</li>
+                    <li>✓ <strong>【追加】</strong>TCO（総所有コスト）の具体的計算方法</li>
+                    <li>✓ 機器選定のプロセスとチェックリスト</li>
+                    <li>✓ 実機評価の重要性と評価ポイント</li>
+                    <li>✓ 導入後の継続的な評価と改善</li>
+                    <li>✓ <strong>【追加】</strong>GIGA第2期の最新基準とNEXT GIGAの課題</li>
+                    <li>✓ <strong>【追加】</strong>OSサポート期限（Chromebook AUE 10年）の重要性</li>
                 </ul>
+            </section>
+
+            <section class="content-section">
+                <h2>🎓 次回予告</h2>
+                <div class="info-box" style="background-color: #eff6ff;">
+                    <h3>第50回：オペレーティングシステム論</h3>
+                    <p>本講座で学んだハードウェアの上で動作する<strong>OS（オペレーティングシステム）</strong>について学びます。Windows、Chrome OS、iOS/iPadOS、macOSの特性比較、OSレベルのトラブルシューティング、管理コンソールの使い方、そしてChromebook AUE管理の実践などを扱います。</p>
+                </div>
+            </section>
+
+            <section class="content-section">
+                <h2>📝 課題（任意）</h2>
+                <p>以下の課題に取り組むことで、学習内容の定着を図ることができます：</p>
+                
+                <div class="info-box">
+                    <h4>1. 自校の端末スペック調査レポート</h4>
+                    <ul>
+                        <li>既存端末の詳細スペックを調査</li>
+                        <li>OSサポート期限（AUE/EOL）の確認</li>
+                        <li>現在の性能評価と今後の更新計画を提案</li>
+                    </ul>
+
+                    <h4>2. 仮想機器選定プロジェクト</h4>
+                    <ul>
+                        <li>架空の学校設定で予算内の端末選定</li>
+                        <li>5年間TCOの試算を含む</li>
+                        <li>稟議書形式で提案書を作成</li>
+                    </ul>
+
+                    <h4>3. 技術トレンド調査</h4>
+                    <ul>
+                        <li>Intel N100/N95などの最新CPU技術を調査</li>
+                        <li>Chromebook AUE 10年への延長の影響分析</li>
+                        <li>今後3年間の教育ICTトレンドを予測</li>
+                    </ul>
+
+                    <h4>4. GIGA第1期の総括レポート</h4>
+                    <ul>
+                        <li>自治体の故障率・トラブル実態の調査</li>
+                        <li>バッテリー劣化状況の把握</li>
+                        <li>GIGA第2期への提言</li>
+                    </ul>
+                </div>
+            </section>
+
+            <div class="point-box">
+                <h3>💬 講座作成者より</h3>
+                <p>コンピュータシステムの理解は、ICT支援員として適切な機器選定やトラブル対応を行うための基礎となります。スペック表の数字の意味を理解し、学校のニーズに合った提案ができるようになることで、限られた予算の中で最大の教育効果を実現できます。</p>
+                
+                <h4>【2025年版の重要ポイント】</h4>
+                <ul>
+                    <li>Intel N100/N95の登場により、低価格帯でも高性能な端末が選択可能に</li>
+                    <li>Chromebook AUE 10年への延長により、長期使用計画が立てやすく</li>
+                    <li>GIGA第2期では、Wi-Fi 6、USB Type-C PDが標準化</li>
+                    <li>故障率の実態を踏まえた予備機15%確保が重要</li>
+                    <li>TCOを意識した総合的なコスト管理が求められる</li>
+                </ul>
+                
+                <p style="margin-top: 1rem;"><strong>本講座で学んだ知識を、ぜひ実際の支援現場で活かしてください。</strong></p>
             </div>
+
+            <section class="navigation-buttons">
+                <a href="../supplement.html" class="btn btn-secondary">← 補完カリキュラム一覧へ</a>
+                <a href="session50.html" class="btn btn-primary">次の講座：第50回 →</a>
+            </section>
         </div>
     </main>
 
     <footer>
         <div class="container">
-            <p>&copy; 2024 ICT支援員・企画員のための教育講座. All rights reserved.</p>
+            <p>&copy; 2025 ICT支援員教育講座. All rights reserved.</p>
             <p>お問い合わせ：<a href="mailto:school.ict.info@gmail.com">school.ict.info@gmail.com</a></p>
         </div>
     </footer>

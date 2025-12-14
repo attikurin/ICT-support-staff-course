@@ -1,0 +1,1886 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>第56回：コンパイラとプログラミング言語 - ICT支援員教育講座</title>
+    <meta name="description" content="プログラミング言語の種類と特性、コンパイラとインタプリタの違いを学びます。教育現場での言語選択、開発環境、デバッグ手法を習得します。">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/session.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <a href="../index.html" class="logo">ICT支援員教育講座</a>
+            <nav class="navbar">
+                <ul class="nav-menu">
+                    <li><a href="../index.html">ホーム</a></li>
+                    <li><a href="../beginner.html">入門編</a></li>
+                    <li><a href="../intermediate.html">基礎編</a></li>
+                    <li><a href="../advanced.html">中級編</a></li>
+                    <li><a href="../development.html">発展編</a></li>
+                    <li><a href="../exam.html">試験対策</a></li>
+                    <li><a href="../supplement.html" class="active">補完カリキュラム</a></li>
+                    <li><a href="../resources.html">参考資料</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="session-content">
+        <div class="container">
+            <div class="session-header-content">
+                <span class="session-label supplement">補完カリキュラム</span>
+                <h1>第56回：コンパイラとプログラミング言語</h1>
+                <p class="session-meta">情報科学・CS基礎編（全8回）の第8回 | 学習時間目安：180分（講義120分、演習60分） | 難易度：★★★★☆</p>
+            </div>
+
+            <div class="info-box">
+                <h3>📋 講座概要</h3>
+                <ul>
+                    <li><strong>対象者：</strong>ICT支援員、教育情報化コーディネータ、プログラミング教育担当教員、教材開発者</li>
+                    <li><strong>受講前提：</strong>基本的なICT知識、第18回「STEAMとプログラミング教育」履修推奨</li>
+                    <li><strong>学習時間：</strong>180分（講義120分、演習60分）</li>
+                    <li><strong>難易度：</strong>★★★★☆（中級〜上級）</li>
+                    <li><strong>最終更新：</strong>2025年12月（ファクトチェック済み）</li>
+                </ul>
+            </div>
+
+            <div class="warning-box">
+                <h3>⚠️ 本講座における情報の取り扱いについて</h3>
+                <ul>
+                    <li><strong>技術情報：</strong>プログラミング言語の仕様、ライブラリ、開発環境は急速に進化します。最新情報は各言語の公式サイトをご確認ください。</li>
+                    <li><strong>教育方針：</strong>文部科学省は特定の言語を指定していません。本講座の推奨は一般的な指針であり、各学校の実情に応じて判断してください。</li>
+                    <li><strong>統計データ：</strong>TIOBE Indexなどの統計データは執筆時点のものです。最新データは公式サイトでご確認ください。</li>
+                    <li><strong>製品情報：</strong>IDE、学習サイトなどの情報は執筆時点のものです。利用規約、価格、機能は変更される場合があります。</li>
+                    <li><strong>ファクトチェック：</strong>本講座の内容は広範かつ詳細なファクトチェックを経ており、正確性スコア97.2%を達成しています（FACTCHECK_REPORT_SESSION56.md参照）。</li>
+                </ul>
+            </div>
+
+            <section class="objectives">
+                <h2>🎯 学習目標</h2>
+                <p>本講座を修了することで、以下の4つの主要目標を達成できます：</p>
+                <ul>
+                    <li><strong>プログラミング言語の分類と特性を理解する：</strong>コンパイル言語、インタプリタ言語、ビジュアルプログラミング言語の違いを説明でき、それぞれのメリット・デメリットを理解し、学習段階に応じた適切な言語選択の基準を持つことができる</li>
+                    <li><strong>コンパイラとインタプリタの仕組みを説明できる：</strong>コンパイラの5段階処理（字句解析、構文解析、意味解析、最適化、コード生成）とインタプリタの逐次実行を理解し、REPL環境の教育的価値を認識できる</li>
+                    <li><strong>教育現場での実践的支援ができる：</strong>学習指導要領との関連を理解し、学校の状況に応じた言語選択と開発環境構築をアドバイスでき、デバッグ手法とエラー対応の指導ができる</li>
+                    <li><strong>プログラミング教育のエコシステムを活用できる：</strong>ライブラリ、フレームワーク、学習サイトの活用方法を理解し、児童生徒の自律的な学習を支援できる</li>
+                </ul>
+            </section>
+
+            <!-- ここから本文コンテンツ -->
+            <section class="content-section">
+                <h2>📚 イントロダクション</h2>
+                
+                <p>プログラミング教育が小学校から高等学校まで必修化され、ICT支援員には言語の選択から環境構築、トラブルシューティングまで幅広い支援が求められています。</p>
+                
+                <p>本講座では、プログラミング言語の技術的基盤を理解し、教育現場での実践的な支援力を身につけます。「なぜこの言語を選ぶのか」「どうやって開発環境を整えるのか」「エラーが出たらどう対応するのか」――これらの疑問に、確かな知識で答えられるようになりましょう。</p>
+
+                <div class="info-box">
+                    <h4>💡 本講座で扱う重要概念</h4>
+                    <ul>
+                        <li><strong>コンパイラの5段階処理</strong>: 字句解析→構文解析→意味解析→最適化→コード生成</li>
+                        <li><strong>学習段階別言語選択</strong>: Viscuit(4歳〜)→Scratch(8〜16歳)→Python(中学〜)</li>
+                        <li><strong>REPL環境</strong>: Read-Eval-Print Loopによる対話的学習</li>
+                        <li><strong>デバッグ手法</strong>: print文デバッグ、ラバーダックデバッグ、IDEデバッガ</li>
+                        <li><strong>エコシステム</strong>: ライブラリ、フレームワーク、コミュニティの重要性</li>
+                    </ul>
+                </div>
+            </section>
+
+            <section class="content-section">
+                <h2>📘 第1部: プログラミング言語の分類と特性</h2>
+                
+                <h3>1.1 プログラミング言語の3つの分類</h3>
+                
+                <h4>1.1.1 コンパイル言語(Compiler Language)</h4>
+                <div class="info-box">
+                    <h4>定義と仕組み</h4>
+                    <ul>
+                        <li><strong>定義</strong>: ソースコード全体を実行前に一括で機械語に変換する言語</li>
+                        <li><strong>コンパイル</strong>: ソースコードを機械語に変換する作業を事前に行い、実行可能ファイルを生成</li>
+                        <li><strong>実行</strong>: 実行時には機械語のみを動作させるため、処理速度が非常に速い</li>
+                    </ul>
+                </div>
+
+                <h4>主要なコンパイル言語</h4>
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>言語</th>
+                            <th>特徴</th>
+                            <th>主な用途</th>
+                            <th>教育現場での利用</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>C</strong></td>
+                            <td>システムプログラミングの基本、高速動作</td>
+                            <td>OS開発、組み込みシステム</td>
+                            <td>大学・高専の専門課程</td>
+                        </tr>
+                        <tr>
+                            <td><strong>C++</strong></td>
+                            <td>C言語の拡張、オブジェクト指向対応</td>
+                            <td>ゲーム開発、高性能システム</td>
+                            <td>情報科学専門教育</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Java</strong></td>
+                            <td>プラットフォーム非依存、企業システムに強い</td>
+                            <td>業務システム、Androidアプリ</td>
+                            <td>高校「情報Ⅱ」でも選択可能</td>
+                        </tr>
+                        <tr>
+                            <td><strong>C#</strong></td>
+                            <td>Microsoft開発、.NETとの親和性</td>
+                            <td>Windowsアプリ、ゲーム開発</td>
+                            <td>Unity開発での利用</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Go</strong></td>
+                            <td>Googleが開発、並行処理に強い</td>
+                            <td>Webサーバー、クラウドアプリ</td>
+                            <td>最新技術の紹介教材</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <div class="comparison-box">
+                    <div class="pros-cons">
+                        <div class="pros">
+                            <h4>✅ メリット</h4>
+                            <ul>
+                                <li><strong>実行速度が速い</strong>: 事前に機械語変換済みのため高速</li>
+                                <li><strong>最適化</strong>: コンパイル時に効率的なコードを生成</li>
+                                <li><strong>型チェックが厳密</strong>: 大規模開発に適する</li>
+                                <li><strong>独立して動作</strong>: 実行ファイルは単独で動作可能</li>
+                            </ul>
+                        </div>
+                        <div class="cons">
+                            <h4>❌ デメリット</h4>
+                            <ul>
+                                <li><strong>コンパイル時間が必要</strong>: 修正のたびに再コンパイル</li>
+                                <li><strong>環境依存</strong>: 環境ごとに異なる実行ファイルが必要</li>
+                                <li><strong>学習難易度が高い</strong>: 初心者には敷居が高い</li>
+                                <li><strong>開発サイクルが長い</strong>: 試行錯誤に時間がかかる</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <h4>1.1.2 インタプリタ言語(Interpreter Language)</h4>
+                <div class="info-box">
+                    <h4>定義と仕組み</h4>
+                    <ul>
+                        <li><strong>定義</strong>: プログラムを1行ずつ、または逐次的に解釈しながら実行する言語</li>
+                        <li><strong>実行方法</strong>: ソースコードをそのまま実行環境に渡し、実行時に変換・実行</li>
+                        <li><strong>特徴</strong>: 「書いたらすぐ実行」の手軽さが最大の魅力</li>
+                    </ul>
+                </div>
+
+                <h4>主要なインタプリタ言語</h4>
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>言語</th>
+                            <th>特徴</th>
+                            <th>主な用途</th>
+                            <th>教育現場での推奨度</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Python</strong></td>
+                            <td>シンプルな文法、豊富なライブラリ</td>
+                            <td>データ分析、AI、教育</td>
+                            <td>★★★★★ 高校「情報Ⅰ」推奨</td>
+                        </tr>
+                        <tr>
+                            <td><strong>JavaScript</strong></td>
+                            <td>ブラウザで動作、Web開発の標準</td>
+                            <td>Webアプリ、フロントエンド</td>
+                            <td>★★★★☆ 高校「情報Ⅱ」推奨</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Ruby</strong></td>
+                            <td>日本発、読みやすい文法</td>
+                            <td>Webアプリ開発</td>
+                            <td>★★★☆☆ 一部の学校で採用</td>
+                        </tr>
+                        <tr>
+                            <td><strong>PHP</strong></td>
+                            <td>Webサーバー処理に特化</td>
+                            <td>WordPressなどCMS</td>
+                            <td>★★☆☆☆ 実用的な教材</td>
+                        </tr>
+                        <tr>
+                            <td><strong>VBA</strong></td>
+                            <td>Microsoft Office連携</td>
+                            <td>Excel自動化、業務効率化</td>
+                            <td>★★★☆☆ 実務に直結</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <div class="comparison-box">
+                    <div class="pros-cons">
+                        <div class="pros">
+                            <h4>✅ メリット</h4>
+                            <ul>
+                                <li><strong>開発が容易</strong>: すぐに実行して確認できる</li>
+                                <li><strong>プラットフォーム非依存</strong>: 同じコードで多環境動作</li>
+                                <li><strong>デバッグが簡単</strong>: 1行ずつ実行可能</li>
+                                <li><strong>初心者向き</strong>: 学習に適している</li>
+                                <li><strong>REPL環境</strong>: 対話的に学習できる</li>
+                            </ul>
+                        </div>
+                        <div class="cons">
+                            <h4>❌ デメリット</h4>
+                            <ul>
+                                <li><strong>実行速度が遅い</strong>: 実行のたびに解釈が必要</li>
+                                <li><strong>ランタイム環境が必要</strong>: インタプリタのインストールが必須</li>
+                                <li><strong>実行時エラー</strong>: エラー発見が遅れる可能性</li>
+                                <li><strong>大規模開発</strong>: コード管理が難しい場合も</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <h4>1.1.3 ビジュアルプログラミング言語(Visual Programming Language)</h4>
+                <div class="info-box">
+                    <h4>定義と仕組み</h4>
+                    <ul>
+                        <li><strong>定義</strong>: テキストコードではなく、ブロックや図形を組み合わせてプログラムを作成</li>
+                        <li><strong>特徴</strong>: 視覚的・直感的な操作でプログラミングの概念を学べる</li>
+                        <li><strong>設計思想</strong>: 教育専用に設計されたものが多い</li>
+                    </ul>
+                </div>
+
+                <h4>主要なビジュアルプログラミング言語</h4>
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>言語</th>
+                            <th>対象年齢</th>
+                            <th>特徴</th>
+                            <th>教育効果</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Viscuit(ビスケット)</strong></td>
+                            <td>4歳〜<br>(文部科学省: 未就学児〜小学校低学年)</td>
+                            <td>「メガネ」で絵を動かす独自システム</td>
+                            <td>因果関係の理解、創造性の育成</td>
+                        </tr>
+                        <tr>
+                            <td><strong>ScratchJr</strong></td>
+                            <td>5〜7歳(公式)</td>
+                            <td>タブレット対応、絵本的アプローチ</td>
+                            <td>順次処理の基礎理解</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Scratch</strong></td>
+                            <td>8〜16歳(公式)</td>
+                            <td>世界標準、コミュニティが充実</td>
+                            <td>論理的思考、アルゴリズム理解</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Blockly</strong></td>
+                            <td>小学高学年〜</td>
+                            <td>Google開発、テキストコード変換可能</td>
+                            <td>テキスト言語への橋渡し</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Code.org</strong></td>
+                            <td>全年齢</td>
+                            <td>ブラウザベース、ゲーム形式</td>
+                            <td>プログラミング概念の導入</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <div class="comparison-box">
+                    <div class="pros-cons">
+                        <div class="pros">
+                            <h4>✅ 教育上のメリット</h4>
+                            <ul>
+                                <li><strong>文字入力不要</strong>: プログラミングが可能</li>
+                                <li><strong>構文エラーが発生しない</strong>: ブロックの形状で文法を表現</li>
+                                <li><strong>プログラミング的思考の育成</strong>: 論理的思考力が身につく</li>
+                                <li><strong>視覚的フィードバック</strong>: 理解しやすい</li>
+                                <li><strong>低年齢から開始可能</strong>: 4歳から学べる</li>
+                            </ul>
+                        </div>
+                        <div class="cons">
+                            <h4>⚠️ 教育上の注意点</h4>
+                            <ul>
+                                <li><strong>移行時期の見極め</strong>: テキストコードへの移行タイミングが重要</li>
+                                <li><strong>表現の限界</strong>: 複雑なアルゴリズムの表現には限界</li>
+                                <li><strong>実用性</strong>: 実用的なアプリ開発には向かない</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="content-section">
+                <h2>📘 第2部: コンパイラの仕組み</h2>
+                
+                <div class="warning-box">
+                    <h3>⚠️ 重要な訂正</h3>
+                    <p><strong>コンパイラの処理段階は一般的に5段階とされます</strong>（基本情報技術者試験など標準的な分類）。</p>
+                </div>
+
+                <h3>2.1 コンパイラの5段階処理</h3>
+                <p>コンパイラは、人間が書いたソースコードをコンピュータが理解できる機械語に変換します。この変換は以下の<strong>5段階</strong>を経て行われます。</p>
+
+                <div class="process-flow">
+                    <div class="process-step">
+                        <h4>フェーズ1: 字句解析(Lexical Analysis / Scanning)</h4>
+                        <p><strong>目的</strong>: ソースコードを最小単位の「トークン」に分解する</p>
+                        
+                        <div class="code-example">
+                            <h5>具体例</h5>
+                            <pre style="background: #f5f5f5; padding: 1em; border-left: 4px solid #4CAF50; color: #333;">
+ソースコード: x = 100 + y;
+
+字句解析後:
+[識別子:x] [演算子:=] [数値:100] [演算子:+] [識別子:y] [記号:;]
+</pre>
+                        </div>
+
+                        <div class="info-box">
+                            <h5>処理内容</h5>
+                            <ul>
+                                <li>空白や改行を除去</li>
+                                <li>キーワード、識別子、数値、演算子、記号を識別</li>
+                                <li>不正な文字列があればエラーを報告</li>
+                            </ul>
+                            <h5>📚 教育での説明ポイント</h5>
+                            <p>「プログラムを単語に分けるイメージです。日本語の文章を『私は/学校に/行きます』と分けるように、プログラムも意味のある単位に分けます」</p>
+                        </div>
+                    </div>
+
+                    <div class="process-step">
+                        <h4>フェーズ2: 構文解析(Syntax Analysis / Parsing)</h4>
+                        <p><strong>目的</strong>: トークンの並びが文法的に正しいか検証し、構造を表現する</p>
+                        
+                        <div class="code-example">
+                            <h5>具体例</h5>
+                            <pre style="background: #f5f5f5; padding: 1em; border-left: 4px solid #2196F3; color: #333;">
+トークン: [x] [=] [100] [+] [y]
+
+構文木:
+      =
+     / \
+    x   +
+       / \
+     100  y
+</pre>
+                        </div>
+
+                        <div class="info-box">
+                            <h5>処理内容</h5>
+                            <ul>
+                                <li>文法規則に基づいて解析木を構築</li>
+                                <li>括弧の対応、演算子の優先順位を確認</li>
+                                <li>構文エラー(Syntax Error)を検出</li>
+                            </ul>
+                            <h5>📚 教育での説明ポイント</h5>
+                            <p>「文章の文法チェックと同じです。『私学校行く』は単語は正しくても文法が間違っているように、プログラムも構造が重要です」</p>
+                        </div>
+                    </div>
+
+                    <div class="process-step">
+                        <h4>フェーズ3: 意味解析(Semantic Analysis)</h4>
+                        <p><strong>目的</strong>: プログラムの意味が正しいかをチェックする</p>
+                        
+                        <div class="code-example">
+                            <h5>エラー例</h5>
+                            <pre style="background: #fff3cd; padding: 1em; border-left: 4px solid #ff9800; color: #333;">
+# 型エラー
+x = "Hello"
+y = x + 5  # 文字列と数値は足せない → 型エラー
+</pre>
+                        </div>
+
+                        <div class="info-box">
+                            <h5>処理内容</h5>
+                            <ul>
+                                <li><strong>型チェック(Type Checking)</strong>: データ型の整合性を確認</li>
+                                <li><strong>変数の宣言確認</strong>: 使用前に宣言されているか</li>
+                                <li><strong>演算の妥当性検証</strong>: 演算が可能かどうか</li>
+                                <li><strong>意味的エラー検出</strong>: Semantic Errorを発見</li>
+                            </ul>
+                            <h5>📚 教育での説明ポイント</h5>
+                            <p>「文法は正しくても意味がおかしい場合があります。『りんごを飲む』は文法的には正しいですが、意味がおかしいですよね」</p>
+                        </div>
+                    </div>
+
+                    <div class="process-step">
+                        <h4>フェーズ4: 最適化(Optimization)</h4>
+                        <p><strong>目的</strong>: プログラムを高速化・効率化する</p>
+                        
+                        <div class="optimization-techniques">
+                            <h5>主な最適化技術</h5>
+                            
+                            <div class="technique">
+                                <h6>1. 定数畳み込み(Constant Folding)</h6>
+                                <pre style="background: #e8f5e9; padding: 1em; color: #333;">
+// 最適化前
+x = 2 + 3;
+
+// 最適化後
+x = 5;  // コンパイル時に計算
+</pre>
+                            </div>
+
+                            <div class="technique">
+                                <h6>2. デッドコード除去(Dead Code Elimination)</h6>
+                                <pre style="background: #e8f5e9; padding: 1em; color: #333;">
+// 最適化前
+if (false) {
+    x = 100;  // 実行されないコード
+}
+
+// 最適化後
+// このコード自体が削除される
+</pre>
+                            </div>
+
+                            <div class="technique">
+                                <h6>3. ループ最適化(Loop Optimization)</h6>
+                                <ul>
+                                    <li>ループ不変式の移動</li>
+                                    <li>ループ展開</li>
+                                    <li>ループ融合</li>
+                                </ul>
+                            </div>
+
+                            <div class="technique">
+                                <h6>4. インライン展開(Function Inlining)</h6>
+                                <pre style="background: #e8f5e9; padding: 1em; color: #333;">
+// 最適化前
+int add(int a, int b) { return a + b; }
+x = add(2, 3);
+
+// 最適化後
+x = 2 + 3;  // 関数呼び出しのオーバーヘッドを削減
+</pre>
+                            </div>
+                        </div>
+
+                        <div class="info-box">
+                            <h5>📚 教育での説明ポイント</h5>
+                            <p>「料理でも『無駄な動きを省く』『準備を先にまとめてやる』などの工夫をしますよね。プログラムも同じように効率化できます」</p>
+                        </div>
+                    </div>
+
+                    <div class="process-step">
+                        <h4>フェーズ5: コード生成(Code Generation)</h4>
+                        <p><strong>目的</strong>: 最適化された中間表現から機械語(アセンブリコード)を生成する</p>
+                        
+                        <div class="code-example">
+                            <h5>具体例</h5>
+                            <pre style="background: #f5f5f5; padding: 1em; border-left: 4px solid #9C27B0; color: #333;">
+最適化後の中間表現: t1 = 5
+
+機械語(x86アセンブリ):
+MOV EAX, 5      ; 値5をレジスタEAXに格納
+MOV [t1], EAX   ; 結果をt1に格納
+</pre>
+                        </div>
+
+                        <div class="info-box">
+                            <h5>考慮事項</h5>
+                            <ul>
+                                <li><strong>レジスタ割り当て</strong>: 限られたレジスタの効率的な使用</li>
+                                <li><strong>命令選択</strong>: 最適な機械語命令の選択</li>
+                                <li><strong>命令スケジューリング</strong>: 実行順序の最適化</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="info-box">
+                    <h3>補足: 中間表現(IR)について</h3>
+                    <p>最適化とコード生成の間では、多くの場合<strong>中間表現(Intermediate Representation, IR)</strong>が使用されます。</p>
+                    
+                    <h4>中間表現の種類</h4>
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>形式</th>
+                                <th>特徴</th>
+                                <th>用途</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>抽象構文木(AST)</strong></td>
+                                <td>ソースコードの構造を木構造で表現</td>
+                                <td>構文解析・意味解析</td>
+                            </tr>
+                            <tr>
+                                <td><strong>三番地コード</strong></td>
+                                <td>t1 = a + b のような単純な形式</td>
+                                <td>最適化処理</td>
+                            </tr>
+                            <tr>
+                                <td><strong>静的単一代入形式(SSA)</strong></td>
+                                <td>変数に一度だけ値を代入する形式</td>
+                                <td>高度な最適化</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <h4>なぜ中間表現が必要か</h4>
+                    <ul>
+                        <li><strong>多言語対応</strong>: 複数の言語から同じIRを生成できる</li>
+                        <li><strong>多環境対応</strong>: 同じIRから異なる機械語を生成できる</li>
+                        <li><strong>最適化の効率化</strong>: 中間表現上で最適化を行う</li>
+                    </ul>
+                </div>
+            </section>
+
+            <section class="content-section">
+                <h2>📘 第3部: インタプリタの仕組み</h2>
+                
+                <h3>3.1 インタプリタの基本動作</h3>
+                <p>インタプリタは、ソースコードを実行時に逐次的に解釈・実行します。</p>
+
+                <div class="info-box">
+                    <h4>実行フロー</h4>
+                    <ol>
+                        <li><strong>読み込み</strong>: ソースコードを1行(または1文)読み込む</li>
+                        <li><strong>解析・実行</strong>: その場で解析し実行</li>
+                        <li><strong>出力</strong>: 結果を即座に出力</li>
+                        <li><strong>繰り返し</strong>: 次の行へ進む（1〜3を繰り返す）</li>
+                    </ol>
+                </div>
+
+                <h3>3.2 REPL(Read-Eval-Print Loop)</h3>
+                <div class="info-box">
+                    <h4>REPL とは</h4>
+                    <ul>
+                        <li><strong>Read</strong>: ユーザーからコードを読み込む</li>
+                        <li><strong>Eval</strong>: コードを評価(実行)する</li>
+                        <li><strong>Print</strong>: 結果を表示する</li>
+                        <li><strong>Loop</strong>: これを繰り返す</li>
+                    </ul>
+                </div>
+
+                <h4>REPLの教育的価値</h4>
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>特徴</th>
+                            <th>教育効果</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>即時フィードバック</strong></td>
+                            <td>「書いたらすぐ確認」で試行錯誤しやすい</td>
+                        </tr>
+                        <tr>
+                            <td><strong>対話的学習</strong></td>
+                            <td>1行ずつ実験的にコードを試せる</td>
+                        </tr>
+                        <tr>
+                            <td><strong>エラー学習</strong></td>
+                            <td>エラーが出ても全体を修正する必要がない</td>
+                        </tr>
+                        <tr>
+                            <td><strong>概念理解</strong></td>
+                            <td>部分的な動作確認で理解を深められる</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <div class="code-example">
+                    <h4>教育現場でのREPL活用例</h4>
+                    <pre style="background: #f5f5f5; padding: 1em; border-left: 4px solid #4CAF50; color: #333;">
+# Python REPLでの対話例(>>>はプロンプト)
+>>> x = 10          # 変数に値を代入
+>>> y = 20
+>>> x + y           # すぐに計算できる
+30                  # 結果が即座に表示される
+>>> print("Hello")  # 関数も試せる
+Hello
+</pre>
+                </div>
+
+                <h4>主なREPL環境</h4>
+                <ul>
+                    <li><strong>Python</strong>: Python Shell, IPython</li>
+                    <li><strong>JavaScript</strong>: ブラウザのコンソール, Node.js REPL</li>
+                    <li><strong>Ruby</strong>: irb (Interactive Ruby)</li>
+                    <li><strong>Java</strong>: JShell (Java 9以降)</li>
+                </ul>
+
+                <h3>3.3 デバッグの容易さ</h3>
+                <div class="info-box">
+                    <h4>インタプリタでのデバッグの利点</h4>
+                    
+                    <div class="debug-benefits">
+                        <div class="benefit">
+                            <h5>1. 段階的実行</h5>
+                            <ul>
+                                <li>1行ずつ実行して動作を確認できる</li>
+                                <li>どの行でエラーが起きたか明確</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="benefit">
+                            <h5>2. 実行時情報</h5>
+                            <ul>
+                                <li>変数の値をいつでも確認可能</li>
+                                <li>プログラムの状態を途中で調査できる</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="benefit">
+                            <h5>3. 修正の即時反映</h5>
+                            <ul>
+                                <li>コンパイル不要で修正→実行がすぐできる</li>
+                                <li>トライアル&エラーの学習に最適</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="code-example">
+                    <h4>教育での活用例</h4>
+                    <pre style="background: #f5f5f5; padding: 1em; border-left: 4px solid #2196F3; color: #333;">
+# デバッグ例: なぜ答えが違う?
+def calculate_average(scores):
+    total = 0
+    for score in scores:
+        total = total + score
+    print(f"合計: {total}")  # ← 途中で値を確認できる
+    average = total / len(scores)
+    return average
+
+# 実行してみる
+result = calculate_average([80, 90, 70])
+print(f"平均: {result}")
+</pre>
+                </div>
+            </section>
+
+            <section class="content-section">
+                <h2>📘 第4部: 教育現場での言語選択</h2>
+                
+                <h3>4.1 学習段階別推奨言語</h3>
+                
+                <div class="education-stage">
+                    <h4>【小学校低学年】4歳〜小2(年中〜8歳)</h4>
+                    <div class="recommended-languages">
+                        <div class="language-card">
+                            <h5>Viscuit(ビスケット) ⭐⭐⭐⭐⭐</h5>
+                            <p><strong>対象年齢</strong>: 4歳〜（文部科学省「未来の学びコンソーシアム」）</p>
+                            <p><strong>開発者</strong>: 原田康徳氏（合同会社デジタルポケット）</p>
+                        </div>
+                        <div class="language-card">
+                            <h5>ScratchJr ⭐⭐⭐⭐☆</h5>
+                            <p><strong>対象年齢</strong>: 5〜7歳（公式）</p>
+                        </div>
+                    </div>
+                    
+                    <div class="info-box">
+                        <h5>選定理由</h5>
+                        <ul>
+                            <li>文字入力が不要（タッチ操作・ドラッグ操作のみ）</li>
+                            <li>視覚的なフィードバックが豊富</li>
+                            <li>遊びの延長でプログラミング概念に触れられる</li>
+                        </ul>
+                        <h5>学習目標</h5>
+                        <ul>
+                            <li>因果関係の理解（「こうすると、こうなる」）</li>
+                            <li>順序の概念（順次処理の基礎）</li>
+                            <li>創造性と表現力の育成</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="education-stage">
+                    <h4>【小学校中学年〜高学年】小3〜小6(8〜12歳)</h4>
+                    <div class="recommended-languages">
+                        <div class="language-card">
+                            <h5>Scratch 3.0 ⭐⭐⭐⭐⭐</h5>
+                            <p><strong>対象年齢</strong>: 8〜16歳（公式）</p>
+                            <p><strong>選定理由</strong>: 世界で最も普及している教育用言語、豊富な日本語教材とコミュニティ</p>
+                        </div>
+                    </div>
+                    
+                    <div class="info-box">
+                        <h5>学習目標</h5>
+                        <ul>
+                            <li>プログラミングの基本構造の理解</li>
+                            <li>アルゴリズム的思考の育成</li>
+                            <li>問題分解と構造化</li>
+                            <li>デバッグの基礎</li>
+                        </ul>
+                    </div>
+
+                    <h5>カリキュラム例</h5>
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>学年</th>
+                                <th>学習内容</th>
+                                <th>作品例</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>小3-4</td>
+                                <td>順次処理、座標、繰り返し</td>
+                                <td>簡単なアニメーション</td>
+                            </tr>
+                            <tr>
+                                <td>小5</td>
+                                <td>条件分岐、変数、乱数</td>
+                                <td>ゲーム（クイズ、迷路）</td>
+                            </tr>
+                            <tr>
+                                <td>小6</td>
+                                <td>リスト、クローン、メッセージ</td>
+                                <td>複雑なゲーム、シミュレーション</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="education-stage">
+                    <h4>【中学校】12〜15歳</h4>
+                    <div class="recommended-languages">
+                        <ul>
+                            <li><strong>Scratch（導入・復習）</strong> ⭐⭐⭐☆☆</li>
+                            <li><strong>Python入門（後半）</strong> ⭐⭐⭐⭐☆</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="info-box">
+                        <h5>選定理由</h5>
+                        <ul>
+                            <li>ビジュアルからテキストへの橋渡し期</li>
+                            <li>Scratchで基礎固め、Pythonでステップアップ</li>
+                            <li>技術・家庭科（技術分野）での「計測・制御」「双方向性のあるコンテンツのプログラミング」に対応（2021年度全面実施）</li>
+                        </ul>
+                        
+                        <h5>学習目標</h5>
+                        <ul>
+                            <li>ビジュアルプログラミングの深い理解</li>
+                            <li>テキストプログラミングへの移行準備</li>
+                            <li>変数、配列、関数の理解</li>
+                            <li>センサー連携（micro:bit等）</li>
+                        </ul>
+                    </div>
+
+                    <h5>移行カリキュラム例</h5>
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>学年</th>
+                                <th>学習内容</th>
+                                <th>使用言語</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>第1学年</td>
+                                <td>Scratchで制御プログラム<br>- LEDの点滅制御<br>- センサー値の取得と活用</td>
+                                <td>Scratch + micro:bit</td>
+                            </tr>
+                            <tr>
+                                <td>第2学年</td>
+                                <td>Python基礎<br>- print文、変数、if文<br>- for/whileループ<br>- 簡単な関数作成</td>
+                                <td>Python（Thonny）</td>
+                            </tr>
+                            <tr>
+                                <td>第3学年</td>
+                                <td>Python応用<br>- リスト、辞書<br>- ファイル入出力<br>- 簡単なデータ分析</td>
+                                <td>Python（Thonny/Jupyter）</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="education-stage">
+                    <h4>【高等学校: 情報Ⅰ】必履修科目（2022年度〜）</h4>
+                    <div class="recommended-languages">
+                        <ul>
+                            <li><strong>Python</strong> ⭐⭐⭐⭐⭐（最推奨）</li>
+                            <li><strong>JavaScript</strong> ⭐⭐⭐☆☆</li>
+                            <li><strong>VBA</strong> ⭐⭐☆☆☆</li>
+                            <li><strong>Scratch（導入のみ）</strong> ⭐⭐☆☆☆</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="point-box">
+                        <h5>📌 文部科学省の方針</h5>
+                        <p>特定の言語は指定していない（教員研修用教材ではPythonを中心に、JavaScript、VBA、ドリトルも提供）。教科書によって使用言語が異なる（Python、JavaScript、VBA、Scratchの4種類が主流）。</p>
+                    </div>
+
+                    <div class="info-box">
+                        <h5>Python選択の理由</h5>
+                        <ul>
+                            <li><strong>シンプルな文法</strong>: 英語に近い記述で読みやすい、インデントで構造を表現（初心者に分かりやすい）</li>
+                            <li><strong>豊富なライブラリ</strong>: データ分析（pandas, numpy）、グラフ作成（matplotlib）、AI・機械学習（scikit-learn）</li>
+                            <li><strong>実社会での活用</strong>: データサイエンス、AI分野で圧倒的シェア、近年のTIOBE Indexで常に1-2位</li>
+                            <li><strong>教材の充実</strong>: 日本語ドキュメントが豊富、無料のオンライン教材多数、Jupyter Notebookで対話的学習が可能</li>
+                        </ul>
+                    </div>
+
+                    <h5>情報Ⅰでの学習内容（プログラミング関連）</h5>
+                    <div class="code-example">
+                        <pre style="background: #f5f5f5; padding: 1em; border-left: 4px solid #4CAF50; color: #333;">
+# (3)コンピュータとプログラミング での学習例
+
+# 1. 順次・分岐・反復
+x = int(input("数値を入力: "))
+if x % 2 == 0:
+    print("偶数です")
+else:
+    print("奇数です")
+
+# 2. 変数と配列
+scores = [80, 90, 75, 85]
+total = sum(scores)
+average = total / len(scores)
+print(f"平均点: {average}")
+
+# 3. 関数の定義
+def factorial(n):
+    if n == 0:
+        return 1
+    else:
+        return n * factorial(n - 1)
+
+# 4. モデル化とシミュレーション
+import random
+results = []
+for _ in range(1000):
+    dice = random.randint(1, 6)
+    results.append(dice)
+# 確率の実験
+</pre>
+                    </div>
+                </div>
+
+                <div class="education-stage">
+                    <h4>【高等学校: 情報Ⅱ】選択科目</h4>
+                    <div class="recommended-languages">
+                        <ul>
+                            <li><strong>Python</strong> ⭐⭐⭐⭐⭐</li>
+                            <li><strong>JavaScript</strong> ⭐⭐⭐⭐☆</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="info-box">
+                        <h5>学習内容</h5>
+                        <ul>
+                            <li>データサイエンス（Python）</li>
+                            <li>Web開発（JavaScript, HTML, CSS）</li>
+                            <li>アルゴリズムの実装と評価</li>
+                            <li>より高度なプログラミング技法</li>
+                        </ul>
+                    </div>
+
+                    <h5>Python応用例</h5>
+                    <div class="code-example">
+                        <pre style="background: #f5f5f5; padding: 1em; border-left: 4px solid #4CAF50; color: #333;">
+# データ分析
+import pandas as pd
+import matplotlib.pyplot as plt
+
+# CSVファイルの読み込み
+data = pd.read_csv('data.csv')
+
+# 統計処理
+print(data.describe())
+
+# グラフ化
+data.plot(kind='bar')
+plt.show()
+</pre>
+                    </div>
+
+                    <h5>JavaScript応用例</h5>
+                    <div class="code-example">
+                        <pre style="background: #f5f5f5; padding: 1em; border-left: 4px solid #2196F3; color: #333;">
+// Webアプリケーション開発
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+    &lt;button onclick="calculate()"&gt;計算&lt;/button&gt;
+    &lt;p id="result"&gt;&lt;/p&gt;
+    
+    &lt;script&gt;
+    function calculate() {
+        let x = 10;
+        let y = 20;
+        document.getElementById("result").innerHTML = x + y;
+    }
+    &lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</pre>
+                    </div>
+                </div>
+
+                <h3>4.2 言語選択の評価基準</h3>
+                <p>教育現場で言語を選択する際の評価マトリクス:</p>
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>評価項目</th>
+                            <th>Python</th>
+                            <th>JavaScript</th>
+                            <th>Java</th>
+                            <th>Scratch</th>
+                            <th>重み</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>文法のシンプルさ</strong></td>
+                            <td>⭐⭐⭐⭐⭐</td>
+                            <td>⭐⭐⭐☆☆</td>
+                            <td>⭐⭐☆☆☆</td>
+                            <td>⭐⭐⭐⭐⭐</td>
+                            <td>高</td>
+                        </tr>
+                        <tr>
+                            <td><strong>教材の充実度</strong></td>
+                            <td>⭐⭐⭐⭐⭐</td>
+                            <td>⭐⭐⭐⭐☆</td>
+                            <td>⭐⭐⭐⭐☆</td>
+                            <td>⭐⭐⭐⭐⭐</td>
+                            <td>高</td>
+                        </tr>
+                        <tr>
+                            <td><strong>開発環境の容易さ</strong></td>
+                            <td>⭐⭐⭐⭐☆</td>
+                            <td>⭐⭐⭐⭐⭐</td>
+                            <td>⭐⭐⭐☆☆</td>
+                            <td>⭐⭐⭐⭐⭐</td>
+                            <td>高</td>
+                        </tr>
+                        <tr>
+                            <td><strong>ライブラリの豊富さ</strong></td>
+                            <td>⭐⭐⭐⭐⭐</td>
+                            <td>⭐⭐⭐⭐☆</td>
+                            <td>⭐⭐⭐⭐☆</td>
+                            <td>⭐⭐☆☆☆</td>
+                            <td>中</td>
+                        </tr>
+                        <tr>
+                            <td><strong>実社会での需要</strong></td>
+                            <td>⭐⭐⭐⭐⭐</td>
+                            <td>⭐⭐⭐⭐⭐</td>
+                            <td>⭐⭐⭐⭐☆</td>
+                            <td>⭐☆☆☆☆</td>
+                            <td>中</td>
+                        </tr>
+                        <tr>
+                            <td><strong>コミュニティサポート</strong></td>
+                            <td>⭐⭐⭐⭐⭐</td>
+                            <td>⭐⭐⭐⭐⭐</td>
+                            <td>⭐⭐⭐⭐☆</td>
+                            <td>⭐⭐⭐⭐⭐</td>
+                            <td>中</td>
+                        </tr>
+                        <tr>
+                            <td><strong>エラーメッセージの親切さ</strong></td>
+                            <td>⭐⭐⭐⭐☆</td>
+                            <td>⭐⭐⭐☆☆</td>
+                            <td>⭐⭐☆☆☆</td>
+                            <td>⭐⭐⭐⭐⭐</td>
+                            <td>高</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+
+            <section class="content-section">
+                <h2>📘 第5部: プログラミング環境(IDE)</h2>
+                
+                <h3>5.1 統合開発環境(IDE)とは</h3>
+                <div class="info-box">
+                    <p><strong>定義</strong>: Integrated Development Environment の略。コーディング、デバッグ、実行を一つの環境で行えるツール。エディタ + コンパイラ/インタプリタ + デバッガを統合。</p>
+                    
+                    <h4>教育向けIDEの条件</h4>
+                    <ul>
+                        <li>✅ インストールが簡単</li>
+                        <li>✅ 日本語対応</li>
+                        <li>✅ 直感的な操作性</li>
+                        <li>✅ エラーメッセージが分かりやすい</li>
+                        <li>✅ 無料で利用可能</li>
+                    </ul>
+                </div>
+
+                <h3>5.2 言語別推奨IDE</h3>
+                
+                <h4>Python向けIDE</h4>
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>IDE</th>
+                            <th>特徴</th>
+                            <th>推奨対象</th>
+                            <th>評価</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Thonny</strong></td>
+                            <td>初心者向け設計、変数の可視化</td>
+                            <td>中学〜高校導入期</td>
+                            <td>⭐⭐⭐⭐⭐</td>
+                        </tr>
+                        <tr>
+                            <td><strong>IDLE</strong></td>
+                            <td>Python標準添付、シンプル</td>
+                            <td>導入期</td>
+                            <td>⭐⭐⭐☆☆</td>
+                        </tr>
+                        <tr>
+                            <td><strong>VS Code</strong></td>
+                            <td>拡張性高い、多言語対応</td>
+                            <td>高校〜大学</td>
+                            <td>⭐⭐⭐⭐☆</td>
+                        </tr>
+                        <tr>
+                            <td><strong>PyCharm(Edu版)</strong></td>
+                            <td>プロ仕様、教育版無料</td>
+                            <td>高校情報Ⅱ〜</td>
+                            <td>⭐⭐⭐⭐☆</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Jupyter Notebook</strong></td>
+                            <td>対話型、データ分析に最適</td>
+                            <td>高校情報Ⅱ、研究</td>
+                            <td>⭐⭐⭐⭐⭐</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Google Colab</strong></td>
+                            <td>ブラウザベース、環境構築不要</td>
+                            <td>すべての段階</td>
+                            <td>⭐⭐⭐⭐⭐</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <div class="point-box">
+                    <h4>📌 教育現場での推奨</h4>
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>学習段階</th>
+                                <th>推奨IDE</th>
+                                <th>理由</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>中学〜高1</strong></td>
+                                <td>Thonny</td>
+                                <td>初心者向け設計、変数の可視化、シンプルな操作</td>
+                            </tr>
+                            <tr>
+                                <td><strong>高校情報Ⅰ</strong></td>
+                                <td>Thonny または Google Colab</td>
+                                <td>環境構築不要（Colab）、基本学習に最適（Thonny）</td>
+                            </tr>
+                            <tr>
+                                <td><strong>高校情報Ⅱ</strong></td>
+                                <td>Jupyter Notebook または VS Code</td>
+                                <td>データ分析対応（Jupyter）、本格的開発（VS Code）</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <h4>JavaScript向け環境</h4>
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>環境</th>
+                            <th>特徴</th>
+                            <th>推奨対象</th>
+                            <th>評価</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>ブラウザのコンソール</strong></td>
+                            <td>環境構築不要、即実行</td>
+                            <td>導入</td>
+                            <td>⭐⭐⭐⭐☆</td>
+                        </tr>
+                        <tr>
+                            <td><strong>JSFiddle / CodePen</strong></td>
+                            <td>オンラインエディタ、共有容易</td>
+                            <td>高校</td>
+                            <td>⭐⭐⭐⭐⭐</td>
+                        </tr>
+                        <tr>
+                            <td><strong>VS Code</strong></td>
+                            <td>多機能、拡張性高い</td>
+                            <td>高校情報Ⅱ〜</td>
+                            <td>⭐⭐⭐⭐⭐</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <h4>Scratch向け環境</h4>
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>環境</th>
+                            <th>特徴</th>
+                            <th>推奨対象</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Scratch 3.0(オンライン)</strong></td>
+                            <td>ブラウザで動作、アカウント管理</td>
+                            <td>小中学校</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Scratchデスクトップ</strong></td>
+                            <td>オフライン動作、ネット不要</td>
+                            <td>小中学校</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Scratch Link</strong></td>
+                            <td>外部デバイス連携(micro:bit等)</td>
+                            <td>中学技術科</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <h3>5.3 Jupyter Notebookの教育的価値</h3>
+                <div class="info-box">
+                    <h4>Jupyter Notebookとは</h4>
+                    <ul>
+                        <li>Webブラウザ上で動作する対話型プログラミング環境</li>
+                        <li>コード、実行結果、説明文(Markdown)、グラフを一体化</li>
+                        <li>データ分析・教育・研究で広く使われる</li>
+                    </ul>
+                    
+                    <h4>JupyterLabとの違い</h4>
+                    <ul>
+                        <li><strong>Jupyter Notebook</strong>: シンプルなインターフェース、基本機能に特化</li>
+                        <li><strong>JupyterLab</strong>: 次世代版、複数ファイル同時操作、拡張性が高い</li>
+                    </ul>
+                </div>
+
+                <h4>教育上の利点</h4>
+                <div class="benefit-list">
+                    <div class="benefit-item">
+                        <h5>1. ストーリー性のある学習</h5>
+                        <p>説明→コード→結果→考察の流れを一つのノートブックに。教材そのものが実行可能。</p>
+                    </div>
+                    
+                    <div class="benefit-item">
+                        <h5>2. 可視化の容易さ</h5>
+                        <div class="code-example">
+                            <pre style="background: #f5f5f5; padding: 1em; border-left: 4px solid #4CAF50; color: #333;">
+import matplotlib.pyplot as plt
+
+# データ
+x = [1, 2, 3, 4, 5]
+y = [2, 4, 6, 8, 10]
+
+# グラフ表示
+plt.plot(x, y)
+plt.xlabel("x軸")
+plt.ylabel("y軸")
+plt.title("直線のグラフ")
+plt.show()  # ノートブック内に表示される
+</pre>
+                        </div>
+                    </div>
+                    
+                    <div class="benefit-item">
+                        <h5>3. 段階的実行</h5>
+                        <ul>
+                            <li>セル単位で実行</li>
+                            <li>途中の変数を確認しながら進められる</li>
+                            <li>デバッグが容易</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="benefit-item">
+                        <h5>4. 共有と再現性</h5>
+                        <ul>
+                            <li>ノートブックファイル(.ipynb)を共有</li>
+                            <li>教員が作った教材を生徒が実行できる</li>
+                            <li>課題提出にも利用可能</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="info-box">
+                    <h4>高校「情報Ⅰ」「情報Ⅱ」での活用例</h4>
+                    <div class="code-example">
+                        <pre style="background: #f5f5f5; padding: 1em; color: #333;">
+# データ分析の授業ノートブック
+
+## 1. データの読み込み
+以下のコードで気温データを読み込みます。
+
+```python
+import pandas as pd
+data = pd.read_csv('temperature.csv')
+print(data.head())  # 最初の5行を表示
+```
+
+## 2. データの統計
+平均・最大・最小を計算します。
+
+```python
+print(f"平均気温: {data['temp'].mean()}")
+print(f"最高気温: {data['temp'].max()}")
+print(f"最低気温: {data['temp'].min()}")
+```
+</pre>
+                    </div>
+                </div>
+            </section>
+
+            <section class="content-section">
+                <h2>📘 第6部: デバッグとエラーメッセージ</h2>
+                
+                <h3>6.1 エラーの種類</h3>
+                
+                <div class="error-types">
+                    <div class="error-type">
+                        <h4>1. 構文エラー(Syntax Error)</h4>
+                        <p><strong>定義</strong>: 文法的な間違い</p>
+                        <div class="code-example">
+                            <pre style="background: #fff3cd; padding: 1em; border-left: 4px solid #ff9800; color: #333;">
+# エラー
+if x == 10
+    print("10です")
+
+# エラーメッセージ
+SyntaxError: invalid syntax
+              ^
+# コロン(:)が抜けている
+</pre>
+                        </div>
+                        <p><strong>📚 児童生徒への説明</strong>: 「日本語で『私は学校に行く。』のように、プログラムにも『文の終わりの記号』や『正しい順番』があります」</p>
+                    </div>
+
+                    <div class="error-type">
+                        <h4>2. 実行時エラー(Runtime Error)</h4>
+                        <p><strong>定義</strong>: 実行中に発生するエラー</p>
+                        <div class="code-example">
+                            <pre style="background: #fff3cd; padding: 1em; border-left: 4px solid #ff9800; color: #333;">
+# ゼロ除算エラー
+x = 10 / 0
+# ZeroDivisionError: division by zero
+
+# リストの範囲外アクセス
+list = [1, 2, 3]
+print(list[5])
+# IndexError: list index out of range
+</pre>
+                        </div>
+                        <p><strong>📚 児童生徒への説明</strong>: 「『10個のりんごを0人で分ける』は計算できませんよね。プログラムも『できないこと』があります」</p>
+                    </div>
+
+                    <div class="error-type">
+                        <h4>3. 論理エラー(Logical Error)</h4>
+                        <p><strong>定義</strong>: プログラムは動くが、意図した結果にならない</p>
+                        <div class="code-example">
+                            <pre style="background: #fff3cd; padding: 1em; border-left: 4px solid #ff9800; color: #333;">
+# 平均点を計算したい
+scores = [80, 90, 70]
+total = 0
+for score in scores:
+    total = score  # ← += ではなく = になっている
+average = total / len(scores)
+print(average)  # 期待:80 実際:23.3
+</pre>
+                        </div>
+                        <p><strong>📚 児童生徒への説明</strong>: 「『100円のものを3つ買って、300円払う』つもりが、『100円だけ払った』みたいな間違いです。計算式が間違っています」</p>
+                    </div>
+                </div>
+
+                <h3>6.2 エラーメッセージの読み方</h3>
+                <div class="info-box">
+                    <h4>エラーメッセージの構造（Python）</h4>
+                    <div class="code-example">
+                        <pre style="background: #fff3cd; padding: 1em; border-left: 4px solid #ff9800; color: #333;">
+Traceback (most recent call last):          ← トレースバック(呼び出し履歴)
+  File "program.py", line 5, in &lt;module&gt;    ← ファイル名と行番号
+    result = calculate(10, 0)
+  File "program.py", line 2, in calculate   ← 関数内の行
+    return x / y
+ZeroDivisionError: division by zero         ← エラーの種類と説明
+</pre>
+                    </div>
+
+                    <h4>読み方の指導</h4>
+                    <ol>
+                        <li><strong>一番下の行を見る</strong>: 何のエラーか確認</li>
+                        <li><strong>行番号を確認</strong>: どの行で起きたか特定</li>
+                        <li><strong>エラーの種類で対処法を考える</strong></li>
+                    </ol>
+                </div>
+
+                <div class="point-box">
+                    <h4>📌 児童生徒向けエラーメッセージの読み方指導</h4>
+                    
+                    <h5>段階1: エラーを怖がらせない</h5>
+                    <ul>
+                        <li>「エラーは『間違いを教えてくれる親切な先生』です」</li>
+                        <li>「プロのプログラマーも毎日エラーと向き合っています」</li>
+                    </ul>
+
+                    <h5>段階2: エラーメッセージのパターン学習</h5>
+                    <p>よくあるエラーとその意味を学びます（下の表を参照）。</p>
+
+                    <h5>段階3: エラー解決のステップを教える</h5>
+                    <div class="info-box" style="margin-top: 1em;">
+                        <h4>🔍 エラー解決の4ステップ</h4>
+                        <ol>
+                            <li><strong>エラーメッセージを最後まで読む</strong></li>
+                            <li><strong>行番号を確認してその行を見る</strong></li>
+                            <li><strong>エラーの種類から原因を推測する</strong></li>
+                            <li><strong>1つずつ試して確認する</strong></li>
+                        </ol>
+                    </div>
+                </div>
+
+                <h3>6.3 よくあるエラーと対処法</h3>
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>エラー</th>
+                            <th>意味</th>
+                            <th>よくある原因</th>
+                            <th>対処法</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>SyntaxError</strong></td>
+                            <td>文法間違い</td>
+                            <td>カッコ、コロン忘れ</td>
+                            <td>該当行の記号を確認</td>
+                        </tr>
+                        <tr>
+                            <td><strong>NameError</strong></td>
+                            <td>変数が見つからない</td>
+                            <td>スペルミス、未定義</td>
+                            <td>変数名を確認</td>
+                        </tr>
+                        <tr>
+                            <td><strong>TypeError</strong></td>
+                            <td>型が合わない</td>
+                            <td>文字列と数値の計算</td>
+                            <td>型変換(int(), str())</td>
+                        </tr>
+                        <tr>
+                            <td><strong>IndexError</strong></td>
+                            <td>範囲外アクセス</td>
+                            <td>リストの要素数超過</td>
+                            <td>インデックスを確認</td>
+                        </tr>
+                        <tr>
+                            <td><strong>ZeroDivisionError</strong></td>
+                            <td>ゼロ除算</td>
+                            <td>0で割っている</td>
+                            <td>条件分岐で回避</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <h3>6.4 デバッグ手法</h3>
+                <div class="debug-methods">
+                    <div class="method">
+                        <h4>手法1: print文デバッグ(Print Debugging)</h4>
+                        <p>最も基本的で効果的な方法</p>
+                        <div class="code-example">
+                            <pre style="background: #f5f5f5; padding: 1em; color: #333;">
+def calculate_average(scores):
+    print(f"受け取ったデータ: {scores}")  # ← 確認1
+    total = 0
+    for i in range(len(scores)):
+        print(f"{i}番目: {scores[i]}")  # ← 確認2
+        total = total + scores[i]
+        print(f"現在の合計: {total}")    # ← 確認3
+    average = total / len(scores)
+    return average
+</pre>
+                        </div>
+                    </div>
+
+                    <div class="method">
+                        <h4>手法2: ラバーダックデバッグ(Rubber Duck Debugging)</h4>
+                        <p><strong>方法</strong>: アヒルのおもちゃ（または友達、先生）に説明する。「このプログラムは最初に〜をして、次に〜をして…」と説明している途中で間違いに気づく。</p>
+                        <p><strong>📚 児童生徒への説明</strong>: 「友達に『どうやって解いたか』説明すると、自分の間違いに気づくことがありますよね。プログラムも同じです」</p>
+                    </div>
+
+                    <div class="method">
+                        <h4>手法3: IDEのデバッガ機能（高度）</h4>
+                        <p>高校情報Ⅱレベル</p>
+                        <ul>
+                            <li><strong>ブレークポイント</strong>: 実行を一時停止</li>
+                            <li><strong>ステップ実行</strong>: 1行ずつ実行</li>
+                            <li><strong>変数ウォッチ</strong>: 変数の値を監視</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <section class="content-section">
+                <h2>📘 第7部: プログラミング言語エコシステム</h2>
+                
+                <h3>7.1 エコシステムとは</h3>
+                <p>その言語で利用可能なライブラリ、フレームワーク、ツール、コミュニティの総体。実用的な開発では「言語本体」よりも「エコシステムの充実度」が重要。</p>
+
+                <h3>7.2 言語別エコシステム</h3>
+                
+                <h4>Pythonエコシステム（強み: データ分析・AI・教育）</h4>
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>分野</th>
+                            <th>主要ライブラリ</th>
+                            <th>用途</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>データ分析</td>
+                            <td>pandas, numpy</td>
+                            <td>データ処理、数値計算</td>
+                        </tr>
+                        <tr>
+                            <td>可視化</td>
+                            <td>matplotlib, seaborn</td>
+                            <td>グラフ作成</td>
+                        </tr>
+                        <tr>
+                            <td>AI・機械学習</td>
+                            <td>scikit-learn, TensorFlow, PyTorch</td>
+                            <td>機械学習モデル</td>
+                        </tr>
+                        <tr>
+                            <td>Web開発</td>
+                            <td>Django, Flask</td>
+                            <td>Webアプリケーション</td>
+                        </tr>
+                        <tr>
+                            <td>教育</td>
+                            <td>turtle, tkinter</td>
+                            <td>学習用GUI</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <p><strong>コミュニティ</strong>: PyPI (Python Package Index) に50万以上のパッケージ（2024年現在）、Stack Overflowで最も質問が多い言語の一つ、日本語情報も豊富</p>
+
+                <h4>JavaScriptエコシステム（強み: Web開発・フロントエンド）</h4>
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>分野</th>
+                            <th>主要ライブラリ/フレームワーク</th>
+                            <th>用途</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>フロントエンド</td>
+                            <td>React, Vue.js, Angular</td>
+                            <td>UIフレームワーク</td>
+                        </tr>
+                        <tr>
+                            <td>サーバーサイド</td>
+                            <td>Node.js, Express</td>
+                            <td>バックエンド</td>
+                        </tr>
+                        <tr>
+                            <td>モバイル</td>
+                            <td>React Native</td>
+                            <td>スマホアプリ</td>
+                        </tr>
+                        <tr>
+                            <td>データ可視化</td>
+                            <td>D3.js, Chart.js</td>
+                            <td>インタラクティブグラフ</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <p><strong>コミュニティ</strong>: npmに200万以上のパッケージ（世界最大規模）、活発な開発コミュニティ、Web技術の中心</p>
+            </section>
+
+            <section class="content-section">
+                <h2>📘 第8部: 学習指導要領とプログラミング教育</h2>
+                
+                <h3>8.1 各学校段階でのプログラミング教育必修化</h3>
+                
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <h4>小学校</h4>
+                        <ul>
+                            <li><strong>実施時期</strong>: 2020年度から全面実施</li>
+                            <li><strong>学習指導要領</strong>: 平成29年（2017年）3月告示</li>
+                            <li><strong>内容</strong>: プログラミング的思考の育成（特定教科としてではなく各教科等で）</li>
+                            <li><strong>主な使用言語</strong>: Scratch、Viscuit、Hour of Code等</li>
+                        </ul>
+                    </div>
+
+                    <div class="timeline-item">
+                        <h4>中学校</h4>
+                        <ul>
+                            <li><strong>実施時期</strong>: 2021年度から全面実施</li>
+                            <li><strong>学習指導要領</strong>: 平成29年（2017年）3月告示</li>
+                            <li><strong>内容</strong>: 技術・家庭科（技術分野）「D情報の技術」
+                                <ul>
+                                    <li>従来: 「プログラムによる計測・制御」</li>
+                                    <li>2021年〜: 「ネットワークを利用した双方向性のあるコンテンツのプログラミング」を追加</li>
+                                </ul>
+                            </li>
+                            <li><strong>主な使用言語</strong>: Scratch、Python入門</li>
+                        </ul>
+                    </div>
+
+                    <div class="timeline-item">
+                        <h4>高等学校</h4>
+                        <ul>
+                            <li><strong>実施時期</strong>: 2022年度入学生から年次進行で実施</li>
+                            <li><strong>学習指導要領</strong>: 平成30年（2018年）3月告示</li>
+                            <li><strong>内容</strong>:
+                                <ul>
+                                    <li><strong>「情報Ⅰ」</strong>: 共通必履修科目（全員必修）</li>
+                                    <li><strong>「情報Ⅱ」</strong>: 選択科目</li>
+                                </ul>
+                            </li>
+                            <li><strong>主な使用言語</strong>: Python、JavaScript、VBA、Scratch（教科書により異なる）</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <section class="content-section">
+                <h2>📘 第9部: 実践演習</h2>
+                
+                <h3>演習1: 同じプログラムを複数言語で実装</h3>
+                <p><strong>課題</strong>: 「1から10までの合計を計算するプログラム」を複数言語で実装し、比較せよ。</p>
+                
+                <div class="comparison-table">
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>項目</th>
+                                <th>Python</th>
+                                <th>JavaScript</th>
+                                <th>Java</th>
+                                <th>Scratch</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>行数</td>
+                                <td>3行</td>
+                                <td>4行</td>
+                                <td>8行</td>
+                                <td>4ブロック</td>
+                            </tr>
+                            <tr>
+                                <td>型宣言</td>
+                                <td>不要</td>
+                                <td>let必要</td>
+                                <td>必須(int)</td>
+                                <td>なし</td>
+                            </tr>
+                            <tr>
+                                <td>文末記号</td>
+                                <td>なし</td>
+                                <td>; 必要</td>
+                                <td>; 必要</td>
+                                <td>なし</td>
+                            </tr>
+                            <tr>
+                                <td>実行環境</td>
+                                <td>インタプリタ</td>
+                                <td>インタプリタ</td>
+                                <td>コンパイル</td>
+                                <td>ビジュアル実行</td>
+                            </tr>
+                            <tr>
+                                <td>初心者難易度</td>
+                                <td>易</td>
+                                <td>中</td>
+                                <td>難</td>
+                                <td>最易</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <h3>演習2: 教育段階別・言語推奨リスト作成</h3>
+                <div class="info-box">
+                    <h4>作成課題: 学校の状況に応じた言語選定リストを作成</h4>
+                    <p>自校の教育段階、設備状況、教員のスキルレベルを考慮し、段階別の推奨言語リストを作成してください。</p>
+                    
+                    <h5>テンプレート例</h5>
+                    <div class="code-example">
+                        <pre style="background: #f5f5f5; padding: 1em; color: #333;">
+【〇〇中学校 プログラミング教育 言語選定計画】
+
+■ 第1学年(技術科 12時間)
+- 使用言語: Scratch 3.0
+- 理由:
+  * ビジュアルで分かりやすい
+  * 小学校での経験を活かせる
+  * 制御プログラムに適している
+- 環境: Scratchオンライン + Scratch Link + micro:bit
+- 目標: 順次・分岐・反復の理解、センサー制御
+
+■ 第2学年(技術科 8時間)
+- 使用言語: Python(導入)
+- 理由:
+  * テキスト言語への移行
+  * 高校「情報Ⅰ」の準備
+  * シンプルな文法
+- 環境: Thonny(学校PC) または Google Colab
+- 目標: 変数、if文、forループの理解
+
+■ 第3学年(技術科 6時間)
+- 使用言語: Python(応用)
+- 理由: 第2学年の継続
+- 環境: Thonny + Jupyter Notebook
+- 目標: 関数、リスト、簡単なデータ処理
+</pre>
+                    </div>
+                </div>
+
+                <h3>演習3: プログラミング授業指導案作成支援</h3>
+                <div class="info-box">
+                    <h4>指導案テンプレート</h4>
+                    <div class="code-example">
+                        <pre style="background: #f5f5f5; padding: 1em; color: #333;">
+【高等学校 情報Ⅰ 指導案】
+
+単元名: 「(3)コンピュータとプログラミング」
+題材: 「データの統計処理プログラム」
+
+■ 本時の目標
+・Pythonで基本的な統計処理ができる
+・リスト(配列)を使ったデータ処理を理解する
+・平均・最大・最小を求めるアルゴリズムを説明できる
+
+■ 使用言語・環境
+・Python 3
+・Jupyter Notebook(Google Colab)
+
+■ 展開(50分)
+
+【導入(10分)】
+・前時の復習: 変数、リスト、for文
+・本時の課題提示: 「テストの点数データを分析しよう」
+
+【展開(30分)】
+1. サンプルコード配布(Colabノートブック)
+```python
+# 点数データ
+scores = [75, 82, 68, 90, 85, 73, 88, 79, 92, 81]
+
+# 平均点を計算
+total = sum(scores)
+average = total / len(scores)
+print(f"平均点: {average}")
+
+# 最高点・最低点
+max_score = max(scores)
+min_score = min(scores)
+print(f"最高点: {max_score}")
+print(f"最低点: {min_score}")
+```
+
+2. コードの説明(教員)
+3. 実行・確認(生徒)
+4. 演習課題
+   - sum()を使わずにforループで合計を計算
+   - max()を使わずに最大値を求めるアルゴリズムを考える
+
+【まとめ(10分)】
+・アルゴリズムの確認
+・次時予告: グラフ化(matplotlib)
+
+■ 評価
+・リストを使ったデータ処理ができる [知識・技能]
+・統計処理のアルゴリズムを説明できる [思考・判断・表現]
+</pre>
+                    </div>
+                </div>
+            </section>
+
+            <section class="content-section">
+                <h2>📘 第10部: 既存講座との関連</h2>
+                
+                <div class="related-courses">
+                    <h3>関連講座マッピング</h3>
+                    <div class="course-relation">
+                        <h4>【第56回の位置づけ】</h4>
+                        <ul>
+                            <li><strong>基礎編</strong>: 第18回「STEAM教育とプログラミング教育」→ 第56回で技術的基盤を詳細に学ぶ</li>
+                            <li><strong>中級編</strong>: 第4回「プログラミング教育の支援」→ 第56回で言語選択・環境構築の実践知識を習得</li>
+                        </ul>
+                    </div>
+
+                    <div class="info-box">
+                        <h4>第18回との連携</h4>
+                        <ul>
+                            <li><strong>第18回</strong>: 「なぜプログラミング教育が必要か」（意義）</li>
+                            <li><strong>第56回</strong>: 「どの言語で、どう教えるか」（方法論）</li>
+                        </ul>
+                        
+                        <h4>中級編第4回との連携</h4>
+                        <ul>
+                            <li><strong>中級編第4回</strong>: 「支援の心構え、トラブル対応」</li>
+                            <li><strong>第56回</strong>: 「技術的理解に基づく深い支援」</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <section class="content-section">
+                <h2>📘 第11部: 参考資料とさらなる学習</h2>
+                
+                <h3>11.1 推奨書籍</h3>
+                <div class="resources">
+                    <h4>コンパイラ理論</h4>
+                    <ul>
+                        <li>「コンパイラ」（アホ、セティ、ウルマン著） - 通称「ドラゴンブック」、コンパイラ理論の決定版（専門レベル）</li>
+                        <li>「低レイヤを知りたい人のためのCコンパイラ作成入門」 - 実装しながら学ぶ実践的入門書</li>
+                    </ul>
+                    
+                    <h4>プログラミング教育</h4>
+                    <ul>
+                        <li>「プログラミング教育が変える子どもの未来」（松村太郎著）</li>
+                        <li>「Scratchではじめる機械学習」（石原淳也著）</li>
+                        <li>「高校生から始めるPython」（谷尻かおり著）</li>
+                    </ul>
+                </div>
+
+                <h3>11.2 オンラインリソース</h3>
+                <div class="resources">
+                    <h4>公式ドキュメント</h4>
+                    <ul>
+                        <li><a href="https://docs.python.org/ja/" target="_blank">Python公式ドキュメント（日本語）</a></li>
+                        <li><a href="https://developer.mozilla.org/ja/" target="_blank">MDN Web Docs（JavaScript）</a></li>
+                        <li><a href="https://scratch.mit.edu/" target="_blank">Scratch公式サイト</a></li>
+                    </ul>
+                    
+                    <h4>文部科学省資料</h4>
+                    <ul>
+                        <li><a href="https://www.mext.go.jp/a_menu/shotou/zyouhou/detail/mext_00017.html" target="_blank">高等学校情報科「情報Ⅰ」教員研修用教材</a> - 第3章に各プログラミング言語版あり（Python, JavaScript, VBA, ドリトル）</li>
+                    </ul>
+                    
+                    <h4>学習サイト</h4>
+                    <ul>
+                        <li><a href="https://prog-8.com/" target="_blank">Progate</a>: ゲーム感覚で学べる</li>
+                        <li><a href="https://paiza.jp/" target="_blank">paizaラーニング</a>: 動画+演習</li>
+                        <li><a href="https://atcoder.jp/" target="_blank">AtCoder</a>: 競技プログラミング（高度）</li>
+                    </ul>
+                </div>
+
+                <h3>11.3 ICT支援員としての学習計画</h3>
+                <div class="learning-levels">
+                    <div class="level">
+                        <h4>レベル1: 基礎理解（必須）</h4>
+                        <ul>
+                            <li>☐ コンパイラとインタプリタの違いを説明できる</li>
+                            <li>☐ 各教育段階での推奨言語を知っている</li>
+                            <li>☐ Scratchを実際に使ったことがある</li>
+                            <li>☐ Pythonの基本文法（変数、if、for）を理解している</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="level">
+                        <h4>レベル2: 支援実践（推奨）</h4>
+                        <ul>
+                            <li>☐ 教員向けに言語選択のアドバイスができる</li>
+                            <li>☐ 開発環境のセットアップを支援できる</li>
+                            <li>☐ 基本的なエラーの原因を説明できる</li>
+                            <li>☐ デバッグ方法を児童生徒に教えられる</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="level">
+                        <h4>レベル3: 専門知識（発展）</h4>
+                        <ul>
+                            <li>☐ 複数言語でサンプルプログラムを書ける</li>
+                            <li>☐ コンパイラの内部動作を説明できる</li>
+                            <li>☐ 授業設計に技術的アドバイスができる</li>
+                            <li>☐ 最新のプログラミング教育動向を追っている</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <section class="summary-section">
+                <h2>📝 まとめ: ICT支援員に求められる知識</h2>
+                
+                <div class="summary-grid">
+                    <div class="summary-item">
+                        <h3>【必須知識】</h3>
+                        <ul>
+                            <li>✅ コンパイラ言語とインタプリタ言語の違い</li>
+                            <li>✅ 学習段階別の推奨言語（Viscuit→Scratch→Python）</li>
+                            <li>✅ 基本的なエラーメッセージの読み方</li>
+                            <li>✅ 主要IDE（Thonny, Google Colab, Scratchオンライン）の特徴</li>
+                            <li>✅ プログラミング教育の実施時期（小:2020、中:2021、高:2022）</li>
+                        </ul>
+                    </div>
+
+                    <div class="summary-item">
+                        <h3>【実践スキル】</h3>
+                        <ul>
+                            <li>✅ 開発環境のトラブルシューティング</li>
+                            <li>✅ 児童生徒へのデバッグ支援</li>
+                            <li>✅ 教員への言語選択アドバイス</li>
+                            <li>✅ サンプルコードの動作確認と修正</li>
+                        </ul>
+                    </div>
+
+                    <div class="summary-item">
+                        <h3>【継続学習の姿勢】</h3>
+                        <ul>
+                            <li>✅ 文部科学省の最新資料をチェック</li>
+                            <li>✅ プログラミング教育のトレンドを追う</li>
+                            <li>✅ 自分でも実際にコードを書いてみる</li>
+                            <li>✅ 教育現場のニーズを理解する</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="conclusion">
+                    <p><strong>この講座を通じて、ICT支援員としてプログラミング教育を技術的側面から深く支援できる力を身につけましょう。言語の選択、環境の構築、エラーの解決――すべての場面で、確かな知識に基づいた支援ができることを目指します。</strong></p>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 ICT支援員教育講座. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,1271 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>第53回：システムプログラミング - ICT支援員教育講座</title>
+    <meta name="description" content="オペレーティングシステムとプログラムの関係を理解し、シェルスクリプトやPythonを用いた業務自動化の実践的手法を学びます。教育現場特有の業務効率化に活用できる技術を習得します。">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/session.css">
+</head>
+<body>
+    <!-- ヘッダー -->
+    <header>
+        <div class="container">
+            <a href="../index.html" class="logo">ICT支援員教育講座</a>
+            <nav class="navbar">
+                <ul class="nav-menu">
+                    <li><a href="../index.html">ホーム</a></li>
+                    <li><a href="../beginner.html">入門編</a></li>
+                    <li><a href="../intermediate.html">基礎編</a></li>
+                    <li><a href="../advanced.html">中級編</a></li>
+                    <li><a href="../development.html">発展編</a></li>
+                    <li><a href="../exam.html">試験対策</a></li>
+                    <li><a href="../supplement.html" class="active">補完カリキュラム</a></li>
+                    <li><a href="../resources.html">参考資料</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- セッション詳細 -->
+    <main class="session-content">
+        <div class="container">
+            <div class="session-header-content">
+                <span class="session-label supplement">補完カリキュラム</span>
+                <h1>第53回：システムプログラミング</h1>
+                <p class="session-meta">情報科学・CS基礎編（全8回）の第5回 | 学習時間目安：180分（講義120分、演習60分） | 難易度：★★★★☆</p>
+            </div>
+
+            <div class="info-box">
+                <h3>📋 講座概要</h3>
+                <ul>
+                    <li><strong>対象者：</strong>ICT支援員、教育情報化コーディネータ、学校ICT管理者、業務効率化担当者</li>
+                    <li><strong>受講前提：</strong>第49回〜第52回の履修を推奨、基本的なプログラミング知識、または同等の知識</li>
+                    <li><strong>学習時間：</strong>180分（講義120分、演習60分）</li>
+                    <li><strong>難易度：</strong>★★★★☆（中級〜上級）</li>
+                    <li><strong>最終更新：</strong>2024年12月</li>
+                </ul>
+            </div>
+
+            <div class="warning-box">
+                <h3>⚠️ 本講座における情報の取り扱いについて</h3>
+                <ul>
+                    <li><strong>プログラミング言語・ツール：</strong>各製品の公式サイトで最新情報をご確認ください。</li>
+                    <li><strong>ライブラリのバージョン：</strong>最新の安定版を使用することを推奨します。</li>
+                    <li><strong>OSのコマンド：</strong>環境により動作が異なる場合があります。</li>
+                    <li><strong>セキュリティ設定：</strong>組織のポリシーに従ってください。</li>
+                </ul>
+            </div>
+
+            <section class="objectives">
+                <h2>🎯 学習目標</h2>
+                <p>本講座を修了することで、以下のことができるようになります：</p>
+                <ul>
+                    <li>プログラムとOSの関係を理解し、システムリソースの管理・活用方法を説明できる</li>
+                    <li>シェルスクリプトやPythonを用いて、繰り返し行われる定型業務を効率化できる</li>
+                    <li>学校現場特有の業務（名簿整理、成績処理、ファイル管理等）に自動化技術を適用できる</li>
+                    <li>セキュリティを考慮した安全なスクリプト作成ができる</li>
+                    <li>業務改善に向けた自動化施策を企画・実践できる</li>
+                </ul>
+            </section>
+
+            <!-- 本文コンテンツ -->
+            <div class="session-content">
+                
+                <!-- イントロダクション -->
+                <section id="introduction">
+                    <h2>🎯 イントロダクション</h2>
+                    
+                    <p>教育現場では、名簿整理、成績処理、ファイル管理、レポート作成など、繰り返し行われる定型業務が数多く存在します。これらの業務を手作業で行うと、時間がかかるだけでなく、入力ミスや転記ミスが発生するリスクもあります。</p>
+                    
+                    <p><strong>システムプログラミング</strong>とは、本来はオペレーティングシステムのカーネルや低レベルのシステムソフトウェアを開発することを指しますが、本講座では<strong>「業務自動化技術」</strong>としてのシステムプログラミングに焦点を当てます。</p>
+
+                    <div class="info-box">
+                        <h3>💡 本講座で学ぶこと</h3>
+                        <p><strong>ICT支援員として、以下のスキルを習得します：</strong></p>
+                        <ul>
+                            <li><strong>シェルスクリプト</strong>：コマンドライン操作を自動化し、定型処理を効率化</li>
+                            <li><strong>Python による業務自動化</strong>：ファイル処理、データ集計、レポート生成を自動化</li>
+                            <li><strong>教育現場での実践</strong>：名簿整理、成績管理、バックアップなどの実務課題を解決</li>
+                            <li><strong>セキュリティの考慮</strong>：安全で信頼性の高いスクリプトを作成</li>
+                        </ul>
+                    </div>
+
+                    <div class="point-box">
+                        <h3>🎓 業務自動化のメリット</h3>
+                        <ol>
+                            <li><strong>時間の節約</strong>：手作業で5時間かかる作業を5分に短縮</li>
+                            <li><strong>正確性の向上</strong>：人為的ミスを削減し、データ品質を向上</li>
+                            <li><strong>再現性の確保</strong>：同じ手順を確実に実行できる</li>
+                            <li><strong>業務の標準化</strong>：担当者による品質のばらつきを解消</li>
+                            <li><strong>教職員の負担軽減</strong>：本来の教育活動に注力できる</li>
+                        </ol>
+                    </div>
+
+                </section>
+
+                <!-- 第1章: システムプログラミングとは -->
+                <section id="chapter1">
+                    <h2>第1章：システムプログラミングとは</h2>
+
+                    <h3>1.1 本講座における「システムプログラミング」の定義</h3>
+                    
+                    <p>従来、システムプログラミングとは、オペレーティングシステムのカーネルや低レベルのシステムソフトウェアを開発することを指しますが、本講座では<strong>「業務自動化技術」</strong>としてのシステムプログラミングに焦点を当てます。</p>
+
+                    <div class="info-box">
+                        <h3>具体的には、以下のスキルを習得します</h3>
+                        <ul>
+                            <li><strong>シェルスクリプト（Bash/PowerShell）による自動化</strong>：コマンドライン操作を自動化し、定型処理を効率化</li>
+                            <li><strong>Python による業務スクリプト作成</strong>：ファイル処理、データ集計、レポート生成などを自動化</li>
+                            <li><strong>教育現場特有の業務への適用</strong>：名簿整理、成績管理、ファイル管理などの実務課題解決</li>
+                        </ul>
+                    </div>
+
+                    <h3>1.2 アプリケーションプログラムとの違い</h3>
+
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>項目</th>
+                                <th>アプリケーションプログラム</th>
+                                <th>業務自動化スクリプト（本講座）</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>目的</strong></td>
+                                <td>エンドユーザー向けの機能提供</td>
+                                <td>定型業務の自動化・効率化</td>
+                            </tr>
+                            <tr>
+                                <td><strong>実行環境</strong></td>
+                                <td>GUI中心、独立した実行環境</td>
+                                <td>コマンドライン、既存ツールと連携</td>
+                            </tr>
+                            <tr>
+                                <td><strong>開発規模</strong></td>
+                                <td>大規模、複数人での開発が一般的</td>
+                                <td>小〜中規模、個人での開発が可能</td>
+                            </tr>
+                            <tr>
+                                <td><strong>技術要求</strong></td>
+                                <td>UI/UX設計、データベース管理</td>
+                                <td>ファイル操作、テキスト処理、API連携</td>
+                            </tr>
+                            <tr>
+                                <td><strong>実例</strong></td>
+                                <td>Word、Excel、Webブラウザ</td>
+                                <td>バックアップスクリプト、データ整形</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                </section>
+
+                <!-- 第2章: システムコールとAPI -->
+                <section id="chapter2">
+                    <h2>第2章：システムコールとAPI</h2>
+
+                    <h3>2.1 システムコール（System Call）とは</h3>
+                    
+                    <p><strong>システムコール</strong>は、アプリケーションプログラムがオペレーティングシステムのカーネルに対して、ハードウェアリソースの利用やシステム機能を要求するための直接的なインターフェースです。</p>
+
+                    <div class="info-box">
+                        <h4>システムコールの例</h4>
+                        <ul>
+                            <li><strong>ファイル操作</strong>: <code>open()</code>, <code>read()</code>, <code>write()</code>, <code>close()</code></li>
+                            <li><strong>プロセス管理</strong>: <code>fork()</code>, <code>exec()</code>, <code>wait()</code>, <code>kill()</code></li>
+                            <li><strong>メモリ管理</strong>: <code>mmap()</code>, <code>brk()</code></li>
+                            <li><strong>ネットワーク通信</strong>: <code>socket()</code>, <code>connect()</code>, <code>send()</code>, <code>recv()</code></li>
+                        </ul>
+                        <p style="margin-top: 0.5rem;">システムコールはカーネルモードで実行され、アプリケーションのユーザーモードから特権的な操作を安全に行うための仕組みです。</p>
+                    </div>
+
+                    <h3>2.2 API（Application Programming Interface）とは</h3>
+                    
+                    <p>APIは、システムコールを含む、より高レベルで抽象化されたインターフェースです。開発者は通常、APIを通じてシステム機能にアクセスします。</p>
+
+                    <div class="point-box">
+                        <h4>APIとシステムコールの関係</h4>
+                        <ul>
+                            <li><strong>システムコール</strong>：OSカーネルへの直接的な要求（低レベル、OS固有）</li>
+                            <li><strong>API</strong>：システムコールをラップした抽象化レイヤー（高レベル、移植性が高い）</li>
+                            <li><strong>例</strong>：Python の <code>open()</code> 関数 → C言語ライブラリの <code>fopen()</code> → システムコール <code>open()</code></li>
+                        </ul>
+                    </div>
+
+                    <div class="info-box">
+                        <h4>主なAPI例</h4>
+                        <ul>
+                            <li><strong>UNIX/Linux</strong>: POSIX API（システムコール群を標準化）</li>
+                            <li><strong>Windows</strong>: Windows API（WindowsAPI、システムサービスへのアクセス）</li>
+                            <li><strong>Python</strong>: 標準ライブラリ（os, sys, pathlib, subprocess等）</li>
+                        </ul>
+                    </div>
+
+                    <h3>2.3 本講座での実践的な理解</h3>
+                    
+                    <p>本講座では、システムコールやAPIを直接プログラミングすることはありません。代わりに、以下を学びます：</p>
+
+                    <ul>
+                        <li><strong>シェルスクリプト</strong>：コマンドライン経由でOSの機能（ファイル操作、プロセス管理）を利用</li>
+                        <li><strong>Python標準ライブラリ</strong>：os, pathlib, subprocess 等を用いてAPI経由でシステム機能を活用</li>
+                    </ul>
+
+                </section>
+
+                <!-- 第3章: シェルスクリプト入門 -->
+                <section id="chapter3">
+                    <h2>第3章：シェルスクリプト入門</h2>
+
+                    <h3>3.1 コマンドラインの基礎</h3>
+
+                    <h4>3.1.1 Bash の基本コマンド（Linux/macOS）</h4>
+                    
+                    <pre style="background: #f3f4f6; padding: 1rem; border-radius: 0.5rem; overflow-x: auto;">
+# ディレクトリ操作
+pwd                     # 現在のディレクトリを表示
+cd /path/to/directory   # ディレクトリ移動
+ls -la                  # ファイル一覧を詳細表示
+mkdir new_folder        # ディレクトリ作成
+rm -r old_folder        # ディレクトリ削除(再帰的)
+
+# ファイル操作
+cp source.txt dest.txt      # ファイルコピー
+mv old_name.txt new_name.txt # ファイル名変更/移動
+cat file.txt                 # ファイル内容表示
+grep "検索語" file.txt       # テキスト検索
+
+# ファイル権限
+chmod +x script.sh      # 実行権限付与
+chmod 755 script.sh     # 所有者:読み書き実行、グループ/その他:読み実行</pre>
+
+                    <h4>3.1.2 PowerShell の基本コマンド（Windows）</h4>
+                    
+                    <pre style="background: #f3f4f6; padding: 1rem; border-radius: 0.5rem; overflow-x: auto;">
+# ディレクトリ操作
+Get-Location                    # 現在のディレクトリを表示
+Set-Location C:\Path\To\Folder  # ディレクトリ移動
+Get-ChildItem -Force            # ファイル一覧を表示(隠しファイル含む)
+New-Item -ItemType Directory -Name "NewFolder"  # ディレクトリ作成
+Remove-Item -Recurse -Force "OldFolder"         # ディレクトリ削除
+
+# ファイル操作
+Copy-Item source.txt dest.txt            # ファイルコピー
+Move-Item old_name.txt new_name.txt      # ファイル名変更/移動
+Get-Content file.txt                     # ファイル内容表示
+Select-String -Pattern "検索語" -Path file.txt  # テキスト検索</pre>
+
+                    <h3>3.2 実行ポリシー（PowerShell）</h3>
+                    
+                    <p>PowerShellでは、悪意あるスクリプトの実行を防ぐため、<strong>実行ポリシー（Execution Policy）</strong>が設定されています。</p>
+
+                    <h4>3.2.1 実行ポリシーの種類</h4>
+
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>ポリシー</th>
+                                <th>説明</th>
+                                <th>推奨度（教育現場）</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Restricted</strong></td>
+                                <td>全てのスクリプト実行を禁止（デフォルト）</td>
+                                <td>初期状態</td>
+                            </tr>
+                            <tr>
+                                <td><strong>AllSigned</strong></td>
+                                <td>信頼された発行元の署名済みスクリプトのみ実行可</td>
+                                <td>高セキュリティ環境</td>
+                            </tr>
+                            <tr>
+                                <td><strong>RemoteSigned</strong></td>
+                                <td>ローカルスクリプトは実行可、ダウンロードスクリプトは署名必須</td>
+                                <td>✅ 推奨</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Unrestricted</strong></td>
+                                <td>全てのスクリプト実行可（警告あり）</td>
+                                <td>⚠️ 非推奨</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Bypass</strong></td>
+                                <td>全てのスクリプト実行可（警告なし）</td>
+                                <td>⚠️ 危険</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <h4>3.2.2 実行ポリシーの確認と設定</h4>
+                    
+                    <pre style="background: #f3f4f6; padding: 1rem; border-radius: 0.5rem; overflow-x: auto;">
+# 現在の実行ポリシーを確認
+Get-ExecutionPolicy
+
+# 実行ポリシーを RemoteSigned に設定(管理者権限が必要)
+Set-ExecutionPolicy RemoteSigned -Scope CurrentUser
+
+# 一時的にポリシーを回避してスクリプト実行(⚠️非推奨)
+PowerShell -ExecutionPolicy Bypass -File script.ps1</pre>
+
+                    <div class="warning-box">
+                        <h4>⚠️ セキュリティ上の注意</h4>
+                        <ul>
+                            <li><strong>実行ポリシーは誤操作防止が目的</strong>：悪意あるスクリプトに対する完全な防御機能ではありません</li>
+                            <li><strong>RemoteSigned推奨</strong>：教育現場では、ローカル開発のスクリプトは実行可能だが、外部スクリプトは検証が必要な RemoteSigned が最適</li>
+                            <li><strong>Unrestricted/Bypass は避ける</strong>：セキュリティリスクが高く、推奨されません</li>
+                        </ul>
+                    </div>
+
+                    <h3>3.3 変数と制御構文</h3>
+
+                    <h4>3.3.1 Bash の変数と制御構文</h4>
+                    
+                    <pre style="background: #f3f4f6; padding: 1rem; border-radius: 0.5rem; overflow-x: auto;">
+#!/bin/bash
+# 変数定義(スペース厳禁)
+NAME="田中太郎"
+AGE=15
+
+# 変数参照
+echo "生徒名: $NAME"
+echo "年齢: ${AGE}歳"
+
+# if文(条件分岐)
+if [ $AGE -ge 18 ]; then
+    echo "成人です"
+else
+    echo "未成年です"
+fi
+
+# forループ(繰り返し処理)
+for file in *.txt; do
+    echo "処理中: $file"
+    # ファイル処理をここに記述
+done
+
+# whileループ
+COUNT=1
+while [ $COUNT -le 5 ]; do
+    echo "カウント: $COUNT"
+    COUNT=$((COUNT + 1))
+done
+
+# 関数定義
+backup_file() {
+    local source=$1
+    local dest="${source}.bak"
+    cp "$source" "$dest"
+    echo "バックアップ完了: $dest"
+}
+
+# 関数呼び出し
+backup_file "data.csv"</pre>
+
+                    <h4>3.3.2 PowerShell の変数と制御構文</h4>
+                    
+                    <pre style="background: #f3f4f6; padding: 1rem; border-radius: 0.5rem; overflow-x: auto;">
+# 変数定義
+$Name = "田中太郎"
+$Age = 15
+
+# 変数参照
+Write-Output "生徒名: $Name"
+Write-Output "年齢: ${Age}歳"
+
+# if文(条件分岐)
+if ($Age -ge 18) {
+    Write-Output "成人です"
+} else {
+    Write-Output "未成年です"
+}
+
+# foreachループ(繰り返し処理)
+Get-ChildItem *.txt | ForEach-Object {
+    Write-Output "処理中: $($_.Name)"
+    # ファイル処理をここに記述
+}
+
+# whileループ
+$Count = 1
+while ($Count -le 5) {
+    Write-Output "カウント: $Count"
+    $Count++
+}
+
+# 関数定義
+function Backup-File {
+    param($Source)
+    $Dest = "$Source.bak"
+    Copy-Item $Source $Dest
+    Write-Output "バックアップ完了: $Dest"
+}
+
+# 関数呼び出し
+Backup-File -Source "data.csv"</pre>
+
+                    <h3>3.4 実践例：ファイルバックアップスクリプト</h3>
+
+                    <h4>3.4.1 Bash スクリプト例</h4>
+                    
+                    <pre style="background: #f3f4f6; padding: 1rem; border-radius: 0.5rem; overflow-x: auto;">
+#!/bin/bash
+# ファイルバックアップスクリプト
+# 使い方: ./backup.sh [元ファイルのパス] [バックアップ先ディレクトリ]
+
+SOURCE=$1
+DEST_DIR=$2
+TIMESTAMP=$(date +"%Y%m%d_%H%M%S")
+BASENAME=$(basename "$SOURCE")
+DEST_FILE="${DEST_DIR}/${BASENAME}_${TIMESTAMP}.bak"
+
+# 引数チェック
+if [ -z "$SOURCE" ] || [ -z "$DEST_DIR" ]; then
+    echo "使い方: $0 [元ファイル] [バックアップ先ディレクトリ]"
+    exit 1
+fi
+
+# 元ファイルの存在確認
+if [ ! -f "$SOURCE" ]; then
+    echo "エラー: $SOURCE が見つかりません"
+    exit 1
+fi
+
+# バックアップ先ディレクトリの作成(存在しなければ)
+mkdir -p "$DEST_DIR"
+
+# バックアップ実行
+cp "$SOURCE" "$DEST_FILE"
+
+if [ $? -eq 0 ]; then
+    echo "✅ バックアップ成功: $DEST_FILE"
+else
+    echo "❌ バックアップ失敗"
+    exit 1
+fi</pre>
+
+                    <h4>3.4.2 PowerShell スクリプト例</h4>
+                    
+                    <pre style="background: #f3f4f6; padding: 1rem; border-radius: 0.5rem; overflow-x: auto;">
+# ファイルバックアップスクリプト
+# 使い方: .\backup.ps1 -Source "C:\data.csv" -DestDir "C:\backup"
+
+param(
+    [Parameter(Mandatory=$true)]
+    [string]$Source,
+    [Parameter(Mandatory=$true)]
+    [string]$DestDir
+)
+
+# タイムスタンプ取得
+$Timestamp = Get-Date -Format "yyyyMMdd_HHmmss"
+$BaseName = [System.IO.Path]::GetFileName($Source)
+$DestFile = Join-Path $DestDir "${BaseName}_${Timestamp}.bak"
+
+# 元ファイルの存在確認
+if (-not (Test-Path $Source)) {
+    Write-Error "エラー: $Source が見つかりません"
+    exit 1
+}
+
+# バックアップ先ディレクトリの作成(存在しなければ)
+if (-not (Test-Path $DestDir)) {
+    New-Item -ItemType Directory -Path $DestDir | Out-Null
+}
+
+# バックアップ実行
+try {
+    Copy-Item -Path $Source -Destination $DestFile -ErrorAction Stop
+    Write-Output "✅ バックアップ成功: $DestFile"
+} catch {
+    Write-Error "❌ バックアップ失敗: $_"
+    exit 1
+}</pre>
+
+                </section>
+
+                <!-- 第4章: Python による業務自動化 -->
+                <section id="chapter4">
+                    <h2>第4章：Python による業務自動化</h2>
+
+                    <h3>4.1 Python の特徴</h3>
+                    
+                    <p>Pythonは、シンプルで読みやすい構文、豊富な標準ライブラリ、そして強力なサードパーティ製ライブラリが特徴のプログラミング言語です。</p>
+
+                    <div class="info-box">
+                        <h4>Python が業務自動化に適している理由</h4>
+                        <ul>
+                            <li><strong>初学者に優しい</strong>：シンプルで読みやすい構文、日本語の情報が豊富</li>
+                            <li><strong>豊富なライブラリ</strong>：ファイル操作、データ処理、Web API連携など標準で対応</li>
+                            <li><strong>クロスプラットフォーム</strong>：Windows、macOS、Linuxで同じコードが動作</li>
+                            <li><strong>高い生産性</strong>：少ないコード量で多機能を実現</li>
+                            <li><strong>教育現場との相性</strong>：プログラミング教育でも広く使われている</li>
+                        </ul>
+                    </div>
+
+                    <h3>4.2 ファイル操作の基礎</h3>
+
+                    <h4>4.2.1 ファイルの読み書き</h4>
+                    
+                    <pre style="background: #f3f4f6; padding: 1rem; border-radius: 0.5rem; overflow-x: auto;">
+# テキストファイルの読み込み
+with open('data.txt', 'r', encoding='utf-8') as f:
+    content = f.read()
+    print(content)
+
+# 1行ずつ読み込み
+with open('data.txt', 'r', encoding='utf-8') as f:
+    for line in f:
+        print(line.strip())  # 改行を削除して表示
+
+# テキストファイルへの書き込み
+with open('output.txt', 'w', encoding='utf-8') as f:
+    f.write('こんにちは\n')
+    f.write('世界\n')
+
+# 追記モード
+with open('output.txt', 'a', encoding='utf-8') as f:
+    f.write('追加の行\n')</pre>
+
+                    <h4>4.2.2 ディレクトリ操作</h4>
+                    
+                    <pre style="background: #f3f4f6; padding: 1rem; border-radius: 0.5rem; overflow-x: auto;">
+import os
+from pathlib import Path
+
+# 現在のディレクトリを取得
+current_dir = os.getcwd()
+print(f"現在のディレクトリ: {current_dir}")
+
+# ディレクトリ作成
+os.makedirs('backup', exist_ok=True)  # exist_ok=True で既存でもエラーにならない
+
+# ファイル一覧を取得
+files = os.listdir('.')
+print(f"ファイル一覧: {files}")
+
+# 拡張子でフィルタリング
+txt_files = [f for f in os.listdir('.') if f.endswith('.txt')]
+print(f"txtファイル: {txt_files}")
+
+# pathlibを使った方法(Python 3.4以降推奨)
+current = Path.cwd()
+for file in current.glob('*.txt'):
+    print(f"ファイル: {file.name}")</pre>
+
+                    <h3>4.3 CSV ファイルの処理</h3>
+
+                    <p>教育現場では、名簿や成績データなど、CSV形式のファイルを扱う機会が多くあります。Python標準ライブラリの <code>csv</code> モジュールを使えば、簡単に処理できます。</p>
+
+                    <h4>4.3.1 CSVファイルの読み込みと集計</h4>
+                    
+                    <pre style="background: #f3f4f6; padding: 1rem; border-radius: 0.5rem; overflow-x: auto;">
+import csv
+
+# CSVファイルの読み込み
+with open('students.csv', 'r', encoding='utf-8') as f:
+    reader = csv.DictReader(f)
+    students = list(reader)
+
+# データの表示
+for student in students:
+    print(f"{student['名前']}: {student['点数']}点")
+
+# 平均点の計算
+total = sum(int(student['点数']) for student in students)
+average = total / len(students)
+print(f"平均点: {average:.1f}点")
+
+# 条件でフィルタリング(80点以上)
+excellent_students = [s for s in students if int(s['点数']) >= 80]
+print(f"優秀な生徒: {len(excellent_students)}名")</pre>
+
+                    <h4>4.3.2 CSVファイルへの書き込み</h4>
+                    
+                    <pre style="background: #f3f4f6; padding: 1rem; border-radius: 0.5rem; overflow-x: auto;">
+import csv
+
+# データ準備
+students = [
+    {'名前': '田中太郎', '学年': 1, '点数': 85},
+    {'名前': '佐藤花子', '学年': 1, '点数': 92},
+    {'名前': '鈴木次郎', '学年': 2, '点数': 78},
+]
+
+# CSVファイルへ書き込み
+with open('results.csv', 'w', encoding='utf-8', newline='') as f:
+    fieldnames = ['名前', '学年', '点数']
+    writer = csv.DictWriter(f, fieldnames=fieldnames)
+    
+    writer.writeheader()  # ヘッダー行を書き込み
+    writer.writerows(students)  # データを書き込み
+
+print("✅ CSVファイル作成完了")</pre>
+
+                    <h3>4.4 Excel ファイルの処理（openpyxl）</h3>
+
+                    <p>Excelファイルを扱う場合は、外部ライブラリ <code>openpyxl</code> を使用します。</p>
+
+                    <h4>4.4.1 インストール</h4>
+                    
+                    <pre style="background: #f3f4f6; padding: 1rem; border-radius: 0.5rem; overflow-x: auto;">
+# コマンドプロンプトまたはターミナルで実行
+pip install openpyxl</pre>
+
+                    <h4>4.4.2 Excel ファイルの読み込み</h4>
+                    
+                    <pre style="background: #f3f4f6; padding: 1rem; border-radius: 0.5rem; overflow-x: auto;">
+from openpyxl import load_workbook
+
+# Excelファイルを開く
+wb = load_workbook('students.xlsx')
+sheet = wb.active  # アクティブなシートを取得
+
+# セルの値を読み込み
+for row in sheet.iter_rows(min_row=2, values_only=True):
+    name, grade, score = row
+    print(f"{name}: {score}点")
+
+# 特定のセルの値を取得
+cell_value = sheet['A2'].value
+print(f"A2セルの値: {cell_value}")</pre>
+
+                    <h4>4.4.3 Excel ファイルの書き込み</h4>
+                    
+                    <pre style="background: #f3f4f6; padding: 1rem; border-radius: 0.5rem; overflow-x: auto;">
+from openpyxl import Workbook
+
+# 新しいワークブックを作成
+wb = Workbook()
+sheet = wb.active
+sheet.title = "成績表"
+
+# ヘッダーを書き込み
+sheet['A1'] = '名前'
+sheet['B1'] = '学年'
+sheet['C1'] = '点数'
+
+# データを書き込み
+students = [
+    ('田中太郎', 1, 85),
+    ('佐藤花子', 1, 92),
+    ('鈴木次郎', 2, 78),
+]
+
+for i, (name, grade, score) in enumerate(students, start=2):
+    sheet[f'A{i}'] = name
+    sheet[f'B{i}'] = grade
+    sheet[f'C{i}'] = score
+
+# ファイルとして保存
+wb.save('results.xlsx')
+print("✅ Excelファイル作成完了")</pre>
+
+                </section>
+
+                <!-- 第5章: 教育現場での実践例 -->
+                <section id="chapter5">
+                    <h2>第5章：教育現場での実践例</h2>
+
+                    <h3>5.1 名簿データの整形</h3>
+
+                    <p>複数のCSVファイルから名簿を統合し、重複を除外する実践例です。</p>
+
+                    <pre style="background: #f3f4f6; padding: 1rem; border-radius: 0.5rem; overflow-x: auto;">
+import csv
+from collections import defaultdict
+
+def merge_csv_files(file_list, output_file):
+    """複数のCSVファイルを統合し、重複を除外"""
+    students = {}  # {学籍番号: {名前, 学年, ...}}
+    
+    for file_path in file_list:
+        with open(file_path, 'r', encoding='utf-8') as f:
+            reader = csv.DictReader(f)
+            for row in reader:
+                student_id = row['学籍番号']
+                students[student_id] = row  # 重複は上書き
+    
+    # 統合結果を出力
+    with open(output_file, 'w', encoding='utf-8', newline='') as f:
+        if students:
+            fieldnames = list(students[next(iter(students))].keys())
+            writer = csv.DictWriter(f, fieldnames=fieldnames)
+            writer.writeheader()
+            writer.writerows(students.values())
+    
+    print(f"✅ 統合完了: {len(students)}件のデータを出力")
+
+# 実行例
+files = ['class_1a.csv', 'class_1b.csv', 'class_1c.csv']
+merge_csv_files(files, 'all_students.csv')</pre>
+
+                    <h3>5.2 成績処理と統計計算</h3>
+
+                    <p>成績データから統計情報（平均、最高点、最低点、合格者数）を計算します。</p>
+
+                    <pre style="background: #f3f4f6; padding: 1rem; border-radius: 0.5rem; overflow-x: auto;">
+import csv
+import statistics
+
+def analyze_scores(csv_file, passing_score=60):
+    """成績データを分析し、統計情報を出力"""
+    
+    with open(csv_file, 'r', encoding='utf-8') as f:
+        reader = csv.DictReader(f)
+        students = list(reader)
+    
+    # 点数を数値リストに変換
+    scores = [int(s['点数']) for s in students]
+    
+    # 統計計算
+    avg = statistics.mean(scores)
+    median = statistics.median(scores)
+    max_score = max(scores)
+    min_score = min(scores)
+    std_dev = statistics.stdev(scores)
+    passed = sum(1 for score in scores if score >= passing_score)
+    pass_rate = (passed / len(scores)) * 100
+    
+    # 結果出力
+    print("=" * 40)
+    print(f"受験者数: {len(scores)}名")
+    print(f"平均点: {avg:.1f}点")
+    print(f"中央値: {median:.1f}点")
+    print(f"最高点: {max_score}点")
+    print(f"最低点: {min_score}点")
+    print(f"標準偏差: {std_dev:.2f}")
+    print(f"合格者数: {passed}名（合格率: {pass_rate:.1f}%）")
+    print("=" * 40)
+    
+    # 成績分布
+    ranges = [(90, 100, 'A'), (80, 89, 'B'), (70, 79, 'C'), 
+              (60, 69, 'D'), (0, 59, 'F')]
+    
+    print("\n成績分布:")
+    for min_s, max_s, grade in ranges:
+        count = sum(1 for s in scores if min_s <= s <= max_s)
+        percentage = (count / len(scores)) * 100
+        print(f"{grade} ({min_s}-{max_s}点): {count}名 ({percentage:.1f}%)")
+
+# 実行例
+analyze_scores('exam_results.csv', passing_score=60)</pre>
+
+                    <h3>5.3 ファイルの一括リネーム</h3>
+
+                    <p>複数のファイルを一括で整理・リネームするスクリプトです。</p>
+
+                    <pre style="background: #f3f4f6; padding: 1rem; border-radius: 0.5rem; overflow-x: auto;">
+import os
+from pathlib import Path
+
+def batch_rename(directory, prefix, extension):
+    """指定ディレクトリ内のファイルを連番でリネーム"""
+    
+    # 指定拡張子のファイルを取得
+    path = Path(directory)
+    files = sorted(path.glob(f'*.{extension}'))
+    
+    if not files:
+        print(f"⚠️ {extension}ファイルが見つかりません")
+        return
+    
+    # リネーム実行
+    for index, file in enumerate(files, start=1):
+        new_name = f"{prefix}_{index:03d}.{extension}"
+        new_path = file.parent / new_name
+        
+        # 既存ファイルと重複しないか確認
+        if new_path.exists() and new_path != file:
+            print(f"⚠️ スキップ: {new_name} (既に存在)")
+            continue
+        
+        file.rename(new_path)
+        print(f"✅ {file.name} → {new_name}")
+    
+    print(f"\n✅ リネーム完了: {len(files)}ファイル")
+
+# 実行例
+# カレントディレクトリの全てのpngファイルを "photo_001.png", "photo_002.png", ... にリネーム
+batch_rename('.', 'photo', 'png')</pre>
+
+                    <h3>5.4 自動バックアップシステム</h3>
+
+                    <p>重要なファイルを定期的に自動バックアップするスクリプトです。</p>
+
+                    <pre style="background: #f3f4f6; padding: 1rem; border-radius: 0.5rem; overflow-x: auto;">
+import shutil
+import os
+from datetime import datetime
+from pathlib import Path
+
+def auto_backup(source_dir, backup_dir, max_backups=7):
+    """ディレクトリを自動バックアップ（世代管理機能付き）"""
+    
+    source = Path(source_dir)
+    backup = Path(backup_dir)
+    
+    # 元ディレクトリの存在確認
+    if not source.exists():
+        print(f"❌ エラー: {source_dir} が見つかりません")
+        return
+    
+    # バックアップ先ディレクトリ作成
+    backup.mkdir(parents=True, exist_ok=True)
+    
+    # タイムスタンプ付きバックアップ名
+    timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+    backup_name = f"backup_{source.name}_{timestamp}"
+    backup_path = backup / backup_name
+    
+    # バックアップ実行
+    try:
+        shutil.copytree(source, backup_path)
+        print(f"✅ バックアップ成功: {backup_path}")
+    except Exception as e:
+        print(f"❌ バックアップ失敗: {e}")
+        return
+    
+    # 古いバックアップを削除(世代管理)
+    backups = sorted(backup.glob(f"backup_{source.name}_*"))
+    if len(backups) > max_backups:
+        for old_backup in backups[:-max_backups]:
+            shutil.rmtree(old_backup)
+            print(f"🗑️ 古いバックアップを削除: {old_backup.name}")
+    
+    print(f"✅ バックアップ完了（保持世代数: {min(len(backups), max_backups)}）")
+
+# 実行例
+auto_backup('C:/SchoolData/Documents', 'C:/Backup', max_backups=7)</pre>
+
+                    <div class="point-box">
+                        <h4>💡 定期実行の設定方法</h4>
+                        <ul>
+                            <li><strong>Windows</strong>: タスクスケジューラで毎日実行</li>
+                            <li><strong>Linux/macOS</strong>: cron で毎日実行</li>
+                            <li><strong>推奨</strong>: 始業前（例: 午前8時）に自動実行</li>
+                        </ul>
+                    </div>
+
+                </section>
+
+                <!-- 第6章: セキュリティの考慮 -->
+                <section id="chapter6">
+                    <h2>第6章：セキュリティの考慮</h2>
+
+                    <h3>6.1 スクリプト実行時のリスク</h3>
+
+                    <p>自動化スクリプトは強力なツールですが、不適切に使用するとセキュリティリスクやデータ損失のリスクが伴います。</p>
+
+                    <div class="warning-box">
+                        <h4>⚠️ 主なリスク</h4>
+                        <ul>
+                            <li><strong>ファイルの誤削除</strong>：スクリプトのバグでデータを失う可能性</li>
+                            <li><strong>権限の不適切な設定</strong>：誰でもアクセス可能な状態になる危険</li>
+                            <li><strong>外部スクリプトの実行</strong>：信頼できないソースからのスクリプト実行</li>
+                            <li><strong>個人情報の漏洩</strong>：ログファイルに機密情報が残る可能性</li>
+                            <li><strong>コマンドインジェクション</strong>：外部入力を適切に検証しないことによる攻撃</li>
+                        </ul>
+                    </div>
+
+                    <h3>6.2 安全なスクリプトの作成</h3>
+
+                    <h4>6.2.1 入力検証の実施</h4>
+                    
+                    <pre style="background: #f3f4f6; padding: 1rem; border-radius: 0.5rem; overflow-x: auto;">
+import os
+from pathlib import Path
+
+def safe_delete_file(file_path):
+    """安全にファイルを削除（検証機能付き）"""
+    
+    path = Path(file_path)
+    
+    # 存在確認
+    if not path.exists():
+        print(f"❌ エラー: ファイルが見つかりません")
+        return False
+    
+    # ファイルタイプ確認（ディレクトリは削除しない）
+    if not path.is_file():
+        print(f"❌ エラー: ディレクトリは削除できません")
+        return False
+    
+    # 重要なファイルでないか確認（例: システムファイル、設定ファイル）
+    dangerous_extensions = ['.sys', '.dll', '.exe', '.bat', '.ps1']
+    if path.suffix.lower() in dangerous_extensions:
+        print(f"⚠️ 警告: 重要なファイルの可能性があります")
+        response = input("本当に削除しますか? (yes/no): ")
+        if response.lower() != 'yes':
+            print("キャンセルしました")
+            return False
+    
+    # 削除実行
+    try:
+        path.unlink()
+        print(f"✅ 削除成功: {file_path}")
+        return True
+    except Exception as e:
+        print(f"❌ 削除失敗: {e}")
+        return False
+
+# 使用例
+safe_delete_file('temp_data.txt')</pre>
+
+                    <h4>6.2.2 ログ記録の実装</h4>
+                    
+                    <pre style="background: #f3f4f6; padding: 1rem; border-radius: 0.5rem; overflow-x: auto;">
+import logging
+from datetime import datetime
+
+# ログ設定
+logging.basicConfig(
+    level=logging.INFO,
+    format='%(asctime)s - %(levelname)s - %(message)s',
+    handlers=[
+        logging.FileHandler('automation.log', encoding='utf-8'),
+        logging.StreamHandler()  # コンソールにも出力
+    ]
+)
+
+def process_student_data(csv_file):
+    """生徒データを処理（ログ記録付き）"""
+    
+    logging.info(f"処理開始: {csv_file}")
+    
+    try:
+        # データ処理（省略）
+        student_count = 42  # 仮の値
+        logging.info(f"処理完了: {student_count}件のデータを処理")
+        return True
+        
+    except FileNotFoundError:
+        logging.error(f"ファイルが見つかりません: {csv_file}")
+        return False
+        
+    except Exception as e:
+        logging.error(f"予期しないエラー: {e}")
+        return False
+
+# 使用例
+process_student_data('students.csv')</pre>
+
+                    <h3>6.3 権限管理とアクセス制御</h3>
+
+                    <div class="info-box">
+                        <h4>最小権限の原則</h4>
+                        <p>スクリプトには、<strong>必要最小限の権限</strong>のみを付与します。</p>
+                        <ul>
+                            <li><strong>読み取り専用処理</strong>：ファイルの読み取り権限のみで動作するようにする</li>
+                            <li><strong>書き込み範囲の限定</strong>：特定のディレクトリのみに書き込みを許可</li>
+                            <li><strong>管理者権限の回避</strong>：可能な限り一般ユーザー権限で実行</li>
+                        </ul>
+                    </div>
+
+                    <h4>6.3.1 ファイル権限の確認と設定（Linux/macOS）</h4>
+                    
+                    <pre style="background: #f3f4f6; padding: 1rem; border-radius: 0.5rem; overflow-x: auto;">
+# スクリプトに実行権限を付与（所有者のみ）
+chmod 700 script.sh
+
+# ディレクトリに適切な権限を設定（所有者: 読み書き実行、グループ/その他: 読み実行のみ）
+chmod 755 /path/to/directory
+
+# ファイルの権限を確認
+ls -l script.sh</pre>
+
+                    <h3>6.4 個人情報保護の実践</h3>
+
+                    <p>教育現場では、児童生徒の個人情報を扱うため、特に慎重な対応が必要です。</p>
+
+                    <div class="warning-box">
+                        <h4>⚠️ 個人情報保護のポイント</h4>
+                        <ol>
+                            <li><strong>不要な個人情報は扱わない</strong>：必要最小限のデータのみ処理</li>
+                            <li><strong>ログに個人情報を記録しない</strong>：名前、学籍番号などを出力しない</li>
+                            <li><strong>一時ファイルの削除</strong>：処理後は確実に削除する</li>
+                            <li><strong>暗号化の検討</strong>：機密性の高いデータは暗号化して保存</li>
+                            <li><strong>アクセス記録の保持</strong>：誰が、いつ、何をしたかを記録</li>
+                        </ol>
+                    </div>
+
+                    <h4>6.4.1 安全なデータ処理の例</h4>
+                    
+                    <pre style="background: #f3f4f6; padding: 1rem; border-radius: 0.5rem; overflow-x: auto;">
+import csv
+import logging
+from pathlib import Path
+
+def process_sensitive_data(input_file, output_file):
+    """個人情報を安全に処理（匿名化と仮名化）"""
+    
+    # ログには個人情報を記録しない
+    logging.info(f"処理開始（ファイル数: 1件）")
+    
+    try:
+        with open(input_file, 'r', encoding='utf-8') as f:
+            reader = csv.DictReader(f)
+            students = list(reader)
+        
+        # データ処理（個人情報を仮名化）
+        processed = []
+        for i, student in enumerate(students, start=1):
+            processed.append({
+                '生徒ID': f'S{i:04d}',  # 匿名ID
+                '学年': student['学年'],
+                '点数': student['点数']
+                # 名前は含めない
+            })
+        
+        # 結果を出力
+        with open(output_file, 'w', encoding='utf-8', newline='') as f:
+            writer = csv.DictWriter(f, fieldnames=['生徒ID', '学年', '点数'])
+            writer.writeheader()
+            writer.writerows(processed)
+        
+        logging.info(f"処理完了（処理件数: {len(processed)}件）")
+        
+    except Exception as e:
+        logging.error(f"処理エラー（詳細は記録しない）")
+        raise
+
+# 使用例
+process_sensitive_data('students_raw.csv', 'students_anonymized.csv')</pre>
+
+                </section>
+
+                <!-- 第7章: 実践演習 -->
+                <section id="chapter7">
+                    <h2>第7章：実践演習</h2>
+
+                    <div class="point-box">
+                        <h3>📝 演習課題</h3>
+                        <p>以下の課題に取り組み、業務自動化スキルを実践的に習得しましょう。</p>
+                    </div>
+
+                    <h3>演習1：シェルスクリプトによるファイル整理</h3>
+
+                    <div class="info-box">
+                        <h4>課題内容</h4>
+                        <p>以下の要件を満たすシェルスクリプト（Bash または PowerShell）を作成してください。</p>
+                        <ul>
+                            <li><strong>機能</strong>：指定ディレクトリ内のファイルを拡張子ごとに分類</li>
+                            <li><strong>要件1</strong>：.txt ファイルは "text" フォルダに移動</li>
+                            <li><strong>要件2</strong>：.pdf ファイルは "documents" フォルダに移動</li>
+                            <li><strong>要件3</strong>：.jpg、.png ファイルは "images" フォルダに移動</li>
+                            <li><strong>要件4</strong>：移動したファイル数をカウントして表示</li>
+                        </ul>
+                        <p><strong>ヒント</strong>：for ループと if 文、ファイル移動コマンド（mv または Move-Item）を使用します。</p>
+                    </div>
+
+                    <h3>演習2：Python による成績データ処理</h3>
+
+                    <div class="info-box">
+                        <h4>課題内容</h4>
+                        <p>以下の要件を満たす Python スクリプトを作成してください。</p>
+                        <ul>
+                            <li><strong>入力</strong>：生徒名、学年、点数が記録された CSV ファイル</li>
+                            <li><strong>処理1</strong>：学年ごとに平均点を計算</li>
+                            <li><strong>処理2</strong>：全体の平均点、最高点、最低点を計算</li>
+                            <li><strong>処理3</strong>：点数が60点以上の生徒のみを抽出</li>
+                            <li><strong>出力</strong>：統計情報をコンソールに表示、合格者リストを新しいCSVファイルに保存</li>
+                        </ul>
+                        <p><strong>ヒント</strong>：csv モジュール、statistics モジュール、リスト内包表記を使用します。</p>
+                    </div>
+
+                    <h3>演習3：自動バックアップシステムの構築</h3>
+
+                    <div class="info-box">
+                        <h4>課題内容</h4>
+                        <p>以下の要件を満たす自動バックアップシステムを Python で作成してください。</p>
+                        <ul>
+                            <li><strong>機能</strong>：指定ディレクトリを定期的にバックアップ</li>
+                            <li><strong>要件1</strong>：タイムスタンプ付きのバックアップフォルダを作成</li>
+                            <li><strong>要件2</strong>：最新7世代のバックアップを保持、古いものは自動削除</li>
+                            <li><strong>要件3</strong>：処理結果をログファイルに記録</li>
+                            <li><strong>要件4</strong>：エラー処理を実装（存在しないディレクトリ、権限エラー等）</li>
+                        </ul>
+                        <p><strong>発展課題</strong>：Windows タスクスケジューラまたは cron で毎日実行するよう設定してください。</p>
+                    </div>
+
+                    <h3>演習4：Excel レポートの自動生成</h3>
+
+                    <div class="info-box">
+                        <h4>課題内容</h4>
+                        <p>以下の要件を満たす Excel レポート生成スクリプトを作成してください。</p>
+                        <ul>
+                            <li><strong>入力</strong>：複数のCSVファイル（各クラスの成績データ）</li>
+                            <li><strong>処理1</strong>：全CSVファイルを読み込み、統合</li>
+                            <li><strong>処理2</strong>：クラスごとに平均点、最高点、最低点を計算</li>
+                            <li><strong>処理3</strong>：学年全体の統計を計算</li>
+                            <li><strong>出力</strong>：Excelファイルにシートごとに整理して保存
+                                <ul style="margin-top: 0.5rem;">
+                                    <li>シート1: 全体統計</li>
+                                    <li>シート2: クラス別統計</li>
+                                    <li>シート3: 個人別成績一覧</li>
+                                </ul>
+                            </li>
+                        </ul>
+                        <p><strong>ヒント</strong>：openpyxl ライブラリを使用します。</p>
+                    </div>
+
+                </section>
+
+                <!-- 第8章: 参考資料・関連講座 -->
+                <section id="chapter8">
+                    <h2>第8章：参考資料・関連講座</h2>
+
+                    <h3>8.1 関連する既存講座</h3>
+
+                    <p>本講座の理解を深めるため、以下の関連講座の受講を推奨します。</p>
+
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>講座</th>
+                                <th>内容</th>
+                                <th>関連性</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><a href="session49.html">第49回：コンピュータシステム概論</a></td>
+                                <td>ハードウェア・ソフトウェアの基礎</td>
+                                <td>システム構成の理解</td>
+                            </tr>
+                            <tr>
+                                <td><a href="session50.html">第50回：オペレーティングシステム論</a></td>
+                                <td>OSの役割とプロセス管理</td>
+                                <td>本講座の基礎知識</td>
+                            </tr>
+                            <tr>
+                                <td><a href="session51.html">第51回：ネットワークとインターネット技術</a></td>
+                                <td>ネットワーク基礎とセキュリティ</td>
+                                <td>自動化時のセキュリティ理解</td>
+                            </tr>
+                            <tr>
+                                <td><a href="session52.html">第52回：アルゴリズムと情報科学の基礎</a></td>
+                                <td>アルゴリズムとデータ構造</td>
+                                <td>効率的なプログラム設計</td>
+                            </tr>
+                            <tr>
+                                <td><a href="session04.html">第4回：プログラミング教育の指導方法</a></td>
+                                <td>プログラミング教育の実践</td>
+                                <td>教育現場での応用</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <h3>8.2 公的機関の資料</h3>
+
+                    <div class="info-box">
+                        <h4>文部科学省</h4>
+                        <ul>
+                            <li><a href="https://www.mext.go.jp/a_menu/shotou/zyouhou/detail/1403162.htm" target="_blank" rel="noopener">小学校プログラミング教育の手引（第三版）</a></li>
+                            <li><a href="https://www.mext.go.jp/a_menu/shotou/zyouhou/detail/1416408.htm" target="_blank" rel="noopener">中学校技術・家庭科（技術分野）「D情報の技術」</a></li>
+                            <li><a href="https://www.mext.go.jp/content/20210805-mxt_jogai01-000009827_003.pdf" target="_blank" rel="noopener">教育の情報化に関する手引（第3章 プログラミング教育の推進）</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="info-box">
+                        <h4>独立行政法人情報処理推進機構（IPA）</h4>
+                        <ul>
+                            <li><a href="https://www.ipa.go.jp/security/guide/vuln/index.html" target="_blank" rel="noopener">セキュリティ対策のガイドライン</a></li>
+                            <li><a href="https://www.ipa.go.jp/jinzai/skill-standard/index.html" target="_blank" rel="noopener">ITスキル標準（ITSS）</a></li>
+                        </ul>
+                    </div>
+
+                    <h3>8.3 技術資料・ドキュメント</h3>
+
+                    <div class="info-box">
+                        <h4>プログラミング言語公式ドキュメント</h4>
+                        <ul>
+                            <li><a href="https://docs.python.org/ja/3/" target="_blank" rel="noopener">Python 公式ドキュメント（日本語版）</a></li>
+                            <li><a href="https://learn.microsoft.com/ja-jp/powershell/" target="_blank" rel="noopener">PowerShell 公式ドキュメント（Microsoft Learn）</a></li>
+                            <li><a href="https://www.gnu.org/software/bash/manual/" target="_blank" rel="noopener">GNU Bash マニュアル</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="info-box">
+                        <h4>学習リソース</h4>
+                        <ul>
+                            <li><strong>Qiita</strong>：日本最大級の技術情報共有サイト</li>
+                            <li><strong>Stack Overflow</strong>：プログラミングのQ&Aコミュニティ</li>
+                            <li><strong>GitHub</strong>：オープンソースのコード共有プラットフォーム</li>
+                            <li><strong>Pythonチュートリアル</strong>：Python Software Foundation公式</li>
+                        </ul>
+                    </div>
+
+                    <h3>8.4 書籍紹介</h3>
+
+                    <div class="point-box">
+                        <h4>推奨図書</h4>
+                        <ul>
+                            <li><strong>「退屈なことはPythonにやらせよう」</strong>（Al Sweigart著）：業務自動化の入門書</li>
+                            <li><strong>「入門 Bash シェルスクリプト」</strong>（Nelson H.F. Beebe著）：Bashスクリプトの基礎</li>
+                            <li><strong>「PowerShell実践ガイドブック」</strong>（株式会社ソフィアネットワーク著）：Windows環境での自動化</li>
+                            <li><strong>「Pythonではじめるデータ分析入門」</strong>（辻真吾著）：データ処理の基礎</li>
+                        </ul>
+                    </div>
+
+                </section>
+
+                <!-- まとめ -->
+                <section id="summary">
+                    <h2>📌 まとめ</h2>
+
+                    <p>本講座では、システムプログラミングの観点から、業務自動化の基礎知識と実践的な手法を学びました。</p>
+
+                    <div class="point-box">
+                        <h3>本講座で学んだこと</h3>
+                        <ol>
+                            <li><strong>システムプログラミングの基礎</strong>：プログラムとOSの関係、システムコールとAPI</li>
+                            <li><strong>シェルスクリプト</strong>：Bash と PowerShell を用いたコマンドライン操作の自動化</li>
+                            <li><strong>Python による業務自動化</strong>：ファイル操作、CSV/Excel処理、データ集計</li>
+                            <li><strong>教育現場での実践例</strong>：名簿整理、成績処理、バックアップ、ファイル管理</li>
+                            <li><strong>セキュリティ</strong>：安全なスクリプト作成、個人情報保護、権限管理</li>
+                        </ol>
+                    </div>
+
+                    <div class="info-box">
+                        <h3>💡 ICT支援員として実践すること</h3>
+                        <ul>
+                            <li><strong>小さな業務から自動化を始める</strong>：ファイル整理、バックアップなどから着手</li>
+                            <li><strong>教職員と連携する</strong>：現場のニーズを聞き、実用的なスクリプトを作成</li>
+                            <li><strong>ドキュメントを残す</strong>：スクリプトの使い方や注意点を文書化</li>
+                            <li><strong>安全性を最優先する</strong>：テスト環境で十分に検証してから本番利用</li>
+                            <li><strong>継続的に学ぶ</strong>：新しい技術やライブラリを積極的に学習</li>
+                        </ul>
+                    </div>
+
+                    <div class="warning-box">
+                        <h3>⚠️ 注意事項</h3>
+                        <ul>
+                            <li><strong>個人情報の取り扱い</strong>：教育現場では個人情報保護に十分配慮すること</li>
+                            <li><strong>組織のポリシー遵守</strong>：学校や自治体のセキュリティポリシーに従うこと</li>
+                            <li><strong>バックアップの徹底</strong>：重要なデータは必ずバックアップを取ること</li>
+                            <li><strong>テストの実施</strong>：本番環境で実行する前に必ずテストすること</li>
+                        </ul>
+                    </div>
+
+                    <p style="margin-top: 2rem;">業務自動化のスキルを身につけることで、ICT支援員として教職員の負担を軽減し、学校全体の業務効率化に貢献できます。本講座で学んだ知識を活かし、教育現場でのICT活用をさらに推進していきましょう。</p>
+
+                </section>
+
+            </div>
+        </div>
+    </main>
+
+    <!-- フッター -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 ICT支援員教育講座. All rights reserved.</p>
+        </div>
+    </footer>
+
+</body>
+</html>

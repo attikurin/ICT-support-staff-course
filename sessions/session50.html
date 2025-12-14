@@ -1,0 +1,1654 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>第50回：オペレーティングシステム論 - ICT支援員教育講座</title>
+    <meta name="description" content="オペレーティングシステムの基本概念から教育現場における主要OS（Windows、Chrome OS、iOS/iPadOS、macOS）の特徴、GIGA School 2.0での動向、トラブルシューティングまでを包括的に学習します。">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/session.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <a href="../index.html" class="logo">ICT支援員教育講座</a>
+            <nav class="navbar">
+                <ul class="nav-menu">
+                    <li><a href="../index.html">ホーム</a></li>
+                    <li><a href="../beginner.html">入門編</a></li>
+                    <li><a href="../intermediate.html">基礎編</a></li>
+                    <li><a href="../advanced.html">中級編</a></li>
+                    <li><a href="../development.html">発展編</a></li>
+                    <li><a href="../exam.html">試験対策</a></li>
+                    <li><a href="../supplement.html" class="active">補完カリキュラム</a></li>
+                    <li><a href="../resources.html">参考資料</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="session-content">
+        <div class="container">
+            <div class="session-header-content">
+                <span class="session-label supplement">補完カリキュラム</span>
+                <h1>第50回：オペレーティングシステム論</h1>
+                <p class="session-meta">情報科学・CS基礎編（全8回）の第2回 | 学習時間目安：120分（講義90分、演習30分） | 難易度：★★★☆☆</p>
+            </div>
+
+            <div class="info-box">
+                <h3>📋 講座概要</h3>
+                <ul>
+                    <li><strong>対象者：</strong>ICT支援員、教育情報化コーディネータ、学校ICT管理者</li>
+                    <li><strong>受講前提：</strong>基礎編（第1回〜第48回）修了、または同等の知識、第49回「コンピュータシステム概論」の履修を推奨</li>
+                    <li><strong>学習時間：</strong>120分（講義90分、演習30分）</li>
+                    <li><strong>難易度：</strong>★★★☆☆（中級）</li>
+                    <li><strong>最終更新：</strong>2025年12月（GIGA Phase 2対応版）</li>
+                </ul>
+            </div>
+
+            <div class="warning-box">
+                <h3>⚠️ 本講座における情報の取り扱いについて</h3>
+                <ul>
+                    <li><strong>OSの技術仕様・機能：</strong>各OS提供元の公式サイトで最新情報をご確認ください。</li>
+                    <li><strong>価格・ライセンス情報：</strong>時期や契約形態により変動します。</li>
+                    <li><strong>教育政策・統計データ：</strong>文部科学省等の公式発表をご確認ください。</li>
+                    <li><strong>製品サポート期限：</strong>メーカー発表に基づく目安であり、変更の可能性があります。</li>
+                    <li><strong>推奨事項：</strong>各学校・自治体の状況に応じて適切に判断してください。</li>
+                </ul>
+            </div>
+
+            <section class="objectives">
+                <h2>🎯 学習目標</h2>
+                <p>本講座を修了することで、以下のことができるようになります：</p>
+                <ul>
+                    <li>OSの役割と機能（ハードウェア管理、アプリケーション実行環境、ユーザーインターフェース）を理解し、説明できる</li>
+                    <li>教育現場で使用される主要OS（Windows、Chrome OS、iOS/iPadOS、macOS）の特徴を比較検討し、適切に使い分けができる</li>
+                    <li>GIGA School 2.0におけるOSの動向を把握し、各自治体の選択状況や今後の展望を理解できる</li>
+                    <li>OSレベルのトラブルシューティング（起動トラブル、セーフモード、再インストールなど）ができる</li>
+                    <li>OSの設定管理（セキュリティ、アクセシビリティ、ネットワーク設定）を実践できる</li>
+                </ul>
+            </section>
+
+            <!-- 本文コンテンツ -->
+            <div class="session-content">
+                
+                <!-- イントロダクション -->
+                <section id="introduction">
+                    <h2>🎯 イントロダクション</h2>
+                    
+                    <p>オペレーティングシステム（OS：Operating System）は、コンピュータのハードウェアとソフトウェアを橋渡しし、システム全体を制御する基盤ソフトウェアです。</p>
+                    
+                    <p>教育現場において、OSはGIGA端末の動作基盤として日常的に利用されています。Windows、Chrome OS、iPad（iOS/iPadOS）の3種類が主流ですが、各OSには独自の特徴があり、教育現場での使い勝手や管理方法が大きく異なります。</p>
+
+                    <div class="info-box">
+                        <h3>💡 なぜOSを学ぶのか？</h3>
+                        <p><strong>ICT支援員にとって、OSの理解は以下の点で極めて重要です：</strong></p>
+                        <ul>
+                            <li><strong>トラブル対応の基礎</strong>：起動しない、フリーズするなどの問題に対処するため</li>
+                            <li><strong>端末選定のアドバイス</strong>：学校の状況に応じて適切なOSを提案するため</li>
+                            <li><strong>設定とカスタマイズ</strong>：アクセシビリティやセキュリティ設定を適切に行うため</li>
+                            <li><strong>効率的な管理運用</strong>：大量のGIGA端末を統一的に管理・更新するため</li>
+                        </ul>
+                    </div>
+
+                    <div class="point-box">
+                        <h3>🎓 本講座で学ぶこと</h3>
+                        <ol>
+                            <li><strong>OSの基本概念</strong>：OSとは何か、どのような役割を果たすのか</li>
+                            <li><strong>主要OSの特徴</strong>：Windows、Chrome OS、iOS/iPadOS、macOSの違いと使い分け</li>
+                            <li><strong>教育現場での実態</strong>：GIGA School 2.0におけるOS選択の動向</li>
+                            <li><strong>OSの設定管理</strong>：セキュリティ、アクセシビリティ、ネットワーク設定の実践</li>
+                            <li><strong>トラブルシューティング</strong>：起動トラブル、セーフモード、再インストールの手法</li>
+                        </ol>
+                    </div>
+
+                </section>
+
+                <!-- 第1章: OSの定義と役割 -->
+                <section id="chapter1">
+                    <h2>第1章：OSの定義と役割</h2>
+
+                    <h3>1.1 オペレーティングシステム（OS）とは</h3>
+                    
+                    <p><strong>オペレーティングシステム（OS）</strong>は、コンピュータのハードウェア資源（CPU、メモリ、ストレージ、入出力装置など）を管理し、アプリケーションソフトウェアが効率的に動作するための基盤環境を提供するソフトウェアです。</p>
+
+                    <div class="info-box">
+                        <h3>📌 OSの定義</h3>
+                        <p><strong>オペレーティングシステムは、次の3つの側面から定義できます：</strong></p>
+                        <ol>
+                            <li><strong>リソース管理者（Resource Manager）</strong>：
+                                <ul>
+                                    <li>CPU、メモリ、ストレージ、周辺機器などのハードウェア資源を効率的に管理・配分</li>
+                                    <li>複数のプログラムが同時に実行される際の調停を行う</li>
+                                </ul>
+                            </li>
+                            <li><strong>抽象化レイヤー（Abstraction Layer）</strong>：
+                                <ul>
+                                    <li>複雑なハードウェアの動作を抽象化し、アプリケーションから利用しやすくする</li>
+                                    <li>APIを提供し、ハードウェアに依存しないプログラム開発を可能にする</li>
+                                </ul>
+                            </li>
+                            <li><strong>制御プログラム（Control Program）</strong>：
+                                <ul>
+                                    <li>システム全体の動作を制御・監視する</li>
+                                    <li>エラーやセキュリティ脅威からシステムを保護する</li>
+                                </ul>
+                            </li>
+                        </ol>
+                    </div>
+
+                    <h3>1.2 OSの主要な役割</h3>
+
+                    <p>OSは、コンピュータシステムにおいて以下のような重要な役割を果たしています：</p>
+
+                    <h4>（1）ハードウェアの管理と制御</h4>
+                    <ul>
+                        <li><strong>プロセッサ（CPU）の管理</strong>：複数のプログラムにCPU時間を割り当て、効率的に実行</li>
+                        <li><strong>メモリの管理</strong>：各プログラムに必要なメモリ領域を確保し、競合を防ぐ</li>
+                        <li><strong>入出力（I/O）装置の管理</strong>：キーボード、マウス、ディスプレイ、プリンタ、ネットワークカードなどを制御</li>
+                        <li><strong>ストレージの管理</strong>：ファイルシステムを通じてデータの保存・読み出しを管理</li>
+                    </ul>
+
+                    <div class="info-box" style="background-color: #fef3c7; border-left-color: #f59e0b;">
+                        <h3>💡 教育現場での例</h3>
+                        <p><strong>GIGA端末での実例：</strong></p>
+                        <ul>
+                            <li><strong>Chromebook</strong>：Chrome OSが低スペックでも快適に動作するよう、メモリとCPUを効率管理</li>
+                            <li><strong>iPad</strong>：iOS/iPadOSが複数のアプリを切り替える際にメモリを自動最適化</li>
+                            <li><strong>Windowsタブレット</strong>：Windows 11がタッチスクリーンやペン入力を統合管理</li>
+                        </ul>
+                    </div>
+
+                    <h4>（2）アプリケーション実行環境の提供</h4>
+                    <ul>
+                        <li><strong>アプリケーションの起動・終了</strong>：ユーザーがアプリを使うための仕組みを提供</li>
+                        <li><strong>API（Application Programming Interface）の提供</strong>：開発者がOSの機能を利用するためのインターフェース</li>
+                        <li><strong>ライブラリとランタイム環境</strong>：アプリケーションが共通して使う機能（ファイル操作、ネットワーク通信など）を提供</li>
+                    </ul>
+
+                    <h4>（3）ユーザーインターフェース（UI）の提供</h4>
+                    <ul>
+                        <li><strong>GUI（Graphical User Interface）</strong>：ウィンドウ、アイコン、メニューなどの視覚的なインターフェース（Windows、macOS、Chrome OS、iOS/iPadOS）</li>
+                        <li><strong>CUI（Character User Interface）</strong>：コマンドラインでの操作インターフェース（コマンドプロンプト、PowerShell、ターミナル）</li>
+                        <li><strong>タッチインターフェース</strong>：タブレットやスマートフォンに最適化されたタッチ操作</li>
+                    </ul>
+
+                    <div class="point-box">
+                        <h3>🎯 UIの進化と教育現場への影響</h3>
+                        <ul>
+                            <li><strong>低学年向け</strong>：直感的なタッチ操作が可能なiPad（iOS/iPadOS）が多く採用される</li>
+                            <li><strong>中高学年以上</strong>：キーボード入力とマウス操作に対応したChromebookやWindowsが主流</li>
+                            <li><strong>支援が必要な児童生徒</strong>：アクセシビリティ機能の充実度がOS選定の重要ポイント</li>
+                        </ul>
+                    </div>
+
+                    <h4>（4）セキュリティとアクセス制御</h4>
+                    <ul>
+                        <li><strong>ユーザー認証</strong>：パスワード、生体認証（指紋、顔認証）などでユーザーを識別</li>
+                        <li><strong>アクセス権限管理</strong>：ファイルやシステム設定へのアクセスを制限</li>
+                        <li><strong>マルウェア対策</strong>：ウイルス、ランサムウェアなどからシステムを保護</li>
+                        <li><strong>暗号化機能</strong>：データを暗号化し、情報漏洩を防止（BitLocker、FileVault、Chromebookの自動暗号化など）</li>
+                    </ul>
+
+                    <div class="warning-box">
+                        <h3>⚠️ 教育現場におけるセキュリティの重要性</h3>
+                        <p><strong>GIGA端末では、児童生徒の個人情報や学習データが扱われるため、OSのセキュリティ機能が極めて重要です：</strong></p>
+                        <ul>
+                            <li><strong>Chrome OS</strong>：サンドボックス機能と自動アップデートで高いセキュリティを実現</li>
+                            <li><strong>iOS/iPadOS</strong>：アプリの厳格な審査とApp Store以外からのインストール制限</li>
+                            <li><strong>Windows</strong>：Windows Defender、BitLockerなどのセキュリティ機能を標準搭載</li>
+                        </ul>
+                    </div>
+
+                    <h4>（5）マルチタスク（多重プログラム実行）</h4>
+                    <ul>
+                        <li><strong>マルチタスキング</strong>：複数のプログラムを同時に実行する仕組み</li>
+                        <li><strong>プロセス管理</strong>：各プログラムを「プロセス」として管理し、CPUリソースを適切に割り当て</li>
+                        <li><strong>プリエンプティブマルチタスク</strong>：OSが強制的にプログラムを切り替え、システム全体の安定性を確保</li>
+                    </ul>
+
+                    <div class="info-box">
+                        <h3>💡 教育現場でのマルチタスクの実例</h3>
+                        <p><strong>授業中の典型的なシナリオ：</strong></p>
+                        <ul>
+                            <li><strong>例1</strong>：Chromebookで「Google Classroom」を開きながら、「Googleドキュメント」で作文、「YouTube」で動画視聴</li>
+                            <li><strong>例2</strong>：iPadで「ロイロノート」にアクセスしながら、「カメラアプリ」で撮影、「Safari」で調べ学習</li>
+                            <li><strong>例3</strong>：Windows端末で「Teams」でオンライン授業に参加しながら、「Word」でノート作成、「Excel」でデータ整理</li>
+                        </ul>
+                        <p><strong>これらはすべて、OSのマルチタスク機能により実現されています。</strong></p>
+                    </div>
+
+                    <h3>1.3 OSが存在しないとどうなるか？</h3>
+
+                    <p>OSがなければ、以下のような問題が発生します：</p>
+
+                    <ul>
+                        <li><strong>ハードウェアを直接制御する必要がある</strong>：すべてのアプリケーションが、キーボード入力、画面表示、ファイル保存などを個別に実装する必要がある（非常に複雑で非効率）</li>
+                        <li><strong>複数のプログラムを同時実行できない</strong>：一つのアプリケーションしか動かせず、作業効率が極端に低下</li>
+                        <li><strong>セキュリティが皆無</strong>：悪意のあるプログラムがシステム全体を自由に操作できてしまう</li>
+                        <li><strong>ユーザーフレンドリーではない</strong>：すべての操作をコマンドや機械語で行う必要があり、一般ユーザーには使いこなせない</li>
+                    </ul>
+
+                    <div class="point-box">
+                        <h3>🏫 教育現場での意義</h3>
+                        <p><strong>OSの存在により、以下が可能になっています：</strong></p>
+                        <ul>
+                            <li><strong>児童生徒が直感的に端末を操作できる</strong>：マウスやタッチ操作で簡単にアプリを起動・使用</li>
+                            <li><strong>複数のアプリを切り替えて学習できる</strong>：調べ学習とまとめ作業を並行して実施</li>
+                            <li><strong>安全に端末を使える</strong>：不適切なアプリやサイトへのアクセスをOS・MDMレベルで制限</li>
+                            <li><strong>ICT支援員が効率的にサポートできる</strong>：共通のOS操作やトラブルシューティング手法を適用</li>
+                        </ul>
+                    </div>
+
+                </section>
+
+                <!-- 第2章: OSの基本機能 -->
+                <section id="chapter2">
+                    <h2>第2章：OSの基本機能</h2>
+
+                    <p>この章では、OSが実際にどのような機能を提供しているかを、プロセス管理、メモリ管理、ファイルシステム管理の3つの側面から詳しく学びます。</p>
+
+                    <h3>2.1 プロセス管理</h3>
+
+                    <p><strong>プロセス（Process）</strong>とは、実行中のプログラムのことです。OSはこのプロセスを管理し、複数のプログラムを効率的に同時実行します。</p>
+
+                    <h4>（1）プロセスとは</h4>
+                    <ul>
+                        <li><strong>プログラム vs プロセス</strong>：
+                            <ul>
+                                <li><strong>プログラム</strong>：ストレージに保存された実行可能ファイル（静的な存在）</li>
+                                <li><strong>プロセス</strong>：プログラムがメモリに読み込まれて実行されている状態（動的な存在）</li>
+                            </ul>
+                        </li>
+                        <li><strong>プロセスの構成要素</strong>：
+                            <ul>
+                                <li>プログラムコード（実行する命令群）</li>
+                                <li>データセクション（変数、定数など）</li>
+                                <li>スタック（関数呼び出しや局所変数の管理）</li>
+                                <li>ヒープ（動的に確保されるメモリ領域）</li>
+                            </ul>
+                        </li>
+                    </ul>
+
+                    <div class="info-box">
+                        <h3>💡 教育現場での例</h3>
+                        <p><strong>GIGA端末でのプロセスの実例：</strong></p>
+                        <ul>
+                            <li><strong>Windows</strong>：タスクマネージャーで「chrome.exe」「Teams.exe」「Word.exe」などのプロセスを確認可能</li>
+                            <li><strong>Chrome OS</strong>：「タスクマネージャー（Shift+Esc）」で各Chromeタブやアプリのプロセスを表示</li>
+                            <li><strong>iPad</strong>：アプリスイッチャーで複数のアプリがバックグラウンドで動作中のプロセスとして管理される</li>
+                        </ul>
+                    </div>
+
+                    <h4>（2）プロセスのライフサイクル</h4>
+                    <p>プロセスは以下のような状態を遷移します：</p>
+                    <ul>
+                        <li><strong>新規（New）</strong>：プロセスが生成された直後の状態</li>
+                        <li><strong>実行可能（Ready）</strong>：CPUの割り当てを待っている状態</li>
+                        <li><strong>実行中（Running）</strong>：CPUで実際に実行されている状態</li>
+                        <li><strong>待機（Waiting）</strong>：I/O操作の完了などを待っている状態</li>
+                        <li><strong>終了（Terminated）</strong>：実行が完了し、終了した状態</li>
+                    </ul>
+
+                    <h4>（3）スケジューリング</h4>
+                    <p>OSは<strong>スケジューラ（Scheduler）</strong>を使って、どのプロセスにCPU時間を割り当てるかを決定します。</p>
+                    
+                    <ul>
+                        <li><strong>ラウンドロビン方式</strong>：各プロセスに一定時間ずつCPUを割り当て、順番に実行</li>
+                        <li><strong>優先度ベース</strong>：プロセスに優先度を設定し、優先度の高いものから実行</li>
+                        <li><strong>マルチレベルキュー</strong>：複数のキューを用意し、プロセスの種類に応じて管理</li>
+                    </ul>
+
+                    <div class="point-box">
+                        <h3>🎯 教育現場でのプロセス管理の重要性</h3>
+                        <ul>
+                            <li><strong>複数アプリの同時使用</strong>：GoogleドキュメントとYouTubeを同時に開いても、快適に動作</li>
+                            <li><strong>フリーズしたアプリの強制終了</strong>：タスクマネージャーで応答しないプロセスを終了</li>
+                            <li><strong>バックグラウンド更新</strong>：授業中でもOSやアプリが自動的に更新される</li>
+                        </ul>
+                    </div>
+
+                    <h3>2.2 メモリ管理</h3>
+
+                    <p>OSは、限られたメモリ（RAM）を効率的に管理し、複数のプロセスが同時に実行できるようにします。</p>
+
+                    <h4>（1）メモリ管理の基本</h4>
+                    <ul>
+                        <li><strong>物理メモリと仮想メモリ</strong>：
+                            <ul>
+                                <li><strong>物理メモリ（RAM）</strong>：実際に搭載されているメモリ（例：8GB RAM）</li>
+                                <li><strong>仮想メモリ</strong>：ストレージの一部をメモリとして使用し、物理メモリを超える容量を確保</li>
+                            </ul>
+                        </li>
+                        <li><strong>メモリの割り当て</strong>：各プロセスに必要なメモリ領域を確保</li>
+                        <li><strong>メモリの解放</strong>：不要になったメモリを回収し、再利用可能にする</li>
+                    </ul>
+
+                    <h4>（2）仮想メモリとページング</h4>
+                    <ul>
+                        <li><strong>仮想メモリの仕組み</strong>：物理メモリが不足した場合、ストレージ（SSD/HDD）の一部を「ページファイル（スワップ領域）」として使用</li>
+                        <li><strong>ページング</strong>：メモリを固定サイズの「ページ」に分割し、必要に応じてストレージとの間でページを移動</li>
+                        <li><strong>スワッピング</strong>：使用頻度の低いプロセスをストレージに退避させ、必要なプロセスをメモリに読み込む</li>
+                    </ul>
+
+                    <div class="warning-box">
+                        <h3>⚠️ メモリ不足が引き起こす問題</h3>
+                        <p><strong>GIGA端末でのメモリ不足の症状：</strong></p>
+                        <ul>
+                            <li><strong>動作が遅くなる</strong>：仮想メモリへの頻繁なアクセス（スワップ）により、処理が遅延</li>
+                            <li><strong>アプリが強制終了される</strong>：メモリ不足により、バックグラウンドアプリが自動的に終了</li>
+                            <li><strong>ブラウザのタブが再読み込みされる</strong>：Chrome OSやiPadOSがメモリを確保するため、使っていないタブを解放</li>
+                        </ul>
+                        <p><strong>対策：</strong>不要なアプリやタブを閉じる、メモリ消費の多いアプリを避ける、端末のメモリ容量を確認する</p>
+                    </div>
+
+                    <h4>（3）教育現場で推奨されるメモリ容量</h4>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>OS種別</th>
+                                <th>文科省推奨（最低）</th>
+                                <th>実用的な推奨値</th>
+                                <th>理由・備考</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Chrome OS</strong></td>
+                                <td>4GB</td>
+                                <td>4GB以上（8GB推奨）</td>
+                                <td>軽量なOSだが、複数タブ使用時は8GBが快適</td>
+                            </tr>
+                            <tr>
+                                <td><strong>iOS/iPadOS</strong></td>
+                                <td>記載なし</td>
+                                <td>3GB以上（4GB推奨）</td>
+                                <td>OSが効率的にメモリ管理、マルチタスク対応には4GB以上</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Windows</strong></td>
+                                <td>8GB</td>
+                                <td>8GB以上（16GB推奨）</td>
+                                <td>Windows 11 + Office環境では8GB必須、16GBが理想</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <p style="font-size: 0.9rem; color: #666; margin-top: 0.5rem;">※ 文部科学省「令和6年4月 学習者用コンピュータの標準仕様書」を参考</p>
+
+                    <div class="info-box">
+                        <h3>💡 各OSのメモリ管理の特徴</h3>
+                        <ul>
+                            <li><strong>Chrome OS</strong>：軽量設計により、4GBでも実用的。ただし、複数のタブやAndroidアプリを使う場合は8GB推奨</li>
+                            <li><strong>iOS/iPadOS</strong>：メモリ管理が非常に優れており、バックグラウンドアプリを自動的に最適化</li>
+                            <li><strong>Windows</strong>：Officeアプリやソフトウェアが多機能なため、メモリ消費が大きい。8GB以上必須</li>
+                        </ul>
+                    </div>
+
+                    <h3>2.3 ファイルシステム管理</h3>
+
+                    <p>OSはファイルシステムを通じて、ストレージ上のデータを管理します。ファイルシステムは、データの保存・読み出し・削除・検索などの操作を可能にします。</p>
+
+                    <h4>（1）ファイルシステムの役割</h4>
+                    <ul>
+                        <li><strong>ファイルの作成・保存・削除</strong>：ユーザーがドキュメントや画像を保存・削除</li>
+                        <li><strong>ディレクトリ（フォルダ）構造の管理</strong>：階層的なフォルダ構造でファイルを整理</li>
+                        <li><strong>アクセス権限の管理</strong>：どのユーザーがどのファイルにアクセスできるかを制御</li>
+                        <li><strong>ファイル名とメタデータの管理</strong>：ファイル名、作成日時、サイズ、アクセス権限などの情報を保持</li>
+                    </ul>
+
+                    <h4>（2）主要なファイルシステムの種類</h4>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>OS</th>
+                                <th>ファイルシステム</th>
+                                <th>特徴</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Windows</strong></td>
+                                <td>NTFS</td>
+                                <td>高度なアクセス権限管理、暗号化機能（EFS）、大容量ファイル対応、ジャーナリング機能でデータ保護</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Chrome OS</strong></td>
+                                <td>ext4</td>
+                                <td>Linuxベースのファイルシステム、軽量で高速、自動暗号化機能搭載</td>
+                            </tr>
+                            <tr>
+                                <td><strong>iOS/iPadOS</strong></td>
+                                <td>APFS</td>
+                                <td>SSD最適化、スナップショット機能、暗号化機能、クローン（高速コピー）対応</td>
+                            </tr>
+                            <tr>
+                                <td><strong>macOS</strong></td>
+                                <td>APFS</td>
+                                <td>iOS/iPadOSと同じ、Time Machine（バックアップ）との統合</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <h4>（3）ファイルシステムの重要な機能</h4>
+                    
+                    <p><strong>① ジャーナリング機能</strong></p>
+                    <ul>
+                        <li><strong>目的</strong>：突然の電源断やクラッシュからデータを保護</li>
+                        <li><strong>仕組み</strong>：ファイル操作の記録（ジャーナル）を残し、障害発生時に復旧</li>
+                        <li><strong>対応OS</strong>：Windows（NTFS）、Chrome OS（ext4）、macOS/iOS（APFS）</li>
+                    </ul>
+
+                    <p><strong>② 暗号化機能</strong></p>
+                    <ul>
+                        <li><strong>Windows</strong>：BitLocker（ドライブ全体を暗号化）、EFS（ファイル・フォルダ単位の暗号化）</li>
+                        <li><strong>Chrome OS</strong>：ユーザーデータの自動暗号化（標準機能）</li>
+                        <li><strong>iOS/iPadOS</strong>：デバイス全体が自動的に暗号化、パスコード設定で保護強化</li>
+                        <li><strong>macOS</strong>：FileVault（ディスク全体を暗号化）</li>
+                    </ul>
+
+                    <div class="warning-box">
+                        <h3>⚠️ GIGA端末における暗号化の重要性</h3>
+                        <p><strong>端末の紛失・盗難時のリスク：</strong></p>
+                        <ul>
+                            <li><strong>暗号化なし</strong>：第三者が簡単にデータを読み取れる（個人情報漏洩のリスク大）</li>
+                            <li><strong>暗号化あり</strong>：正しいパスワード/パスコードがなければデータにアクセス不可（安全）</li>
+                        </ul>
+                        <p><strong>推奨対応：</strong></p>
+                        <ul>
+                            <li><strong>Chrome OS</strong>：標準で暗号化されているため、追加設定不要</li>
+                            <li><strong>iPad</strong>：パスコード設定で自動的に暗号化が有効化</li>
+                            <li><strong>Windows</strong>：BitLockerを有効化（Windows Pro版以上で利用可能）</li>
+                        </ul>
+                    </div>
+
+                    <h4>（4）教育現場でのファイル管理のポイント</h4>
+                    
+                    <div class="point-box">
+                        <h3>🎯 GIGA端末でのファイル管理ベストプラクティス</h3>
+                        <ol>
+                            <li><strong>クラウドストレージの活用</strong>：
+                                <ul>
+                                    <li><strong>Chrome OS</strong>：Google Drive（標準統合）</li>
+                                    <li><strong>iPad</strong>：iCloud Drive、OneDrive、Google Driveなど</li>
+                                    <li><strong>Windows</strong>：OneDrive、Google Drive、SharePoint</li>
+                                </ul>
+                            </li>
+                            <li><strong>ローカルストレージの容量管理</strong>：
+                                <ul>
+                                    <li>定期的に不要なファイルを削除</li>
+                                    <li>大容量ファイル（動画など）はクラウドに移動</li>
+                                    <li>ストレージ使用状況を定期チェック（設定アプリで確認）</li>
+                                </ul>
+                            </li>
+                            <li><strong>バックアップの徹底</strong>：
+                                <ul>
+                                    <li>重要なファイルは必ずクラウドに保存</li>
+                                    <li>端末故障時でもデータが失われない体制を整備</li>
+                                </ul>
+                            </li>
+                            <li><strong>アクセス権限の適切な設定</strong>：
+                                <ul>
+                                    <li>児童生徒が不要なシステムファイルにアクセスできないよう制限</li>
+                                    <li>共有ファイルは適切な権限設定（閲覧のみ、編集可など）</li>
+                                </ul>
+                            </li>
+                        </ol>
+                    </div>
+
+                    <div class="info-box">
+                        <h3>💡 各OSのファイル管理の特徴</h3>
+                        <ul>
+                            <li><strong>Chrome OS</strong>：「ファイル」アプリでローカルとGoogle Driveを統合管理。ほぼすべてクラウドベース</li>
+                            <li><strong>iOS/iPadOS</strong>：「ファイル」アプリでiCloud DriveやOneDriveを一元管理。アプリ間のファイル共有も可能</li>
+                            <li><strong>Windows</strong>：エクスプローラーで柔軟なファイル管理が可能。ただし、複雑な操作は初心者に難しい場合も</li>
+                        </ul>
+                    </div>
+
+                </section>
+
+                <!-- 第3章: 教育現場における主要OS -->
+                <section id="chapter3">
+                    <h2>第3章：教育現場における主要OS</h2>
+
+                    <p>教育現場では、<strong>Windows</strong>、<strong>Chrome OS</strong>、<strong>iOS/iPadOS</strong>、<strong>macOS</strong>の4つのOSが主に使用されています。それぞれのOSの特徴、強み、弱みを理解し、学校の状況に応じて最適なOSを選択することが重要です。</p>
+
+                    <h3>3.1 Windows（Microsoft）</h3>
+
+                    <h4>（1）Windows の概要</h4>
+                    <p><strong>Windows</strong>は、Microsoft社が開発・提供するOSで、世界で最も広く使われているデスクトップOSです。教育現場では、<strong>Windows 11</strong>または<strong>Windows 10</strong>が主流です。</p>
+
+                    <div class="info-box">
+                        <h3>📌 Windows の基本情報（2025年11月時点）</h3>
+                        <ul>
+                            <li><strong>現行バージョン</strong>：Windows 11（2021年10月リリース）</li>
+                            <li><strong>旧バージョン</strong>：Windows 10（サポート期限：2025年10月14日まで）</li>
+                            <li><strong>ライセンス</strong>：有償（教育機関向けライセンスあり）</li>
+                            <li><strong>対応デバイス</strong>：デスクトップPC、ノートPC、2-in-1タブレット</li>
+                            <li><strong>主なエディション</strong>：Windows 11 Home、Pro、Enterprise、Education</li>
+                        </ul>
+                    </div>
+
+                    <h4>（2）Windows の特徴</h4>
+
+                    <p><strong>① 豊富なアプリケーション</strong></p>
+                    <ul>
+                        <li><strong>Microsoft Office</strong>：Word、Excel、PowerPoint、OneNote、Teamsなどが完全動作</li>
+                        <li><strong>教育ソフトウェア</strong>：多くの教育用ソフトウェアがWindows対応</li>
+                        <li><strong>専門ソフト</strong>：Adobe Creative Cloud、動画編集ソフト、3D CADなど</li>
+                    </ul>
+
+                    <p><strong>② 高い互換性と柔軟性</strong></p>
+                    <ul>
+                        <li><strong>既存システムとの連携</strong>：学校の既存システム（校務支援システムなど）との互換性が高い</li>
+                        <li><strong>周辺機器対応</strong>：プリンター、スキャナー、プロジェクターなど、ほぼすべての周辺機器に対応</li>
+                        <li><strong>ファイル形式</strong>：様々なファイル形式をネイティブでサポート</li>
+                    </ul>
+
+                    <p><strong>③ Active Directory による一元管理</strong></p>
+                    <ul>
+                        <li><strong>Active Directory（AD）</strong>：企業・学校向けのユーザー・端末管理システム</li>
+                        <li><strong>グループポリシー</strong>：複数端末の設定を一括管理・適用</li>
+                        <li><strong>ドメイン参加</strong>：学校ネットワークに端末を統合管理</li>
+                    </ul>
+
+                    <div class="point-box">
+                        <h3>🎯 Windows が適している学校</h3>
+                        <ul>
+                            <li><strong>Microsoft Office を本格的に活用したい</strong>：Word、Excel、PowerPointを日常的に使用</li>
+                            <li><strong>専門的なソフトウェアが必要</strong>：プログラミング、動画編集、3D設計など</li>
+                            <li><strong>既存のWindows環境がある</strong>：校務用PCや既存システムとの連携が必要</li>
+                            <li><strong>Active Directory で管理している</strong>：学校全体でWindows端末を統一管理</li>
+                        </ul>
+                    </div>
+
+                    <h4>（3）Windows のメリットとデメリット</h4>
+
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>メリット</th>
+                                <th>デメリット</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <ul>
+                                        <li>豊富なアプリケーション</li>
+                                        <li>高い互換性と柔軟性</li>
+                                        <li>Active Directory による一元管理</li>
+                                        <li>Microsoft Office の完全動作</li>
+                                        <li>周辺機器の幅広いサポート</li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <ul>
+                                        <li>ライセンス費用が高額</li>
+                                        <li>ウイルス対策が必須</li>
+                                        <li>定期的なメンテナンスが必要</li>
+                                        <li>起動・シャットダウンが遅い場合がある</li>
+                                        <li>推奨スペックが高め（メモリ8GB以上必須）</li>
+                                    </ul>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <h3>3.2 Chrome OS（Google）</h3>
+
+                    <h4>（1）Chrome OS の概要</h4>
+                    <p><strong>Chrome OS</strong>は、Google社が開発したLinuxベースの軽量OSで、主にChromebookで使用されます。教育現場では、GIGA School構想において最も多く採用されているOSです。</p>
+
+                    <div class="info-box">
+                        <h3>📌 Chrome OS の基本情報（2025年11月時点）</h3>
+                        <ul>
+                            <li><strong>初回リリース</strong>：2011年6月</li>
+                            <li><strong>ライセンス</strong>：無償（Chromebook本体価格に含まれる）</li>
+                            <li><strong>対応デバイス</strong>：Chromebook（クラムシェル型、2-in-1、タブレット型）</li>
+                            <li><strong>更新ポリシー</strong>：自動更新期限（AUE）あり。2021年以降のモデルは10年サポート（機種により異なる）</li>
+                            <li><strong>主な用途</strong>：Webブラウジング、クラウドベースアプリ、Google Workspace for Education</li>
+                        </ul>
+                    </div>
+
+                    <h4>（2）Chrome OS の特徴</h4>
+
+                    <p><strong>① クラウドベースの設計</strong></p>
+                    <ul>
+                        <li><strong>Google Workspace との統合</strong>：Google Classroom、Googleドキュメント、スプレッドシート、スライドなどがシームレスに動作</li>
+                        <li><strong>ローカルストレージへの依存が低い</strong>：データはGoogle Driveに自動保存</li>
+                        <li><strong>どの端末からでもアクセス</strong>：Googleアカウントでログインすれば、設定・データが同期</li>
+                    </ul>
+
+                    <p><strong>② 高速起動と軽快な動作</strong></p>
+                    <ul>
+                        <li><strong>起動時間</strong>：約5〜10秒で起動（Windowsの約1/3〜1/5）</li>
+                        <li><strong>低スペックでも快適</strong>：4GBメモリ、Intel Celeron/Pentium（または同等のARM）でも実用的</li>
+                        <li><strong>バックグラウンド更新</strong>：使用中でもOSが自動的にアップデート</li>
+                    </ul>
+
+                    <p><strong>③ セキュリティの高さ</strong></p>
+                    <ul>
+                        <li><strong>サンドボックス機能</strong>：各Webページやアプリが独立した環境で動作し、ウイルス感染を防止</li>
+                        <li><strong>自動暗号化</strong>：ユーザーデータは標準で暗号化される</li>
+                        <li><strong>自動更新</strong>：セキュリティパッチが自動適用される（管理者の作業不要）</li>
+                        <li><strong>ウイルス対策不要</strong>：構造上、ウイルス感染リスクが極めて低い</li>
+                    </ul>
+
+                    <p><strong>④ Google 管理コンソールによる一元管理</strong></p>
+                    <ul>
+                        <li><strong>Webベース管理</strong>：管理者はブラウザから端末・ユーザーを一括管理</li>
+                        <li><strong>アプリ配信・制限</strong>：使用可能なアプリやWebサイトを一括設定</li>
+                        <li><strong>端末のリモート管理</strong>：紛失時のリモートロックやデータ消去が可能</li>
+                    </ul>
+
+                    <div class="point-box">
+                        <h3>🎯 Chrome OS が適している学校</h3>
+                        <ul>
+                            <li><strong>Google Workspace for Education を使用</strong>：Google Classroom中心の授業運営</li>
+                            <li><strong>低コストで大量導入したい</strong>：端末価格が安く、管理コストも低い</li>
+                            <li><strong>ICT支援員の負担を軽減したい</strong>：メンテナンスフリーで、トラブルが少ない</li>
+                            <li><strong>低学年から高学年まで幅広く使いたい</strong>：直感的な操作で、誰でも使いやすい</li>
+                        </ul>
+                    </div>
+
+                    <h4>（3）Chrome OS のメリットとデメリット</h4>
+
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>メリット</th>
+                                <th>デメリット</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <ul>
+                                        <li>低価格（端末・ライセンス費用）</li>
+                                        <li>高速起動・軽快な動作</li>
+                                        <li>セキュリティの高さ（ウイルス対策不要）</li>
+                                        <li>自動更新でメンテナンスフリー</li>
+                                        <li>Google 管理コンソールで一元管理</li>
+                                        <li>バッテリー持続時間が長い</li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <ul>
+                                        <li>オフライン環境では機能が制限される</li>
+                                        <li>デスクトップアプリ（.exeなど）が動作しない</li>
+                                        <li>Microsoft Office はWeb版のみ（機能制限あり）</li>
+                                        <li>専門ソフト（Adobe CC、CADなど）は使用不可</li>
+                                        <li>AUE（自動更新期限）後のサポート終了</li>
+                                    </ul>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <div class="warning-box">
+                        <h3>⚠️ Chrome OS の注意点：AUE（自動更新期限）</h3>
+                        <p><strong>AUE（Automatic Update Expiration）</strong>とは、Chromebookが自動更新を受け取れる期限のことです。</p>
+                        <ul>
+                            <li><strong>期限後の影響</strong>：セキュリティアップデートが提供されなくなり、新機能も追加されない</li>
+                            <li><strong>現行の方針</strong>：2021年以降に発売されたChromebookは10年間のAUEが保証される（機種により異なる）</li>
+                            <li><strong>確認方法</strong>：設定 → 「Chromebookについて」→「自動更新の有効期限」で確認可能</li>
+                            <li><strong>GIGA Phase 2 での配慮</strong>：導入時にAUE期限を確認し、十分な期間が残っている機種を選定すること</li>
+                        </ul>
+                    </div>
+
+                    <h3>3.3 iOS/iPadOS（Apple）</h3>
+
+                    <h4>（1）iOS/iPadOS の概要</h4>
+                    <p><strong>iOS</strong>はiPhone用、<strong>iPadOS</strong>はiPad用のOSで、どちらもApple社が開発しています。教育現場では、主に<strong>iPad</strong>が使用され、タッチ操作に最適化されたOSです。</p>
+
+                    <div class="info-box">
+                        <h3>📌 iOS/iPadOS の基本情報（2025年11月時点）</h3>
+                        <ul>
+                            <li><strong>現行バージョン</strong>：iPadOS 18（2024年9月リリース）</li>
+                            <li><strong>ライセンス</strong>：無償（iPad本体価格に含まれる）</li>
+                            <li><strong>対応デバイス</strong>：iPad（無印）、iPad mini、iPad Air、iPad Pro</li>
+                            <li><strong>サポート期間</strong>：一般的に5〜6年程度（機種による）</li>
+                            <li><strong>主な用途</strong>：タッチベースの学習、クリエイティブ活動、Apple Pencil を使った手書き学習</li>
+                        </ul>
+                    </div>
+
+                    <h4>（2）iOS/iPadOS の特徴</h4>
+
+                    <p><strong>① 直感的なタッチインターフェース</strong></p>
+                    <ul>
+                        <li><strong>タッチ操作最適化</strong>：ボタンやマウスなしでも、指だけで直感的に操作可能</li>
+                        <li><strong>低学年向き</strong>：キーボード入力が難しい児童でも、簡単に使える</li>
+                        <li><strong>Apple Pencil 対応</strong>：手書きノート、イラスト作成、図形描画などに最適</li>
+                    </ul>
+
+                    <p><strong>② 豊富な教育アプリ</strong></p>
+                    <ul>
+                        <li><strong>App Store</strong>：教育カテゴリーに多数の高品質アプリが揃う</li>
+                        <li><strong>Apple 純正アプリ</strong>：Keynote、Pages、Numbers、GarageBand、iMovieなどが無料</li>
+                        <li><strong>ロイロノート・スクール</strong>：日本の教育現場で広く使われる授業支援アプリ</li>
+                    </ul>
+
+                    <p><strong>③ 高いセキュリティと安定性</strong></p>
+                    <ul>
+                        <li><strong>App Store の厳格な審査</strong>：悪質なアプリの混入リスクが極めて低い</li>
+                        <li><strong>サンドボックス機能</strong>：各アプリが独立して動作し、システム全体への影響を防ぐ</li>
+                        <li><strong>自動暗号化</strong>：パスコード設定で、デバイスのデータが自動的に暗号化</li>
+                        <li><strong>OS アップデートの迅速性</strong>：セキュリティパッチが迅速に配信される</li>
+                    </ul>
+
+                    <p><strong>④ MDM（Mobile Device Management）による管理</strong></p>
+                    <ul>
+                        <li><strong>Apple School Manager</strong>：Apple の教育機関向けMDMプラットフォーム</li>
+                        <li><strong>アプリの一括配信</strong>：必要なアプリを全端末に一括インストール</li>
+                        <li><strong>設定の一元管理</strong>：Wi-Fi設定、使用制限、アクセス制限などを一括設定</li>
+                        <li><strong>共有iPad</strong>：複数の児童生徒が1台のiPadを共有し、ログインして個別環境を利用可能</li>
+                    </ul>
+
+                    <div class="point-box">
+                        <h3>🎯 iOS/iPadOS が適している学校</h3>
+                        <ul>
+                            <li><strong>低学年中心の学校</strong>：タッチ操作が直感的で、幼児・低学年でも使いやすい</li>
+                            <li><strong>クリエイティブ活動を重視</strong>：動画編集、音楽制作、イラスト制作などに強い</li>
+                            <li><strong>Apple Pencil を活用したい</strong>：手書きノートや図形描画を日常的に使う</li>
+                            <li><strong>高品質なタブレットを求める</strong>：長期間使える高性能・高品質なデバイス</li>
+                        </ul>
+                    </div>
+
+                    <h4>（3）iOS/iPadOS のメリットとデメリット</h4>
+
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>メリット</th>
+                                <th>デメリット</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <ul>
+                                        <li>直感的なタッチインターフェース</li>
+                                        <li>豊富な教育アプリ</li>
+                                        <li>高いセキュリティと安定性</li>
+                                        <li>Apple Pencil 対応（手書き学習）</li>
+                                        <li>長期間使える高品質ハードウェア</li>
+                                        <li>バッテリー持続時間が長い</li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <ul>
+                                        <li>端末価格が高額（Chromebookの2〜3倍）</li>
+                                        <li>ファイル管理がやや複雑</li>
+                                        <li>Microsoft Office は機能制限版</li>
+                                        <li>外部ストレージ（USBメモリ）の利用が限定的</li>
+                                        <li>Apple 純正アクセサリは高価（Apple Pencil、Magic Keyboardなど）</li>
+                                    </ul>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <h3>3.4 macOS（Apple）</h3>
+
+                    <h4>（1）macOS の概要</h4>
+                    <p><strong>macOS</strong>は、Apple社のMacコンピュータ専用のOSです。教育現場では、デザイン・映像制作・音楽制作などの専門分野で使用されることが多いです。</p>
+
+                    <div class="info-box">
+                        <h3>📌 macOS の基本情報（2025年11月時点）</h3>
+                        <ul>
+                            <li><strong>現行バージョン</strong>：macOS Sequoia（2024年9月リリース）</li>
+                            <li><strong>ライセンス</strong>：無償（Mac本体価格に含まれる）</li>
+                            <li><strong>対応デバイス</strong>：MacBook Air、MacBook Pro、iMac、Mac mini、Mac Studio、Mac Pro</li>
+                            <li><strong>プロセッサ</strong>：Apple Silicon（M1、M2、M3、M4シリーズ）、旧モデルはIntel CPU</li>
+                            <li><strong>主な用途</strong>：デザイン、動画編集、音楽制作、プログラミング教育（Swift、Xcodeなど）</li>
+                        </ul>
+                    </div>
+
+                    <h4>（2）macOS の特徴</h4>
+
+                    <p><strong>① 高性能なクリエイティブ環境</strong></p>
+                    <ul>
+                        <li><strong>Final Cut Pro、Logic Pro</strong>：プロフェッショナルな動画・音楽制作ソフト</li>
+                        <li><strong>Adobe Creative Cloud</strong>：Photoshop、Illustrator、Premiere Proなどが快適に動作</li>
+                        <li><strong>Xcode</strong>：iOSアプリ開発に必須の統合開発環境</li>
+                    </ul>
+
+                    <p><strong>② Apple エコシステムとの統合</strong></p>
+                    <ul>
+                        <li><strong>Handoff、AirDrop</strong>：Mac、iPad、iPhoneの間でシームレスにファイル共有・作業継続</li>
+                        <li><strong>iCloud 同期</strong>：デスクトップ、書類、写真などを自動同期</li>
+                        <li><strong>ユニバーサルコントロール</strong>：MacとiPadを1つのキーボード・マウスで操作</li>
+                    </ul>
+
+                    <p><strong>③ Unix ベースの安定性とセキュリティ</strong></p>
+                    <ul>
+                        <li><strong>Unix ベース</strong>：安定性が高く、長時間の連続使用にも耐える</li>
+                        <li><strong>Gatekeeper</strong>：信頼できない開発元のアプリをブロック</li>
+                        <li><strong>FileVault</strong>：ディスク全体の暗号化機能</li>
+                    </ul>
+
+                    <div class="point-box">
+                        <h3>🎯 macOS が適している学校・場面</h3>
+                        <ul>
+                            <li><strong>専門教育分野</strong>：高校・大学でのデザイン、映像、音楽、プログラミング専門コース</li>
+                            <li><strong>教員用デバイス</strong>：授業準備、教材作成、プレゼンテーション制作</li>
+                            <li><strong>Apple エコシステムを活用</strong>：既にiPadを導入している学校での教員用端末</li>
+                            <li><strong>高性能が必要な作業</strong>：4K動画編集、3DCG制作、大規模プログラミングプロジェクト</li>
+                        </ul>
+                    </div>
+
+                    <h4>（3）macOS のメリットとデメリット</h4>
+
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>メリット</th>
+                                <th>デメリット</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <ul>
+                                        <li>高性能なクリエイティブ環境</li>
+                                        <li>Apple エコシステムとの統合</li>
+                                        <li>Unix ベースの安定性とセキュリティ</li>
+                                        <li>Apple Silicon による高速・省電力動作</li>
+                                        <li>高品質なディスプレイと洗練されたデザイン</li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <ul>
+                                        <li>端末価格が非常に高額（最低でも10万円以上）</li>
+                                        <li>Windows 向けソフトウェアが動作しない</li>
+                                        <li>教育現場での普及率が低い</li>
+                                        <li>修理費用が高額</li>
+                                        <li>学校の既存システムとの互換性に課題がある場合も</li>
+                                    </ul>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <h3>3.5 主要OSの比較表</h3>
+
+                    <p>以下の表は、教育現場における4つの主要OSの特徴を比較したものです。</p>
+
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>項目</th>
+                                <th>Windows</th>
+                                <th>Chrome OS</th>
+                                <th>iOS/iPadOS</th>
+                                <th>macOS</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>端末価格</strong></td>
+                                <td>中〜高<br>（5〜15万円）</td>
+                                <td>低<br>（3〜6万円）</td>
+                                <td>中〜高<br>（5〜12万円）</td>
+                                <td>高<br>（10〜25万円）</td>
+                            </tr>
+                            <tr>
+                                <td><strong>ライセンス費用</strong></td>
+                                <td>有償</td>
+                                <td>無償</td>
+                                <td>無償</td>
+                                <td>無償</td>
+                            </tr>
+                            <tr>
+                                <td><strong>起動速度</strong></td>
+                                <td>遅い<br>（30〜60秒）</td>
+                                <td>非常に速い<br>（5〜10秒）</td>
+                                <td>速い<br>（10〜20秒）</td>
+                                <td>速い<br>（15〜30秒）</td>
+                            </tr>
+                            <tr>
+                                <td><strong>推奨メモリ</strong></td>
+                                <td>8GB以上</td>
+                                <td>4GB以上</td>
+                                <td>3〜4GB以上</td>
+                                <td>8GB以上</td>
+                            </tr>
+                            <tr>
+                                <td><strong>バッテリー持続</strong></td>
+                                <td>中<br>（6〜10時間）</td>
+                                <td>長い<br>（10〜12時間）</td>
+                                <td>非常に長い<br>（10〜13時間）</td>
+                                <td>長い<br>（15〜18時間）</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Office対応</strong></td>
+                                <td>完全版</td>
+                                <td>Web版のみ</td>
+                                <td>機能制限版</td>
+                                <td>完全版</td>
+                            </tr>
+                            <tr>
+                                <td><strong>管理の容易さ</strong></td>
+                                <td>中<br>（AD、Intune）</td>
+                                <td>非常に高い<br>（管理コンソール）</td>
+                                <td>高い<br>（MDM、ASM）</td>
+                                <td>高い<br>（MDM）</td>
+                            </tr>
+                            <tr>
+                                <td><strong>セキュリティ</strong></td>
+                                <td>中<br>（対策必須）</td>
+                                <td>非常に高い</td>
+                                <td>非常に高い</td>
+                                <td>高い</td>
+                            </tr>
+                            <tr>
+                                <td><strong>対象学年</strong></td>
+                                <td>小高〜高校</td>
+                                <td>小低〜高校</td>
+                                <td>小低〜中学</td>
+                                <td>高校〜大学</td>
+                            </tr>
+                            <tr>
+                                <td><strong>主な用途</strong></td>
+                                <td>Office、専門ソフト</td>
+                                <td>Google Workspace</td>
+                                <td>タッチ学習、創作活動</td>
+                                <td>専門教育、教員用</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <p style="font-size: 0.9rem; color: #666; margin-top: 0.5rem;">※ 価格・性能は2025年11月時点の目安です。</p>
+
+                    <h3>3.6 日本の教育現場におけるOSの導入状況（GIGA School 2.0）</h3>
+
+                    <p>GIGA School構想（第1期：2019〜2021年度）では、全国の小中学校に1人1台端末が整備されました。2024年度からは「GIGA School 2.0」として更新・継続が進んでいます。</p>
+
+                    <div class="info-box">
+                        <h3>📊 GIGA端末のOS別導入状況（第1期）</h3>
+                        <p><strong>文部科学省調査（2021年度）に基づく推計：</strong></p>
+                        <ul>
+                            <li><strong>Chrome OS（Chromebook）</strong>：約40〜45%</li>
+                            <li><strong>Windows</strong>：約35〜40%</li>
+                            <li><strong>iOS/iPadOS（iPad）</strong>：約20%</li>
+                        </ul>
+                        <p style="margin-top: 0.5rem;"><strong>傾向：</strong>コストパフォーマンスとセキュリティの観点から、Chrome OSが最も多く採用された。</p>
+                    </div>
+
+                    <div class="point-box">
+                        <h3>🎯 GIGA School 2.0 でのOS選択のポイント</h3>
+                        <p><strong>各自治体・学校が考慮すべき点：</strong></p>
+                        <ol>
+                            <li><strong>総所有コスト（TCO）</strong>：端末価格、ライセンス、保守、更新費用を含めた長期的なコスト</li>
+                            <li><strong>既存環境との互換性</strong>：現在使用しているアプリ・システムとの連携</li>
+                            <li><strong>教員のICTスキル</strong>：教員が使いこなせるOSかどうか</li>
+                            <li><strong>管理体制</strong>：ICT支援員の有無、管理者のスキルレベル</li>
+                            <li><strong>学習内容</strong>：プログラミング教育、創作活動、Office利用などの重点分野</li>
+                            <li><strong>更新サイクル</strong>：何年間使用するか、更新時の互換性</li>
+                        </ol>
+                    </div>
+
+                </section>
+
+                <!-- 第4章: OSの設定とカスタマイズ -->
+                <section id="chapter4">
+                    <h2>第4章：OSの設定とカスタマイズ</h2>
+
+                    <p>OSの設定とカスタマイズは、児童生徒が快適に学習でき、かつセキュアに端末を使用するために重要です。この章では、アクセシビリティ、ネットワーク設定、セキュリティ設定の3つの観点から解説します。</p>
+
+                    <h3>4.1 アクセシビリティ設定</h3>
+
+                    <p><strong>アクセシビリティ</strong>とは、障がいのある児童生徒や特別な配慮が必要な学習者が、ICT機器を利用しやすくするための機能や設定のことです。</p>
+
+                    <h4>（1）主要なアクセシビリティ機能</h4>
+
+                    <p><strong>視覚支援</strong></p>
+                    <ul>
+                        <li><strong>画面拡大</strong>：画面全体を拡大表示（Windows：拡大鏡、Chrome OS：全画面拡大鏡、iPad：ズーム機能）</li>
+                        <li><strong>ハイコントラスト表示</strong>：文字と背景のコントラストを高め、視認性を向上</li>
+                        <li><strong>色覚サポート</strong>：色覚異常のあるユーザー向けにカラーフィルター適用</li>
+                        <li><strong>画面読み上げ</strong>：画面上のテキストを音声で読み上げ（Windows：ナレーター、Chrome OS：ChromeVox、iPad：VoiceOver）</li>
+                    </ul>
+
+                    <p><strong>聴覚支援</strong></p>
+                    <ul>
+                        <li><strong>字幕表示</strong>：動画や音声コンテンツに字幕を自動表示</li>
+                        <li><strong>視覚アラート</strong>：音の代わりに画面を点滅させる通知</li>
+                        <li><strong>モノラル音声</strong>：左右のスピーカーを統合し、片方の耳でも聞きやすくする</li>
+                    </ul>
+
+                    <p><strong>身体機能支援</strong></p>
+                    <ul>
+                        <li><strong>音声入力</strong>：キーボードの代わりに音声でテキスト入力</li>
+                        <li><strong>スイッチコントロール</strong>：外付けスイッチで端末を操作</li>
+                        <li><strong>視線追跡</strong>：視線の動きでカーソルを操作（Windows 11、一部対応デバイス）</li>
+                        <li><strong>仮想キーボード</strong>：画面上にキーボードを表示し、マウスやタッチで入力</li>
+                    </ul>
+
+                    <div class="info-box">
+                        <h3>💡 各OSのアクセシビリティ機能へのアクセス方法</h3>
+                        <ul>
+                            <li><strong>Windows</strong>：設定 → アクセシビリティ</li>
+                            <li><strong>Chrome OS</strong>：設定 → ユーザー補助機能</li>
+                            <li><strong>iPad</strong>：設定 → アクセシビリティ</li>
+                            <li><strong>macOS</strong>：システム設定 → アクセシビリティ</li>
+                        </ul>
+                    </div>
+
+                    <div class="point-box">
+                        <h3>🎯 アクセシビリティ設定のポイント</h3>
+                        <ul>
+                            <li><strong>個別対応</strong>：児童生徒のニーズに合わせて個別に設定</li>
+                            <li><strong>事前確認</strong>：新学期開始前に、必要な児童生徒の端末を設定</li>
+                            <li><strong>教員への研修</strong>：アクセシビリティ機能の使い方を教員が理解しておく</li>
+                            <li><strong>定期的な見直し</strong>：児童生徒の成長や変化に応じて設定を見直す</li>
+                        </ul>
+                    </div>
+
+                    <h3>4.2 ネットワーク設定</h3>
+
+                    <p>GIGA端末は、学校のWi-Fiネットワークに接続して使用します。適切なネットワーク設定は、安定した学習環境を提供するために不可欠です。</p>
+
+                    <h4>（1）Wi-Fi接続設定</h4>
+
+                    <p><strong>基本設定</strong></p>
+                    <ul>
+                        <li><strong>SSID（ネットワーク名）</strong>：学校のWi-Fiネットワークを選択</li>
+                        <li><strong>パスワード</strong>：ネットワークのパスワードを入力（WPA2/WPA3推奨）</li>
+                        <li><strong>自動接続</strong>：一度接続したネットワークに自動的に接続する設定</li>
+                    </ul>
+
+                    <p><strong>企業向けWi-Fi（WPA2-Enterprise）の設定</strong></p>
+                    <p>学校によっては、よりセキュアな<strong>WPA2-Enterprise</strong>方式を採用している場合があります。</p>
+                    <ul>
+                        <li><strong>認証方式</strong>：PEAP、EAP-TLS、EAP-TTLSなど</li>
+                        <li><strong>ユーザーID・パスワード</strong>：個別のアカウント情報で認証</li>
+                        <li><strong>証明書</strong>：必要に応じてデジタル証明書をインストール</li>
+                    </ul>
+
+                    <div class="warning-box">
+                        <h3>⚠️ Wi-Fi接続のトラブルシューティング</h3>
+                        <p><strong>よくある問題と対処法：</strong></p>
+                        <ul>
+                            <li><strong>接続できない</strong>：
+                                <ul>
+                                    <li>パスワードが正しいか確認</li>
+                                    <li>端末を再起動</li>
+                                    <li>Wi-Fiルーターを再起動</li>
+                                </ul>
+                            </li>
+                            <li><strong>接続が不安定</strong>：
+                                <ul>
+                                    <li>Wi-Fiルーターとの距離を確認</li>
+                                    <li>2.4GHz帯と5GHz帯を切り替えてみる</li>
+                                    <li>接続台数が多すぎないか確認（1アクセスポイントあたり20〜30台推奨）</li>
+                                </ul>
+                            </li>
+                            <li><strong>インターネットにつながらない</strong>：
+                                <ul>
+                                    <li>Wi-Fiには接続できているか確認</li>
+                                    <li>ブラウザでポータルサイトにアクセス（認証が必要な場合）</li>
+                                    <li>DNS設定を確認</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <h4>（2）プロキシ設定</h4>
+
+                    <p>学校によっては、<strong>プロキシサーバー</strong>を経由してインターネットに接続する場合があります。</p>
+
+                    <ul>
+                        <li><strong>プロキシサーバーのアドレス</strong>：学校のネットワーク管理者から提供</li>
+                        <li><strong>ポート番号</strong>：通常は8080、8888など</li>
+                        <li><strong>認証情報</strong>：必要に応じてユーザーID・パスワードを設定</li>
+                    </ul>
+
+                    <div class="info-box">
+                        <h3>💡 各OSのプロキシ設定方法</h3>
+                        <ul>
+                            <li><strong>Windows</strong>：設定 → ネットワークとインターネット → プロキシ</li>
+                            <li><strong>Chrome OS</strong>：管理コンソールで一括設定（個別設定は chrome://settings からネットワーク設定）</li>
+                            <li><strong>iPad</strong>：設定 → Wi-Fi → ネットワーク名の横の「i」ボタン → HTTPプロキシ</li>
+                        </ul>
+                    </div>
+
+                    <h3>4.3 セキュリティ設定</h3>
+
+                    <p>GIGA端末のセキュリティ設定は、児童生徒の個人情報を保護し、不適切なコンテンツへのアクセスを防ぐために極めて重要です。</p>
+
+                    <h4>（1）パスワード・認証設定</h4>
+
+                    <p><strong>強固なパスワードの設定</strong></p>
+                    <ul>
+                        <li><strong>パスワードの複雑性</strong>：8文字以上、大文字・小文字・数字・記号を組み合わせる</li>
+                        <li><strong>定期的な変更</strong>：学期ごとまたは年度ごとにパスワード変更を推奨</li>
+                        <li><strong>使い回し禁止</strong>：他のサービスと同じパスワードを使わない</li>
+                    </ul>
+
+                    <p><strong>生体認証の活用</strong></p>
+                    <ul>
+                        <li><strong>Windows</strong>：Windows Hello（顔認証、指紋認証）</li>
+                        <li><strong>iPad</strong>：Touch ID（指紋認証）、Face ID（顔認証）</li>
+                        <li><strong>メリット</strong>：パスワード入力が不要で、セキュリティも高い</li>
+                    </ul>
+
+                    <h4>（2）ファイアウォール・ウイルス対策</h4>
+
+                    <p><strong>Windows</strong></p>
+                    <ul>
+                        <li><strong>Windows Defender ファイアウォール</strong>：標準搭載、有効化を確認</li>
+                        <li><strong>Windows Defender ウイルス対策</strong>：リアルタイム保護を有効化</li>
+                        <li><strong>Windows Update</strong>：定期的なセキュリティパッチの適用</li>
+                    </ul>
+
+                    <p><strong>Chrome OS</strong></p>
+                    <ul>
+                        <li><strong>サンドボックス機能</strong>：標準搭載、設定不要</li>
+                        <li><strong>自動更新</strong>：バックグラウンドで自動的にセキュリティパッチを適用</li>
+                        <li><strong>ウイルス対策ソフト不要</strong>：OSの構造上、感染リスクが極めて低い</li>
+                    </ul>
+
+                    <p><strong>iPad</strong></p>
+                    <ul>
+                        <li><strong>App Store の厳格な審査</strong>：悪質なアプリの混入を防止</li>
+                        <li><strong>サンドボックス機能</strong>：各アプリが独立して動作</li>
+                        <li><strong>自動更新</strong>：iOS/iPadOS のセキュリティアップデートを自動適用</li>
+                    </ul>
+
+                    <h4>（3）フィルタリング設定</h4>
+
+                    <p>児童生徒が不適切なWebサイトにアクセスすることを防ぐため、<strong>Webフィルタリング</strong>の設定が必要です。</p>
+
+                    <ul>
+                        <li><strong>ブラウザレベルのフィルタリング</strong>：Google SafeSearch、Microsoft Bing SafeSearchなどを有効化</li>
+                        <li><strong>MDM・管理コンソールでのフィルタリング</strong>：許可リスト・ブロックリストを設定</li>
+                        <li><strong>外部フィルタリングサービス</strong>：i-FILTER、NetNanny、Qustodioなどの専用サービスを利用</li>
+                    </ul>
+
+                    <div class="warning-box">
+                        <h3>⚠️ フィルタリング設定の注意点</h3>
+                        <ul>
+                            <li><strong>過度な制限は避ける</strong>：学習に必要なサイトまでブロックしてしまう可能性</li>
+                            <li><strong>定期的な見直し</strong>：ブロックすべきサイトや許可すべきサイトを定期的に見直す</li>
+                            <li><strong>教員への周知</strong>：どのようなサイトがブロックされるか、教員に周知しておく</li>
+                        </ul>
+                    </div>
+
+                    <h4>（4）データ暗号化</h4>
+
+                    <p>端末の紛失・盗難時に備え、データの暗号化を有効にします。</p>
+
+                    <ul>
+                        <li><strong>Windows</strong>：BitLocker（Windows Pro以上）を有効化</li>
+                        <li><strong>Chrome OS</strong>：標準で暗号化されている（追加設定不要）</li>
+                        <li><strong>iPad</strong>：パスコード設定で自動的に暗号化される</li>
+                    </ul>
+
+                </section>
+
+                <!-- 第5章: OSレベルのトラブルシューティング -->
+                <section id="chapter5">
+                    <h2>第5章：OSレベルのトラブルシューティング</h2>
+
+                    <p>GIGA端末を日常的に使用していると、起動しない、フリーズする、動作が遅いなどのトラブルが発生することがあります。この章では、OSレベルでのトラブルシューティングの基本を学びます。</p>
+
+                    <h3>5.1 起動に関するトラブル</h3>
+
+                    <h4>（1）端末が起動しない</h4>
+
+                    <p><strong>症状：</strong>電源ボタンを押しても画面が表示されない、ロゴ画面で止まる</p>
+
+                    <p><strong>対処法：</strong></p>
+                    <ol>
+                        <li><strong>バッテリー残量を確認</strong>：充電ケーブルを接続し、30分以上充電してから再度起動を試みる</li>
+                        <li><strong>強制再起動</strong>：
+                            <ul>
+                                <li><strong>Windows</strong>：電源ボタンを10秒間長押し → 再度電源ボタンを押す</li>
+                                <li><strong>Chromebook</strong>：電源ボタンを10秒間長押し → 再度電源ボタンを押す</li>
+                                <li><strong>iPad</strong>：（機種により異なる）音量上ボタン押す→音量下ボタン押す→電源ボタン長押し</li>
+                            </ul>
+                        </li>
+                        <li><strong>周辺機器を取り外す</strong>：USBメモリ、外付けHDD、マウスなどをすべて取り外して起動</li>
+                        <li><strong>ハードウェア診断</strong>：BIOSやハードウェア診断ツールで故障を確認</li>
+                    </ol>
+
+                    <h4>（2）起動が遅い</h4>
+
+                    <p><strong>症状：</strong>起動に5分以上かかる、ログイン画面が表示されるまで時間がかかる</p>
+
+                    <p><strong>対処法：</strong></p>
+                    <ol>
+                        <li><strong>スタートアップアプリを無効化</strong>（Windows）：タスクマネージャー → スタートアップタブ → 不要なアプリを無効化</li>
+                        <li><strong>ディスクのクリーンアップ</strong>：一時ファイルやキャッシュを削除</li>
+                        <li><strong>OSのアップデート</strong>：最新のOSアップデートを適用</li>
+                        <li><strong>ストレージ容量の確認</strong>：空き容量が10%以下の場合、不要なファイルを削除</li>
+                    </ol>
+
+                    <h3>5.2 フリーズ・動作が遅い</h3>
+
+                    <h4>（1）アプリがフリーズして応答しない</h4>
+
+                    <p><strong>対処法：</strong></p>
+                    <ul>
+                        <li><strong>Windows</strong>：タスクマネージャー（Ctrl+Shift+Esc） → 応答していないプロセスを選択 → 「タスクの終了」</li>
+                        <li><strong>Chrome OS</strong>：タスクマネージャー（Shift+Esc） → 応答していないタブ/アプリを選択 → 「プロセスを終了」</li>
+                        <li><strong>iPad</strong>：ホームボタンをダブルクリック（またはスワイプ）してアプリスイッチャーを表示 → アプリを上にスワイプして強制終了</li>
+                    </ul>
+
+                    <h4>（2）OS全体がフリーズして操作できない</h4>
+
+                    <p><strong>対処法：</strong></p>
+                    <ol>
+                        <li><strong>しばらく待つ</strong>：処理が完了するまで1〜2分待つ</li>
+                        <li><strong>Ctrl+Alt+Del（Windows）</strong>：タスクマネージャーを起動し、応答していないプロセスを終了</li>
+                        <li><strong>強制再起動</strong>：電源ボタンを10秒間長押しして強制終了 → 再起動</li>
+                    </ol>
+
+                    <div class="warning-box">
+                        <h3>⚠️ 強制再起動の注意点</h3>
+                        <p><strong>強制再起動は最後の手段です。以下の点に注意してください：</strong></p>
+                        <ul>
+                            <li><strong>データ損失のリスク</strong>：保存していないデータは失われる可能性があります</li>
+                            <li><strong>ファイルシステムの破損</strong>：強制終了を繰り返すと、ファイルシステムが破損する恐れがあります</li>
+                            <li><strong>対策</strong>：定期的にクラウドに保存、自動保存機能を活用</li>
+                        </ul>
+                    </div>
+
+                    <h3>5.3 セーフモード・回復モード</h3>
+
+                    <p><strong>セーフモード</strong>とは、最小限のドライバとサービスだけでOSを起動するモードで、トラブルの原因を特定するために使用します。</p>
+
+                    <h4>（1）Windowsのセーフモード</h4>
+
+                    <p><strong>起動方法：</strong></p>
+                    <ol>
+                        <li><strong>設定から起動</strong>：設定 → システム → 回復 → PCの起動をカスタマイズする → トラブルシューティング → 詳細オプション → スタートアップ設定 → 再起動 → 「4」または「5」キーを押してセーフモードを選択</li>
+                        <li><strong>起動時に強制的に回復モードへ</strong>：起動画面でWindowsロゴが表示されたら、電源ボタンを長押しして強制終了（3回繰り返すと自動的に回復モードへ）</li>
+                    </ol>
+
+                    <p><strong>セーフモードでできること：</strong></p>
+                    <ul>
+                        <li>問題のあるドライバやアプリをアンインストール</li>
+                        <li>ウイルススキャンの実行</li>
+                        <li>システムの復元ポイントから復元</li>
+                    </ul>
+
+                    <h4>（2）Chrome OSのリカバリーモード</h4>
+
+                    <p><strong>起動方法：</strong></p>
+                    <ol>
+                        <li><strong>Esc + リフレッシュキー（F3）を押しながら電源ボタンを押す</strong></li>
+                        <li>「Chrome OSがありません、または破損しています」画面が表示されたら、<strong>Ctrl + D</strong>を押す（デベロッパーモード）または<strong>Ctrl + U</strong>でUSBリカバリメディアから復旧</li>
+                    </ol>
+
+                    <p><strong>Powerwash（初期化）：</strong></p>
+                    <ul>
+                        <li>設定 → 詳細設定 → リセット → Powerwash → 「再起動」</li>
+                        <li><strong>注意</strong>：ローカルデータはすべて削除されます（Google Driveのデータは残ります）</li>
+                    </ul>
+
+                    <h4>（3）iPadの復旧モード</h4>
+
+                    <p><strong>起動方法：</strong></p>
+                    <ol>
+                        <li>iPadをコンピュータ（MacまたはWindows + iTunes）に接続</li>
+                        <li><strong>復旧モードへ移行</strong>：
+                            <ul>
+                                <li>iPad Pro（Face ID搭載）：音量上ボタン押す→音量下ボタン押す→電源ボタン長押し（リカバリモード画面が表示されるまで）</li>
+                                <li>iPad（ホームボタンあり）：ホームボタンと電源ボタンを同時に長押し</li>
+                            </ul>
+                        </li>
+                        <li>Finder/iTunesで「復元」または「アップデート」を選択</li>
+                    </ol>
+
+                    <h3>5.4 OSの再インストール</h3>
+
+                    <p>上記の対処法でも解決しない場合、<strong>OSの再インストール</strong>が必要になることがあります。</p>
+
+                    <h4>（1）Windows のクリーンインストール</h4>
+
+                    <p><strong>手順：</strong></p>
+                    <ol>
+                        <li><strong>Windows 回復環境（WinRE）から</strong>：設定 → システム → 回復 → このPCをリセット → 「すべて削除する」</li>
+                        <li><strong>インストールメディアから</strong>：USB起動ディスクを作成し、クリーンインストールを実行</li>
+                    </ol>
+
+                    <p><strong>注意：</strong></p>
+                    <ul>
+                        <li><strong>データバックアップ</strong>：必ず事前にデータをバックアップ</li>
+                        <li><strong>ライセンス確認</strong>：Windowsライセンスキーを確認</li>
+                    </ul>
+
+                    <h4>（2）Chrome OS の再インストール（Powerwash）</h4>
+
+                    <p><strong>手順：</strong></p>
+                    <ol>
+                        <li>設定 → 詳細設定 → リセット → Powerwash → 「再起動」</li>
+                        <li>Googleアカウントでログインして初期設定</li>
+                    </ol>
+
+                    <p><strong>注意：</strong></p>
+                    <ul>
+                        <li><strong>ローカルデータは削除</strong>：Chromebook本体のデータはすべて消去されます</li>
+                        <li><strong>Google Drive は残る</strong>：クラウドに保存されたデータは影響を受けません</li>
+                    </ul>
+
+                    <h4>（3）iPad の初期化</h4>
+
+                    <p><strong>手順：</strong></p>
+                    <ol>
+                        <li>設定 → 一般 → 転送またはiPadをリセット → 「すべてのコンテンツと設定を消去」</li>
+                        <li>Apple ID のパスワードを入力して実行</li>
+                    </ol>
+
+                    <p><strong>注意：</strong></p>
+                    <ul>
+                        <li><strong>iCloud バックアップ</strong>：事前にiCloudバックアップを取っておく</li>
+                        <li><strong>アクティベーションロック</strong>：初期化前にApple IDをサインアウトしておく</li>
+                    </ul>
+
+                    <div class="point-box">
+                        <h3>🎯 トラブルシューティングのベストプラクティス</h3>
+                        <ol>
+                            <li><strong>原因を特定する</strong>：いつから、どのような操作をした後に問題が発生したかを確認</li>
+                            <li><strong>簡単な対処から試す</strong>：再起動 → アプリの再インストール → OSのアップデート → 初期化の順</li>
+                            <li><strong>データのバックアップ</strong>：トラブルが発生する前に、定期的にクラウドにバックアップ</li>
+                            <li><strong>記録を残す</strong>：どのような問題が発生し、どのように対処したかを記録</li>
+                            <li><strong>メーカーサポートの活用</strong>：解決しない場合は、メーカーのサポートに連絡</li>
+                        </ol>
+                    </div>
+
+                </section>
+
+                <!-- 実践演習 -->
+                <section id="practice">
+                    <h2>📝 実践演習</h2>
+
+                    <div class="warning-box" style="background-color: #fef3c7; border-left-color: #f59e0b;">
+                        <h3>💡 学習の定着を図るために</h3>
+                        <p>以下の演習課題に取り組み、実際に手を動かして理解を深めましょう。</p>
+                    </div>
+
+                    <h3>演習1：主要OSの比較レポート作成</h3>
+                    <div class="point-box">
+                        <h4>課題内容</h4>
+                        <p>あなたの学校で新たにGIGA端末を更新することになりました。Windows、Chrome OS、iPadの3つのOSから1つを選定する必要があります。以下の観点から比較レポートを作成してください。</p>
+                        <ul>
+                            <li><strong>学校の状況</strong>：小学校、全学年で使用、Google Workspace を利用中、ICT支援員は週1回訪問</li>
+                            <li><strong>予算</strong>：1台あたり7万円以内</li>
+                            <li><strong>重視する点</strong>：セキュリティ、管理の容易さ、児童の使いやすさ</li>
+                        </ul>
+                        <p><strong>作成する内容：</strong></p>
+                        <ol>
+                            <li>各OSのメリット・デメリットの整理</li>
+                            <li>学校の状況に最適なOSの提案</li>
+                            <li>選定理由の説明（3つ以上）</li>
+                        </ol>
+                    </div>
+
+                    <h3>演習2：管理コンソール操作の実習</h3>
+                    <div class="point-box">
+                        <h4>課題内容</h4>
+                        <p>実際に学校で使用しているOSの管理コンソールにアクセスし、以下の設定を確認・実施してください。</p>
+                        <ul>
+                            <li><strong>Google 管理コンソール</strong>（Chrome OS）：
+                                <ul>
+                                    <li>端末リストの確認</li>
+                                    <li>アプリの配信状況確認</li>
+                                    <li>Webフィルタリング設定の確認</li>
+                                </ul>
+                            </li>
+                            <li><strong>Microsoft Intune / Active Directory</strong>（Windows）：
+                                <ul>
+                                    <li>グループポリシーの確認</li>
+                                    <li>ソフトウェア配信の設定確認</li>
+                                    <li>セキュリティポリシーの確認</li>
+                                </ul>
+                            </li>
+                            <li><strong>Apple School Manager / MDM</strong>（iPad）：
+                                <ul>
+                                    <li>デバイス登録の確認</li>
+                                    <li>アプリ配信の設定確認</li>
+                                    <li>共有iPadの設定確認</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <h3>演習3：トラブルシューティングシナリオ</h3>
+                    <div class="point-box">
+                        <h4>課題内容</h4>
+                        <p>以下のトラブルシナリオに対して、適切な対処法を段階的に説明してください。</p>
+                        
+                        <p><strong>シナリオ1：Windows端末が起動しない</strong></p>
+                        <ul>
+                            <li>症状：電源ボタンを押しても、Windowsロゴが表示されず、黒い画面のまま</li>
+                            <li>事前情報：昨日まで正常に動作していた、特にソフトウェアのインストールなどは行っていない</li>
+                        </ul>
+                        <p><strong>対処手順を5ステップで記述してください。</strong></p>
+
+                        <p><strong>シナリオ2：Chromebookが異常に遅い</strong></p>
+                        <ul>
+                            <li>症状：Chromeのタブを複数開くと、フリーズ状態になる</li>
+                            <li>事前情報：3年前に導入、メモリは4GB、ストレージの空き容量は50%以上ある</li>
+                        </ul>
+                        <p><strong>考えられる原因と対処法を3つ以上挙げてください。</strong></p>
+
+                        <p><strong>シナリオ3：iPadがWi-Fiに接続できない</strong></p>
+                        <ul>
+                            <li>症状：Wi-Fiネットワーク名は表示されるが、パスワードを入力しても「接続できません」と表示される</li>
+                            <li>事前情報：他の端末は正常に接続できている、iPadのソフトウェアは最新</li>
+                        </ul>
+                        <p><strong>チェックすべき項目と対処法を4つ以上挙げてください。</strong></p>
+                    </div>
+
+                </section>
+
+                <!-- 既習内容との関連 -->
+                <section id="related">
+                    <h2>🔗 既習内容との関連</h2>
+
+                    <p>本講座「第50回：オペレーティングシステム論」は、以下の既習内容と深く関連しています。復習しながら理解を深めましょう。</p>
+
+                    <div class="info-box">
+                        <h3>📚 関連する既習講座</h3>
+                        <ul>
+                            <li><strong>第49回：コンピュータシステム概論</strong>
+                                <ul>
+                                    <li>ハードウェア（CPU、メモリ、ストレージ）の基礎知識</li>
+                                    <li>OSはこれらのハードウェアを管理する役割を果たす</li>
+                                </ul>
+                            </li>
+                            <li><strong>第3回：GIGA School構想と1人1台端末</strong>
+                                <ul>
+                                    <li>GIGA端末の導入背景と現状</li>
+                                    <li>各自治体のOS選択の傾向</li>
+                                </ul>
+                            </li>
+                            <li><strong>第6回：学校で使われる主なソフトウェアとアプリケーション</strong>
+                                <ul>
+                                    <li>各OSで動作するアプリケーションの違い</li>
+                                    <li>Google Workspace、Microsoft 365、Apple教育アプリとの関連</li>
+                                </ul>
+                            </li>
+                            <li><strong>第9回：ICT環境の整備と管理</strong>
+                                <ul>
+                                    <li>Wi-Fiネットワーク設定</li>
+                                    <li>端末管理の基本</li>
+                                </ul>
+                            </li>
+                            <li><strong>第10回：ICT機器のトラブルシューティング基礎</strong>
+                                <ul>
+                                    <li>基本的なトラブル対応の流れ</li>
+                                    <li>ハードウェアとソフトウェア（OS）のトラブルの切り分け</li>
+                                </ul>
+                            </li>
+                            <li><strong>第22回：情報セキュリティの基礎</strong>
+                                <ul>
+                                    <li>OSのセキュリティ機能（ファイアウォール、暗号化）</li>
+                                    <li>アクセス制御とユーザー管理</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="point-box">
+                        <h3>🎯 次のステップへ</h3>
+                        <p><strong>本講座の学習内容は、以下の今後の講座でさらに深掘りされます：</strong></p>
+                        <ul>
+                            <li><strong>第51回：ネットワーク基礎とプロトコル</strong>：OSのネットワーク管理機能の理解が前提</li>
+                            <li><strong>第52回：データベースとストレージ技術</strong>：OSのファイルシステム知識が基礎</li>
+                            <li><strong>第53回：仮想化とクラウドコンピューティング</strong>：OSの仮想化技術への応用</li>
+                            <li><strong>第54回：プログラミング言語とアルゴリズム</strong>：OSのAPIを利用したプログラミング</li>
+                        </ul>
+                    </div>
+
+                </section>
+
+                <!-- まとめ -->
+                <section id="summary">
+                    <h2>📌 まとめ</h2>
+
+                    <p>本講座では、オペレーティングシステム（OS）の基本概念から、教育現場で使用される主要OSの特徴、設定・管理、トラブルシューティングまでを包括的に学習しました。</p>
+
+                    <div class="info-box">
+                        <h3>✅ 本講座で習得した知識・スキル</h3>
+                        <ol>
+                            <li><strong>OSの役割と機能</strong>
+                                <ul>
+                                    <li>ハードウェア管理、アプリケーション実行環境、UI提供、セキュリティ、マルチタスク</li>
+                                </ul>
+                            </li>
+                            <li><strong>OSの基本機能</strong>
+                                <ul>
+                                    <li>プロセス管理：スケジューリング、ライフサイクル</li>
+                                    <li>メモリ管理：仮想メモリ、ページング、推奨メモリ容量</li>
+                                    <li>ファイルシステム管理：NTFS、ext4、APFS、暗号化機能</li>
+                                </ul>
+                            </li>
+                            <li><strong>主要OSの特徴と比較</strong>
+                                <ul>
+                                    <li>Windows：豊富なアプリ、Active Directory、Office完全版</li>
+                                    <li>Chrome OS：クラウドベース、高速起動、高セキュリティ、AUE</li>
+                                    <li>iOS/iPadOS：タッチUI、Apple Pencil、豊富な教育アプリ</li>
+                                    <li>macOS：クリエイティブ環境、Appleエコシステム</li>
+                                </ul>
+                            </li>
+                            <li><strong>OSの設定とカスタマイズ</strong>
+                                <ul>
+                                    <li>アクセシビリティ設定：視覚支援、聴覚支援、身体機能支援</li>
+                                    <li>ネットワーク設定：Wi-Fi、プロキシ、トラブルシューティング</li>
+                                    <li>セキュリティ設定：パスワード/認証、ファイアウォール、フィルタリング、暗号化</li>
+                                </ul>
+                            </li>
+                            <li><strong>OSレベルのトラブルシューティング</strong>
+                                <ul>
+                                    <li>起動トラブル、フリーズ・動作不良への対処</li>
+                                    <li>セーフモード・回復モードの活用</li>
+                                    <li>OSの再インストール手順</li>
+                                </ul>
+                            </li>
+                        </ol>
+                    </div>
+
+                    <div class="point-box">
+                        <h3>🎯 ICT支援員としての実践ポイント</h3>
+                        <ul>
+                            <li><strong>OS選定への助言</strong>：学校の状況（予算、既存環境、教員スキル、学習内容）に応じた適切なOS提案</li>
+                            <li><strong>効率的な管理</strong>：管理コンソール（Google 管理コンソール、Active Directory、MDM）を活用した一元管理</li>
+                            <li><strong>迅速なトラブル対応</strong>：OS別の基本的なトラブルシューティング手法の習得</li>
+                            <li><strong>セキュリティ意識</strong>：暗号化、フィルタリング、アクセス制御などの適切な設定</li>
+                            <li><strong>アクセシビリティ配慮</strong>：特別な配慮が必要な児童生徒への個別設定対応</li>
+                        </ul>
+                    </div>
+
+                    <div class="warning-box">
+                        <h3>⚠️ 注意すべきポイント</h3>
+                        <ul>
+                            <li><strong>OSのサポート期限</strong>：Windows 10は2025年10月14日終了、Chrome OSのAUEに注意</li>
+                            <li><strong>ライセンス管理</strong>：Windowsは有償ライセンス、適切な管理が必要</li>
+                            <li><strong>強制再起動のリスク</strong>：データ損失の可能性、定期的なクラウドバックアップが重要</li>
+                            <li><strong>フィルタリングの適切性</strong>：過度な制限は学習を阻害、定期的な見直しが必要</li>
+                        </ul>
+                    </div>
+
+                </section>
+
+                <!-- 参考資料 -->
+                <section id="references">
+                    <h2>📖 参考資料</h2>
+
+                    <h3>公式ドキュメント・サポートサイト</h3>
+
+                    <h4>Windows</h4>
+                    <ul>
+                        <li><strong>Microsoft 公式サポート</strong>：<a href="https://support.microsoft.com/ja-jp" target="_blank" rel="noopener">https://support.microsoft.com/ja-jp</a></li>
+                        <li><strong>Windows 11 ドキュメント</strong>：<a href="https://docs.microsoft.com/ja-jp/windows/windows-11/" target="_blank" rel="noopener">https://docs.microsoft.com/ja-jp/windows/windows-11/</a></li>
+                        <li><strong>教育機関向け Windows</strong>：<a href="https://www.microsoft.com/ja-jp/education" target="_blank" rel="noopener">https://www.microsoft.com/ja-jp/education</a></li>
+                    </ul>
+
+                    <h4>Chrome OS</h4>
+                    <ul>
+                        <li><strong>Chromebook ヘルプセンター</strong>：<a href="https://support.google.com/chromebook/" target="_blank" rel="noopener">https://support.google.com/chromebook/</a></li>
+                        <li><strong>Google 管理コンソール ヘルプ</strong>：<a href="https://support.google.com/a/users" target="_blank" rel="noopener">https://support.google.com/a/users</a></li>
+                        <li><strong>Google for Education</strong>：<a href="https://edu.google.com/intl/ja/" target="_blank" rel="noopener">https://edu.google.com/intl/ja/</a></li>
+                        <li><strong>Chromebook AUE（自動更新期限）確認</strong>：<a href="https://support.google.com/chrome/a/answer/6220366" target="_blank" rel="noopener">https://support.google.com/chrome/a/answer/6220366</a></li>
+                    </ul>
+
+                    <h4>iOS/iPadOS・macOS</h4>
+                    <ul>
+                        <li><strong>Apple サポート</strong>：<a href="https://support.apple.com/ja-jp" target="_blank" rel="noopener">https://support.apple.com/ja-jp</a></li>
+                        <li><strong>iPad ユーザガイド</strong>：<a href="https://support.apple.com/ja-jp/guide/ipad/" target="_blank" rel="noopener">https://support.apple.com/ja-jp/guide/ipad/</a></li>
+                        <li><strong>Apple School Manager</strong>：<a href="https://school.apple.com/" target="_blank" rel="noopener">https://school.apple.com/</a></li>
+                        <li><strong>Apple 教育向けソリューション</strong>：<a href="https://www.apple.com/jp/education/" target="_blank" rel="noopener">https://www.apple.com/jp/education/</a></li>
+                    </ul>
+
+                    <h3>文部科学省・政府関連資料</h3>
+                    <ul>
+                        <li><strong>文部科学省「GIGAスクール構想の実現について」</strong>：<a href="https://www.mext.go.jp/a_menu/other/index_00001.htm" target="_blank" rel="noopener">https://www.mext.go.jp/a_menu/other/index_00001.htm</a></li>
+                        <li><strong>学習者用コンピュータの標準仕様書（令和6年4月）</strong>：文部科学省公式サイトで検索</li>
+                        <li><strong>デジタル庁「教育情報セキュリティポリシーに関するガイドライン」</strong>：<a href="https://www.digital.go.jp/" target="_blank" rel="noopener">https://www.digital.go.jp/</a></li>
+                    </ul>
+
+                    <h3>推奨書籍</h3>
+                    <ul>
+                        <li>『オペレーティングシステム 第3版』（Andrew S. Tanenbaum、日経BP）：OSの基礎理論を体系的に学べる定番書</li>
+                        <li>『コンピュータシステムの理論と実装』（Noam Nisan、オライリー・ジャパン）：ハードウェアからOSまでの全体像を理解</li>
+                        <li>『教育現場のためのICT活用ガイドブック』（教育とICTオンライン編集部）：教育現場でのOS選定・運用の実践例</li>
+                    </ul>
+
+                    <h3>学習サイト・動画コンテンツ</h3>
+                    <ul>
+                        <li><strong>Coursera「Operating Systems」</strong>：<a href="https://www.coursera.org/" target="_blank" rel="noopener">https://www.coursera.org/</a>（英語、無料講座あり）</li>
+                        <li><strong>edX「Introduction to Operating Systems」</strong>：<a href="https://www.edx.org/" target="_blank" rel="noopener">https://www.edx.org/</a>（英語、無料講座あり）</li>
+                        <li><strong>YouTube「教育ICTチャンネル」</strong>：GIGA端末の設定やトラブルシューティング動画が豊富</li>
+                    </ul>
+
+                    <div class="point-box">
+                        <h3>🎯 継続学習のために</h3>
+                        <p><strong>OSの知識は日々進化しています。以下の習慣で最新情報をキャッチアップしましょう：</strong></p>
+                        <ul>
+                            <li><strong>公式ブログのフォロー</strong>：Microsoft Education Blog、Google for Education Blog、Apple Teacher Learning Center</li>
+                            <li><strong>オンラインコミュニティへの参加</strong>：日本ICT支援員協会、Google Educator Group、Apple Distinguished Educator</li>
+                            <li><strong>定期的な実機操作</strong>：各OSを実際に触り、新機能や変更点を確認</li>
+                            <li><strong>トラブル事例の記録</strong>：自校で発生したトラブルと対処法をナレッジベース化</li>
+                        </ul>
+                    </div>
+
+                </section>
+
+            </div>
+
+        </div>
+    </main>
+
+    <!-- フッター -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 ICT支援員・企画員のための教育講座. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="../js/main.js"></script>
+</body>
+</html>
