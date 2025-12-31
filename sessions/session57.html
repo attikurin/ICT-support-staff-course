@@ -1,0 +1,1543 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>第57回：プログラミング基礎演習 - ICT支援員教育講座</title>
+    <meta name="description" content="Python基礎文法から実践的なプログラミングスキルまで体系的に学びます。開発環境、データ型、制御構造、関数、デバッグ手法を習得し、教育現場での支援に活かせる実践力を養成します。">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/session.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <a href="../index.html" class="logo">ICT支援員教育講座</a>
+            <nav class="navbar">
+                <ul class="nav-menu">
+                    <li><a href="../index.html">ホーム</a></li>
+                    <li><a href="../beginner.html">入門編</a></li>
+                    <li><a href="../intermediate.html">基礎編</a></li>
+                    <li><a href="../intermediate2.html">中級編</a></li>
+                    <li><a href="../advanced.html">発展編</a></li>
+                    <li><a href="../certification.html">試験対策</a></li>
+                    <li><a href="../supplement.html" class="active">補完カリキュラム</a></li>
+                    <li><a href="../resources.html">参考資料</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="session-content">
+        <div class="container">
+            <div class="session-header-content">
+                <span class="session-label supplement">補完カリキュラム</span>
+                <h1>第57回：プログラミング基礎演習</h1>
+                <p class="session-meta">プログラミング・開発スキル編（全6回）の第1回 | 学習時間目安：210分（講義90分、演習120分） | 難易度：★★★☆☆</p>
+            </div>
+
+            <div class="info-box">
+                <h3>📋 講座概要</h3>
+                <ul>
+                    <li><strong>対象者：</strong>ICT支援員、教育情報化コーディネータ、プログラミング教育担当教員、第52回「アルゴリズムと情報科学の基礎」修了者</li>
+                    <li><strong>受講前提：</strong>コンピュータの基本操作、アルゴリズムの基礎概念（第52回で学習）、テキストエディタの使用経験</li>
+                    <li><strong>学習時間：</strong>210分（講義90分、演習120分）</li>
+                    <li><strong>難易度：</strong>★★★☆☆</li>
+                    <li><strong>最終更新：</strong>2025年12月</li>
+                </ul>
+            </div>
+
+            <section class="objectives">
+                <h2>🎯 学習目標</h2>
+                
+                <h3>知識・理解レベル</h3>
+                <ul>
+                    <li>プログラミングの基本文法を理解し、説明できる</li>
+                    <li>データ型、変数、演算子の概念を具体例を用いて解説できる</li>
+                    <li>プログラムの三大構造（順次・分岐・反復）を識別できる</li>
+                </ul>
+
+                <h3>技能レベル</h3>
+                <ul>
+                    <li>簡単なPythonプログラムを自力で作成できる</li>
+                    <li>エラーメッセージを読み取り、基本的なデバッグができる</li>
+                    <li>既存のプログラムを読解し、動作を予測できる</li>
+                </ul>
+
+                <h3>応用レベル</h3>
+                <ul>
+                    <li>プログラミング教育における児童生徒の支援に活かせる</li>
+                    <li>教材用の簡単なプログラムを作成・カスタマイズできる</li>
+                    <li>プログラミング的思考を育成する活動を設計できる</li>
+                </ul>
+            </section>
+
+            <section class="content-section">
+                <h2>📚 学習内容</h2>
+
+                <h3>第1部：Python開発環境の準備（30分）</h3>
+
+                <h4>1.1 Pythonとは</h4>
+                
+                <div class="definition-box">
+                    <h5>言語の特徴</h5>
+                    <ul>
+                        <li><strong>初心者にも読みやすい文法</strong> - インデントによる構造化</li>
+                        <li><strong>豊富なライブラリ</strong> - 教育、データ分析、AI等</li>
+                        <li><strong>世界中で広く使用</strong> - 教育現場でも標準的</li>
+                        <li><strong>日本語の扱いも容易</strong></li>
+                    </ul>
+                </div>
+
+                <div class="example-box">
+                    <h5>教育現場での利用例</h5>
+                    <ul>
+                        <li><strong>小学校：</strong>Scratchからテキストプログラミングへの移行</li>
+                        <li><strong>中学校：</strong>技術・家庭科「計測・制御」「ネットワーク」</li>
+                        <li><strong>高校：</strong>情報Ⅰの「プログラミング」単元</li>
+                        <li><strong>大学：</strong>データサイエンス、AI教育</li>
+                    </ul>
+                </div>
+
+                <h4>1.2 開発環境のセットアップ</h4>
+
+                <div class="two-column">
+                    <div>
+                        <h5>オプション1：オンライン環境（推奨・初学者向け）</h5>
+                        <ul>
+                            <li><strong>Google Colab</strong>（Googleアカウントで即利用可能）
+                                <ul>
+                                    <li>URL: <a href="https://colab.research.google.com/" target="_blank">https://colab.research.google.com/</a></li>
+                                    <li>インストール不要、ブラウザのみで実行</li>
+                                    <li>ノートブック形式で学習に最適</li>
+                                </ul>
+                            </li>
+                            <li><strong>Replit</strong>（共同編集機能あり）
+                                <ul>
+                                    <li>URL: <a href="https://replit.com/" target="_blank">https://replit.com/</a></li>
+                                    <li>チーム学習に適している</li>
+                                    <li>保存・共有が簡単</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h5>オプション2：ローカル環境</h5>
+                        <ul>
+                            <li>Python公式サイトからダウンロード：<a href="https://www.python.org/" target="_blank">https://www.python.org/</a></li>
+                            <li>IDLE（Python標準エディタ）またはVS Codeの利用</li>
+                            <li>学校PCにインストール済みの場合も多い</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <h4>1.3 はじめてのプログラム実行</h4>
+                
+                <div class="code-example">
+                    <h5>最初のプログラム</h5>
+                    <pre style="background: #f5f5f5; padding: 1em; border-radius: 4px; color: #333;"><code># 最初のプログラム
+print("Hello, World!")
+print("プログラミング学習を始めます")</code></pre>
+                    
+                    <h5>実行結果</h5>
+                    <pre style="background: #e8f5e9; padding: 1em; border-radius: 4px; color: #333;"><code>Hello, World!
+プログラミング学習を始めます</code></pre>
+                    
+                    <div class="point-box">
+                        <h5>学習ポイント</h5>
+                        <ul>
+                            <li><code>print()</code> は画面に文字を表示する関数</li>
+                            <li><code>#</code> はコメント（プログラムとして実行されない説明文）</li>
+                            <li>日本語も問題なく使用できる</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <h3>第2部：Python基礎文法（90分）</h3>
+
+                <h4>2.1 変数とデータ型</h4>
+
+                <div class="definition-box">
+                    <h5>変数の概念</h5>
+                    <p>変数とは「データを入れる箱」で、名前をつけて値を保存できる。</p>
+                </div>
+
+                <div class="code-example">
+                    <pre style="background: #f5f5f5; padding: 1em; border-radius: 4px; color: #333;"><code># 変数の宣言と代入
+name = "太郎"
+age = 12
+height = 145.5
+is_student = True
+
+# 変数の内容を表示
+print(name)          # 太郎
+print(age)           # 12
+print(height)        # 145.5
+print(is_student)    # True</code></pre>
+                </div>
+
+                <table class="data-table">
+                    <caption>主なデータ型</caption>
+                    <thead>
+                        <tr>
+                            <th>データ型</th>
+                            <th>説明</th>
+                            <th>例</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>int（整数型）</td>
+                            <td>整数を扱う</td>
+                            <td>10, -5, 0</td>
+                        </tr>
+                        <tr>
+                            <td>float（浮動小数点型）</td>
+                            <td>小数を扱う</td>
+                            <td>3.14, -0.5</td>
+                        </tr>
+                        <tr>
+                            <td>str（文字列型）</td>
+                            <td>文字・文章を扱う</td>
+                            <td>"こんにちは", 'Python'</td>
+                        </tr>
+                        <tr>
+                            <td>bool（真偽型）</td>
+                            <td>True/Falseの2値</td>
+                            <td>True, False</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <div class="code-example">
+                    <h5>データ型の確認</h5>
+                    <pre style="background: #f5f5f5; padding: 1em; border-radius: 4px; color: #333;"><code># データ型の確認
+print(type(age))      # &lt;class 'int'&gt;
+print(type(height))   # &lt;class 'float'&gt;
+print(type(name))     # &lt;class 'str'&gt;</code></pre>
+                </div>
+
+                <div class="example-box">
+                    <h5>変数の命名規則</h5>
+                    <pre style="background: #f5f5f5; padding: 1em; border-radius: 4px; color: #333;"><code># 良い例
+student_name = "花子"
+test_score = 85
+class_2a_average = 78.5
+
+# 避けるべき例
+# 2a_class = 30  # 数字で始まるのはNG
+# class = 30     # Pythonの予約語は使えない
+# student name = "花子"  # スペースは使えない</code></pre>
+                </div>
+
+                <div class="practical-example">
+                    <h5>教育現場での活用例</h5>
+                    <pre style="background: #f5f5f5; padding: 1em; border-radius: 4px; color: #333;"><code># クラスの人数管理
+class_1a = 35
+class_1b = 34
+class_1c = 36
+total_students = class_1a + class_1b + class_1c
+print(f"1年生全体：{total_students}名")  # 1年生全体：105名</code></pre>
+                </div>
+
+                <h4>2.2 演算子</h4>
+
+                <div class="code-example">
+                    <h5>算術演算子</h5>
+                    <pre style="background: #f5f5f5; padding: 1em; border-radius: 4px; color: #333;"><code># 基本的な計算
+a = 10
+b = 3
+
+print(a + b)   # 13  加算
+print(a - b)   # 7   減算
+print(a * b)   # 30  乗算
+print(a / b)   # 3.333... 除算（浮動小数点）
+print(a // b)  # 3   整数除算（商）
+print(a % b)   # 1   剰余（余り）
+print(a ** b)  # 1000 べき乗（10の3乗）</code></pre>
+                </div>
+
+                <div class="code-example">
+                    <h5>比較演算子（条件判定に使用）</h5>
+                    <pre style="background: #f5f5f5; padding: 1em; border-radius: 4px; color: #333;"><code>score = 85
+
+print(score == 100)  # False  等しい
+print(score != 100)  # True   等しくない
+print(score > 80)    # True   より大きい
+print(score >= 85)   # True   以上
+print(score < 90)    # True   より小さい
+print(score <= 85)   # True   以下</code></pre>
+                </div>
+
+                <div class="code-example">
+                    <h5>論理演算子（複数条件の組み合わせ）</h5>
+                    <pre style="background: #f5f5f5; padding: 1em; border-radius: 4px; color: #333;"><code>age = 12
+height = 145
+
+# and：両方の条件が真
+print(age >= 10 and height >= 140)  # True
+
+# or：いずれかの条件が真
+print(age >= 15 or height >= 140)   # True
+
+# not：条件の否定
+print(not (age >= 15))              # True</code></pre>
+                </div>
+
+                <div class="practical-example">
+                    <h5>実践例：学習評価判定</h5>
+                    <pre style="background: #f5f5f5; padding: 1em; border-radius: 4px; color: #333;"><code>attendance_rate = 95  # 出席率
+test_score = 78       # テスト点数
+
+# 優良生徒の判定（出席率90%以上かつテスト80点以上）
+is_excellent = attendance_rate >= 90 and test_score >= 80
+print(f"優良判定：{is_excellent}")  # False（テスト点が足りない）</code></pre>
+                </div>
+
+                <h4>2.3 条件分岐（if文）</h4>
+
+                <div class="code-example">
+                    <h5>基本構文</h5>
+                    <pre style="background: #f5f5f5; padding: 1em; border-radius: 4px; color: #333;"><code>score = 85
+
+if score >= 80:
+    print("よくできました")
+    print("次も頑張りましょう")</code></pre>
+                </div>
+
+                <div class="warning-box">
+                    <h5>⚠️ 重要：Pythonのインデント</h5>
+                    <ul>
+                        <li>if文の配下の処理は必ず4スペース（またはタブ1つ）字下げ</li>
+                        <li>インデントがプログラムの構造を表す（他言語の{}に相当）</li>
+                    </ul>
+                </div>
+
+                <div class="code-example">
+                    <h5>if-else文</h5>
+                    <pre style="background: #f5f5f5; padding: 1em; border-radius: 4px; color: #333;"><code>score = 65
+
+if score >= 70:
+    print("合格です")
+else:
+    print("不合格です")
+    print("再試験を受けてください")</code></pre>
+                </div>
+
+                <div class="code-example">
+                    <h5>if-elif-else文（複数条件）</h5>
+                    <pre style="background: #f5f5f5; padding: 1em; border-radius: 4px; color: #333;"><code>score = 85
+
+if score >= 90:
+    grade = "A"
+    comment = "優秀です"
+elif score >= 80:
+    grade = "B"
+    comment = "良好です"
+elif score >= 70:
+    grade = "C"
+    comment = "合格です"
+else:
+    grade = "D"
+    comment = "再学習が必要です"
+
+print(f"評価：{grade} - {comment}")</code></pre>
+                </div>
+
+                <div class="practical-example">
+                    <h5>実践例：出席管理システム</h5>
+                    <pre style="background: #f5f5f5; padding: 1em; border-radius: 4px; color: #333;"><code>attendance = input("出席状況を入力してください（出席/欠席/遅刻）：")
+
+if attendance == "出席":
+    print("✓ 記録されました")
+elif attendance == "遅刻":
+    print("⚠ 遅刻として記録しました")
+    print("理由を確認してください")
+elif attendance == "欠席":
+    print("✗ 欠席として記録しました")
+    print("保護者への連絡が必要です")
+else:
+    print("❌ 正しい形式で入力してください")</code></pre>
+                </div>
+
+                <h4>2.4 繰り返し（ループ）</h4>
+
+                <div class="code-example">
+                    <h5>for文：回数指定の繰り返し</h5>
+                    <pre style="background: #f5f5f5; padding: 1em; border-radius: 4px; color: #333;"><code># 基本形：range()を使った繰り返し
+for i in range(5):
+    print(f"{i}回目の繰り返し")
+
+# 出力：
+# 0回目の繰り返し
+# 1回目の繰り返し
+# 2回目の繰り返し
+# 3回目の繰り返し
+# 4回目の繰り返し</code></pre>
+                </div>
+
+                <div class="code-example">
+                    <h5>range()の使い方</h5>
+                    <pre style="background: #f5f5f5; padding: 1em; border-radius: 4px; color: #333;"><code># range(終了値)：0から終了値-1まで
+for i in range(3):
+    print(i)  # 0, 1, 2
+
+# range(開始値, 終了値)
+for i in range(5, 8):
+    print(i)  # 5, 6, 7
+
+# range(開始値, 終了値, 増加値)
+for i in range(0, 10, 2):
+    print(i)  # 0, 2, 4, 6, 8</code></pre>
+                </div>
+
+                <div class="practical-example">
+                    <h5>実践例：九九の表</h5>
+                    <pre style="background: #f5f5f5; padding: 1em; border-radius: 4px; color: #333;"><code># 5の段を表示
+for i in range(1, 10):
+    result = 5 * i
+    print(f"5 × {i} = {result}")</code></pre>
+                </div>
+
+                <div class="code-example">
+                    <h5>リストの要素を順に処理</h5>
+                    <pre style="background: #f5f5f5; padding: 1em; border-radius: 4px; color: #333;"><code>students = ["太郎", "花子", "次郎", "桃子"]
+
+for student in students:
+    print(f"{student}さん、こんにちは")
+
+# 出力：
+# 太郎さん、こんにちは
+# 花子さん、こんにちは
+# 次郎さん、こんにちは
+# 桃子さん、こんにちは</code></pre>
+                </div>
+
+                <div class="code-example">
+                    <h5>while文：条件が満たされる間繰り返す</h5>
+                    <pre style="background: #f5f5f5; padding: 1em; border-radius: 4px; color: #333;"><code>count = 0
+
+while count < 5:
+    print(f"カウント：{count}")
+    count = count + 1  # または count += 1
+
+# 注意：条件が永遠に真になると無限ループ！</code></pre>
+                </div>
+
+                <div class="practical-example">
+                    <h5>実践例：合計が100を超えるまで加算</h5>
+                    <pre style="background: #f5f5f5; padding: 1em; border-radius: 4px; color: #333;"><code>total = 0
+number = 1
+
+while total <= 100:
+    total += number
+    number += 1
+
+print(f"合計が100を超えました：{total}")
+print(f"加算回数：{number - 1}回")</code></pre>
+                </div>
+
+                <div class="code-example">
+                    <h5>break文とcontinue文</h5>
+                    <pre style="background: #f5f5f5; padding: 1em; border-radius: 4px; color: #333;"><code># break：ループを途中で抜ける
+for i in range(10):
+    if i == 5:
+        break
+    print(i)  # 0, 1, 2, 3, 4
+
+# continue：その回だけスキップ
+for i in range(5):
+    if i == 2:
+        continue
+    print(i)  # 0, 1, 3, 4</code></pre>
+                </div>
+
+                <h4>2.5 関数の定義と呼び出し</h4>
+
+                <div class="definition-box">
+                    <h5>関数とは</h5>
+                    <ul>
+                        <li>処理をまとめて名前をつけたもの</li>
+                        <li>繰り返し使う処理を効率化</li>
+                        <li>プログラムを読みやすく、管理しやすくする</li>
+                    </ul>
+                </div>
+
+                <div class="code-example">
+                    <h5>基本構文</h5>
+                    <pre style="background: #f5f5f5; padding: 1em; border-radius: 4px; color: #333;"><code>def greet():
+    print("こんにちは")
+    print("プログラミング学習へようこそ")
+
+# 関数の呼び出し
+greet()</code></pre>
+                </div>
+
+                <div class="code-example">
+                    <h5>引数のある関数</h5>
+                    <pre style="background: #f5f5f5; padding: 1em; border-radius: 4px; color: #333;"><code>def greet_student(name):
+    print(f"{name}さん、こんにちは")
+
+greet_student("太郎")  # 太郎さん、こんにちは
+greet_student("花子")  # 花子さん、こんにちは</code></pre>
+                </div>
+
+                <div class="code-example">
+                    <h5>複数の引数</h5>
+                    <pre style="background: #f5f5f5; padding: 1em; border-radius: 4px; color: #333;"><code>def calculate_average(math, english, science):
+    total = math + english + science
+    average = total / 3
+    print(f"平均点：{average:.1f}点")
+
+calculate_average(85, 78, 92)  # 平均点：85.0点</code></pre>
+                </div>
+
+                <div class="code-example">
+                    <h5>戻り値のある関数</h5>
+                    <pre style="background: #f5f5f5; padding: 1em; border-radius: 4px; color: #333;"><code>def calculate_bmi(weight, height):
+    bmi = weight / (height ** 2)
+    return bmi
+
+# 関数の結果を変数に格納
+student_bmi = calculate_bmi(50, 1.6)
+print(f"BMI：{student_bmi:.2f}")  # BMI：19.53</code></pre>
+                </div>
+
+                <div class="code-example">
+                    <h5>デフォルト引数</h5>
+                    <pre style="background: #f5f5f5; padding: 1em; border-radius: 4px; color: #333;"><code>def create_greeting(name, title="さん"):
+    return f"{name}{title}、おはようございます"
+
+print(create_greeting("田中"))          # 田中さん、おはようございます
+print(create_greeting("山田", "先生"))  # 山田先生、おはようございます</code></pre>
+                </div>
+
+                <div class="practical-example">
+                    <h5>実践例：成績判定関数</h5>
+                    <pre style="background: #f5f5f5; padding: 1em; border-radius: 4px; color: #333;"><code>def judge_score(score):
+    """
+    点数を受け取り、評価を返す関数
+    """
+    if score >= 90:
+        return "A：優秀"
+    elif score >= 80:
+        return "B：良好"
+    elif score >= 70:
+        return "C：合格"
+    elif score >= 60:
+        return "D：要努力"
+    else:
+        return "E：不合格"
+
+# 使用例
+students_scores = [95, 78, 82, 55, 68]
+
+for score in students_scores:
+    result = judge_score(score)
+    print(f"{score}点 → {result}")</code></pre>
+                </div>
+
+                <h4>2.6 リストと辞書</h4>
+
+                <div class="definition-box">
+                    <h5>リスト（List）：複数のデータを順序付きで管理</h5>
+                </div>
+
+                <div class="code-example">
+                    <pre style="background: #f5f5f5; padding: 1em; border-radius: 4px; color: #333;"><code># リストの作成
+students = ["太郎", "花子", "次郎", "桃子"]
+scores = [85, 92, 78, 88]
+
+# インデックスでアクセス（0から始まる）
+print(students[0])   # 太郎
+print(students[2])   # 次郎
+print(students[-1])  # 桃子（最後の要素）
+
+# リストの長さ
+print(len(students))  # 4
+
+# 要素の追加
+students.append("五郎")
+print(students)  # ['太郎', '花子', '次郎', '桃子', '五郎']
+
+# 要素の挿入（指定位置に追加）
+students.insert(1, "一子")
+print(students)  # ['太郎', '一子', '花子', '次郎', '桃子', '五郎']
+
+# 要素の削除
+students.remove("一子")
+print(students)  # ['太郎', '花子', '次郎', '桃子', '五郎']
+
+# スライス（範囲指定）
+print(students[1:3])  # ['花子', '次郎']</code></pre>
+                </div>
+
+                <div class="practical-example">
+                    <h5>リストの操作実践例</h5>
+                    <pre style="background: #f5f5f5; padding: 1em; border-radius: 4px; color: #333;"><code># 全員の点数を5点加点
+scores = [75, 82, 68, 91]
+adjusted_scores = []
+
+for score in scores:
+    adjusted_scores.append(score + 5)
+
+print(adjusted_scores)  # [80, 87, 73, 96]
+
+# リスト内包表記（より簡潔な書き方）
+adjusted_scores = [score + 5 for score in scores]</code></pre>
+                </div>
+
+                <div class="definition-box">
+                    <h5>辞書（Dictionary）：キーと値のペアでデータを管理</h5>
+                </div>
+
+                <div class="code-example">
+                    <pre style="background: #f5f5f5; padding: 1em; border-radius: 4px; color: #333;"><code># 辞書の作成
+student = {
+    "name": "太郎",
+    "age": 12,
+    "grade": 6,
+    "class": "A組"
+}
+
+# 値の取得
+print(student["name"])   # 太郎
+print(student["grade"])  # 6
+
+# 値の追加・更新
+student["score"] = 85
+student["age"] = 13
+print(student)
+
+# キーの存在確認
+if "score" in student:
+    print(f"テスト点数：{student['score']}点")
+
+# すべてのキーと値を表示
+for key, value in student.items():
+    print(f"{key}: {value}")</code></pre>
+                </div>
+
+                <div class="practical-example">
+                    <h5>実践例：クラス全体の成績管理</h5>
+                    <pre style="background: #f5f5f5; padding: 1em; border-radius: 4px; color: #333;"><code># 生徒ごとのデータを辞書で管理
+class_data = {
+    "太郎": {"math": 85, "english": 78, "science": 92},
+    "花子": {"math": 92, "english": 88, "science": 85},
+    "次郎": {"math": 78, "english": 82, "science": 80}
+}
+
+# 各生徒の平均点を計算
+for name, scores in class_data.items():
+    average = (scores["math"] + scores["english"] + scores["science"]) / 3
+    print(f"{name}の平均点：{average:.1f}点")
+
+# 出力：
+# 太郎の平均点：85.0点
+# 花子の平均点：88.3点
+# 次郎の平均点：80.0点</code></pre>
+                </div>
+
+                <h3>第3部：プログラムの構造と設計思考（30分）</h3>
+
+                <h4>3.1 プログラムの三大構造</h4>
+
+                <div class="three-column">
+                    <div>
+                        <h5>順次処理（Sequence）</h5>
+                        <pre style="background: #f5f5f5; padding: 1em; border-radius: 4px; color: #333;"><code># 上から順番に実行される
+print("1. プログラム開始")
+name = input("名前を入力：")
+print(f"2. こんにちは、{name}さん")
+print("3. プログラム終了")</code></pre>
+                    </div>
+                    <div>
+                        <h5>分岐処理（Selection）</h5>
+                        <pre style="background: #f5f5f5; padding: 1em; border-radius: 4px; color: #333;"><code># 条件によって実行内容が変わる
+age = int(input("年齢を入力："))
+
+if age >= 18:
+    print("成人です")
+else:
+    print("未成年です")</code></pre>
+                    </div>
+                    <div>
+                        <h5>反復処理（Iteration）</h5>
+                        <pre style="background: #f5f5f5; padding: 1em; border-radius: 4px; color: #333;"><code># 同じ処理を繰り返す
+for i in range(3):
+    print(f"{i + 1}回目の挨拶：こんにちは")</code></pre>
+                    </div>
+                </div>
+
+                <h4>3.2 プログラミング的思考の実践</h4>
+
+                <div class="definition-box">
+                    <h5>問題解決の4ステップ</h5>
+                    <ol>
+                        <li><strong>分解（Decomposition）</strong> - 大きな問題を小さな部分問題に分ける</li>
+                        <li><strong>パターン認識（Pattern Recognition）</strong> - 似たような処理や規則性を見つける</li>
+                        <li><strong>抽象化（Abstraction）</strong> - 重要な情報に絞り、不要な詳細を省く</li>
+                        <li><strong>アルゴリズム設計（Algorithm Design）</strong> - 問題解決の手順を明確にする</li>
+                    </ol>
+                </div>
+
+                <div class="practical-example">
+                    <h5>実践例：クラス全体の成績処理</h5>
+                    <p><strong>問題：</strong>30人分のテスト結果から、平均点・最高点・最低点・合格者数を求める</p>
+                    
+                    <div class="step-box">
+                        <h6>ステップ1：分解</h6>
+                        <ol>
+                            <li>30個の点数を入力または用意する</li>
+                            <li>合計点を計算する</li>
+                            <li>平均点を計算する</li>
+                            <li>最高点を見つける</li>
+                            <li>最低点を見つける</li>
+                            <li>70点以上の人数を数える</li>
+                        </ol>
+                    </div>
+
+                    <div class="step-box">
+                        <h6>ステップ2：パターン認識</h6>
+                        <ul>
+                            <li>「すべての点数に対して〇〇する」という繰り返しパターン</li>
+                            <li>「最大値・最小値を求める」というパターン</li>
+                        </ul>
+                    </div>
+
+                    <div class="step-box">
+                        <h6>ステップ3：抽象化</h6>
+                        <ul>
+                            <li>詳細な点数よりも「合格/不合格」という区分が重要</li>
+                            <li>個々の生徒名より「統計データ」が重要</li>
+                        </ul>
+                    </div>
+
+                    <div class="step-box">
+                        <h6>ステップ4：アルゴリズム設計</h6>
+                        <pre style="background: #f5f5f5; padding: 1em; border-radius: 4px; color: #333;"><code># 成績データ（本来は入力や読込）
+scores = [85, 72, 90, 68, 78, 82, 95, 70, 88, 77,
+          92, 65, 80, 75, 88, 70, 73, 85, 79, 82,
+          91, 68, 76, 84, 72, 88, 80, 75, 87, 78]
+
+# 合計点と平均点
+total = sum(scores)
+average = total / len(scores)
+
+# 最高点と最低点
+highest = max(scores)
+lowest = min(scores)
+
+# 合格者数（70点以上）
+passed = 0
+for score in scores:
+    if score >= 70:
+        passed += 1
+
+# 結果表示
+print(f"受験者数：{len(scores)}名")
+print(f"平均点：{average:.1f}点")
+print(f"最高点：{highest}点")
+print(f"最低点：{lowest}点")
+print(f"合格者数：{passed}名（{passed/len(scores)*100:.1f}%）")</code></pre>
+                    </div>
+                </div>
+
+                <h3>第4部：デバッグの基本（30分）</h3>
+
+                <h4>4.1 エラーの種類</h4>
+
+                <div class="error-type">
+                    <h5>1. 構文エラー（Syntax Error）：文法の間違い</h5>
+                    <pre style="background: #ffebee; padding: 1em; border-radius: 4px; color: #333;"><code># NG例：コロンがない
+if score >= 80
+    print("合格")
+
+# エラーメッセージ
+# SyntaxError: invalid syntax
+
+# 修正後
+if score >= 80:
+    print("合格")</code></pre>
+                </div>
+
+                <div class="error-type">
+                    <h5>2. 実行時エラー（Runtime Error）：実行中に発生</h5>
+                    <pre style="background: #ffebee; padding: 1em; border-radius: 4px; color: #333;"><code># NG例：0で割り算
+result = 100 / 0
+
+# エラーメッセージ
+# ZeroDivisionError: division by zero
+
+# 修正：事前にチェック
+divisor = 0
+if divisor != 0:
+    result = 100 / divisor
+else:
+    print("0では割れません")</code></pre>
+                </div>
+
+                <div class="error-type">
+                    <h5>3. 論理エラー（Logic Error）：動くが結果が間違い</h5>
+                    <pre style="background: #ffebee; padding: 1em; border-radius: 4px; color: #333;"><code># NG例：平均点の計算ミス
+scores = [80, 90, 70]
+average = sum(scores) / 2  # 間違い：2で割っている
+
+print(f"平均点：{average}")  # 120.0（明らかにおかしい）
+
+# 修正
+average = sum(scores) / len(scores)  # 正しい
+print(f"平均点：{average}")  # 80.0</code></pre>
+                </div>
+
+                <h4>4.2 デバッグの基本技法</h4>
+
+                <div class="technique-box">
+                    <h5>1. print文デバッグ</h5>
+                    <pre style="background: #f5f5f5; padding: 1em; border-radius: 4px; color: #333;"><code>def calculate_total(prices):
+    total = 0
+    for price in prices:
+        print(f"現在の価格：{price}")  # デバッグ用
+        total += price
+        print(f"現在の合計：{total}")  # デバッグ用
+    return total
+
+prices = [100, 200, 150]
+result = calculate_total(prices)
+print(f"最終合計：{result}")</code></pre>
+                </div>
+
+                <div class="technique-box">
+                    <h5>2. 変数の中身を確認</h5>
+                    <pre style="background: #f5f5f5; padding: 1em; border-radius: 4px; color: #333;"><code>students = ["太郎", "花子", "次郎"]
+scores = [85, 92]  # 要素数が合っていない
+
+print(f"生徒数：{len(students)}")  # 3
+print(f"点数数：{len(scores)}")    # 2（エラー発見）
+
+# 対策：要素数チェック
+if len(students) == len(scores):
+    for i in range(len(students)):
+        print(f"{students[i]}: {scores[i]}点")
+else:
+    print("データ数が一致しません")</code></pre>
+                </div>
+
+                <div class="technique-box">
+                    <h5>3. 段階的実行</h5>
+                    <pre style="background: #f5f5f5; padding: 1em; border-radius: 4px; color: #333;"><code># 複雑な処理を分解して確認
+def process_data(data):
+    # ステップ1：データ確認
+    print(f"入力データ：{data}")
+    
+    # ステップ2：処理前確認
+    filtered = [x for x in data if x >= 70]
+    print(f"フィルタ後：{filtered}")
+    
+    # ステップ3：最終結果
+    average = sum(filtered) / len(filtered)
+    print(f"平均：{average}")
+    
+    return average
+
+scores = [85, 65, 90, 72, 58, 88]
+result = process_data(scores)</code></pre>
+                </div>
+
+                <h4>4.3 エラーメッセージの読み方</h4>
+
+                <div class="error-example">
+                    <h5>例1：NameError</h5>
+                    <pre style="background: #ffebee; padding: 1em; border-radius: 4px; color: #333;"><code>print(total_score)
+
+# エラーメッセージ
+# NameError: name 'total_score' is not defined
+
+# 意味：変数が定義されていない
+# 対策：使用前に変数を定義する
+total_score = 0
+print(total_score)</code></pre>
+                </div>
+
+                <div class="error-example">
+                    <h5>例2：IndexError</h5>
+                    <pre style="background: #ffebee; padding: 1em; border-radius: 4px; color: #333;"><code>students = ["太郎", "花子", "次郎"]
+print(students[5])
+
+# エラーメッセージ
+# IndexError: list index out of range
+
+# 意味：リストの範囲外にアクセス
+# 対策：インデックスの範囲を確認
+print(f"リスト長：{len(students)}")  # 3（0~2が有効）
+print(students[2])  # 正しいアクセス</code></pre>
+                </div>
+
+                <div class="error-example">
+                    <h5>例3：TypeError</h5>
+                    <pre style="background: #ffebee; padding: 1em; border-radius: 4px; color: #333;"><code>age = "12"
+next_age = age + 1
+
+# エラーメッセージ
+# TypeError: can only concatenate str (not "int") to str
+
+# 意味：文字列と数値は足せない
+# 対策：型変換
+age = int("12")
+next_age = age + 1</code></pre>
+                </div>
+
+                <h3>第5部：実践的な課題とプロジェクト（60分）</h3>
+
+                <h4>5.1 課題1：成績処理プログラム</h4>
+
+                <div class="project-spec">
+                    <h5>仕様</h5>
+                    <ul>
+                        <li>5人分の生徒名とテスト点数を管理</li>
+                        <li>各生徒の合格/不合格判定（70点以上で合格）</li>
+                        <li>クラス全体の平均点を計算</li>
+                        <li>最高点と最低点の生徒を表示</li>
+                    </ul>
+                </div>
+
+                <div class="code-example">
+                    <h5>実装例</h5>
+                    <pre style="background: #f5f5f5; padding: 1em; border-radius: 4px; color: #333;"><code># データ準備
+students = {
+    "太郎": 85,
+    "花子": 92,
+    "次郎": 68,
+    "桃子": 78,
+    "五郎": 88
+}
+
+print("=" * 40)
+print("成績処理システム")
+print("=" * 40)
+
+# 個別判定
+passed_count = 0
+for name, score in students.items():
+    if score >= 70:
+        result = "合格"
+        passed_count += 1
+    else:
+        result = "不合格"
+    print(f"{name}：{score}点 → {result}")
+
+print("-" * 40)
+
+# クラス統計
+scores = list(students.values())
+average = sum(scores) / len(scores)
+highest_score = max(scores)
+lowest_score = min(scores)
+
+# 最高点・最低点の生徒名を取得
+for name, score in students.items():
+    if score == highest_score:
+        top_student = name
+    if score == lowest_score:
+        bottom_student = name
+
+print(f"クラス平均：{average:.1f}点")
+print(f"最高点：{top_student}（{highest_score}点）")
+print(f"最低点：{bottom_student}（{lowest_score}点）")
+print(f"合格者：{passed_count}名 / {len(students)}名")
+print("=" * 40)</code></pre>
+                </div>
+
+                <div class="challenge-box">
+                    <h5>発展課題</h5>
+                    <ul>
+                        <li>CSV形式のファイルから成績データを読み込む機能</li>
+                        <li>評価（A/B/C/D）を自動付与</li>
+                        <li>グラフ表示（後日、matplotlibライブラリで実装）</li>
+                    </ul>
+                </div>
+
+                <h4>5.2 課題2：簡単な診断プログラム</h4>
+
+                <div class="project-spec">
+                    <h5>仕様：学習スタイル診断</h5>
+                    <ul>
+                        <li>5つの質問に回答</li>
+                        <li>回答内容から学習スタイルを判定</li>
+                        <li>結果に応じたアドバイスを表示</li>
+                    </ul>
+                </div>
+
+                <div class="code-example">
+                    <h5>実装例（抜粋）</h5>
+                    <pre style="background: #f5f5f5; padding: 1em; border-radius: 4px; color: #333;"><code>print("=" * 50)
+print("学習スタイル診断")
+print("=" * 50)
+print("以下の質問に1~4の数字で答えてください")
+print("1: まったく当てはまらない")
+print("2: あまり当てはまらない")
+print("3: やや当てはまる")
+print("4: とても当てはまる")
+print("-" * 50)
+
+# 質問と回答の収集
+questions = [
+    "図やイラストがあると理解しやすい",
+    "音声や音楽で覚えるのが得意",
+    "実際に手を動かして学ぶのが好き",
+    "友達と一緒に勉強する方が集中できる",
+    "静かな環境で一人で学ぶのが好き"
+]
+
+answers = []
+for i, question in enumerate(questions, 1):
+    while True:
+        try:
+            answer = int(input(f"Q{i}. {question}："))
+            if 1 <= answer <= 4:
+                answers.append(answer)
+                break
+            else:
+                print("1~4の数字で入力してください")
+        except ValueError:
+            print("数字で入力してください")
+
+# ... 診断ロジック（省略）</code></pre>
+                </div>
+
+                <h4>5.3 課題3：教材用ミニゲーム「数当てゲーム」</h4>
+
+                <div class="project-spec">
+                    <h5>仕様</h5>
+                    <ul>
+                        <li>コンピュータが1~100のランダムな数字を決める</li>
+                        <li>プレイヤーが数字を推測</li>
+                        <li>「もっと大きい」「もっと小さい」とヒントを出す</li>
+                        <li>正解したら試行回数を表示</li>
+                    </ul>
+                </div>
+
+                <div class="code-example">
+                    <h5>実装例（抜粋）</h5>
+                    <pre style="background: #f5f5f5; padding: 1em; border-radius: 4px; color: #333;"><code>import random
+
+print("=" * 50)
+print("数当てゲーム")
+print("=" * 50)
+print("1~100の数字を当ててください")
+print("-" * 50)
+
+# 正解の数字をランダムに決定
+answer = random.randint(1, 100)
+attempts = 0
+max_attempts = 10
+
+while attempts < max_attempts:
+    try:
+        guess = int(input(f"予想（残り{max_attempts - attempts}回）："))
+        attempts += 1
+        
+        if guess < 1 or guess > 100:
+            print("1~100の範囲で入力してください")
+            attempts -= 1
+            continue
+        
+        if guess == answer:
+            print("-" * 50)
+            print(f"🎉 正解！ 答えは{answer}でした！")
+            print(f"試行回数：{attempts}回")
+            print("=" * 50)
+            break
+        elif guess < answer:
+            print("⬆ もっと大きい数字です")
+        else:
+            print("⬇ もっと小さい数字です")
+    
+    except ValueError:
+        print("数字で入力してください")
+        attempts -= 1
+
+else:
+    print("-" * 50)
+    print(f"😢 ゲームオーバー！ 答えは{answer}でした")
+    print("=" * 50)</code></pre>
+                </div>
+
+                <h3>🎓 プログラミング的思考の育成</h3>
+
+                <h4>教育現場での活用方法</h4>
+
+                <div class="three-column">
+                    <div>
+                        <h5>小学校での指導例</h5>
+                        <ul>
+                            <li><strong>順次処理の理解</strong>
+                                <ul>
+                                    <li>カレーライスのレシピをプログラム風に書く</li>
+                                    <li>登校から教室に着くまでの手順を分解</li>
+                                </ul>
+                            </li>
+                            <li><strong>条件分岐の体験</strong>
+                                <ul>
+                                    <li>「もし雨なら傘を持つ」のような日常判断</li>
+                                    <li>じゃんけんゲームのルール表現</li>
+                                </ul>
+                            </li>
+                            <li><strong>繰り返しの発見</strong>
+                                <ul>
+                                    <li>九九の規則性</li>
+                                    <li>掃除当番のローテーション</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h5>中学校での指導例</h5>
+                        <ul>
+                            <li><strong>問題の分解</strong>
+                                <ul>
+                                    <li>文化祭の準備を工程ごとに分ける</li>
+                                    <li>複雑な数学問題を小問に分割</li>
+                                </ul>
+                            </li>
+                            <li><strong>パターン認識</strong>
+                                <ul>
+                                    <li>数列の規則性発見</li>
+                                    <li>データの傾向分析</li>
+                                </ul>
+                            </li>
+                            <li><strong>アルゴリズムの設計</strong>
+                                <ul>
+                                    <li>効率的な整列方法の考案</li>
+                                    <li>最短経路の探索</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h5>高校での指導例</h5>
+                        <ul>
+                            <li><strong>抽象化能力</strong>
+                                <ul>
+                                    <li>物理現象のモデル化</li>
+                                    <li>社会問題のデータ化</li>
+                                </ul>
+                            </li>
+                            <li><strong>最適化思考</strong>
+                                <ul>
+                                    <li>時間割作成の制約条件</li>
+                                    <li>リソース配分の最適解</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <h3>📊 評価とフィードバック</h3>
+
+                <h4>学習達成度チェックリスト</h4>
+
+                <div class="checklist-box">
+                    <h5>基礎レベル（必須）</h5>
+                    <ul class="checklist">
+                        <li>☐ Pythonプログラムを実行できる</li>
+                        <li>☐ 変数を宣言し、値を代入できる</li>
+                        <li>☐ データ型の違いを説明できる</li>
+                        <li>☐ if文で条件分岐を書ける</li>
+                        <li>☐ for文で繰り返し処理を書ける</li>
+                        <li>☐ 簡単な関数を定義し呼び出せる</li>
+                        <li>☐ リストの基本操作ができる</li>
+                        <li>☐ エラーメッセージを読んで対処できる</li>
+                    </ul>
+                </div>
+
+                <div class="checklist-box">
+                    <h5>応用レベル（推奨）</h5>
+                    <ul class="checklist">
+                        <li>☐ while文を使った繰り返しが書ける</li>
+                        <li>☐ 辞書を使ったデータ管理ができる</li>
+                        <li>☐ 複数の関数を組み合わせてプログラムを構成できる</li>
+                        <li>☐ デバッグの基本技法を実践できる</li>
+                        <li>☐ 100行程度のプログラムを読解できる</li>
+                        <li>☐ 簡単な要件定義からプログラムを設計できる</li>
+                    </ul>
+                </div>
+
+                <div class="checklist-box">
+                    <h5>発展レベル（目標）</h5>
+                    <ul class="checklist">
+                        <li>☐ ファイル入出力を伴うプログラムが書ける</li>
+                        <li>☐ エラー処理（例外処理）を実装できる</li>
+                        <li>☐ 教材用の小規模プログラムを自作できる</li>
+                        <li>☐ 児童生徒のプログラムをレビューできる</li>
+                        <li>☐ プログラミング教育の授業支援ができる</li>
+                    </ul>
+                </div>
+
+                <h3>🔗 既存講座との関連</h3>
+
+                <div class="relation-box">
+                    <h4>第52回「アルゴリズムと情報科学の基礎」との連携</h4>
+                    <ul>
+                        <li>第52回で学んだ理論を実装</li>
+                        <li>フローチャート → Pythonコード</li>
+                        <li>探索アルゴリズム → 実際のプログラム</li>
+                        <li>ソートアルゴリズム → 動作確認</li>
+                    </ul>
+                </div>
+
+                <div class="relation-box">
+                    <h4>第18回「STEAM教育とプログラミング教育」との連携</h4>
+                    <ul>
+                        <li>児童生徒への支援技術</li>
+                        <li>ビジュアルプログラミング（Scratch）からテキストプログラミング（Python）への橋渡し</li>
+                        <li>つまずきポイントの理解と支援方法</li>
+                        <li>デバッグ支援の実践</li>
+                    </ul>
+                </div>
+
+                <div class="relation-box">
+                    <h4>第6回「学校のICT環境とハードウェア基礎」との連携</h4>
+                    <ul>
+                        <li>実行環境の理解</li>
+                        <li>学校PCのスペックとPython実行の関係</li>
+                        <li>オンライン環境とローカル環境の使い分け</li>
+                        <li>GIGA端末でのプログラミング環境構築</li>
+                    </ul>
+                </div>
+
+                <h3>📚 参考資料と学習リソース</h3>
+
+                <h4>推奨オンライン学習サイト</h4>
+
+                <div class="resource-box">
+                    <h5>初学者向け</h5>
+                    <ul>
+                        <li><strong>Progate</strong>（<a href="https://prog-8.com/" target="_blank">https://prog-8.com/</a>）
+                            <ul>
+                                <li>ブラウザ上で実践的に学習</li>
+                                <li>Python基礎コースが充実</li>
+                                <li>ゲーム感覚で進められる</li>
+                            </ul>
+                        </li>
+                        <li><strong>Paiza</strong>（<a href="https://paiza.jp/works" target="_blank">https://paiza.jp/works</a>）
+                            <ul>
+                                <li>動画とコーディングを組み合わせた学習</li>
+                                <li>練習問題が豊富</li>
+                                <li>スキルチェック機能あり</li>
+                            </ul>
+                        </li>
+                        <li><strong>Python-izm</strong>（<a href="https://www.python-izm.com/" target="_blank">https://www.python-izm.com/</a>）
+                            <ul>
+                                <li>日本語の丁寧な解説</li>
+                                <li>基礎から応用まで体系的</li>
+                                <li>無料で利用可能</li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="resource-box">
+                    <h5>公式ドキュメント</h5>
+                    <ul>
+                        <li><strong>Python公式チュートリアル（日本語版）</strong>
+                            <ul>
+                                <li><a href="https://docs.python.org/ja/3/tutorial/" target="_blank">https://docs.python.org/ja/3/tutorial/</a></li>
+                                <li>正確な文法情報</li>
+                                <li>標準ライブラリの使い方</li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="resource-box">
+                    <h5>書籍（推奨）</h5>
+                    <ul>
+                        <li>『スッキリわかるPython入門』（インプレス）
+                            <ul>
+                                <li>プログラミング初心者向け</li>
+                                <li>図解が豊富で理解しやすい</li>
+                            </ul>
+                        </li>
+                        <li>『独学プログラマー Python言語の基本から仕事のやり方まで』（日経BP）
+                            <ul>
+                                <li>実践的な内容</li>
+                                <li>プロジェクト開発の流れも学べる</li>
+                            </ul>
+                        </li>
+                        <li>『教師のためのプログラミング入門』（翔泳社）
+                            <ul>
+                                <li>教育現場での活用に特化</li>
+                                <li>授業事例が豊富</li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="resource-box">
+                    <h5>教育関連資料</h5>
+                    <ul>
+                        <li><strong>文部科学省</strong>
+                            <ul>
+                                <li>「小学校プログラミング教育の手引」<br>
+                                <a href="https://www.mext.go.jp/a_menu/shotou/zyouhou/detail/1403162.htm" target="_blank">https://www.mext.go.jp/a_menu/shotou/zyouhou/detail/1403162.htm</a></li>
+                                <li>「高等学校情報科『情報Ⅰ』教員研修用教材」<br>
+                                プログラミング単元の指導方法</li>
+                            </ul>
+                        </li>
+                        <li><strong>教材サイト</strong>
+                            <ul>
+                                <li>コードモンキー（<a href="https://codemonkey.jp/" target="_blank">https://codemonkey.jp/</a>）<br>
+                                ゲーム形式のプログラミング学習、小中学生向け</li>
+                                <li>Hour of Code（<a href="https://hourofcode.com/jp" target="_blank">https://hourofcode.com/jp</a>）<br>
+                                1時間で体験できる教材、多言語対応</li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+
+                <h3>🎯 実践演習課題（宿題）</h3>
+
+                <div class="homework-box">
+                    <h4>課題A：基礎確認（必須）</h4>
+                    
+                    <h5>問題1：変数と演算</h5>
+                    <p>クラスの生徒数が35名います。そのうち、男子が18名、女子が残りです。女子の人数と、女子の割合（パーセント）を計算するプログラムを作成してください。</p>
+
+                    <h5>問題2：条件分岐</h5>
+                    <p>テストの点数を入力すると、以下の判定を表示するプログラムを作成してください。</p>
+                    <ul>
+                        <li>90点以上：「A評価」</li>
+                        <li>80点以上90点未満：「B評価」</li>
+                        <li>70点以上80点未満：「C評価」</li>
+                        <li>70点未満：「D評価」</li>
+                    </ul>
+
+                    <h5>問題3：繰り返し</h5>
+                    <p>1から10までの整数の合計を計算するプログラムを作成してください。（for文を使用）</p>
+                </div>
+
+                <div class="homework-box">
+                    <h4>課題B：応用問題（推奨）</h4>
+                    
+                    <h5>問題4：リスト操作</h5>
+                    <p>5人の生徒の国語・数学・英語の点数を管理し、各生徒の3科目合計点を計算するプログラムを作成してください。</p>
+                    <p><strong>データ例：</strong><br>
+                    太郎：国語75、数学82、英語78<br>
+                    花子：国語88、数学90、英語85<br>
+                    ...</p>
+
+                    <h5>問題5：関数作成</h5>
+                    <p>身長（cm）と体重（kg）を引数として受け取り、BMI（Body Mass Index）を計算して返す関数を作成してください。</p>
+                    <p><strong>BMI = 体重(kg) ÷ (身長(m) × 身長(m))</strong></p>
+                    <p>さらに、BMIの値に応じて以下の判定を表示する機能も追加してください。</p>
+                    <ul>
+                        <li>18.5未満：「低体重」</li>
+                        <li>18.5以上25未満：「普通体重」</li>
+                        <li>25以上：「肥満」</li>
+                    </ul>
+                </div>
+
+                <div class="homework-box">
+                    <h4>課題C：総合プロジェクト（発展）</h4>
+                    
+                    <h5>問題6：簡易図書管理システム</h5>
+                    <p>図書室の本を管理するプログラムを作成してください。</p>
+                    <p><strong>機能：</strong></p>
+                    <ol>
+                        <li>蔵書一覧の表示</li>
+                        <li>本の検索（タイトルまたは著者名）</li>
+                        <li>貸出記録の追加</li>
+                        <li>貸出中の本の一覧表示</li>
+                    </ol>
+                    <p>データ構造は辞書やリストを使って設計してください。</p>
+                </div>
+
+                <h3>💡 指導のポイント（ICT支援員向け）</h3>
+
+                <h4>児童生徒のつまずきポイントと対応</h4>
+
+                <div class="teaching-point">
+                    <h5>1. インデントの理解</h5>
+                    <pre style="background: #ffebee; padding: 1em; border-radius: 4px; color: #333;"><code># よくあるミス
+if score >= 80:
+print("合格")  # インデントがない
+
+# 正しい形
+if score >= 80:
+    print("合格")  # 4スペース字下げ</code></pre>
+                    <p><strong>対応：</strong>「Pythonではスペースがとても重要」と強調し、視覚的に示す</p>
+                </div>
+
+                <div class="teaching-point">
+                    <h5>2. 変数名の命名</h5>
+                    <pre style="background: #ffebee; padding: 1em; border-radius: 4px; color: #333;"><code># 悪い例
+a = 85
+b = 90
+c = a + b
+
+# 良い例
+math_score = 85
+english_score = 90
+total_score = math_score + english_score</code></pre>
+                    <p><strong>対応：</strong>「変数名は内容がわかる名前にする」習慣づけ</p>
+                </div>
+
+                <div class="teaching-point">
+                    <h5>3. 比較演算子と代入演算子の混同</h5>
+                    <pre style="background: #ffebee; padding: 1em; border-radius: 4px; color: #333;"><code># NG
+if score = 80:  # 代入演算子（=）を使っている
+
+# OK
+if score == 80:  # 比較演算子（==）</code></pre>
+                    <p><strong>対応：</strong>「=は代入、==は比較」と明確に区別</p>
+                </div>
+
+                <div class="teaching-point">
+                    <h5>4. リストのインデックス</h5>
+                    <pre style="background: #ffebee; padding: 1em; border-radius: 4px; color: #333;"><code>students = ["太郎", "花子", "次郎"]
+# インデックスは0から始まる
+print(students[0])  # 太郎
+print(students[3])  # エラー！（範囲外）</code></pre>
+                    <p><strong>対応：</strong>「コンピュータは0から数える」ことを繰り返し説明</p>
+                </div>
+
+                <h4>効果的な支援方法</h4>
+
+                <div class="support-method">
+                    <h5>段階的支援（スキャフォールディング）</h5>
+                    <ol>
+                        <li>完成版を見せる → 動作イメージを持たせる</li>
+                        <li>穴埋め問題 → 重要部分だけ考える</li>
+                        <li>模倣 → 似た問題を自力で解く</li>
+                        <li>完全自作 → ゼロから設計・実装</li>
+                    </ol>
+                </div>
+
+                <div class="support-method">
+                    <h5>ペアプログラミングの活用</h5>
+                    <ul>
+                        <li>ドライバー（入力担当）とナビゲーター（指示担当）を交代</li>
+                        <li>協働作業でコミュニケーション力も育成</li>
+                    </ul>
+                </div>
+
+                <div class="support-method">
+                    <h5>エラーをポジティブに</h5>
+                    <ul>
+                        <li>「エラーは成長のチャンス」</li>
+                        <li>「エラーメッセージは親切なヒント」</li>
+                        <li>デバッグ成功体験を積ませる</li>
+                    </ul>
+                </div>
+
+                <h3>🏆 修了認定基準</h3>
+
+                <div class="certification-box">
+                    <p>本講座の修了には、以下の条件を満たす必要があります。</p>
+                    
+                    <h4>必須要件</h4>
+                    <ol>
+                        <li><strong>実践演習の完了</strong>
+                            <ul>
+                                <li>課題A（基礎確認）3問すべてを完成させる</li>
+                                <li>実行結果とコードを提出</li>
+                            </ul>
+                        </li>
+                        <li><strong>プログラム作成課題</strong>
+                            <ul>
+                                <li>課題B（応用問題）のうち1問以上を完成させる</li>
+                                <li>または課題C（総合プロジェクト）に挑戦</li>
+                            </ul>
+                        </li>
+                        <li><strong>振り返りレポート</strong>
+                            <ul>
+                                <li>学んだ内容の要約（300字以上）</li>
+                                <li>教育現場での活用アイデア（200字以上）</li>
+                                <li>今後の学習計画</li>
+                            </ul>
+                        </li>
+                    </ol>
+
+                    <h4>評価基準</h4>
+                    <ul>
+                        <li><strong>プログラムの動作：</strong>正しく実行され、要件を満たしている</li>
+                        <li><strong>コードの可読性：</strong>適切な変数名、コメント、インデントが使われている</li>
+                        <li><strong>応用力：</strong>基本文法を組み合わせて問題解決できている</li>
+                    </ul>
+                </div>
+
+                <h3>🚀 次のステップ</h3>
+
+                <div class="next-step-box">
+                    <p>本講座修了後の学習パス：</p>
+                    
+                    <h4>レベル1：基礎の定着</h4>
+                    <ul>
+                        <li>より多くの練習問題に取り組む（Paiza、AtCoderのビギナー問題）</li>
+                        <li>Pythonの標準ライブラリを学ぶ（datetime、random、mathなど）</li>
+                    </ul>
+
+                    <h4>レベル2：応用技術の習得</h4>
+                    <ul>
+                        <li>ファイル操作（CSV、JSONの読み書き）</li>
+                        <li>データ可視化（matplotlibでグラフ作成）</li>
+                        <li>Webスクレイピング（beautifulsoup4）</li>
+                    </ul>
+
+                    <h4>レベル3：教育特化スキル</h4>
+                    <ul>
+                        <li>教材作成自動化（テスト問題生成、採点支援）</li>
+                        <li>micro:bit、Raspberry Piなどのフィジカルコンピューティング</li>
+                        <li>Webアプリ開発（Flaskの基礎）</li>
+                    </ul>
+
+                    <h4>既存講座との関連</h4>
+                    <ul>
+                        <li>第52回（アルゴリズムと情報科学の基礎）の実践</li>
+                        <li>第18回（STEAM教育とプログラミング教育）の支援技術</li>
+                    </ul>
+                </div>
+
+                <h3>📝 まとめ</h3>
+
+                <div class="summary-box">
+                    <p>本講座では、Pythonを使ったプログラミングの基礎を学びました。</p>
+                    
+                    <h4>習得したスキル</h4>
+                    <ul>
+                        <li>変数、データ型、演算子の使い方</li>
+                        <li>条件分岐と繰り返し処理</li>
+                        <li>関数の定義と活用</li>
+                        <li>リストと辞書によるデータ管理</li>
+                        <li>デバッグの基本技法</li>
+                    </ul>
+
+                    <h4>教育現場での活用</h4>
+                    <ul>
+                        <li>プログラミング教育の技術的支援</li>
+                        <li>教材作成・カスタマイズ</li>
+                        <li>児童生徒のつまずき支援</li>
+                        <li>プログラミング的思考の育成</li>
+                    </ul>
+
+                    <h4>今後の展望</h4>
+                    <p>プログラミングは「書き続けることで上達」します。小さなプログラムから始めて、徐々に複雑な課題に挑戦しましょう。教育現場での実践を通じて、スキルを磨いてください。</p>
+                </div>
+            </section>
+
+            <div class="navigation-buttons">
+                <a href="session56.html" class="btn btn-secondary">← 第56回：コンパイラとプログラミング言語</a>
+                <a href="../supplement.html" class="btn btn-primary">補完カリキュラムトップへ</a>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 ICT支援員教育講座. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="../js/main.js"></script>
+</body>
+</html>

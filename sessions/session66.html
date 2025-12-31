@@ -1,0 +1,1275 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="ICT支援員教育講座 第66回：教育データ・アナリティクス論（基礎・応用） - 高度な統計分析、機械学習、因果推論、EBPM">
+    <meta name="keywords" content="ICT支援員,教育データアナリティクス,機械学習,統計分析,因果推論,EBPM,データ駆動型経営">
+    <title>第66回：教育データ・アナリティクス論（基礎・応用） - ICT支援員教育講座</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/session.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <a href="../index.html" class="logo">ICT支援員教育講座</a>
+            <nav class="navbar">
+                <ul class="nav-menu">
+                    <li><a href="../index.html">ホーム</a></li>
+                    <li><a href="../beginner.html">入門編</a></li>
+                    <li><a href="../intermediate.html">基礎編</a></li>
+                    <li><a href="../intermediate2.html">中級編</a></li>
+                    <li><a href="../advanced.html">発展編</a></li>
+                    <li><a href="../certification.html">試験対策</a></li>
+                    <li><a href="../supplement.html" class="active">補完カリキュラム</a></li>
+                    <li><a href="../resources.html">参考資料</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="session-content">
+        <div class="container">
+            <div class="session-header-content">
+                <span class="session-label supplement">補完カリキュラム</span>
+                <h1>第66回：教育データ・アナリティクス論（基礎・応用）</h1>
+                <p class="session-meta">データサイエンス・AI教育編（全6回）の第4回 | 学習時間目安：240分（講義120分、実習90分、グループワーク30分） | 難易度：★★★★★</p>
+            </div>
+
+            <div class="info-box">
+                <h3>📋 講座概要</h3>
+                <p>本講座では、<strong>高度な統計分析手法と機械学習の基礎</strong>を体系的に学びます。多変量解析、機械学習、因果推論、EBPM（エビデンスに基づく政策立案）を習得し、データ駆動型教育改善の実践者を目指します。</p>
+                <ul>
+                    <li><strong>対象者：</strong>第65回修了者、高度なデータ分析を教育現場に活かしたい方、教育政策・経営に携わる方</li>
+                    <li><strong>受講前提：</strong>第63回「基礎数学・統計学」、第64回「データ分析とコンピュータ論」、第65回「教育データサイエンス」の履修</li>
+                    <li><strong>学習時間：</strong>240分（講義120分、実習90分、グループワーク30分）</li>
+                    <li><strong>難易度：</strong>★★★★★（最上級）</li>
+                    <li><strong>最終更新：</strong>2025年12月</li>
+                </ul>
+            </div>
+
+            <div class="warning-box">
+                <h3>⚠️ 本講座における情報の取り扱いについて</h3>
+                <ul>
+                    <li><strong>統計的有意性：</strong>p値のみで判断せず、効果量も必ず確認してください。</li>
+                    <li><strong>機械学習モデル：</strong>過学習（overfitting）に注意し、検証データで必ず評価してください。</li>
+                    <li><strong>因果推論：</strong>相関≠因果。因果推論の前提条件を満たしているか慎重に検証してください。</li>
+                    <li><strong>データ倫理：</strong>個人情報保護法、GDPR、学校現場の倫理規定を遵守してください。</li>
+                    <li><strong>アルゴリズムバイアス：</strong>モデルに含まれるバイアスを常に意識し、公平性を確保してください。</li>
+                </ul>
+            </div>
+
+            <section class="objectives">
+                <h2>🎯 学習目標</h2>
+                
+                <h3>高度な分析技術</h3>
+                <ul>
+                    <li>多変量解析（重回帰分析、因子分析、ANOVA）を実践できる</li>
+                    <li>ロジスティック回帰と生存時間分析を教育データに適用できる</li>
+                    <li>機械学習の基本アルゴリズム（決定木、ランダムフォレスト、k-means）を理解する</li>
+                    <li>scikit-learnを使った機械学習モデルの構築と評価ができる</li>
+                </ul>
+
+                <h3>因果推論とEBPM</h3>
+                <ul>
+                    <li>相関と因果の違いを明確に説明できる</li>
+                    <li>RCT、DID、傾向スコアマッチングの適用条件を理解する</li>
+                    <li>教育施策の効果測定をエビデンスに基づいて実施できる</li>
+                    <li>メタ分析の結果を読み解き、実践に活かせる</li>
+                </ul>
+
+                <h3>データ駆動型経営</h3>
+                <ul>
+                    <li>学校経営のKPIを設定し、PDCAサイクルを回せる</li>
+                    <li>リアルタイムモニタリングシステムを設計できる</li>
+                    <li>データガバナンスとデータポリシーを策定できる</li>
+                    <li>教育委員会や管理職に対してデータに基づく提言ができる</li>
+                </ul>
+            </section>
+
+            <section class="content-section">
+                <h2>📚 第1部：高度な統計分析（40分）</h2>
+                
+                <h3>1-1. 多変量解析の基礎</h3>
+                
+                <h4>重回帰分析（Multiple Regression Analysis）</h4>
+                <div class="info-box">
+                    <p><strong>重回帰分析</strong>は、複数の説明変数から目的変数を予測する手法です。</p>
+                    <h5>教育応用例</h5>
+                    <p>学習時間、家庭環境、学習意欲、前学期成績などから期末試験の成績を予測</p>
+                </div>
+
+                <h5>重要な概念</h5>
+                <ul>
+                    <li><strong>標準化偏回帰係数（β）</strong>：各要因の影響力を比較できる</li>
+                    <li><strong>決定係数（R²）</strong>：モデルの説明力（0～1、高いほど良い）</li>
+                    <li><strong>調整済みR²</strong>：説明変数の数を考慮した説明力</li>
+                    <li><strong>多重共線性（Multicollinearity）</strong>：説明変数間の高い相関（VIF値で確認）</li>
+                </ul>
+
+                <pre style="background: #f8f9fa; padding: 1rem; border-radius: 0.5rem; overflow-x: auto; color: #333;"><code>import pandas as pd
+import numpy as np
+from sklearn.linear_model import LinearRegression
+from sklearn.preprocessing import StandardScaler
+import statsmodels.api as sm
+
+# データの読み込み
+df = pd.read_csv('student_performance.csv')
+
+# 説明変数と目的変数
+X = df[['学習時間', '家庭学習環境スコア', '学習意欲スコア', '前学期成績']]
+y = df['期末試験得点']
+
+# 標準化
+scaler = StandardScaler()
+X_scaled = scaler.fit_transform(X)
+
+# statsmodelsで詳細な統計情報を取得
+X_with_const = sm.add_constant(X_scaled)
+model = sm.OLS(y, X_with_const).fit()
+print(model.summary())
+
+# VIF値で多重共線性をチェック
+from statsmodels.stats.outliers_influence import variance_inflation_factor
+vif_data = pd.DataFrame()
+vif_data["特徴量"] = X.columns
+vif_data["VIF"] = [variance_inflation_factor(X_scaled, i) for i in range(X_scaled.shape[1])]
+print(vif_data)</code></pre>
+
+                <h5>結果の解釈</h5>
+                <ul>
+                    <li><strong>R² = 0.65</strong>：モデルは成績の変動の65%を説明</li>
+                    <li><strong>β（学習時間） = 0.45</strong>：学習時間が1SD増加すると、成績が0.45SD上昇</li>
+                    <li><strong>VIF < 10</strong>：多重共線性の問題なし</li>
+                    <li><strong>p < 0.05</strong>：統計的に有意な関係</li>
+                </ul>
+
+                <h4>因子分析（Factor Analysis）</h4>
+                <div class="info-box">
+                    <p><strong>因子分析</strong>は、多数の観測変数から潜在的な共通因子を抽出する手法です。</p>
+                    <h5>教育応用例</h5>
+                    <p>学習意欲、学習スキル、メタ認知、自己効力感などの潜在構造の解明</p>
+                </div>
+
+                <h5>手法の選択</h5>
+                <table style="width: 100%; border-collapse: collapse; margin: 1rem 0;">
+                    <thead style="background-color: #e8f5e9;">
+                        <tr>
+                            <th style="border: 1px solid #ddd; padding: 0.75rem; text-align: left;">手法</th>
+                            <th style="border: 1px solid #ddd; padding: 0.75rem; text-align: left;">特徴</th>
+                            <th style="border: 1px solid #ddd; padding: 0.75rem; text-align: left;">使用場面</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td style="border: 1px solid #ddd; padding: 0.75rem;"><strong>主因子法</strong></td>
+                            <td style="border: 1px solid #ddd; padding: 0.75rem;">共通因子のみを抽出</td>
+                            <td style="border: 1px solid #ddd; padding: 0.75rem;">探索的因子分析</td>
+                        </tr>
+                        <tr>
+                            <td style="border: 1px solid #ddd; padding: 0.75rem;"><strong>最尤法</strong></td>
+                            <td style="border: 1px solid #ddd; padding: 0.75rem;">統計的検定が可能</td>
+                            <td style="border: 1px solid #ddd; padding: 0.75rem;">確認的因子分析</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <h5>因子回転</h5>
+                <ul>
+                    <li><strong>バリマックス回転（直交回転）</strong>：因子間の相関を仮定しない</li>
+                    <li><strong>プロマックス回転（斜交回転）</strong>：因子間の相関を許容（教育データでは一般的）</li>
+                </ul>
+
+                <h3>1-2. 分散分析（ANOVA）</h3>
+                
+                <h4>一元配置分散分析</h4>
+                <p>3群以上の平均値の差を検定します。</p>
+
+                <div class="info-box">
+                    <h5>例：異なる指導法による学習効果の比較</h5>
+                    <p>指導法A、B、Cの3群で学習効果に差があるかを検証</p>
+                </div>
+
+                <pre style="background: #f8f9fa; padding: 1rem; border-radius: 0.5rem; overflow-x: auto; color: #333;"><code>from scipy import stats
+import pandas as pd
+
+# データの準備
+group_A = df[df['指導法'] == 'A']['事後テスト得点']
+group_B = df[df['指導法'] == 'B']['事後テスト得点']
+group_C = df[df['指導法'] == 'C']['事後テスト得点']
+
+# 一元配置分散分析
+f_stat, p_value = stats.f_oneway(group_A, group_B, group_C)
+print(f"F値: {f_stat:.3f}, p値: {p_value:.4f}")
+
+# 多重比較（Tukey HSD法）
+from statsmodels.stats.multicomp import pairwise_tukeyhsd
+tukey_result = pairwise_tukeyhsd(df['事後テスト得点'], df['指導法'], alpha=0.05)
+print(tukey_result)</code></pre>
+
+                <h5>結果の解釈</h5>
+                <ul>
+                    <li><strong>F(2, 147) = 8.45, p < 0.001</strong>：3群間に有意な差がある</li>
+                    <li><strong>多重比較</strong>：A vs B（有意差あり）、A vs C（有意差あり）、B vs C（有意差なし）</li>
+                    <li><strong>効果量（η²）</strong>：0.10（中程度の効果）</li>
+                </ul>
+
+                <h4>二元配置分散分析</h4>
+                <p>2つの独立変数の主効果と交互作用を検証します。</p>
+
+                <div class="info-box">
+                    <h5>例：指導法×学習者特性の交互作用分析</h5>
+                    <p>指導法（A, B）と学習者特性（高群、低群）の交互作用を検証</p>
+                </div>
+
+                <h5>交互作用の解釈</h5>
+                <ul>
+                    <li><strong>交互作用あり</strong>：指導法の効果が学習者特性によって異なる</li>
+                    <li><strong>例</strong>：指導法Aは高群に効果的、指導法Bは低群に効果的</li>
+                    <li><strong>単純主効果の検定</strong>：各水準での効果を個別に検証</li>
+                </ul>
+
+                <h3>1-3. ロジスティック回帰分析</h3>
+                
+                <div class="info-box">
+                    <h4>🔍 ロジスティック回帰の基本概念</h4>
+                    <p><strong>ロジスティック回帰</strong>は、二値変数（合格/不合格、継続/中退など）を予測する手法です。</p>
+                </div>
+
+                <h5>重要な指標</h5>
+                <ul>
+                    <li><strong>オッズ比（Odds Ratio）</strong>：ある要因によってイベント発生確率が何倍になるか</li>
+                    <li><strong>ROC曲線</strong>：真陽性率と偽陽性率の関係を表す曲線</li>
+                    <li><strong>AUC（Area Under Curve）</strong>：0.5～1.0、0.7以上で実用的</li>
+                </ul>
+
+                <pre style="background: #f8f9fa; padding: 1rem; border-radius: 0.5rem; overflow-x: auto; color: #333;"><code>from sklearn.linear_model import LogisticRegression
+from sklearn.metrics import roc_auc_score, roc_curve, classification_report
+import matplotlib.pyplot as plt
+
+# データの準備
+X = df[['出席率', '課題提出率', 'LMSログイン頻度', '前学期成績']]
+y = df['次学期継続']  # 1=継続、0=中退
+
+# 訓練データとテストデータに分割
+from sklearn.model_selection import train_test_split
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3, random_state=42)
+
+# ロジスティック回帰モデルの構築
+model = LogisticRegression(random_state=42)
+model.fit(X_train, y_train)
+
+# 予測
+y_pred = model.predict(X_test)
+y_pred_proba = model.predict_proba(X_test)[:, 1]
+
+# 評価
+print(classification_report(y_test, y_pred))
+auc = roc_auc_score(y_test, y_pred_proba)
+print(f"AUC: {auc:.3f}")
+
+# ROC曲線の描画
+fpr, tpr, thresholds = roc_curve(y_test, y_pred_proba)
+plt.figure(figsize=(8, 6))
+plt.plot(fpr, tpr, label=f'ROC Curve (AUC = {auc:.3f})')
+plt.plot([0, 1], [0, 1], 'k--', label='Random')
+plt.xlabel('偽陽性率 (False Positive Rate)')
+plt.ylabel('真陽性率 (True Positive Rate)')
+plt.title('ROC曲線')
+plt.legend()
+plt.grid(alpha=0.3)
+plt.show()
+
+# オッズ比の計算
+odds_ratios = np.exp(model.coef_[0])
+for feature, odds_ratio in zip(X.columns, odds_ratios):
+    print(f"{feature}: オッズ比 = {odds_ratio:.3f}")</code></pre>
+
+                <h5>結果の解釈</h5>
+                <ul>
+                    <li><strong>AUC = 0.82</strong>：モデルの識別能力は良好</li>
+                    <li><strong>出席率のオッズ比 = 3.5</strong>：出席率が1単位上がると継続確率が3.5倍</li>
+                    <li><strong>早期警告システム</strong>：継続確率が0.3未満の学生に介入</li>
+                </ul>
+
+                <h4>生存時間分析（Survival Analysis）</h4>
+                <div class="info-box">
+                    <p><strong>生存時間分析</strong>は、イベント発生までの時間を分析する手法です。</p>
+                    <h5>教育応用例</h5>
+                    <ul>
+                        <li>学習継続期間の分析（MOOCs、オンライン学習）</li>
+                        <li>学習目標達成までの時間分析</li>
+                        <li>カプランマイヤー曲線による継続率の可視化</li>
+                    </ul>
+                </div>
+            </section>
+
+            <section class="content-section">
+                <h2>📚 第2部：機械学習の基礎（50分）</h2>
+                
+                <h3>2-1. 機械学習の分類</h3>
+                
+                <table style="width: 100%; border-collapse: collapse; margin: 1rem 0;">
+                    <thead style="background-color: #e3f2fd;">
+                        <tr>
+                            <th style="border: 1px solid #ddd; padding: 0.75rem; text-align: left;">カテゴリ</th>
+                            <th style="border: 1px solid #ddd; padding: 0.75rem; text-align: left;">タスク</th>
+                            <th style="border: 1px solid #ddd; padding: 0.75rem; text-align: left;">アルゴリズム例</th>
+                            <th style="border: 1px solid #ddd; padding: 0.75rem; text-align: left;">教育応用例</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td style="border: 1px solid #ddd; padding: 0.75rem;" rowspan="2"><strong>教師あり学習</strong></td>
+                            <td style="border: 1px solid #ddd; padding: 0.75rem;">分類</td>
+                            <td style="border: 1px solid #ddd; padding: 0.75rem;">決定木、ランダムフォレスト、SVM</td>
+                            <td style="border: 1px solid #ddd; padding: 0.75rem;">合格/不合格予測、学習スタイル分類</td>
+                        </tr>
+                        <tr>
+                            <td style="border: 1px solid #ddd; padding: 0.75rem;">回帰</td>
+                            <td style="border: 1px solid #ddd; padding: 0.75rem;">線形回帰、決定木回帰、ランダムフォレスト回帰</td>
+                            <td style="border: 1px solid #ddd; padding: 0.75rem;">成績予測、学習時間予測</td>
+                        </tr>
+                        <tr>
+                            <td style="border: 1px solid #ddd; padding: 0.75rem;"><strong>教師なし学習</strong></td>
+                            <td style="border: 1px solid #ddd; padding: 0.75rem;">クラスタリング</td>
+                            <td style="border: 1px solid #ddd; padding: 0.75rem;">k-means、階層的クラスタリング</td>
+                            <td style="border: 1px solid #ddd; padding: 0.75rem;">学習者のグループ化、学習パターン発見</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <h3>2-2. 決定木（Decision Tree）</h3>
+                
+                <div class="info-box">
+                    <h4>📊 決定木の特徴</h4>
+                    <ul>
+                        <li><strong>解釈性が高い</strong>：決定プロセスが視覚的に理解できる</li>
+                        <li><strong>非線形関係</strong>：複雑な関係も表現可能</li>
+                        <li><strong>カテゴリデータ</strong>：数値・カテゴリデータの両方に対応</li>
+                        <li><strong>特徴量選択不要</strong>：重要な特徴を自動で選択</li>
+                    </ul>
+                </div>
+
+                <pre style="background: #f8f9fa; padding: 1rem; border-radius: 0.5rem; overflow-x: auto; color: #333;"><code>from sklearn.tree import DecisionTreeClassifier, plot_tree
+import matplotlib.pyplot as plt
+
+# データの準備
+X = df[['出席率', '課題提出率', 'LMSログイン頻度', '小テスト平均点']]
+y = df['期末試験合格']  # 1=合格、0=不合格
+
+# 訓練データとテストデータに分割
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3, random_state=42)
+
+# 決定木モデルの構築
+model = DecisionTreeClassifier(max_depth=4, min_samples_split=20, random_state=42)
+model.fit(X_train, y_train)
+
+# 予測と評価
+from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score
+y_pred = model.predict(X_test)
+print(f"正解率: {accuracy_score(y_test, y_pred):.3f}")
+print(f"適合率: {precision_score(y_test, y_pred):.3f}")
+print(f"再現率: {recall_score(y_test, y_pred):.3f}")
+print(f"F1スコア: {f1_score(y_test, y_pred):.3f}")
+
+# 決定木の可視化
+plt.figure(figsize=(20, 10))
+plot_tree(model, feature_names=X.columns, class_names=['不合格', '合格'], 
+          filled=True, fontsize=10)
+plt.title('決定木の可視化')
+plt.show()
+
+# 特徴量の重要度
+feature_importance = pd.DataFrame({
+    '特徴量': X.columns,
+    '重要度': model.feature_importances_
+}).sort_values('重要度', ascending=False)
+print(feature_importance)</code></pre>
+
+                <h5>決定木のハイパーパラメータ</h5>
+                <ul>
+                    <li><strong>max_depth</strong>：木の最大深さ（過学習防止）</li>
+                    <li><strong>min_samples_split</strong>：分割に必要な最小サンプル数</li>
+                    <li><strong>min_samples_leaf</strong>：葉ノードの最小サンプル数</li>
+                </ul>
+
+                <h3>2-3. ランダムフォレスト（Random Forest）</h3>
+                
+                <div class="info-box">
+                    <h4>🌲 ランダムフォレストの仕組み</h4>
+                    <p>複数の決定木（アンサンブル）を組み合わせることで、精度と安定性を向上させる手法です。</p>
+                </div>
+
+                <h5>ランダムフォレストの利点</h5>
+                <ul>
+                    <li><strong>高精度</strong>：単一の決定木よりも予測精度が高い</li>
+                    <li><strong>過学習の抑制</strong>：バギングにより汎化性能が向上</li>
+                    <li><strong>特徴量重要度</strong>：どの特徴が重要かを定量化</li>
+                    <li><strong>欠損値に強い</strong>：欠損値の補完が不要な場合もある</li>
+                </ul>
+
+                <pre style="background: #f8f9fa; padding: 1rem; border-radius: 0.5rem; overflow-x: auto; color: #333;"><code>from sklearn.ensemble import RandomForestClassifier
+
+# ランダムフォレストモデルの構築
+model = RandomForestClassifier(n_estimators=100, max_depth=10, 
+                                min_samples_split=20, random_state=42)
+model.fit(X_train, y_train)
+
+# 予測と評価
+y_pred = model.predict(X_test)
+y_pred_proba = model.predict_proba(X_test)[:, 1]
+
+print(f"正解率: {accuracy_score(y_test, y_pred):.3f}")
+print(f"AUC: {roc_auc_score(y_test, y_pred_proba):.3f}")
+
+# 特徴量の重要度
+feature_importance = pd.DataFrame({
+    '特徴量': X.columns,
+    '重要度': model.feature_importances_
+}).sort_values('重要度', ascending=False)
+
+# 重要度の可視化
+plt.figure(figsize=(10, 6))
+plt.barh(feature_importance['特徴量'], feature_importance['重要度'])
+plt.xlabel('重要度')
+plt.title('特徴量の重要度（ランダムフォレスト）')
+plt.gca().invert_yaxis()
+plt.grid(alpha=0.3)
+plt.show()</code></pre>
+
+                <h3>2-4. クラスタリング（k-means）</h3>
+                
+                <div class="info-box">
+                    <h4>🔍 k-meansクラスタリング</h4>
+                    <p>教師なし学習の代表的手法。データを k 個のクラスタに分類します。</p>
+                    <h5>教育応用例</h5>
+                    <ul>
+                        <li>学習者を学習パターンでグループ化</li>
+                        <li>類似した学習行動を持つ学習者の発見</li>
+                        <li>各クラスタに適した指導法の提案</li>
+                    </ul>
+                </div>
+
+                <pre style="background: #f8f9fa; padding: 1rem; border-radius: 0.5rem; overflow-x: auto; color: #333;"><code>from sklearn.cluster import KMeans
+from sklearn.preprocessing import StandardScaler
+
+# データの準備と標準化
+X = df[['学習時間', '課題提出率', 'LMSログイン頻度', '動画視聴時間']]
+scaler = StandardScaler()
+X_scaled = scaler.fit_transform(X)
+
+# エルボー法で最適なクラスタ数を決定
+inertias = []
+K_range = range(2, 11)
+for k in K_range:
+    kmeans = KMeans(n_clusters=k, random_state=42)
+    kmeans.fit(X_scaled)
+    inertias.append(kmeans.inertia_)
+
+plt.figure(figsize=(10, 6))
+plt.plot(K_range, inertias, 'bo-')
+plt.xlabel('クラスタ数 k')
+plt.ylabel('クラスタ内平方和（Inertia）')
+plt.title('エルボー法によるクラスタ数の決定')
+plt.grid(alpha=0.3)
+plt.show()
+
+# k=4でクラスタリング実行
+kmeans = KMeans(n_clusters=4, random_state=42)
+df['クラスタ'] = kmeans.fit_predict(X_scaled)
+
+# 各クラスタの特徴を分析
+cluster_summary = df.groupby('クラスタ')[X.columns].mean()
+print(cluster_summary)
+
+# クラスタの可視化（2次元に削減）
+from sklearn.decomposition import PCA
+pca = PCA(n_components=2)
+X_pca = pca.fit_transform(X_scaled)
+
+plt.figure(figsize=(10, 8))
+scatter = plt.scatter(X_pca[:, 0], X_pca[:, 1], c=df['クラスタ'], cmap='viridis', alpha=0.6)
+plt.xlabel('第1主成分')
+plt.ylabel('第2主成分')
+plt.title('学習者のクラスタリング結果')
+plt.colorbar(scatter, label='クラスタ')
+plt.grid(alpha=0.3)
+plt.show()</code></pre>
+
+                <h5>クラスタの解釈例</h5>
+                <ul>
+                    <li><strong>クラスタ0（コツコツ型）</strong>：学習時間・課題提出率が高い</li>
+                    <li><strong>クラスタ1（一夜漬け型）</strong>：試験前にLMSログイン頻度急増</li>
+                    <li><strong>クラスタ2（動画重視型）</strong>：動画視聴時間が長い</li>
+                    <li><strong>クラスタ3（低関与型）</strong>：すべての指標が低い</li>
+                </ul>
+            </section>
+
+            <section class="content-section">
+                <h2>💻 実習1：機械学習モデルの構築と評価（45分）</h2>
+                
+                <h3>実習の目的</h3>
+                <p>scikit-learnを使って、学習継続予測モデルを構築し、評価します。</p>
+
+                <h4>ステップ1：データの準備とEDA（10分）</h4>
+                <ol>
+                    <li>提供されたデータセット（student_retention.csv）を読み込む</li>
+                    <li>欠損値、外れ値を確認し、適切に処理する</li>
+                    <li>各変数の分布をヒストグラムで確認</li>
+                    <li>相関行列を作成し、多重共線性をチェック</li>
+                </ol>
+
+                <h4>ステップ2：特徴量エンジニアリング（10分）</h4>
+                <ol>
+                    <li>カテゴリ変数をOne-Hot Encodingで変換</li>
+                    <li>数値変数を標準化（StandardScaler）</li>
+                    <li>訓練データ（70%）とテストデータ（30%）に分割</li>
+                </ol>
+
+                <h4>ステップ3：モデルの構築と比較（20分）</h4>
+                <ol>
+                    <li>ロジスティック回帰、決定木、ランダムフォレストの3つのモデルを構築</li>
+                    <li>各モデルをクロスバリデーション（5-fold）で評価</li>
+                    <li>テストデータでの性能を比較（正解率、適合率、再現率、F1、AUC）</li>
+                    <li>最も性能の良いモデルを選択</li>
+                </ol>
+
+                <h4>ステップ4：結果の可視化と解釈（5分）</h4>
+                <ol>
+                    <li>ROC曲線を3モデル分描画して比較</li>
+                    <li>特徴量重要度を可視化（ランダムフォレストの場合）</li>
+                    <li>混同行列を作成し、誤分類パターンを分析</li>
+                    <li>実務での活用方法を考察</li>
+                </ol>
+
+                <div class="info-box">
+                    <h5>💡 実習のポイント</h5>
+                    <ul>
+                        <li>過学習を防ぐため、訓練データとテストデータを明確に分離</li>
+                        <li>クロスバリデーションで汎化性能を確認</li>
+                        <li>単一の指標だけでなく、複数の評価指標を確認</li>
+                        <li>教育現場での実用性を常に意識（例：偽陽性・偽陰性のコスト）</li>
+                    </ul>
+                </div>
+
+                <h5>期待される成果物</h5>
+                <ul>
+                    <li>3つのモデルの性能比較表</li>
+                    <li>ROC曲線の比較プロット</li>
+                    <li>特徴量重要度のグラフ</li>
+                    <li>混同行列のヒートマップ</li>
+                    <li>実務活用提案レポート（1ページ）</li>
+                </ul>
+            </section>
+
+            <section class="content-section">
+                <h2>📚 第3部：因果推論の基礎（30分）</h2>
+                
+                <h3>3-1. 相関と因果の違い</h3>
+                
+                <div class="warning-box">
+                    <h4>⚠️ 相関 ≠ 因果</h4>
+                    <p><strong>相関関係</strong>：2つの変数が関連している</p>
+                    <p><strong>因果関係</strong>：一方の変数が他方の変数を引き起こしている</p>
+                </div>
+
+                <h5>因果関係を示すための条件</h5>
+                <ol>
+                    <li><strong>時間的先行性</strong>：原因が結果より先に起こる</li>
+                    <li><strong>関連性</strong>：原因と結果に統計的な関連がある</li>
+                    <li><strong>他の説明の排除</strong>：交絡因子を統制しても関係が残る</li>
+                </ol>
+
+                <h5>交絡因子（Confounding Variable）の例</h5>
+                <div class="info-box">
+                    <h6>例：ICT活用と学力の関係</h6>
+                    <p><strong>見かけの関係</strong>：ICT活用が多い学校ほど学力が高い</p>
+                    <p><strong>交絡因子</strong>：保護者の社会経済的地位（SES）</p>
+                    <p><strong>真の因果</strong>：SESが高い→ICT環境整備→ICT活用増加、かつ、SESが高い→学力向上</p>
+                </div>
+
+                <h3>3-2. ランダム化比較試験（RCT）</h3>
+                
+                <div class="info-box">
+                    <h4>🔬 RCTの基本原理</h4>
+                    <p><strong>ランダム化比較試験（Randomized Controlled Trial）</strong>は、因果推論のゴールドスタンダードです。</p>
+                </div>
+
+                <h5>RCTの手順</h5>
+                <ol>
+                    <li><strong>ランダム割り当て</strong>：対象者を介入群と統制群にランダムに配分</li>
+                    <li><strong>介入の実施</strong>：介入群に新しい指導法、統制群は従来の指導法</li>
+                    <li><strong>効果測定</strong>：事後テストで両群の成績を比較</li>
+                    <li><strong>統計的検定</strong>：t検定やANOVAで群間差を検証</li>
+                </ol>
+
+                <h5>RCTの利点と課題</h5>
+                <table style="width: 100%; border-collapse: collapse; margin: 1rem 0;">
+                    <thead style="background-color: #fff3e0;">
+                        <tr>
+                            <th style="border: 1px solid #ddd; padding: 0.75rem; text-align: left;">利点</th>
+                            <th style="border: 1px solid #ddd; padding: 0.75rem; text-align: left;">課題</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td style="border: 1px solid #ddd; padding: 0.75rem;">交絡因子を統制できる</td>
+                            <td style="border: 1px solid #ddd; padding: 0.75rem;">教育現場でのランダム割り当ては倫理的に困難な場合がある</td>
+                        </tr>
+                        <tr>
+                            <td style="border: 1px solid #ddd; padding: 0.75rem;">因果関係を明確に示せる</td>
+                            <td style="border: 1px solid #ddd; padding: 0.75rem;">コストと時間がかかる</td>
+                        </tr>
+                        <tr>
+                            <td style="border: 1px solid #ddd; padding: 0.75rem;">エビデンスレベルが最も高い</td>
+                            <td style="border: 1px solid #ddd; padding: 0.75rem;">実験環境と実際の教室環境の違い（外的妥当性）</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <h3>3-3. 差分の差分法（DID: Difference-in-Differences）</h3>
+                
+                <div class="info-box">
+                    <h4>📊 DIDの基本原理</h4>
+                    <p>介入の前後と、介入群・統制群の差分を比較する手法です。</p>
+                </div>
+
+                <h5>DIDの計算式</h5>
+                <p><strong>効果 = (介入群の事後 - 介入群の事前) - (統制群の事後 - 統制群の事前)</strong></p>
+
+                <h5>例：新しいICT活用施策の効果</h5>
+                <table style="width: 100%; border-collapse: collapse; margin: 1rem 0;">
+                    <thead style="background-color: #f3e5f5;">
+                        <tr>
+                            <th style="border: 1px solid #ddd; padding: 0.75rem; text-align: left;">群</th>
+                            <th style="border: 1px solid #ddd; padding: 0.75rem; text-align: center;">事前（2023年）</th>
+                            <th style="border: 1px solid #ddd; padding: 0.75rem; text-align: center;">事後（2024年）</th>
+                            <th style="border: 1px solid #ddd; padding: 0.75rem; text-align: center;">差分</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td style="border: 1px solid #ddd; padding: 0.75rem;"><strong>介入群（A市）</strong></td>
+                            <td style="border: 1px solid #ddd; padding: 0.75rem; text-align: center;">65点</td>
+                            <td style="border: 1px solid #ddd; padding: 0.75rem; text-align: center;">75点</td>
+                            <td style="border: 1px solid #ddd; padding: 0.75rem; text-align: center; background: #e8f5e9;">+10点</td>
+                        </tr>
+                        <tr>
+                            <td style="border: 1px solid #ddd; padding: 0.75rem;"><strong>統制群（B市）</strong></td>
+                            <td style="border: 1px solid #ddd; padding: 0.75rem; text-align: center;">64点</td>
+                            <td style="border: 1px solid #ddd; padding: 0.75rem; text-align: center;">69点</td>
+                            <td style="border: 1px solid #ddd; padding: 0.75rem; text-align: center;">+5点</td>
+                        </tr>
+                        <tr>
+                            <td colspan="3" style="border: 1px solid #ddd; padding: 0.75rem; text-align: right;"><strong>DID推定値（施策の効果）</strong></td>
+                            <td style="border: 1px solid #ddd; padding: 0.75rem; text-align: center; background: #fff3e0;"><strong>+5点</strong></td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <h5>DIDの前提条件</h5>
+                <ul>
+                    <li><strong>平行トレンド仮定</strong>：介入がなければ、両群のトレンドは平行だったと仮定</li>
+                    <li><strong>外生性</strong>：介入のタイミングが外生的に決定されている</li>
+                    <li><strong>SUTVA</strong>：一方の群が他方の群に影響を与えない</li>
+                </ul>
+
+                <h3>3-4. 傾向スコアマッチング（PSM）</h3>
+                
+                <div class="info-box">
+                    <h4>🎯 PSMの基本概念</h4>
+                    <p><strong>傾向スコアマッチング</strong>は、観察データから擬似的なRCTを作り出す手法です。</p>
+                </div>
+
+                <h5>PSMの手順</h5>
+                <ol>
+                    <li><strong>傾向スコアの推定</strong>：ロジスティック回帰で介入を受ける確率を推定</li>
+                    <li><strong>マッチング</strong>：傾向スコアが近い介入群と統制群をペアリング</li>
+                    <li><strong>バランスチェック</strong>：マッチング後の共変量のバランスを確認</li>
+                    <li><strong>効果推定</strong>：マッチングしたペアで効果を推定</li>
+                </ol>
+
+                <pre style="background: #f8f9fa; padding: 1rem; border-radius: 0.5rem; overflow-x: auto; color: #333;"><code>from sklearn.linear_model import LogisticRegression
+from sklearn.neighbors import NearestNeighbors
+import numpy as np
+
+# 傾向スコアの推定
+X_covariates = df[['事前成績', '保護者SES', '学習意欲', '出席率']]
+treatment = df['ICT活用施策']  # 1=介入あり、0=介入なし
+
+ps_model = LogisticRegression()
+ps_model.fit(X_covariates, treatment)
+df['傾向スコア'] = ps_model.predict_proba(X_covariates)[:, 1]
+
+# 最近傍マッチング（1対1マッチング）
+treated = df[df['ICT活用施策'] == 1]
+control = df[df['ICT活用施策'] == 0]
+
+nn = NearestNeighbors(n_neighbors=1, metric='euclidean')
+nn.fit(control[['傾向スコア']])
+distances, indices = nn.kneighbors(treated[['傾向スコア']])
+
+# マッチングしたペアで効果を推定
+matched_control = control.iloc[indices.flatten()]
+treatment_effect = (treated['事後成績'].values - matched_control['事後成績'].values).mean()
+print(f"平均処置効果 (ATT): {treatment_effect:.2f}点")</code></pre>
+
+                <h5>PSMの利点と限界</h5>
+                <ul>
+                    <li><strong>利点</strong>：観察データでも因果推論が可能</li>
+                    <li><strong>限界</strong>：観測されていない交絡因子は統制できない</li>
+                </ul>
+            </section>
+
+            <section class="content-section">
+                <h2>📚 第4部：EBPM（Evidence-Based Policy Making）（20分）</h2>
+                
+                <h3>4-1. EBPMとは</h3>
+                
+                <div class="info-box">
+                    <h4>📐 EBPM（エビデンスに基づく政策立案）</h4>
+                    <p>科学的根拠（エビデンス）に基づいて政策を立案・評価するアプローチです。</p>
+                </div>
+
+                <h5>EBPMのサイクル</h5>
+                <ol>
+                    <li><strong>問題の特定</strong>：解決すべき教育課題を明確化</li>
+                    <li><strong>エビデンスの収集</strong>：先行研究、データ分析、RCT等</li>
+                    <li><strong>政策立案</strong>：エビデンスに基づく施策を設計</li>
+                    <li><strong>実施と評価</strong>：施策を実施し、効果を測定</li>
+                    <li><strong>フィードバック</strong>：結果を次の政策に反映</li>
+                </ol>
+
+                <h3>4-2. メタ分析の活用</h3>
+                
+                <div class="info-box">
+                    <h4>📊 メタ分析とは</h4>
+                    <p>複数の研究結果を統合し、総合的な効果量を算出する統計手法です。</p>
+                </div>
+
+                <h5>John Hattieの「可視化された学習（Visible Learning）」</h5>
+                <p>John Hattieは、50,000以上の研究をメタ分析し、教育介入の効果をランク付けしました。</p>
+
+                <table style="width: 100%; border-collapse: collapse; margin: 1rem 0;">
+                    <thead style="background-color: #e8f5e9;">
+                        <tr>
+                            <th style="border: 1px solid #ddd; padding: 0.75rem; text-align: left;">介入</th>
+                            <th style="border: 1px solid #ddd; padding: 0.75rem; text-align: center;">効果量 (d)</th>
+                            <th style="border: 1px solid #ddd; padding: 0.75rem; text-align: left;">解釈</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td style="border: 1px solid #ddd; padding: 0.75rem;">教師のフィードバック</td>
+                            <td style="border: 1px solid #ddd; padding: 0.75rem; text-align: center;"><strong>0.70</strong></td>
+                            <td style="border: 1px solid #ddd; padding: 0.75rem;">非常に大きい効果</td>
+                        </tr>
+                        <tr>
+                            <td style="border: 1px solid #ddd; padding: 0.75rem;">メタ認知戦略</td>
+                            <td style="border: 1px solid #ddd; padding: 0.75rem; text-align: center;"><strong>0.69</strong></td>
+                            <td style="border: 1px solid #ddd; padding: 0.75rem;">非常に大きい効果</td>
+                        </tr>
+                        <tr>
+                            <td style="border: 1px solid #ddd; padding: 0.75rem;">協同学習</td>
+                            <td style="border: 1px solid #ddd; padding: 0.75rem; text-align: center;"><strong>0.40</strong></td>
+                            <td style="border: 1px solid #ddd; padding: 0.75rem;">中程度の効果</td>
+                        </tr>
+                        <tr>
+                            <td style="border: 1px solid #ddd; padding: 0.75rem;">少人数学級（30人→15人）</td>
+                            <td style="border: 1px solid #ddd; padding: 0.75rem; text-align: center;">0.21</td>
+                            <td style="border: 1px solid #ddd; padding: 0.75rem;">小さい効果</td>
+                        </tr>
+                        <tr>
+                            <td style="border: 1px solid #ddd; padding: 0.75rem;">宿題（小学生）</td>
+                            <td style="border: 1px solid #ddd; padding: 0.75rem; text-align: center;">0.15</td>
+                            <td style="border: 1px solid #ddd; padding: 0.75rem;">非常に小さい効果</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <h5>効果量（Cohen's d）の解釈</h5>
+                <ul>
+                    <li><strong>d = 0.2</strong>：小さい効果</li>
+                    <li><strong>d = 0.4</strong>：Hattieの「ヒンジポイント」（期待される成長と同等）</li>
+                    <li><strong>d = 0.5</strong>：中程度の効果</li>
+                    <li><strong>d = 0.8</strong>：大きい効果</li>
+                </ul>
+
+                <h3>4-3. 教育施策の効果測定</h3>
+                
+                <h5>効果測定の手順</h5>
+                <ol>
+                    <li><strong>ロジックモデルの作成</strong>：投入→活動→産出→成果の流れを明確化</li>
+                    <li><strong>評価指標の設定</strong>：定量的・定性的な指標を設定</li>
+                    <li><strong>データ収集</strong>：ベースライン調査と事後調査</li>
+                    <li><strong>分析</strong>：因果推論手法（RCT、DID、PSM）を適用</li>
+                    <li><strong>報告</strong>：エビデンスに基づく政策提言</li>
+                </ol>
+
+                <h5>実例：家庭学習支援施策の評価</h5>
+                <div class="info-box">
+                    <h6>施策概要</h6>
+                    <p>経済的困難を抱える家庭にタブレット端末とオンライン学習教材を提供</p>
+                    
+                    <h6>評価指標</h6>
+                    <ul>
+                        <li>アウトプット：配布台数、利用時間</li>
+                        <li>アウトカム：学力テスト得点、学習意欲スコア</li>
+                        <li>インパクト：教育格差の縮小</li>
+                    </ul>
+                    
+                    <h6>分析手法</h6>
+                    <p>傾向スコアマッチング（PSM）で支援を受けた群と受けなかった群を比較</p>
+                    
+                    <h6>結果</h6>
+                    <p>平均処置効果（ATT） = +5.2点（p < 0.01）、効果量 d = 0.35（小～中程度の効果）</p>
+                </div>
+            </section>
+
+            <section class="content-section">
+                <h2>📚 第5部：データ駆動型学校経営（30分）</h2>
+                
+                <h3>5-1. KPIの設定</h3>
+                
+                <div class="info-box">
+                    <h4>📊 KPI（重要業績評価指標）とは</h4>
+                    <p>組織の目標達成度を測定するための定量的指標です。</p>
+                </div>
+
+                <h5>学校経営における主要KPI</h5>
+                <table style="width: 100%; border-collapse: collapse; margin: 1rem 0;">
+                    <thead style="background-color: #e3f2fd;">
+                        <tr>
+                            <th style="border: 1px solid #ddd; padding: 0.75rem; text-align: left;">領域</th>
+                            <th style="border: 1px solid #ddd; padding: 0.75rem; text-align: left;">KPI</th>
+                            <th style="border: 1px solid #ddd; padding: 0.75rem; text-align: left;">計算方法</th>
+                            <th style="border: 1px solid #ddd; padding: 0.75rem; text-align: center;">目標値例</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td style="border: 1px solid #ddd; padding: 0.75rem;" rowspan="2"><strong>学力</strong></td>
+                            <td style="border: 1px solid #ddd; padding: 0.75rem;">学力到達度</td>
+                            <td style="border: 1px solid #ddd; padding: 0.75rem;">全国学力調査の平均正答率</td>
+                            <td style="border: 1px solid #ddd; padding: 0.75rem; text-align: center;">全国平均以上</td>
+                        </tr>
+                        <tr>
+                            <td style="border: 1px solid #ddd; padding: 0.75rem;">学力向上率</td>
+                            <td style="border: 1px solid #ddd; padding: 0.75rem;">前年比での正答率向上</td>
+                            <td style="border: 1px solid #ddd; padding: 0.75rem; text-align: center;">+3ポイント</td>
+                        </tr>
+                        <tr>
+                            <td style="border: 1px solid #ddd; padding: 0.75rem;" rowspan="2"><strong>ICT活用</strong></td>
+                            <td style="border: 1px solid #ddd; padding: 0.75rem;">ICT活用授業率</td>
+                            <td style="border: 1px solid #ddd; padding: 0.75rem;">週1回以上ICT活用する授業の割合</td>
+                            <td style="border: 1px solid #ddd; padding: 0.75rem; text-align: center;">80%以上</td>
+                        </tr>
+                        <tr>
+                            <td style="border: 1px solid #ddd; padding: 0.75rem;">端末持ち帰り率</td>
+                            <td style="border: 1px solid #ddd; padding: 0.75rem;">家庭学習で端末を使用する児童生徒の割合</td>
+                            <td style="border: 1px solid #ddd; padding: 0.75rem; text-align: center;">60%以上</td>
+                        </tr>
+                        <tr>
+                            <td style="border: 1px solid #ddd; padding: 0.75rem;"><strong>生徒指導</strong></td>
+                            <td style="border: 1px solid #ddd; padding: 0.75rem;">不登校率</td>
+                            <td style="border: 1px solid #ddd; padding: 0.75rem;">年間30日以上欠席の児童生徒の割合</td>
+                            <td style="border: 1px solid #ddd; padding: 0.75rem; text-align: center;">1%未満</td>
+                        </tr>
+                        <tr>
+                            <td style="border: 1px solid #ddd; padding: 0.75rem;"><strong>教員</strong></td>
+                            <td style="border: 1px solid #ddd; padding: 0.75rem;">時間外勤務時間</td>
+                            <td style="border: 1px solid #ddd; padding: 0.75rem;">月の時間外勤務時間の平均</td>
+                            <td style="border: 1px solid #ddd; padding: 0.75rem; text-align: center;">45時間以内</td>
+                        </tr>
+                        <tr>
+                            <td style="border: 1px solid #ddd; padding: 0.75rem;"><strong>満足度</strong></td>
+                            <td style="border: 1px solid #ddd; padding: 0.75rem;">保護者満足度</td>
+                            <td style="border: 1px solid #ddd; padding: 0.75rem;">アンケートの肯定的回答率</td>
+                            <td style="border: 1px solid #ddd; padding: 0.75rem; text-align: center;">90%以上</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <h5>KPI設定のSMART原則</h5>
+                <ul>
+                    <li><strong>Specific（具体的）</strong>：何を達成するか明確</li>
+                    <li><strong>Measurable（測定可能）</strong>：数値で測定できる</li>
+                    <li><strong>Achievable（達成可能）</strong>：現実的な目標</li>
+                    <li><strong>Relevant（関連性）</strong>：学校の目標と関連</li>
+                    <li><strong>Time-bound（期限）</strong>：達成期限が明確</li>
+                </ul>
+
+                <h3>5-2. PDCAサイクルの高度化</h3>
+                
+                <h5>データ駆動型PDCAサイクル</h5>
+                <ol>
+                    <li><strong>Plan（計画）</strong>
+                        <ul>
+                            <li>データ分析で現状を把握</li>
+                            <li>エビデンスに基づく施策を立案</li>
+                            <li>KPIと目標値を設定</li>
+                        </ul>
+                    </li>
+                    <li><strong>Do（実行）</strong>
+                        <ul>
+                            <li>施策を実施</li>
+                            <li>リアルタイムでデータを収集</li>
+                        </ul>
+                    </li>
+                    <li><strong>Check（評価）</strong>
+                        <ul>
+                            <li>KPIの達成度を測定</li>
+                            <li>統計的手法で効果を検証</li>
+                            <li>予期せぬ効果や副作用を確認</li>
+                        </ul>
+                    </li>
+                    <li><strong>Act（改善）</strong>
+                        <ul>
+                            <li>効果的な施策は継続・拡大</li>
+                            <li>効果の低い施策は改善・中止</li>
+                            <li>新たな仮説を立て、次のサイクルへ</li>
+                        </ul>
+                    </li>
+                </ol>
+
+                <h3>5-3. リアルタイムモニタリング</h3>
+                
+                <div class="info-box">
+                    <h4>📊 リアルタイムモニタリングとは</h4>
+                    <p>教育データをリアルタイムで収集・分析し、ダッシュボードで可視化するシステムです。</p>
+                </div>
+
+                <h5>リアルタイムモニタリングの利点</h5>
+                <ul>
+                    <li><strong>早期発見・早期介入</strong>：問題を早期に発見し、すぐに対応</li>
+                    <li><strong>データに基づく意思決定</strong>：感覚ではなくデータで判断</li>
+                    <li><strong>透明性の向上</strong>：教職員全員が現状を共有</li>
+                    <li><strong>迅速なフィードバック</strong>：施策の効果をすぐに確認</li>
+                </ul>
+
+                <h5>ダッシュボードの設計例</h5>
+                <div class="info-box">
+                    <h6>管理職向けダッシュボード</h6>
+                    <ul>
+                        <li><strong>トップ画面</strong>：主要KPIの一覧（信号機型表示：赤・黄・緑）</li>
+                        <li><strong>学力データ</strong>：学年別・教科別の平均点推移（折れ線グラフ）</li>
+                        <li><strong>ICT活用状況</strong>：教員別のICT活用頻度（ヒートマップ）</li>
+                        <li><strong>出席状況</strong>：欠席率の推移、要支援生徒リスト</li>
+                        <li><strong>アラート</strong>：目標未達のKPIを自動で通知</li>
+                    </ul>
+                </div>
+
+                <h3>5-4. データガバナンスとデータポリシー</h3>
+                
+                <h5>データガバナンスの必要性</h5>
+                <ul>
+                    <li><strong>データ品質の確保</strong>：正確で一貫性のあるデータを維持</li>
+                    <li><strong>データセキュリティ</strong>：不正アクセス・漏洩の防止</li>
+                    <li><strong>倫理的利用</strong>：児童生徒のプライバシー保護</li>
+                    <li><strong>法令遵守</strong>：個人情報保護法、GDPR、学校の規定を遵守</li>
+                </ul>
+
+                <h5>データポリシーの策定</h5>
+                <ol>
+                    <li><strong>データ収集方針</strong>：何のデータを、どのように収集するか</li>
+                    <li><strong>データ利用規定</strong>：誰が、どの目的で、どのデータを使用できるか</li>
+                    <li><strong>アクセス権限管理</strong>：役職・業務に応じたアクセス制限</li>
+                    <li><strong>データ保管・削除</strong>：保管期間、削除基準を明確化</li>
+                    <li><strong>インシデント対応</strong>：漏洩時の対応手順を整備</li>
+                </ol>
+            </section>
+
+            <section class="content-section">
+                <h2>💻 実習2：教育施策の効果分析プロジェクト（45分）</h2>
+                
+                <h3>実習の目的</h3>
+                <p>実際の教育施策データを使って、因果推論手法（DIDまたはPSM）で効果を測定します。</p>
+
+                <h4>シナリオ</h4>
+                <div class="info-box">
+                    <p>A市では2023年度から、ICT活用推進施策を一部の学校（介入群）で試行しました。施策の効果を検証し、全市展開の可否を判断します。</p>
+                    <p><strong>データ</strong>：2022年度（事前）と2023年度（事後）の学力調査データ、学校属性データ</p>
+                </div>
+
+                <h4>ステップ1：データの探索と前処理（10分）</h4>
+                <ol>
+                    <li>データを読み込み、変数の分布を確認</li>
+                    <li>欠損値・外れ値の処理</li>
+                    <li>介入群と統制群の基本統計量を比較</li>
+                    <li>平行トレンド仮定の確認（過去数年のトレンドを確認）</li>
+                </ol>
+
+                <h4>ステップ2：差分の差分法（DID）による分析（15分）</h4>
+                <ol>
+                    <li>介入群と統制群の事前・事後平均点を計算</li>
+                    <li>DID推定値を算出（手計算とPythonコードの両方で）</li>
+                    <li>回帰分析でDIDを実装（statsmodels使用）</li>
+                    <li>標準誤差とp値を確認し、統計的有意性を検証</li>
+                </ol>
+
+                <h4>ステップ3：傾向スコアマッチング（PSM）による分析（15分）</h4>
+                <ol>
+                    <li>傾向スコアを推定（ロジスティック回帰）</li>
+                    <li>最近傍マッチングで介入群と統制群をペアリング</li>
+                    <li>マッチング後の共変量バランスをチェック</li>
+                    <li>平均処置効果（ATT）を算出</li>
+                </ol>
+
+                <h4>ステップ4：結果の報告と提言（5分）</h4>
+                <ol>
+                    <li>DIDとPSMの結果を比較</li>
+                    <li>効果量を計算し、実務的意義を評価</li>
+                    <li>費用対効果を考慮した政策提言をまとめる</li>
+                    <li>プレゼンテーション資料（3スライド）を作成</li>
+                </ol>
+
+                <div class="info-box">
+                    <h5>💡 実習のポイント</h5>
+                    <ul>
+                        <li>平行トレンド仮定が成立しているか、視覚的に確認</li>
+                        <li>DIDとPSMで結果が異なる場合、その理由を考察</li>
+                        <li>統計的有意性だけでなく、実務的意義（効果量）も評価</li>
+                        <li>費用対効果を考慮した現実的な提言を行う</li>
+                    </ul>
+                </div>
+
+                <h5>期待される成果物</h5>
+                <ul>
+                    <li>DID分析結果（推定値、標準誤差、p値）</li>
+                    <li>PSM分析結果（ATT、バランスチェック結果）</li>
+                    <li>可視化（トレンドグラフ、傾向スコア分布）</li>
+                    <li>政策提言プレゼンテーション（3スライド）</li>
+                </ul>
+            </section>
+
+            <section class="content-section">
+                <h2>💬 グループワーク：データ駆動型学校経営の実践（30分）</h2>
+                
+                <h3>ワークの目的</h3>
+                <p>学校経営のKPIを設定し、データ駆動型PDCAサイクルを設計します。</p>
+
+                <h4>ステップ1：学校の課題抽出（5分）</h4>
+                <ul>
+                    <li>各自が勤務する学校（または架空の学校）の課題を3つ挙げる</li>
+                    <li>グループ内で共有し、最も重要な課題を1つ選ぶ</li>
+                </ul>
+
+                <h4>ステップ2：KPIの設定（10分）</h4>
+                <ul>
+                    <li>選んだ課題に対するKPIを設定（SMART原則に基づく）</li>
+                    <li>測定方法、データソース、目標値を明確化</li>
+                </ul>
+
+                <h4>ステップ3：施策の立案（10分）</h4>
+                <ul>
+                    <li>エビデンスに基づく施策を3つ提案（メタ分析等を参考）</li>
+                    <li>各施策の効果量、コスト、実現可能性を評価</li>
+                    <li>最も有望な施策を1つ選定</li>
+                </ul>
+
+                <h4>ステップ4：PDCAサイクルの設計（5分）</h4>
+                <ul>
+                    <li>Plan: 施策の詳細、KPI、目標値</li>
+                    <li>Do: 実施スケジュール、担当者</li>
+                    <li>Check: 評価方法、評価時期</li>
+                    <li>Act: 改善基準、次のアクション</li>
+                </ul>
+
+                <h5>グループ発表（各グループ3分）</h5>
+                <ul>
+                    <li>課題とKPI</li>
+                    <li>選定した施策とそのエビデンス</li>
+                    <li>PDCAサイクルの概要</li>
+                </ul>
+
+                <div class="info-box">
+                    <h5>💡 ワークのポイント</h5>
+                    <ul>
+                        <li>データで測定可能なKPIを設定する</li>
+                        <li>Hattieのメタ分析など、エビデンスに基づく施策を選ぶ</li>
+                        <li>費用対効果と実現可能性を考慮する</li>
+                        <li>評価方法を具体的に設計する</li>
+                    </ul>
+                </div>
+            </section>
+
+            <section class="content-section">
+                <h2>📚 第6部：最新研究動向とビッグデータ（10分）</h2>
+                
+                <h3>6-1. 国際学会の動向</h3>
+                
+                <h5>主要な国際学会</h5>
+                <ul>
+                    <li><strong>LAK（Learning Analytics and Knowledge）</strong>
+                        <ul>
+                            <li>ラーニングアナリティクスの最先端研究</li>
+                            <li>URL: <a href="https://www.solaresearch.org/" target="_blank" rel="noopener">https://www.solaresearch.org/</a></li>
+                        </ul>
+                    </li>
+                    <li><strong>EDM（Educational Data Mining）</strong>
+                        <ul>
+                            <li>教育データマイニングの専門学会</li>
+                            <li>URL: <a href="https://educationaldatamining.org/" target="_blank" rel="noopener">https://educationaldatamining.org/</a></li>
+                        </ul>
+                    </li>
+                    <li><strong>AIED（Artificial Intelligence in Education）</strong>
+                        <ul>
+                            <li>AI教育応用の国際学会</li>
+                        </ul>
+                    </li>
+                </ul>
+
+                <h5>最新のトレンド（2023-2024）</h5>
+                <ul>
+                    <li><strong>大規模言語モデル（LLM）の教育応用</strong>：GPT-4、Geminiを活用した学習支援</li>
+                    <li><strong>マルチモーダル学習分析</strong>：テキスト・音声・表情・視線を統合分析</li>
+                    <li><strong>説明可能AI（XAI）</strong>：AIの判断根拠を可視化</li>
+                    <li><strong>公平性とバイアス</strong>：アルゴリズムの公平性を確保する手法</li>
+                    <li><strong>データプライバシー技術</strong>：連合学習、差分プライバシー</li>
+                </ul>
+
+                <h3>6-2. ビッグデータと教育</h3>
+                
+                <h5>教育ビッグデータの特徴</h5>
+                <ul>
+                    <li><strong>Volume（量）</strong>：GIGAスクール構想で大規模データ蓄積</li>
+                    <li><strong>Velocity（速度）</strong>：リアルタイムで生成されるログデータ</li>
+                    <li><strong>Variety（多様性）</strong>：テキスト、画像、音声、センサーデータ</li>
+                </ul>
+
+                <h5>クラウドコンピューティングの活用</h5>
+                <ul>
+                    <li><strong>Google Cloud Platform（GCP）</strong>：BigQuery、Vertex AI</li>
+                    <li><strong>Amazon Web Services（AWS）</strong>：S3、Redshift、SageMaker</li>
+                    <li><strong>Microsoft Azure</strong>：Azure ML、Synapse Analytics</li>
+                </ul>
+
+                <h3>6-3. 学術論文の読み方</h3>
+                
+                <h5>論文の構造</h5>
+                <ol>
+                    <li><strong>Abstract（要旨）</strong>：研究の概要を把握</li>
+                    <li><strong>Introduction（序論）</strong>：研究の背景・目的</li>
+                    <li><strong>Related Work（関連研究）</strong>：先行研究のレビュー</li>
+                    <li><strong>Method（方法）</strong>：研究デザイン、データ、分析手法</li>
+                    <li><strong>Results（結果）</strong>：分析結果</li>
+                    <li><strong>Discussion（考察）</strong>：結果の解釈、限界</li>
+                    <li><strong>Conclusion（結論）</strong>：まとめと今後の課題</li>
+                </ol>
+
+                <h5>批判的に論文を読むポイント</h5>
+                <ul>
+                    <li><strong>サンプルサイズ</strong>：十分な数のデータか</li>
+                    <li><strong>統計的有意性と効果量</strong>：p値だけでなく効果量も確認</li>
+                    <li><strong>外的妥当性</strong>：実際の教室に適用できるか</li>
+                    <li><strong>限界と課題</strong>：著者が認識している限界を理解</li>
+                </ul>
+            </section>
+
+            <section class="content-section">
+                <h2>📚 第7部：参考資料と次のステップ（5分）</h2>
+                
+                <h3>7-1. 推奨書籍</h3>
+                
+                <h4>統計・機械学習</h4>
+                <ul>
+                    <li>「Pythonではじめる機械学習」Andreas C. Müller, Sarah Guido（著）、オライリー・ジャパン</li>
+                    <li>「機械学習入門」小高知宏（著）、オーム社</li>
+                    <li>「統計学が最強の学問である［データ分析編］」西内啓（著）、ダイヤモンド社</li>
+                    <li>「The Book of Why：因果関係を学ぶ」Judea Pearl（著）、文藝春秋</li>
+                </ul>
+
+                <h4>教育データサイエンス</h4>
+                <ul>
+                    <li>「Handbook of Learning Analytics」Charles Lang et al.（編）、SoLAR</li>
+                    <li>「Educational Data Mining: Applications and Trends」Cristóbal Romero et al.（編）、Springer</li>
+                    <li>「可視化された学習（Visible Learning）」John Hattie（著）</li>
+                </ul>
+
+                <h3>7-2. オンラインリソース</h3>
+                
+                <ul>
+                    <li><strong>Kaggle</strong>: 機械学習コンペティションとチュートリアル <a href="https://www.kaggle.com/" target="_blank" rel="noopener">https://www.kaggle.com/</a></li>
+                    <li><strong>Coursera</strong>: Machine Learning（Andrew Ng）、Data Science Specialization</li>
+                    <li><strong>scikit-learn公式ドキュメント</strong>: <a href="https://scikit-learn.org/" target="_blank" rel="noopener">https://scikit-learn.org/</a></li>
+                    <li><strong>LAK Conference論文集</strong>: <a href="https://www.solaresearch.org/" target="_blank" rel="noopener">https://www.solaresearch.org/</a></li>
+                </ul>
+
+                <h3>7-3. ICT支援員としての学習計画</h3>
+                
+                <div class="info-box">
+                    <h5>レベル1：基礎固め（1〜3か月）</h5>
+                    <ul>
+                        <li>統計検定2級レベルの知識を習得</li>
+                        <li>scikit-learnで基本的な機械学習モデルを構築</li>
+                        <li>因果推論の基礎概念を理解</li>
+                    </ul>
+                </div>
+
+                <div class="info-box">
+                    <h5>レベル2：実践応用（3〜6か月）</h5>
+                    <ul>
+                        <li>学校の実データで機械学習モデルを構築</li>
+                        <li>教育施策の効果測定を実施（DIDまたはPSM）</li>
+                        <li>教育委員会・管理職への提言レポートを作成</li>
+                        <li>KPI設定とダッシュボード構築を実践</li>
+                    </ul>
+                </div>
+
+                <div class="info-box">
+                    <h5>レベル3：専門家レベル（6か月〜）</h5>
+                    <ul>
+                        <li>深層学習（ディープラーニング）を学習（第67回へ）</li>
+                        <li>学術論文を読み、最新手法を実装</li>
+                        <li>学会（LAK、EDM）で研究発表</li>
+                        <li>データサイエンティストとして教育委員会をリード</li>
+                    </ul>
+                </div>
+
+                <h3>7-4. 関連講座</h3>
+                <ul>
+                    <li><strong>第63回「基礎数学・統計学の活用」</strong>：統計の基礎（前提）</li>
+                    <li><strong>第64回「データ分析とコンピュータ論」</strong>：Python実践（前提）</li>
+                    <li><strong>第65回「教育データサイエンス」</strong>：EDM・LA・AA（前提）</li>
+                    <li><strong>第67回「知識処理と人工知能論」</strong>：AI・深層学習（次のステップ）</li>
+                    <li><strong>第36回「政策理解・研究実践・未来への展望」</strong>：教育政策の理解</li>
+                </ul>
+
+                <h3>7-5. まとめ</h3>
+                
+                <p>第66回では、<strong>高度な統計分析と機械学習の基礎</strong>を学びました。</p>
+
+                <p><strong>本講座のポイント：</strong></p>
+                <ul>
+                    <li><strong>多変量解析</strong>：重回帰分析、因子分析、ANOVA で複雑な関係を分析</li>
+                    <li><strong>機械学習</strong>：決定木、ランダムフォレスト、クラスタリング で予測モデル構築</li>
+                    <li><strong>因果推論</strong>：RCT、DID、PSM で教育施策の効果を厳密に測定</li>
+                    <li><strong>EBPM</strong>：メタ分析を活用したエビデンスに基づく政策立案</li>
+                    <li><strong>データ駆動型経営</strong>：KPI設定、PDCAサイクル、リアルタイムモニタリング</li>
+                </ul>
+
+                <p>
+                    ICT支援員として、<strong>高度なデータ分析スキル</strong>は教育改善の強力な武器です。
+                    本講座で学んだ手法を実践し、<strong>データに基づく教育改善</strong>を推進していきましょう。
+                    第67回では、さらに高度なAI・深層学習を学びます。
+                </p>
+            </section>
+
+            <div class="navigation-buttons">
+                <a href="session65.html" class="btn btn-secondary">← 第65回：教育データサイエンス</a>
+                <a href="../supplement.html" class="btn btn-primary">補完カリキュラムトップへ</a>
+                <a href="session67.html" class="btn btn-secondary">第67回：知識処理と人工知能論 →</a>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 ICT支援員教育講座. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="../js/main.js"></script>
+</body>
+</html>

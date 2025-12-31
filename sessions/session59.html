@@ -1,0 +1,1170 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>第59回：教育テックのためのICT基礎 - ICT支援員教育講座</title>
+    <meta name="description" content="EdTech開発の基礎知識を習得し、Webアプリケーションの仕組みを理解します。ノーコード・ローコードツールの活用から簡単な教育ツール開発まで実践的に学びます。">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/session.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <a href="../index.html" class="logo">ICT支援員教育講座</a>
+            <nav class="navbar">
+                <ul class="nav-menu">
+                    <li><a href="../index.html">ホーム</a></li>
+                    <li><a href="../beginner.html">入門編</a></li>
+                    <li><a href="../intermediate.html">基礎編</a></li>
+                    <li><a href="../intermediate2.html">中級編</a></li>
+                    <li><a href="../advanced.html">発展編</a></li>
+                    <li><a href="../certification.html">試験対策</a></li>
+                    <li><a href="../supplement.html" class="active">補完カリキュラム</a></li>
+                    <li><a href="../resources.html">参考資料</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="session-content">
+        <div class="container">
+            <div class="session-header-content">
+                <span class="session-label supplement">補完カリキュラム</span>
+                <h1>第59回：教育テックのためのICT基礎</h1>
+                <p class="session-meta">プログラミング・開発スキル編（全6回）の第3回 | 学習時間目安：180分（講義90分、実践演習90分） | 難易度：★★★☆☆</p>
+            </div>
+
+            <div class="info-box">
+                <h3>📋 講座概要</h3>
+                <ul>
+                    <li><strong>対象者：</strong>ICT支援員・教育情報化コーディネータ、教育現場でテクノロジー活用を推進する教員、EdTech開発に興味がある教育関係者、デジタル教材を自作したい実践者</li>
+                    <li><strong>受講前提：</strong>基本的なコンピュータ操作、インターネットの基礎知識、第7回「基本的なソフトウェアとクラウドサービス」修了レベル</li>
+                    <li><strong>学習時間：</strong>180分（講義90分、実践演習90分）</li>
+                    <li><strong>難易度：</strong>★★★☆☆（中級）</li>
+                    <li><strong>最終更新：</strong>2025年12月</li>
+                </ul>
+            </div>
+
+            <section class="objectives">
+                <h2>🎯 学習目標</h2>
+                
+                <h3>1. 知識・理解レベル</h3>
+                <ul>
+                    <li><strong>EdTech開発の基礎知識を習得する</strong> - 教育テクノロジーの開発に必要な技術要素を理解し、教育現場のニーズとテクノロジーを結びつける視点を持つ</li>
+                    <li><strong>Webアプリケーションの仕組みを理解する</strong> - インターネット上でアプリが動作する基本原理を説明でき、フロントエンドとバックエンドの役割分担を理解する</li>
+                </ul>
+
+                <h3>2. 技能レベル</h3>
+                <ul>
+                    <li><strong>簡単な教育ツールを開発できる</strong> - ノーコード/ローコードツールを活用して教育アプリを作成でき、HTML/CSS/JavaScriptの基礎を用いてインタラクティブな教材を制作できる</li>
+                    <li><strong>既存の教育ツールを適切に評価・選定できる</strong> - 技術的な観点から教育ツールの品質や安全性を判断でき、学校のニーズに合ったツール選定ができる</li>
+                </ul>
+            </section>
+
+            <section class="content-section">
+                <h2>📚 学習内容</h2>
+
+                <h3>第1部：Webアプリケーションの基礎（30分）</h3>
+
+                <h4>1.1 クライアント・サーバーモデル</h4>
+                
+                <div class="definition-box">
+                    <h5>基本概念</h5>
+                    <p>教育現場で使用する多くのアプリケーション（Google Classroom、Teams、学習支援ソフト等）は、<strong>クライアント・サーバーモデル</strong>で動作しています。</p>
+                    
+                    <h5>クライアント・サーバーモデルの構造</h5>
+                    <pre style="background: #f8f9fa; padding: 1rem; border-radius: 0.5rem; overflow-x: auto; color: #333;">
+【クライアント】          【サーバー】
+ (あなたの端末)           (データセンター)
+      │                        │
+      │  ①リクエスト送信       │
+      │ ──────────────────→    │
+      │   "課題一覧を表示"      │
+      │                        │
+      │  ②レスポンス返信       │
+      │ ←──────────────────    │
+      │   "データを送信"        │
+                    </pre>
+                </div>
+
+                <div class="example-box">
+                    <h5>教育現場での具体例</h5>
+                    <ul>
+                        <li><strong>Google Classroom</strong>
+                            <ul>
+                                <li>クライアント：教員・生徒のブラウザ/アプリ</li>
+                                <li>サーバー：Googleのデータセンター</li>
+                                <li>やりとり：課題の配信、提出物の管理、成績の記録</li>
+                            </ul>
+                        </li>
+                        <li><strong>学習支援アプリ（Qubena、スタディサプリ等）</strong>
+                            <ul>
+                                <li>クライアント：生徒のタブレット/PC</li>
+                                <li>サーバー：学習データを保管・分析</li>
+                                <li>やりとり：問題の配信、解答の送信、進捗の記録</li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+
+                <h4>1.2 HTTP/HTTPSプロトコル</h4>
+                
+                <div class="definition-box">
+                    <h5>HTTP（HyperText Transfer Protocol）</h5>
+                    <p>Webの世界で情報をやりとりするための「ルール」です。</p>
+                    
+                    <h5>主なHTTPメソッド</h5>
+                    <ul>
+                        <li><strong>GET</strong> - データを「取得」する（例：課題一覧を表示）</li>
+                        <li><strong>POST</strong> - データを「送信」する（例：課題を提出）</li>
+                        <li><strong>PUT</strong> - データを「更新」する（例：解答を修正）</li>
+                        <li><strong>DELETE</strong> - データを「削除」する（例：下書きを削除）</li>
+                    </ul>
+
+                    <h5>HTTPS（HTTP Secure）</h5>
+                    <p>HTTPに<strong>暗号化</strong>を追加したもの。教育現場では個人情報保護のため、<strong>HTTPSを使うことが必須</strong>です。</p>
+                    <ul>
+                        <li>🔒 URLが「https://」で始まる</li>
+                        <li>🔒 ブラウザのアドレスバーに鍵マーク</li>
+                        <li>🔒 通信内容が暗号化されている</li>
+                    </ul>
+                </div>
+
+                <h4>1.3 HTML、CSS、JavaScriptの役割</h4>
+                
+                <div class="definition-box">
+                    <h5>Webページを作る3つの技術</h5>
+                    <table style="width: 100%; border-collapse: collapse; margin-top: 1rem;">
+                        <thead>
+                            <tr style="background: #f0f9ff; color: #333;">
+                                <th style="border: 1px solid #ddd; padding: 0.75rem;">技術</th>
+                                <th style="border: 1px solid #ddd; padding: 0.75rem;">役割</th>
+                                <th style="border: 1px solid #ddd; padding: 0.75rem;">例え</th>
+                                <th style="border: 1px solid #ddd; padding: 0.75rem;">教育現場での例</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td style="border: 1px solid #ddd; padding: 0.75rem;"><strong>HTML</strong></td>
+                                <td style="border: 1px solid #ddd; padding: 0.75rem;">構造・骨組み</td>
+                                <td style="border: 1px solid #ddd; padding: 0.75rem;">家の柱や壁</td>
+                                <td style="border: 1px solid #ddd; padding: 0.75rem;">見出し、段落、リスト、画像、リンク</td>
+                            </tr>
+                            <tr>
+                                <td style="border: 1px solid #ddd; padding: 0.75rem;"><strong>CSS</strong></td>
+                                <td style="border: 1px solid #ddd; padding: 0.75rem;">見た目・装飾</td>
+                                <td style="border: 1px solid #ddd; padding: 0.75rem;">壁紙や家具</td>
+                                <td style="border: 1px solid #ddd; padding: 0.75rem;">色、フォント、レイアウト、アニメーション</td>
+                            </tr>
+                            <tr>
+                                <td style="border: 1px solid #ddd; padding: 0.75rem;"><strong>JavaScript</strong></td>
+                                <td style="border: 1px solid #ddd; padding: 0.75rem;">動き・機能</td>
+                                <td style="border: 1px solid #ddd; padding: 0.75rem;">電気やエアコン</td>
+                                <td style="border: 1px solid #ddd; padding: 0.75rem;">クイズの採点、アニメーション、データ保存</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="example-box">
+                    <h5>シンプルなクイズアプリの例</h5>
+                    <pre style="background: #f8f9fa; padding: 1rem; border-radius: 0.5rem; overflow-x: auto; font-size: 0.9rem; color: #333;">
+&lt;!DOCTYPE html&gt;
+&lt;html lang="ja"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;title&gt;シンプルクイズ&lt;/title&gt;
+    &lt;style&gt;
+        /* CSS: 見た目の装飾 */
+        body {
+            font-family: sans-serif;
+            text-align: center;
+            padding: 2rem;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 1rem;
+            margin: 10px;
+        }
+    &lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;!-- HTML: 構造 --&gt;
+    &lt;h1&gt;算数クイズ&lt;/h1&gt;
+    &lt;p&gt;3 + 5 = ?&lt;/p&gt;
+    &lt;button onclick="checkAnswer(7)"&gt;7&lt;/button&gt;
+    &lt;button onclick="checkAnswer(8)"&gt;8&lt;/button&gt;
+    &lt;p id="result"&gt;&lt;/p&gt;
+
+    &lt;script&gt;
+        // JavaScript: 動き・機能
+        function checkAnswer(answer) {
+            const result = document.getElementById('result');
+            if (answer === 8) {
+                result.textContent = '正解です！';
+                result.style.color = 'green';
+            } else {
+                result.textContent = '不正解です。もう一度挑戦！';
+                result.style.color = 'red';
+            }
+        }
+    &lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+                    </pre>
+                </div>
+
+                <h3>第2部：フロントエンド開発（40分）</h3>
+
+                <h4>2.1 HTML5の基本タグ</h4>
+                
+                <div class="definition-box">
+                    <h5>教育コンテンツでよく使うHTMLタグ</h5>
+                    <table style="width: 100%; border-collapse: collapse; margin-top: 1rem;">
+                        <thead>
+                            <tr style="background: #f0f9ff; color: #333;">
+                                <th style="border: 1px solid #ddd; padding: 0.75rem;">タグ</th>
+                                <th style="border: 1px solid #ddd; padding: 0.75rem;">用途</th>
+                                <th style="border: 1px solid #ddd; padding: 0.75rem;">例</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td style="border: 1px solid #ddd; padding: 0.75rem;"><code>&lt;h1&gt;〜&lt;h6&gt;</code></td>
+                                <td style="border: 1px solid #ddd; padding: 0.75rem;">見出し</td>
+                                <td style="border: 1px solid #ddd; padding: 0.75rem;"><code>&lt;h1&gt;第1章：植物の成長&lt;/h1&gt;</code></td>
+                            </tr>
+                            <tr>
+                                <td style="border: 1px solid #ddd; padding: 0.75rem;"><code>&lt;p&gt;</code></td>
+                                <td style="border: 1px solid #ddd; padding: 0.75rem;">段落</td>
+                                <td style="border: 1px solid #ddd; padding: 0.75rem;"><code>&lt;p&gt;植物は光合成で成長します。&lt;/p&gt;</code></td>
+                            </tr>
+                            <tr>
+                                <td style="border: 1px solid #ddd; padding: 0.75rem;"><code>&lt;ul&gt;, &lt;ol&gt;, &lt;li&gt;</code></td>
+                                <td style="border: 1px solid #ddd; padding: 0.75rem;">リスト</td>
+                                <td style="border: 1px solid #ddd; padding: 0.75rem;"><code>&lt;ul&gt;&lt;li&gt;水&lt;/li&gt;&lt;li&gt;光&lt;/li&gt;&lt;/ul&gt;</code></td>
+                            </tr>
+                            <tr>
+                                <td style="border: 1px solid #ddd; padding: 0.75rem;"><code>&lt;img&gt;</code></td>
+                                <td style="border: 1px solid #ddd; padding: 0.75rem;">画像</td>
+                                <td style="border: 1px solid #ddd; padding: 0.75rem;"><code>&lt;img src="plant.jpg" alt="植物の写真"&gt;</code></td>
+                            </tr>
+                            <tr>
+                                <td style="border: 1px solid #ddd; padding: 0.75rem;"><code>&lt;a&gt;</code></td>
+                                <td style="border: 1px solid #ddd; padding: 0.75rem;">リンク</td>
+                                <td style="border: 1px solid #ddd; padding: 0.75rem;"><code>&lt;a href="page2.html"&gt;次のページ&lt;/a&gt;</code></td>
+                            </tr>
+                            <tr>
+                                <td style="border: 1px solid #ddd; padding: 0.75rem;"><code>&lt;video&gt;</code></td>
+                                <td style="border: 1px solid #ddd; padding: 0.75rem;">動画</td>
+                                <td style="border: 1px solid #ddd; padding: 0.75rem;"><code>&lt;video src="lesson.mp4" controls&gt;&lt;/video&gt;</code></td>
+                            </tr>
+                            <tr>
+                                <td style="border: 1px solid #ddd; padding: 0.75rem;"><code>&lt;audio&gt;</code></td>
+                                <td style="border: 1px solid #ddd; padding: 0.75rem;">音声</td>
+                                <td style="border: 1px solid #ddd; padding: 0.75rem;"><code>&lt;audio src="pronunciation.mp3" controls&gt;&lt;/audio&gt;</code></td>
+                            </tr>
+                            <tr>
+                                <td style="border: 1px solid #ddd; padding: 0.75rem;"><code>&lt;input&gt;</code></td>
+                                <td style="border: 1px solid #ddd; padding: 0.75rem;">入力欄</td>
+                                <td style="border: 1px solid #ddd; padding: 0.75rem;"><code>&lt;input type="text" placeholder="答えを入力"&gt;</code></td>
+                            </tr>
+                            <tr>
+                                <td style="border: 1px solid #ddd; padding: 0.75rem;"><code>&lt;button&gt;</code></td>
+                                <td style="border: 1px solid #ddd; padding: 0.75rem;">ボタン</td>
+                                <td style="border: 1px solid #ddd; padding: 0.75rem;"><code>&lt;button&gt;送信&lt;/button&gt;</code></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <h4>2.2 CSSによるスタイリング</h4>
+                
+                <div class="definition-box">
+                    <h5>CSSの基本構文</h5>
+                    <pre style="background: #f8f9fa; padding: 1rem; border-radius: 0.5rem; overflow-x: auto; color: #333;">
+セレクタ {
+    プロパティ: 値;
+}
+
+例：
+h1 {
+    color: blue;           /* 文字色を青に */
+    font-size: 24px;       /* 文字サイズ */
+    text-align: center;    /* 中央揃え */
+}
+                    </pre>
+                </div>
+
+                <div class="example-box">
+                    <h5>教育現場で役立つCSSテクニック</h5>
+                    <pre style="background: #f8f9fa; padding: 1rem; border-radius: 0.5rem; overflow-x: auto; font-size: 0.9rem; color: #333;">
+/* 1. 見やすいボタンのデザイン */
+.quiz-button {
+    background-color: #4CAF50;  /* 緑色 */
+    color: white;
+    padding: 15px 30px;
+    border: none;
+    border-radius: 8px;         /* 角を丸く */
+    font-size: 16px;
+    cursor: pointer;            /* カーソルをポインターに */
+}
+
+.quiz-button:hover {
+    background-color: #45a049;  /* マウスを乗せたら少し濃く */
+}
+
+/* 2. 正解・不正解の表示 */
+.correct {
+    background-color: #d4edda;  /* 薄緑 */
+    color: #155724;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.incorrect {
+    background-color: #f8d7da;  /* 薄赤 */
+    color: #721c24;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+/* 3. カードレイアウト */
+.lesson-card {
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    padding: 20px;
+    margin: 10px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);  /* 影をつける */
+}
+                    </pre>
+                </div>
+
+                <h4>2.3 JavaScriptの基礎</h4>
+                
+                <div class="definition-box">
+                    <h5>JavaScriptでできること</h5>
+                    <ul>
+                        <li>ボタンをクリックしたときの処理</li>
+                        <li>ユーザーの入力を受け取る</li>
+                        <li>計算や判定を行う</li>
+                        <li>ページの内容を動的に変更する</li>
+                        <li>データを保存・読み込む</li>
+                    </ul>
+                </div>
+
+                <div class="example-box">
+                    <h5>教育現場で役立つJavaScriptの例</h5>
+                    <pre style="background: #f8f9fa; padding: 1rem; border-radius: 0.5rem; overflow-x: auto; font-size: 0.9rem; color: #333;">
+// 1. タイマー機能（テストの制限時間）
+let timeLeft = 60;  // 60秒
+const timer = setInterval(() => {
+    timeLeft--;
+    document.getElementById('timer').textContent = `残り時間: ${timeLeft}秒`;
+    if (timeLeft === 0) {
+        clearInterval(timer);
+        alert('時間切れです！');
+    }
+}, 1000);  // 1秒ごとに実行
+
+// 2. 得点計算
+function calculateScore(answers) {
+    let score = 0;
+    const correctAnswers = ['A', 'B', 'C', 'A'];
+    
+    for (let i = 0; i < answers.length; i++) {
+        if (answers[i] === correctAnswers[i]) {
+            score++;
+        }
+    }
+    
+    return score;
+}
+
+// 3. ランダム問題出題
+const questions = [
+    '3 + 5 = ?',
+    '10 - 4 = ?',
+    '2 × 6 = ?'
+];
+
+function getRandomQuestion() {
+    const randomIndex = Math.floor(Math.random() * questions.length);
+    return questions[randomIndex];
+}
+
+// 4. ローカルストレージでデータ保存
+function saveProgress(score) {
+    localStorage.setItem('quizScore', score);
+}
+
+function loadProgress() {
+    return localStorage.getItem('quizScore') || 0;
+}
+                    </pre>
+                </div>
+
+                <h4>2.4 インタラクティブな要素の実装</h4>
+                
+                <div class="example-box">
+                    <h5>実践例：フラッシュカードアプリ</h5>
+                    <pre style="background: #f8f9fa; padding: 1rem; border-radius: 0.5rem; overflow-x: auto; font-size: 0.9rem; color: #333;">
+&lt;!DOCTYPE html&gt;
+&lt;html lang="ja"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;title&gt;英単語フラッシュカード&lt;/title&gt;
+    &lt;style&gt;
+        .flashcard {
+            width: 300px;
+            height: 200px;
+            background: #f0f0f0;
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            cursor: pointer;
+            margin: 20px auto;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+    &lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;div class="flashcard" onclick="flipCard()"&gt;
+        &lt;span id="cardText"&gt;Apple&lt;/span&gt;
+    &lt;/div&gt;
+    &lt;button onclick="nextCard()"&gt;次のカード&lt;/button&gt;
+
+    &lt;script&gt;
+        const cards = [
+            { front: 'Apple', back: 'りんご' },
+            { front: 'Book', back: '本' },
+            { front: 'Cat', back: '猫' }
+        ];
+        
+        let currentCard = 0;
+        let showingFront = true;
+        
+        function flipCard() {
+            const cardText = document.getElementById('cardText');
+            showingFront = !showingFront;
+            cardText.textContent = showingFront 
+                ? cards[currentCard].front 
+                : cards[currentCard].back;
+        }
+        
+        function nextCard() {
+            currentCard = (currentCard + 1) % cards.length;
+            showingFront = true;
+            document.getElementById('cardText').textContent = cards[currentCard].front;
+        }
+    &lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+                    </pre>
+                </div>
+
+                <h3>第3部：バックエンド開発入門（30分）</h3>
+
+                <h4>3.1 Pythonによるサーバー（Flask/Django）</h4>
+                
+                <div class="definition-box">
+                    <h5>バックエンドとは</h5>
+                    <p>ユーザーから見えない「裏側」の処理を行う部分です。</p>
+                    <ul>
+                        <li>データベースへのアクセス</li>
+                        <li>ユーザー認証（ログイン処理）</li>
+                        <li>データの計算や加工</li>
+                        <li>他のサービスとの連携</li>
+                    </ul>
+                </div>
+
+                <div class="example-box">
+                    <h5>Flaskを使った簡単なWebアプリ</h5>
+                    <pre style="background: #f8f9fa; padding: 1rem; border-radius: 0.5rem; overflow-x: auto; font-size: 0.9rem; color: #333;">
+# app.py
+from flask import Flask, render_template, request
+
+app = Flask(__name__)
+
+# トップページ
+@app.route('/')
+def index():
+    return render_template('index.html')
+
+# クイズの採点
+@app.route('/check_answer', methods=['POST'])
+def check_answer():
+    user_answer = request.form.get('answer')
+    correct_answer = '8'
+    
+    if user_answer == correct_answer:
+        result = '正解です！'
+    else:
+        result = '不正解です。'
+    
+    return render_template('result.html', result=result)
+
+if __name__ == '__main__':
+    app.run(debug=True)
+                    </pre>
+                </div>
+
+                <h4>3.2 データベース連携</h4>
+                
+                <div class="definition-box">
+                    <h5>データベースの役割</h5>
+                    <p>大量のデータを整理して保存・管理する仕組みです。</p>
+                    
+                    <h5>教育現場での利用例</h5>
+                    <ul>
+                        <li><strong>生徒情報の管理</strong> - 名前、学年、クラス、出席番号</li>
+                        <li><strong>成績データの保存</strong> - テスト結果、課題の提出状況</li>
+                        <li><strong>学習履歴の記録</strong> - ログイン時刻、学習時間、進捗状況</li>
+                    </ul>
+                </div>
+
+                <div class="example-box">
+                    <h5>SQLiteを使った簡単なデータベース操作</h5>
+                    <pre style="background: #f8f9fa; padding: 1rem; border-radius: 0.5rem; overflow-x: auto; font-size: 0.9rem; color: #333;">
+import sqlite3
+
+# データベースに接続
+conn = sqlite3.connect('students.db')
+cursor = conn.cursor()
+
+# テーブル作成
+cursor.execute('''
+CREATE TABLE IF NOT EXISTS students (
+    id INTEGER PRIMARY KEY,
+    name TEXT NOT NULL,
+    grade INTEGER,
+    score INTEGER
+)
+''')
+
+# データ挿入
+cursor.execute("INSERT INTO students (name, grade, score) VALUES (?, ?, ?)",
+               ('田中太郎', 3, 85))
+
+# データ取得
+cursor.execute("SELECT * FROM students WHERE grade = 3")
+students = cursor.fetchall()
+
+for student in students:
+    print(f"名前: {student[1]}, 成績: {student[3]}")
+
+# 変更を保存して接続を閉じる
+conn.commit()
+conn.close()
+                    </pre>
+                </div>
+
+                <h4>3.3 ユーザー認証</h4>
+                
+                <div class="definition-box">
+                    <h5>ユーザー認証の重要性</h5>
+                    <p>教育現場では、生徒の個人情報や成績データを扱うため、適切な認証が必須です。</p>
+                    
+                    <h5>基本的な認証の流れ</h5>
+                    <ol>
+                        <li><strong>登録</strong> - ユーザーIDとパスワードを登録</li>
+                        <li><strong>ログイン</strong> - 登録情報と照合</li>
+                        <li><strong>セッション管理</strong> - ログイン状態を保持</li>
+                        <li><strong>権限管理</strong> - 教員と生徒で見られる情報を分ける</li>
+                    </ol>
+                </div>
+
+                <div class="example-box">
+                    <h5>Flaskでの簡単なログイン機能</h5>
+                    <pre style="background: #f8f9fa; padding: 1rem; border-radius: 0.5rem; overflow-x: auto; font-size: 0.9rem; color: #333;">
+from flask import Flask, session, redirect, url_for, request
+from werkzeug.security import generate_password_hash, check_password_hash
+
+app = Flask(__name__)
+app.secret_key = 'your-secret-key-here'
+
+# 仮のユーザーデータベース
+users = {
+    'teacher1': generate_password_hash('password123'),
+    'student1': generate_password_hash('student456')
+}
+
+@app.route('/login', methods=['GET', 'POST'])
+def login():
+    if request.method == 'POST':
+        username = request.form['username']
+        password = request.form['password']
+        
+        if username in users and check_password_hash(users[username], password):
+            session['username'] = username
+            return redirect(url_for('dashboard'))
+        else:
+            return 'ログイン失敗'
+    
+    return '''
+        &lt;form method="post"&gt;
+            &lt;input name="username" placeholder="ユーザー名"&gt;
+            &lt;input name="password" type="password" placeholder="パスワード"&gt;
+            &lt;button type="submit"&gt;ログイン&lt;/button&gt;
+        &lt;/form&gt;
+    '''
+
+@app.route('/dashboard')
+def dashboard():
+    if 'username' in session:
+        return f'ようこそ、{session["username"]}さん！'
+    return redirect(url_for('login'))
+
+@app.route('/logout')
+def logout():
+    session.pop('username', None)
+    return redirect(url_for('login'))
+                    </pre>
+                </div>
+
+                <h3>第4部：ノーコード・ローコードツール（40分）</h3>
+
+                <h4>4.1 Google Apps Script（GAS）</h4>
+                
+                <div class="definition-box">
+                    <h5>Google Apps Scriptとは</h5>
+                    <p>Googleのサービス（Spreadsheet、Forms、Gmail、Calendar等）を自動化できるプログラミング環境です。</p>
+                    
+                    <h5>教育現場での活用メリット</h5>
+                    <ul>
+                        <li>✅ Googleアカウントがあれば無料で使える</li>
+                        <li>✅ ブラウザだけで開発できる</li>
+                        <li>✅ Google Classroomとの連携が容易</li>
+                        <li>✅ サーバーを用意する必要がない</li>
+                    </ul>
+                </div>
+
+                <div class="example-box">
+                    <h5>実践例1：出席確認フォームの自動処理</h5>
+                    <pre style="background: #f8f9fa; padding: 1rem; border-radius: 0.5rem; overflow-x: auto; font-size: 0.9rem; color: #333;">
+function onFormSubmit(e) {
+  // フォームの回答を取得
+  const responses = e.values;
+  const timestamp = responses[0];  // タイムスタンプ
+  const name = responses[1];        // 生徒名
+  const status = responses[2];      // 出席/欠席/遅刻
+  
+  // スプレッドシートに記録
+  const sheet = SpreadsheetApp.getActiveSpreadsheet().getSheetByName('出席記録');
+  sheet.appendRow([timestamp, name, status]);
+  
+  // 遅刻・欠席の場合、教員にメール通知
+  if (status !== '出席') {
+    MailApp.sendEmail({
+      to: 'teacher@school.jp',
+      subject: `【出席確認】${name}さんが${status}`,
+      body: `${name}さんが${timestamp}に${status}を報告しました。`
+    });
+  }
+}
+                    </pre>
+                    
+                    <h5>実践例2：課題の自動集計とグラフ作成</h5>
+                    <pre style="background: #f8f9fa; padding: 1rem; border-radius: 0.5rem; overflow-x: auto; font-size: 0.9rem; color: #333;">
+function createScoreSummary() {
+  const sheet = SpreadsheetApp.getActiveSpreadsheet().getSheetByName('成績一覧');
+  const data = sheet.getDataRange().getValues();
+  
+  // 1行目（ヘッダー）を除く
+  const scores = data.slice(1).map(row => row[2]);  // 3列目が点数
+  
+  // 統計を計算
+  const average = scores.reduce((a, b) => a + b, 0) / scores.length;
+  const maxScore = Math.max(...scores);
+  const minScore = Math.min(...scores);
+  
+  // サマリーシートに書き込み
+  const summarySheet = SpreadsheetApp.getActiveSpreadsheet().getSheetByName('サマリー');
+  summarySheet.getRange('A1').setValue('平均点');
+  summarySheet.getRange('B1').setValue(average.toFixed(1));
+  summarySheet.getRange('A2').setValue('最高点');
+  summarySheet.getRange('B2').setValue(maxScore);
+  summarySheet.getRange('A3').setValue('最低点');
+  summarySheet.getRange('B3').setValue(minScore);
+  
+  Logger.log(`平均点: ${average.toFixed(1)}`);
+}
+                    </pre>
+                </div>
+
+                <h4>4.2 Glide（ノーコードアプリ開発）</h4>
+                
+                <div class="definition-box">
+                    <h5>Glideとは</h5>
+                    <p>Googleスプレッドシートを元に、プログラミング不要でスマホアプリを作成できるツールです。</p>
+                    
+                    <h5>教育現場での活用例</h5>
+                    <ul>
+                        <li><strong>学習記録アプリ</strong> - 生徒が自分の学習時間や進捗を記録</li>
+                        <li><strong>クラス連絡帳</strong> - 保護者と学校の連絡ツール</li>
+                        <li><strong>資料配布アプリ</strong> - プリントやリンクをまとめて配信</li>
+                        <li><strong>課外活動管理</strong> - 部活動の連絡や予定管理</li>
+                    </ul>
+                </div>
+
+                <div class="example-box">
+                    <h5>Glideでアプリを作る手順</h5>
+                    <ol>
+                        <li><strong>スプレッドシートを準備</strong>
+                            <ul>
+                                <li>Googleスプレッドシートでデータを整理</li>
+                                <li>列の1行目に項目名（例：タイトル、日付、カテゴリ）</li>
+                            </ul>
+                        </li>
+                        <li><strong>Glideに接続</strong>
+                            <ul>
+                                <li>Glide（https://www.glideapps.com/）にアクセス</li>
+                                <li>「New App」から「From Google Sheet」を選択</li>
+                                <li>作成したスプレッドシートを指定</li>
+                            </ul>
+                        </li>
+                        <li><strong>デザインをカスタマイズ</strong>
+                            <ul>
+                                <li>画面レイアウトを選択</li>
+                                <li>色やアイコンを設定</li>
+                                <li>表示する項目を調整</li>
+                            </ul>
+                        </li>
+                        <li><strong>公開</strong>
+                            <ul>
+                                <li>URLを生徒や保護者に共有</li>
+                                <li>有料プランでアプリストア公開も可能</li>
+                            </ul>
+                        </li>
+                    </ol>
+                </div>
+
+                <h4>4.3 Microsoft Power Apps</h4>
+                
+                <div class="definition-box">
+                    <h5>Power Appsとは</h5>
+                    <p>Microsoftが提供するローコード開発プラットフォーム。学校がMicrosoft 365を導入している場合に特に便利です。</p>
+                    
+                    <h5>特徴</h5>
+                    <ul>
+                        <li>Microsoft 365（Teams、SharePoint、OneDrive等）と連携</li>
+                        <li>デスクトップアプリとモバイルアプリの両方が作成可能</li>
+                        <li>ドラッグ&ドロップで画面を設計</li>
+                        <li>簡単な計算式（Excel風）でロジックを実装</li>
+                    </ul>
+                </div>
+
+                <div class="example-box">
+                    <h5>教育現場での活用例</h5>
+                    <ul>
+                        <li><strong>物品管理アプリ</strong>
+                            <ul>
+                                <li>教材や備品の在庫管理</li>
+                                <li>貸出・返却の記録</li>
+                                <li>破損や紛失の報告</li>
+                            </ul>
+                        </li>
+                        <li><strong>イベント参加申込</strong>
+                            <ul>
+                                <li>保護者会や面談の日程調整</li>
+                                <li>校外学習の参加確認</li>
+                                <li>アレルギー情報の収集</li>
+                            </ul>
+                        </li>
+                        <li><strong>日報・報告書作成</strong>
+                            <ul>
+                                <li>教員の日報を電子化</li>
+                                <li>写真付きレポートの提出</li>
+                                <li>管理職への自動通知</li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+
+                <h3>第5部：公開とデプロイ（20分）</h3>
+
+                <h4>5.1 GitHub Pagesの利用</h4>
+                
+                <div class="definition-box">
+                    <h5>GitHub Pagesとは</h5>
+                    <p>GitHubで管理しているWebサイトを無料で公開できるサービスです。</p>
+                    
+                    <h5>利用条件</h5>
+                    <ul>
+                        <li>✅ 静的なWebサイト（HTML/CSS/JavaScript）が対象</li>
+                        <li>✅ GitHubアカウントが必要</li>
+                        <li>✅ 無料で使える</li>
+                        <li>⚠️ 公開される情報は誰でも閲覧可能（個人情報は掲載しない）</li>
+                    </ul>
+                </div>
+
+                <div class="example-box">
+                    <h5>GitHub Pagesで教材サイトを公開する手順</h5>
+                    <ol>
+                        <li><strong>GitHubリポジトリを作成</strong>
+                            <ul>
+                                <li>GitHub（https://github.com/）にログイン</li>
+                                <li>「New repository」をクリック</li>
+                                <li>リポジトリ名を入力（例：math-quiz）</li>
+                                <li>「Public」を選択</li>
+                            </ul>
+                        </li>
+                        <li><strong>ファイルをアップロード</strong>
+                            <ul>
+                                <li>「Add file」→「Upload files」</li>
+                                <li>HTML、CSS、JavaScriptファイルをドラッグ&ドロップ</li>
+                                <li>「Commit changes」をクリック</li>
+                            </ul>
+                        </li>
+                        <li><strong>GitHub Pagesを有効化</strong>
+                            <ul>
+                                <li>リポジトリの「Settings」タブを開く</li>
+                                <li>左メニューから「Pages」を選択</li>
+                                <li>「Source」で「main」ブランチを選択</li>
+                                <li>「Save」をクリック</li>
+                            </ul>
+                        </li>
+                        <li><strong>公開URLを確認</strong>
+                            <ul>
+                                <li>https://[ユーザー名].github.io/[リポジトリ名]/</li>
+                                <li>このURLを生徒に共有</li>
+                            </ul>
+                        </li>
+                    </ol>
+                </div>
+
+                <h4>5.2 セキュリティの考慮</h4>
+                
+                <div class="definition-box">
+                    <h5>教育現場でWebアプリを公開する際の注意点</h5>
+                    <ol>
+                        <li><strong>個人情報の保護</strong>
+                            <ul>
+                                <li>⚠️ 生徒の氏名、住所、電話番号などは公開しない</li>
+                                <li>⚠️ 成績データを公開する場合は、匿名化する</li>
+                                <li>⚠️ ログイン機能がない場合、機密情報は掲載しない</li>
+                            </ul>
+                        </li>
+                        <li><strong>HTTPS通信</strong>
+                            <ul>
+                                <li>✅ GitHub Pagesは自動的にHTTPSに対応</li>
+                                <li>✅ 他のサーバーを使う場合も、必ずHTTPSを使用</li>
+                            </ul>
+                        </li>
+                        <li><strong>アクセス制限</strong>
+                            <ul>
+                                <li>重要なデータは、ログイン機能で保護</li>
+                                <li>学校内ネットワークからのみアクセス可能にする</li>
+                                <li>パスワードは複雑なものを設定</li>
+                            </ul>
+                        </li>
+                        <li><strong>著作権と肖像権</strong>
+                            <ul>
+                                <li>他人の画像や文章を無断で使用しない</li>
+                                <li>生徒の写真を公開する場合は保護者の同意を得る</li>
+                                <li>教材の引用は出典を明記</li>
+                            </ul>
+                        </li>
+                    </ol>
+                </div>
+
+                <h3>第6部：実践演習（40分）</h3>
+
+                <h4>演習1：シンプルクイズアプリの作成（難易度：★★☆☆☆）</h4>
+                
+                <div class="example-box">
+                    <h5>課題内容</h5>
+                    <p>HTML/CSS/JavaScriptを使って、3問の4択クイズアプリを作成してください。</p>
+                    
+                    <h5>要件</h5>
+                    <ul>
+                        <li>3つの問題を用意（科目は自由）</li>
+                        <li>各問題に4つの選択肢</li>
+                        <li>正解を選んだら「正解！」、不正解なら「不正解」と表示</li>
+                        <li>3問終了後、合計得点を表示</li>
+                        <li>「もう一度挑戦」ボタンでリセット</li>
+                    </ul>
+                    
+                    <h5>ヒント</h5>
+                    <pre style="background: #f8f9fa; padding: 1rem; border-radius: 0.5rem; overflow-x: auto; font-size: 0.9rem; color: #333;">
+// 問題データの例
+const questions = [
+    {
+        question: '日本の首都は？',
+        choices: ['東京', '大阪', '京都', '名古屋'],
+        correct: 0  // 正解のインデックス（0 = 東京）
+    },
+    // 他の問題も同様に追加
+];
+                    </pre>
+                </div>
+
+                <h4>演習2：Google Apps Scriptで校務自動化（難易度：★★★☆☆）</h4>
+                
+                <div class="example-box">
+                    <h5>課題内容</h5>
+                    <p>Google Formsで集めた欠席連絡を自動処理するスクリプトを作成してください。</p>
+                    
+                    <h5>要件</h5>
+                    <ul>
+                        <li>Google Formsで欠席連絡フォームを作成</li>
+                        <li>項目：生徒名、学年、クラス、欠席理由</li>
+                        <li>回答があったら自動でスプレッドシートに記録</li>
+                        <li>担任の先生にメールで通知</li>
+                        <li>欠席者数をカウントして別シートに集計</li>
+                    </ul>
+                    
+                    <h5>手順</h5>
+                    <ol>
+                        <li>Google Formsを作成</li>
+                        <li>スプレッドシートと連携</li>
+                        <li>スクリプトエディタを開く（拡張機能 → Apps Script）</li>
+                        <li><code>onFormSubmit</code>関数を作成</li>
+                        <li>トリガーを設定（フォーム送信時に実行）</li>
+                    </ol>
+                </div>
+
+                <h4>演習3：Glideで学習記録アプリ作成（難易度：★★☆☆☆）</h4>
+                
+                <div class="example-box">
+                    <h5>課題内容</h5>
+                    <p>Glideを使って、生徒が自分の学習時間を記録できるアプリを作成してください。</p>
+                    
+                    <h5>要件</h5>
+                    <ul>
+                        <li>Googleスプレッドシートにデータを記録</li>
+                        <li>項目：日付、科目、学習時間（分）、メモ</li>
+                        <li>記録の追加、編集、削除ができる</li>
+                        <li>科目ごとの合計時間を表示</li>
+                        <li>グラフで学習時間の推移を可視化</li>
+                    </ul>
+                    
+                    <h5>手順</h5>
+                    <ol>
+                        <li>Googleスプレッドシートを作成（列：日付、科目、時間、メモ）</li>
+                        <li>Glide（https://www.glideapps.com/）にアクセス</li>
+                        <li>「New App」→「From Google Sheet」</li>
+                        <li>レイアウトを「List」に設定</li>
+                        <li>「Add Item」ボタンを追加</li>
+                        <li>Computed Columnで合計時間を計算</li>
+                    </ol>
+                </div>
+
+                <h3>💡 指導のポイント（ICT支援員・講師向け）</h3>
+
+                <div class="info-box">
+                    <h4>学習者がつまずきやすいポイントと対策</h4>
+                    
+                    <h5>1. つまずきポイント：HTML/CSS/JavaScriptの役割の混同</h5>
+                    <p><strong>対策：</strong></p>
+                    <ul>
+                        <li>「家の建築」で例える（HTML=骨組み、CSS=内装、JavaScript=電気設備）</li>
+                        <li>同じページを3つの言語で段階的に作成し、違いを体感させる</li>
+                        <li>最初は1つの技術に集中し、徐々に組み合わせる</li>
+                    </ul>
+
+                    <h5>2. つまずきポイント：タグの閉じ忘れ・文法エラー</h5>
+                    <p><strong>対策：</strong></p>
+                    <ul>
+                        <li>ブラウザの開発者ツール（F12）でエラーを確認する習慣をつける</li>
+                        <li>インデント（字下げ）を揃えて、構造を見やすくする</li>
+                        <li>Visual Studio CodeなどのエディタのHTML補完機能を活用</li>
+                    </ul>
+
+                    <h5>3. つまずきポイント：JavaScriptの変数とスコープ</h5>
+                    <p><strong>対策：</strong></p>
+                    <ul>
+                        <li><code>let</code>と<code>const</code>の使い分けを具体例で説明</li>
+                        <li>関数の内外でのアクセス可否を図解する</li>
+                        <li><code>console.log()</code>で変数の中身を確認する習慣づけ</li>
+                    </ul>
+
+                    <h5>4. つまずきポイント：Google Apps Scriptのトリガー設定</h5>
+                    <p><strong>対策：</strong></p>
+                    <ul>
+                        <li>手動実行で動作確認してからトリガーを設定</li>
+                        <li>「現在のプロジェクトのトリガー」画面のスクリーンショットを共有</li>
+                        <li>トリガーが発火しない場合、実行ログを確認する方法を教える</li>
+                    </ul>
+
+                    <h5>5. つまずきポイント：Glideのデータ連携</h5>
+                    <p><strong>対策：</strong></p>
+                    <ul>
+                        <li>スプレッドシートの1行目（ヘッダー）が重要であることを強調</li>
+                        <li>データ型（テキスト、数値、日付）の適切な設定</li>
+                        <li>「Reload data」で最新のスプレッドシートを反映</li>
+                    </ul>
+                </div>
+
+                <div class="info-box">
+                    <h4>学習を深めるための発展課題</h4>
+                    <ul>
+                        <li><strong>レベル1：</strong>作成したクイズアプリに制限時間機能を追加する</li>
+                        <li><strong>レベル2：</strong>Google Apps Scriptで、出席率が低い生徒を自動抽出するレポートを作成</li>
+                        <li><strong>レベル3：</strong>Glideアプリに「先生からのフィードバック」機能を追加</li>
+                        <li><strong>レベル4：</strong>Flaskを使って、データベースと連携した本格的なクイズアプリを作成</li>
+                        <li><strong>レベル5：</strong>複数のツール（GAS、Glide、Flask）を組み合わせた総合的な学習管理システムを設計</li>
+                    </ul>
+                </div>
+
+                <h3>📖 参考資料・さらに学ぶために</h3>
+
+                <div class="info-box">
+                    <h4>推奨書籍</h4>
+                    <ul>
+                        <li>「HTML&CSS入門」（技術評論社） - Web制作の基礎から応用まで</li>
+                        <li>「JavaScript本格入門」（技術評論社） - JavaScriptを体系的に学ぶ</li>
+                        <li>「Google Apps Script 完全入門」（SBクリエイティブ） - GASの実践的な活用法</li>
+                        <li>「いちばんやさしいPythonの教本」（インプレス） - Pythonによるバックエンド開発の入門</li>
+                    </ul>
+
+                    <h4>オンラインリソース</h4>
+                    <ul>
+                        <li><strong>MDN Web Docs</strong> - https://developer.mozilla.org/ja/ - HTML/CSS/JavaScriptの公式リファレンス</li>
+                        <li><strong>Progate</strong> - https://prog-8.com/ - インタラクティブなプログラミング学習</li>
+                        <li><strong>ドットインストール</strong> - https://dotinstall.com/ - 3分動画で学ぶプログラミング</li>
+                        <li><strong>Google Apps Script公式ドキュメント</strong> - https://developers.google.com/apps-script</li>
+                        <li><strong>Glide公式チュートリアル</strong> - https://www.glideapps.com/docs</li>
+                        <li><strong>Flask公式ドキュメント（日本語）</strong> - https://flask.palletsprojects.com/ja/</li>
+                    </ul>
+
+                    <h4>動画・チュートリアル</h4>
+                    <ul>
+                        <li><strong>YouTube：たにぐちまことのともすたチャンネル</strong> - Web制作の実践的なチュートリアル</li>
+                        <li><strong>YouTube：キノコード</strong> - Python・GASの解説動画</li>
+                        <li><strong>Udemy：HTML/CSS/JavaScript講座</strong> - 体系的な動画学習</li>
+                    </ul>
+                </div>
+
+                <h3>🎓 学習の進め方（ICT支援員向け）</h3>
+
+                <div class="info-box">
+                    <h4>レベル別学習計画</h4>
+                    
+                    <h5>レベル1：基礎習得（1～2ヶ月）</h5>
+                    <ul>
+                        <li>HTML/CSS/JavaScriptの基本文法を理解</li>
+                        <li>シンプルなクイズアプリを自作</li>
+                        <li>Google Apps Scriptで簡単な自動化を実装</li>
+                        <li>GitHub Pagesで教材サイトを公開</li>
+                    </ul>
+
+                    <h5>レベル2：実践応用（3～6ヶ月）</h5>
+                    <ul>
+                        <li>Glideでノーコードアプリを複数作成</li>
+                        <li>Google Apps ScriptとGoogle Classroomを連携</li>
+                        <li>Flaskで簡単なWebアプリを開発</li>
+                        <li>データベース（SQLite）を使ったデータ管理</li>
+                    </ul>
+
+                    <h5>レベル3：専門技術（6ヶ月～）</h5>
+                    <ul>
+                        <li>本格的なWebアプリケーション開発（Django）</li>
+                        <li>API連携とデータ分析</li>
+                        <li>セキュリティとユーザー認証の実装</li>
+                        <li>学校独自の学習管理システムの構築</li>
+                    </ul>
+                </div>
+
+                <h3>✅ 修了要件と評価</h3>
+
+                <div class="info-box">
+                    <h4>修了要件</h4>
+                    <p>以下の条件を満たすことで、本講座を修了したと認定します：</p>
+                    <ol>
+                        <li><strong>実践演習3問中2問以上を完成させる</strong></li>
+                        <li><strong>最終プロジェクトを提出</strong>
+                            <ul>
+                                <li>オプションA：オリジナル教材アプリの開発（HTML/CSS/JavaScript）</li>
+                                <li>オプションB：Google Apps Scriptによる校務自動化ツール</li>
+                                <li>オプションC：Glideで作成した実用的な教育アプリ</li>
+                            </ul>
+                        </li>
+                        <li><strong>コードレビューを受ける</strong>
+                            <ul>
+                                <li>講師または同僚のICT支援員からフィードバックを得る</li>
+                                <li>セキュリティや使いやすさの観点で評価</li>
+                            </ul>
+                        </li>
+                        <li><strong>振り返りレポート（A4用紙1枚程度）を提出</strong>
+                            <ul>
+                                <li>学んだ技術と教育現場での活用イメージ</li>
+                                <li>今後の学習計画</li>
+                            </ul>
+                        </li>
+                    </ol>
+
+                    <h4>評価基準</h4>
+                    <table style="width: 100%; border-collapse: collapse; margin-top: 1rem;">
+                        <thead>
+                            <tr style="background: #f0f9ff;">
+                                <th style="border: 1px solid #ddd; padding: 0.75rem;">項目</th>
+                                <th style="border: 1px solid #ddd; padding: 0.75rem;">配点</th>
+                                <th style="border: 1px solid #ddd; padding: 0.75rem;">評価ポイント</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td style="border: 1px solid #ddd; padding: 0.75rem;">実践演習</td>
+                                <td style="border: 1px solid #ddd; padding: 0.75rem;">30点</td>
+                                <td style="border: 1px solid #ddd; padding: 0.75rem;">要件を満たした動作するアプリの作成</td>
+                            </tr>
+                            <tr>
+                                <td style="border: 1px solid #ddd; padding: 0.75rem;">最終プロジェクト</td>
+                                <td style="border: 1px solid #ddd; padding: 0.75rem;">40点</td>
+                                <td style="border: 1px solid #ddd; padding: 0.75rem;">独創性、教育的価値、技術的完成度</td>
+                            </tr>
+                            <tr>
+                                <td style="border: 1px solid #ddd; padding: 0.75rem;">コードの質</td>
+                                <td style="border: 1px solid #ddd; padding: 0.75rem;">20点</td>
+                                <td style="border: 1px solid #ddd; padding: 0.75rem;">可読性、コメント、エラーハンドリング</td>
+                            </tr>
+                            <tr>
+                                <td style="border: 1px solid #ddd; padding: 0.75rem;">振り返りレポート</td>
+                                <td style="border: 1px solid #ddd; padding: 0.75rem;">10点</td>
+                                <td style="border: 1px solid #ddd; padding: 0.75rem;">学習の振り返りと今後の計画</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <p style="margin-top: 1rem;"><strong>合格ライン：</strong>70点以上</p>
+                </div>
+
+                <h3>🌟 ICT支援員に期待される役割</h3>
+
+                <div class="info-box">
+                    <p>本講座で習得した技術を活用し、以下の役割を果たすことが期待されます：</p>
+                    <ul>
+                        <li><strong>教材開発支援</strong> - 教員のデジタル教材作成をサポート</li>
+                        <li><strong>校務効率化の推進</strong> - Google Apps Scriptなどで業務自動化</li>
+                        <li><strong>EdTechツールの評価・選定</strong> - 学校に適したツールの技術的評価</li>
+                        <li><strong>教員向けワークショップの企画・実施</strong> - 簡単なアプリ作成研修の開催</li>
+                        <li><strong>児童生徒のプログラミング学習支援</strong> - クラブ活動や課外授業でのサポート</li>
+                    </ul>
+                </div>
+
+                <div class="conclusion">
+                    <p><strong>この講座を通じて、EdTech開発の基礎を学び、教育現場の課題を技術で解決する力を身につけましょう。最初は小さなツールから始めて、徐々に実践力を高めていってください。</strong></p>
+                </div>
+            </section>
+
+            <div class="navigation-buttons">
+                <a href="session58.html" class="btn btn-secondary">← 第58回：プログラミング特論</a>
+                <a href="../supplement.html" class="btn btn-primary">補完カリキュラムトップへ</a>
+                <a href="session60.html" class="btn btn-secondary">第60回：学習環境の構築 →</a>
+            </div>
+
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 ICT支援員教育講座. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="../js/main.js"></script>
+</body>
+</html>

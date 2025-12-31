@@ -376,7 +376,8 @@
 }
 
 /* ナビゲーション */
-.navigation {
+.navigation,
+.navigation-buttons {
     display: flex;
     justify-content: space-between;
     gap: 1rem;
@@ -384,7 +385,8 @@
     flex-wrap: wrap;
 }
 
-.navigation .btn {
+.navigation .btn,
+.navigation-buttons .btn {
     flex: 1;
     min-width: 200px;
     text-align: center;

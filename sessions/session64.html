@@ -1,0 +1,1381 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="ICT支援員教育講座 第64回：データ分析とコンピュータ論 - Pythonを用いた実践的なデータサイエンスの習得">
+    <meta name="keywords" content="ICT支援員,データ分析,Python,データサイエンス,教育データ,pandas,NumPy,可視化">
+    <title>第64回：データ分析とコンピュータ論 - ICT支援員教育講座</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/session.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <a href="../index.html" class="logo">ICT支援員教育講座</a>
+            <nav class="navbar">
+                <ul class="nav-menu">
+                    <li><a href="../index.html">ホーム</a></li>
+                    <li><a href="../beginner.html">入門編</a></li>
+                    <li><a href="../intermediate.html">基礎編</a></li>
+                    <li><a href="../intermediate2.html">中級編</a></li>
+                    <li><a href="../advanced.html">発展編</a></li>
+                    <li><a href="../certification.html">試験対策</a></li>
+                    <li><a href="../supplement.html" class="active">補完カリキュラム</a></li>
+                    <li><a href="../resources.html">参考資料</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="session-content">
+        <div class="container">
+            <div class="session-header-content">
+                <span class="session-label supplement">補完カリキュラム</span>
+                <h1>第64回：データ分析とコンピュータ論</h1>
+                <p class="session-meta">データサイエンス・AI教育編（全6回）の第2回 | 学習時間目安：180分（講義120分、実践演習60分） | 難易度：★★★★☆</p>
+            </div>
+
+            <div class="info-box">
+                <h3>📋 講座概要</h3>
+                <p>本講座では、<strong>コンピュータとプログラミングを用いた実践的なデータ分析手法</strong>を習得します。第63回で学んだ数学・統計の基礎を土台に、<strong>Pythonプログラミング言語</strong>を使って大規模な教育データの分析・可視化を実践できるようになることを目指します。</p>
+                <ul>
+                    <li><strong>対象者：</strong>ICT支援員、教育情報化コーディネータ、教育データ分析に携わる教員・教育委員会職員、データサイエンスを教育現場に活用したい方</li>
+                    <li><strong>受講前提：</strong>基本的なICT知識、第63回「基礎数学・統計学の活用」履修推奨、基本的なプログラミング経験があることが望ましい（必須ではない）、Excel/スプレッドシートの基本操作</li>
+                    <li><strong>学習時間：</strong>180分（講義120分、実践演翗60分）</li>
+                    <li><strong>難易度：</strong>★★★★☆（中級～上級）</li>
+                    <li><strong>最終更新：</strong>2025年12月</li>
+                </ul>
+            </div>
+            <div class="warning-box">
+                <h3>⚠️ 本講座における情報の取り扱いについて</h3>
+                <ul>
+                    <li><strong>Pythonのバージョン</strong>：本講座では Python 3.10以降を想定しています。最新のバージョンや仕様は<a href="https://www.python.org/" target="_blank" rel="noopener">Python公式サイト</a>でご確認ください。</li>
+                    <li><strong>ライブラリの更新</strong>：NumPy、pandas、matplotlibなどのライブラリは頻繁に更新されます。実際の運用時には最新のドキュメントを参照してください。</li>
+                    <li><strong>データの取り扱い</strong>：本講座では架空のデータや公開データを使用しますが、実務では<strong>個人情報保護法・GDPR等のデータ保護規制</strong>を遵守してください。</li>
+                    <li><strong>コード例</strong>：本講座のコード例は教育目的のため簡略化されています。実務では適切なエラーハンドリング、ログ記録、セキュリティ対策を追加してください。</li>
+                    <li><strong>環境構築</strong>：Python環境の構築方法は多様です。初学者には<a href="https://www.anaconda.com/" target="_blank" rel="noopener">Anaconda</a>または<a href="https://colab.research.google.com/" target="_blank" rel="noopener">Google Colaboratory</a>の利用を推奨します。</li>
+                </ul>
+            </div>
+        </section>
+
+        <section class="objectives">
+                <h2>🎯 学習目標</h2>
+                
+                <h3>知識面</h3>
+            <ul>
+                <li>データサイエンスの基本的なライフサイクルと各ステップの役割を理解する</li>
+                <li>Pythonプログラミングの基礎（変数、データ型、制御構造、関数）を習得する</li>
+                <li>NumPy、pandas、matplotlib/seabornの基本的な使い方を理解する</li>
+                <li>データクリーニングと前処理の重要性と手法を理解する</li>
+                </ul>
+
+                <h3>技能面</h3>
+            <ul>
+                <li>Pythonで基本的なデータ読み込み・加工・集計を実装できる</li>
+                <li>欠損値・外れ値・重複データを適切に処理できる</li>
+                <li>pandasを用いてデータフレームを操作し、統計分析を実行できる</li>
+                <li>matplotlib/seabornで効果的なグラフを作成できる</li>
+                <li>データ分析のプロセス全体を一貫して実践できる</li>
+                </ul>
+
+                <h3>応用面</h3>
+            <ul>
+                <li>学校の成績データや学力調査データをPythonで分析できる</li>
+                <li>複雑な教育データを整理し、有意義な情報を抽出できる</li>
+                <li>分析結果を視覚的に表現し、教育関係者に報告できる</li>
+                    <li>データ駆動型の教育改善提案を行うための基盤を構築できる</li>
+                </ul>
+            </section>
+
+            <section class="content-section">
+                <h2>📚 第1部：データ分析の基礎理論（30分）</h2>
+            
+            <h4>1-1. データ分析とは</h4>
+            <p>
+                <strong>データ分析</strong>とは、データから有用な情報や知見を抽出し、意思決定に活用するプロセスです。
+                教育現場では、学習データや成績データを分析することで、児童生徒の学習状況を把握し、指導方法の改善に役立てることができます。
+            </p>
+
+            <h5>データ分析の主な目的</h5>
+            <ul>
+                <li><strong>記述的分析（Descriptive Analytics）</strong>：現状を把握する（例：今年度の平均点は？）</li>
+                <li><strong>診断的分析（Diagnostic Analytics）</strong>：原因を探る（例：成績が下がった原因は？）</li>
+                <li><strong>予測的分析（Predictive Analytics）</strong>：未来を予測する（例：来年度の学力は？）</li>
+                <li><strong>処方的分析（Prescriptive Analytics）</strong>：最適な行動を提案する（例：どの指導方法が効果的？）</li>
+            </ul>
+
+            <h4>1-2. データサイエンスライフサイクル</h4>
+            <p>
+                データサイエンスプロジェクトは一般的に以下の6つのステップで進行します。
+            </p>
+
+            <div class="info-box">
+                <h5>データサイエンスの6ステップ</h5>
+                <ol>
+                    <li><strong>問題設定（Problem Definition）</strong>：解決したい課題を明確にする</li>
+                    <li><strong>データ収集（Data Collection）</strong>：必要なデータを集める</li>
+                    <li><strong>データクリーニング（Data Cleaning）</strong>：データを整理・修正する</li>
+                    <li><strong>探索的データ分析（EDA: Exploratory Data Analysis）</strong>：データの特徴を把握する</li>
+                    <li><strong>モデリング・分析（Modeling & Analysis）</strong>：統計手法や機械学習を適用する</li>
+                    <li><strong>結果の解釈と報告（Interpretation & Reporting）</strong>：分析結果を解釈し、関係者に伝える</li>
+                </ol>
+            </div>
+
+            <h5>教育データ分析の例：学力調査データの分析</h5>
+            <table style="width: 100%; border-collapse: collapse; margin: 1rem 0;">
+                <thead style="background-color: #e8f5e9;">
+                    <tr>
+                        <th style="border: 1px solid #ddd; padding: 0.75rem; text-align: left;">ステップ</th>
+                        <th style="border: 1px solid #ddd; padding: 0.75rem; text-align: left;">具体例</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td style="border: 1px solid #ddd; padding: 0.75rem; background: #f8f9fa;"><strong>1. 問題設定</strong></td>
+                        <td style="border: 1px solid #ddd; padding: 0.75rem;">「算数の成績が全国平均より低い原因を特定したい」</td>
+                    </tr>
+                    <tr>
+                        <td style="border: 1px solid #ddd; padding: 0.75rem; background: #f8f9fa;"><strong>2. データ収集</strong></td>
+                        <td style="border: 1px solid #ddd; padding: 0.75rem;">学力調査データ、出席記録、家庭学習時間データを収集</td>
+                    </tr>
+                    <tr>
+                        <td style="border: 1px solid #ddd; padding: 0.75rem; background: #f8f9fa;"><strong>3. クリーニング</strong></td>
+                        <td style="border: 1px solid #ddd; padding: 0.75rem;">欠損値の処理、異常値の確認・修正、データ形式の統一</td>
+                    </tr>
+                    <tr>
+                        <td style="border: 1px solid #ddd; padding: 0.75rem; background: #f8f9fa;"><strong>4. 探索的分析</strong></td>
+                        <td style="border: 1px solid #ddd; padding: 0.75rem;">ヒストグラム・箱ひげ図で分布確認、相関分析で関係性を調査</td>
+                    </tr>
+                    <tr>
+                        <td style="border: 1px solid #ddd; padding: 0.75rem; background: #f8f9fa;"><strong>5. モデリング</strong></td>
+                        <td style="border: 1px solid #ddd; padding: 0.75rem;">回帰分析で「家庭学習時間」と「成績」の関係を定量化</td>
+                    </tr>
+                    <tr>
+                        <td style="border: 1px solid #ddd; padding: 0.75rem; background: #f8f9fa;"><strong>6. 報告</strong></td>
+                        <td style="border: 1px solid #ddd; padding: 0.75rem;">「家庭学習時間が短い児童の成績が低い」→ 家庭学習支援の強化を提案</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h4>1-3. コンピュータを使うメリット</h4>
+            <p>
+                手作業やExcelでも基本的なデータ分析は可能ですが、<strong>プログラミング言語（特にPython）</strong>を使うことで以下のメリットがあります。
+            </p>
+
+            <ul>
+                <li><strong>大規模データの処理</strong>：数万〜数百万行のデータも高速に処理できる</li>
+                <li><strong>再現性</strong>：コードとして記録されるため、同じ分析を再実行できる</li>
+                <li><strong>自動化</strong>：定期的なレポート作成などを自動化できる</li>
+                <li><strong>高度な分析</strong>：機械学習や自然言語処理など、高度な分析が可能</li>
+                <li><strong>可視化</strong>：多様なグラフやインタラクティブな可視化が容易</li>
+            </ul>
+        </section>
+
+        <section class="content-section">
+                <h2>📚 第2部：Pythonによるデータ分析入門（40分）</h2>
+            
+            <h4>2-1. Python開発環境の準備</h4>
+            <p>
+                Pythonでデータ分析を始めるには、まず開発環境を整える必要があります。
+                初学者には以下の2つの選択肢を推奨します。
+            </p>
+
+            <h5>選択肢1：Google Colaboratory（推奨）</h5>
+            <div class="info-box">
+                <p><strong>Google Colaboratory（通称：Colab）</strong>は、Googleが提供する無料のJupyter Notebook環境です。</p>
+                <ul>
+                    <li><strong>メリット</strong>：インストール不要、ブラウザだけで利用可能、無料のGPU利用可能</li>
+                    <li><strong>アクセス方法</strong>：<a href="https://colab.research.google.com/" target="_blank" rel="noopener">https://colab.research.google.com/</a></li>
+                    <li><strong>必要なもの</strong>：Googleアカウントのみ</li>
+                </ul>
+            </div>
+
+            <h5>選択肢2：Anaconda（ローカル環境）</h5>
+            <div class="info-box">
+                <p><strong>Anaconda</strong>は、データサイエンス向けのPythonディストリビューションです。</p>
+                <ul>
+                    <li><strong>メリット</strong>：オフラインで利用可能、主要ライブラリがプリインストール済み</li>
+                    <li><strong>ダウンロード</strong>：<a href="https://www.anaconda.com/products/distribution" target="_blank" rel="noopener">https://www.anaconda.com/products/distribution</a></li>
+                    <li><strong>推奨IDE</strong>：Jupyter Notebook、Jupyter Lab、Spyder</li>
+                </ul>
+            </div>
+
+            <h4>2-2. Pythonの基本構文（復習）</h4>
+            <p>
+                データ分析に必要な最低限のPython構文を確認します。詳細は第57回「プログラミング基礎演習」を参照してください。
+            </p>
+
+            <h5>変数とデータ型</h5>
+            <pre style="background: #f8f9fa; padding: 1rem; border-radius: 0.5rem; overflow-x: auto; color: #333;"><code># 変数の定義
+name = "山田太郎"  # 文字列（str）
+age = 15  # 整数（int）
+score = 85.5  # 浮動小数点数（float）
+is_passed = True  # 真偽値（bool）
+
+# リスト（複数の値を格納）
+scores = [85, 90, 78, 92, 88]
+
+# 辞書（キーと値のペア）
+student = {
+    "name": "山田太郎",
+    "age": 15,
+    "scores": [85, 90, 78]
+}</code></pre>
+
+            <h5>制御構造（条件分岐・繰り返し）</h5>
+            <pre style="background: #f8f9fa; padding: 1rem; border-radius: 0.5rem; overflow-x: auto; color: #333;"><code># 条件分岐
+score = 75
+if score >= 80:
+    print("優秀")
+elif score >= 60:
+    print("合格")
+else:
+    print("不合格")
+
+# 繰り返し
+scores = [85, 90, 78, 92, 88]
+for score in scores:
+    print(f"点数: {score}")
+
+# リスト内包表記（効率的な繰り返し）
+passed_scores = [s for s in scores if s >= 80]
+# 結果: [85, 90, 92, 88]</code></pre>
+
+            <h4>2-3. NumPy：数値計算ライブラリ</h4>
+            <p>
+                <strong>NumPy（Numerical Python）</strong>は、Pythonで数値計算を高速に行うためのライブラリです。
+                配列（array）を扱うための強力な機能を提供します。
+            </p>
+
+            <h5>NumPyの基本</h5>
+            <pre style="background: #f8f9fa; padding: 1rem; border-radius: 0.5rem; overflow-x: auto; color: #333;"><code>import numpy as np
+
+# 配列の作成
+scores = np.array([85, 90, 78, 92, 88])
+
+# 基本統計量
+print(f"平均点: {np.mean(scores)}")  # 86.6
+print(f"中央値: {np.median(scores)}")  # 88
+print(f"標準偏差: {np.std(scores)}")  # 約5.06
+print(f"最大値: {np.max(scores)}")  # 92
+print(f"最小値: {np.min(scores)}")  # 78
+
+# 配列の演算（全要素に同じ演算を適用）
+scores_weighted = scores * 1.1  # 全体を1.1倍
+# 結果: [93.5, 99.0, 85.8, 101.2, 96.8]
+
+# 条件に基づくフィルタリング
+high_scores = scores[scores >= 85]
+# 結果: [85, 90, 92, 88]</code></pre>
+
+            <h5>教育データでの応用例</h5>
+            <pre style="background: #f8f9fa; padding: 1rem; border-radius: 0.5rem; overflow-x: auto; color: #333;"><code># クラス全体の成績データ
+class_scores = np.array([
+    [85, 90, 78],  # 生徒A: 国語, 数学, 英語
+    [75, 88, 92],  # 生徒B
+    [92, 85, 88],  # 生徒C
+    [68, 70, 75],  # 生徒D
+    [88, 92, 95]   # 生徒E
+])
+
+# 科目ごとの平均（列方向）
+subject_means = np.mean(class_scores, axis=0)
+print(f"科目別平均: {subject_means}")
+# 結果: [81.6, 85.0, 85.6]
+
+# 生徒ごとの平均（行方向）
+student_means = np.mean(class_scores, axis=1)
+print(f"生徒別平均: {student_means}")
+# 結果: [84.33, 85.0, 88.33, 71.0, 91.67]
+
+# 全体の標準偏差
+overall_std = np.std(class_scores)
+print(f"全体の標準偏差: {overall_std:.2f}")
+# 結果: 約8.91</code></pre>
+
+            <h4>2-4. pandas：データ分析ライブラリ</h4>
+            <p>
+                <strong>pandas</strong>は、表形式のデータ（エクセルのような表）を扱うためのライブラリです。
+                データの読み込み、加工、集計、分析を直感的に行えます。
+            </p>
+
+            <h5>DataFrame：pandasの基本データ構造</h5>
+            <pre style="background: #f8f9fa; padding: 1rem; border-radius: 0.5rem; overflow-x: auto; color: #333;"><code>import pandas as pd
+
+# データフレームの作成
+data = {
+    '生徒名': ['山田', '佐藤', '鈴木', '高橋', '田中'],
+    '国語': [85, 75, 92, 68, 88],
+    '数学': [90, 88, 85, 70, 92],
+    '英語': [78, 92, 88, 75, 95]
+}
+df = pd.DataFrame(data)
+
+# データの表示
+print(df)
+#   生徒名  国語  数学  英語
+# 0   山田  85  90  78
+# 1   佐藤  75  88  92
+# 2   鈴木  92  85  88
+# 3   高橋  68  70  75
+# 4   田中  88  92  95
+
+# 基本情報の確認
+print(df.info())  # データ型、欠損値の確認
+print(df.describe())  # 基本統計量の表示
+
+# 列の操作
+df['合計'] = df['国語'] + df['数学'] + df['英語']
+df['平均'] = df[['国語', '数学', '英語']].mean(axis=1)
+
+# 条件によるフィルタリング
+high_performers = df[df['平均'] >= 85]
+print(high_performers)
+
+# 並び替え
+df_sorted = df.sort_values('平均', ascending=False)
+print(df_sorted)</code></pre>
+
+            <h5>CSVファイルの読み込み</h5>
+            <pre style="background: #f8f9fa; padding: 1rem; border-radius: 0.5rem; overflow-x: auto; color: #333;"><code># CSVファイルから読み込み
+df = pd.read_csv('student_data.csv', encoding='utf-8')
+
+# Excelファイルから読み込み
+df = pd.read_excel('student_data.xlsx', sheet_name='Sheet1')
+
+# 先頭5行を表示
+print(df.head())
+
+# データの基本情報
+print(f"行数: {len(df)}")
+print(f"列名: {df.columns.tolist()}")
+print(f"欠損値の数:\n{df.isnull().sum()}")</code></pre>
+        </section>
+
+        <section class="content-section">
+            <h3>💻 実践演習1：Python環境のセットアップとNumPy/pandas基本操作（20分）</h3>
+            
+            <div class="warning-box">
+                <h4>⚠️ 演習の準備</h4>
+                <ul>
+                    <li>Google Colaboratoryまたはローカル環境のJupyter Notebookを使用します</li>
+                    <li>初めての方はGoogle Colaboratoryの利用を推奨します（インストール不要）</li>
+                    <li>サンプルデータは講座資料として配布します（または架空データを自分で作成）</li>
+                </ul>
+            </div>
+
+            <h4>演習内容</h4>
+            <ol>
+                <li><strong>環境のセットアップ</strong>：Google Colabまたはローカル環境でJupyter Notebookを起動</li>
+                <li><strong>NumPy基本操作</strong>：
+                    <ul>
+                        <li>5人の生徒の数学の点数をNumPy配列として作成（例：[85, 90, 78, 92, 88]）</li>
+                        <li>平均点、中央値、標準偏差、最高点、最低点を計算</li>
+                        <li>80点以上の生徒の点数を抽出</li>
+                    </ul>
+                </li>
+                <li><strong>pandas基本操作</strong>：
+                    <ul>
+                        <li>5人の生徒の3科目（国語、数学、英語）の点数データをDataFrameとして作成</li>
+                        <li>各生徒の3科目の合計点と平均点を計算して新しい列として追加</li>
+                        <li>平均点の高い順に並び替えて表示</li>
+                        <li>平均点が85点以上の生徒を抽出</li>
+                    </ul>
+                </li>
+            </ol>
+
+            <h4>期待される成果物</h4>
+            <ul>
+                <li>Jupyter Notebookファイル（.ipynb）に記録されたコードと実行結果</li>
+                <li>各操作の出力結果（平均点、抽出結果など）</li>
+            </ul>
+        </section>
+
+        <section class="content-section">
+                <h2>📚 第3部：データクリーニングと前処理（30分）</h2>
+            
+            <h4>3-1. データクリーニングの重要性</h4>
+            <p>
+                実際のデータは、欠損値（missing values）、外れ値（outliers）、重複（duplicates）、データ型の不一致などの問題を含むことが多く、
+                <strong>データクリーニング</strong>は分析の精度を左右する重要なステップです。
+            </p>
+
+            <div class="info-box">
+                <h5>データクリーニングが必要な理由</h5>
+                <ul>
+                    <li><strong>欠損値</strong>：未記入や記録ミスによりデータが欠けている</li>
+                    <li><strong>外れ値</strong>：極端に大きい/小さい値が統計結果を歪める</li>
+                    <li><strong>重複</strong>：同じデータが複数回記録されている</li>
+                    <li><strong>データ型の不一致</strong>：数値として扱うべきデータが文字列になっているなど</li>
+                    <li><strong>表記揺れ</strong>：「東京都」と「東京」、「男」と「男性」など</li>
+                </ul>
+            </div>
+
+            <h4>3-2. 欠損値の処理</h4>
+            <p>
+                欠損値（NaN: Not a Number）は、データが記録されていない状態を表します。
+                pandasでは欠損値を簡単に検出・処理できます。
+            </p>
+
+            <h5>欠損値の検出</h5>
+            <pre style="background: #f8f9fa; padding: 1rem; border-radius: 0.5rem; overflow-x: auto; color: #333;"><code>import pandas as pd
+import numpy as np
+
+# サンプルデータ（NaNを含む）
+data = {
+    '生徒名': ['山田', '佐藤', '鈴木', '高橋', '田中'],
+    '国語': [85, np.nan, 92, 68, 88],
+    '数学': [90, 88, np.nan, 70, 92],
+    '英語': [78, 92, 88, np.nan, 95]
+}
+df = pd.DataFrame(data)
+
+# 欠損値の確認
+print(df.isnull())  # 欠損値がある箇所はTrue
+print(df.isnull().sum())  # 列ごとの欠損値の個数
+
+# 欠損値を含む行を表示
+print(df[df.isnull().any(axis=1)])</code></pre>
+
+            <h5>欠損値の処理方法</h5>
+            <table style="width: 100%; border-collapse: collapse; margin: 1rem 0;">
+                <thead style="background-color: #e3f2fd;">
+                    <tr>
+                        <th style="border: 1px solid #ddd; padding: 0.75rem; text-align: left;">処理方法</th>
+                        <th style="border: 1px solid #ddd; padding: 0.75rem; text-align: left;">コード例</th>
+                        <th style="border: 1px solid #ddd; padding: 0.75rem; text-align: left;">使用場面</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td style="border: 1px solid #ddd; padding: 0.75rem; background: #f8f9fa;"><strong>削除</strong></td>
+                        <td style="border: 1px solid #ddd; padding: 0.75rem;"><code>df.dropna()</code></td>
+                        <td style="border: 1px solid #ddd; padding: 0.75rem;">欠損値が少数で、削除してもデータ量が十分な場合</td>
+                    </tr>
+                    <tr>
+                        <td style="border: 1px solid #ddd; padding: 0.75rem; background: #f8f9fa;"><strong>平均値で補完</strong></td>
+                        <td style="border: 1px solid #ddd; padding: 0.75rem;"><code>df.fillna(df.mean())</code></td>
+                        <td style="border: 1px solid #ddd; padding: 0.75rem;">数値データで、平均的な値で補完しても問題ない場合</td>
+                    </tr>
+                    <tr>
+                        <td style="border: 1px solid #ddd; padding: 0.75rem; background: #f8f9fa;"><strong>中央値で補完</strong></td>
+                        <td style="border: 1px solid #ddd; padding: 0.75rem;"><code>df.fillna(df.median())</code></td>
+                        <td style="border: 1px solid #ddd; padding: 0.75rem;">外れ値の影響を受けたくない場合</td>
+                    </tr>
+                    <tr>
+                        <td style="border: 1px solid #ddd; padding: 0.75rem; background: #f8f9fa;"><strong>最頻値で補完</strong></td>
+                        <td style="border: 1px solid #ddd; padding: 0.75rem;"><code>df.fillna(df.mode().iloc[0])</code></td>
+                        <td style="border: 1px solid #ddd; padding: 0.75rem;">カテゴリデータ（性別、学年など）の場合</td>
+                    </tr>
+                    <tr>
+                        <td style="border: 1px solid #ddd; padding: 0.75rem; background: #f8f9fa;"><strong>前後の値で補完</strong></td>
+                        <td style="border: 1px solid #ddd; padding: 0.75rem;"><code>df.fillna(method='ffill')</code></td>
+                        <td style="border: 1px solid #ddd; padding: 0.75rem;">時系列データで、直前の値を使いたい場合</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h5>実践例</h5>
+            <pre style="background: #f8f9fa; padding: 1rem; border-radius: 0.5rem; overflow-x: auto; color: #333;"><code># 科目ごとに平均値で補完
+df['国語'].fillna(df['国語'].mean(), inplace=True)
+df['数学'].fillna(df['数学'].mean(), inplace=True)
+df['英語'].fillna(df['英語'].mean(), inplace=True)
+
+# すべての数値列を一度に平均値で補完
+df_filled = df.fillna(df.mean(numeric_only=True))
+
+print(df_filled)</code></pre>
+
+            <h4>3-3. 外れ値の検出と処理</h4>
+            <p>
+                <strong>外れ値（outliers）</strong>は、他のデータと大きく異なる極端な値です。
+                入力ミスや測定エラーの場合もあれば、本物の極端なケース（例：非常に優秀な生徒）の場合もあります。
+            </p>
+
+            <h5>外れ値の検出方法</h5>
+            <ul>
+                <li><strong>箱ひげ図（Box Plot）</strong>：視覚的に外れ値を確認</li>
+                <li><strong>四分位範囲（IQR: Interquartile Range）</strong>：Q1 - 1.5×IQR より小さい、またはQ3 + 1.5×IQR より大きい値を外れ値とみなす</li>
+                <li><strong>標準偏差法</strong>：平均 ± 3標準偏差の範囲外を外れ値とみなす</li>
+            </ul>
+
+            <h5>IQR法による外れ値の検出</h5>
+            <pre style="background: #f8f9fa; padding: 1rem; border-radius: 0.5rem; overflow-x: auto; color: #333;"><code># サンプルデータ
+scores = [78, 82, 85, 88, 90, 92, 95, 98, 150]  # 150は明らかな外れ値
+
+df = pd.DataFrame({'点数': scores})
+
+# 四分位数の計算
+Q1 = df['点数'].quantile(0.25)
+Q3 = df['点数'].quantile(0.75)
+IQR = Q3 - Q1
+
+# 外れ値の閾値
+lower_bound = Q1 - 1.5 * IQR
+upper_bound = Q3 + 1.5 * IQR
+
+print(f"下限: {lower_bound}, 上限: {upper_bound}")
+
+# 外れ値の検出
+outliers = df[(df['点数'] < lower_bound) | (df['点数'] > upper_bound)]
+print(f"外れ値:\n{outliers}")
+
+# 外れ値を除外したデータ
+df_cleaned = df[(df['点数'] >= lower_bound) & (df['点数'] <= upper_bound)]
+print(df_cleaned)</code></pre>
+
+            <h4>3-4. 重複データの処理</h4>
+            <p>
+                重複したデータは集計結果を歪める原因となります。pandasでは簡単に重複を検出・削除できます。
+            </p>
+
+            <pre style="background: #f8f9fa; padding: 1rem; border-radius: 0.5rem; overflow-x: auto; color: #333;"><code># 重複を含むデータ
+data = {
+    '生徒名': ['山田', '佐藤', '山田', '鈴木', '佐藤'],
+    '点数': [85, 90, 85, 78, 90]
+}
+df = pd.DataFrame(data)
+
+# 重複行の確認
+print(df.duplicated())  # 重複している行はTrue
+
+# 重複行を削除（最初の行を残す）
+df_no_duplicates = df.drop_duplicates()
+print(df_no_duplicates)</code></pre>
+
+            <h4>3-5. データ型の変換</h4>
+            <p>
+                データを正しく分析するには、各列のデータ型が適切である必要があります。
+            </p>
+
+            <pre style="background: #f8f9fa; padding: 1rem; border-radius: 0.5rem; overflow-x: auto; color: #333;"><code># データ型の確認
+print(df.dtypes)
+
+# 文字列として読み込まれた数値を変換
+df['点数'] = pd.to_numeric(df['点数'], errors='coerce')  # 変換できない場合はNaN
+
+# 日付型への変換
+df['日付'] = pd.to_datetime(df['日付'], format='%Y-%m-%d')
+
+# カテゴリ型への変換（メモリ効率向上）
+df['学年'] = df['学年'].astype('category')</code></pre>
+        </section>
+
+        <section class="content-section">
+            <h3>💻 実践演習2：データクリーニング実践（20分）</h3>
+            
+            <h4>演習内容</h4>
+            <p>
+                架空の学力調査データ（CSV形式）を用いて、データクリーニングの一連のプロセスを実践します。
+            </p>
+
+            <ol>
+                <li><strong>データの読み込み</strong>：サンプルCSVファイルをpandasで読み込む</li>
+                <li><strong>欠損値の処理</strong>：
+                    <ul>
+                        <li>欠損値の個数を確認</li>
+                        <li>数値列は平均値で補完、カテゴリ列は最頻値で補完</li>
+                    </ul>
+                </li>
+                <li><strong>外れ値の検出</strong>：
+                    <ul>
+                        <li>箱ひげ図を作成して視覚的に確認</li>
+                        <li>IQR法で外れ値を検出</li>
+                        <li>外れ値を除外したデータを作成</li>
+                    </ul>
+                </li>
+                <li><strong>重複の処理</strong>：
+                    <ul>
+                        <li>重複行を検出</li>
+                        <li>重複を削除</li>
+                    </ul>
+                </li>
+                <li><strong>データ型の変換</strong>：
+                    <ul>
+                        <li>文字列型になっている数値を数値型に変換</li>
+                        <li>日付列を日付型に変換</li>
+                    </ul>
+                </li>
+            </ol>
+
+            <h4>サンプルデータ構造</h4>
+            <table style="width: 100%; border-collapse: collapse; margin: 1rem 0;">
+                <thead style="background-color: #fff3e0;">
+                    <tr>
+                        <th style="border: 1px solid #ddd; padding: 0.75rem; text-align: left;">列名</th>
+                        <th style="border: 1px solid #ddd; padding: 0.75rem; text-align: left;">データ型</th>
+                        <th style="border: 1px solid #ddd; padding: 0.75rem; text-align: left;">説明</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td style="border: 1px solid #ddd; padding: 0.75rem;">生徒ID</td>
+                        <td style="border: 1px solid #ddd; padding: 0.75rem;">整数</td>
+                        <td style="border: 1px solid #ddd; padding: 0.75rem;">一意の識別番号</td>
+                    </tr>
+                    <tr>
+                        <td style="border: 1px solid #ddd; padding: 0.75rem;">学年</td>
+                        <td style="border: 1px solid #ddd; padding: 0.75rem;">カテゴリ</td>
+                        <td style="border: 1px solid #ddd; padding: 0.75rem;">1〜6年</td>
+                    </tr>
+                    <tr>
+                        <td style="border: 1px solid #ddd; padding: 0.75rem;">国語</td>
+                        <td style="border: 1px solid #ddd; padding: 0.75rem;">数値</td>
+                        <td style="border: 1px solid #ddd; padding: 0.75rem;">0〜100点（欠損値あり）</td>
+                    </tr>
+                    <tr>
+                        <td style="border: 1px solid #ddd; padding: 0.75rem;">数学</td>
+                        <td style="border: 1px solid #ddd; padding: 0.75rem;">数値</td>
+                        <td style="border: 1px solid #ddd; padding: 0.75rem;">0〜100点（外れ値あり）</td>
+                    </tr>
+                    <tr>
+                        <td style="border: 1px solid #ddd; padding: 0.75rem;">英語</td>
+                        <td style="border: 1px solid #ddd; padding: 0.75rem;">数値</td>
+                        <td style="border: 1px solid #ddd; padding: 0.75rem;">0〜100点（重複あり）</td>
+                    </tr>
+                    <tr>
+                        <td style="border: 1px solid #ddd; padding: 0.75rem;">受験日</td>
+                        <td style="border: 1px solid #ddd; padding: 0.75rem;">文字列</td>
+                        <td style="border: 1px solid #ddd; padding: 0.75rem;">YYYY-MM-DD形式</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h4>期待される成果物</h4>
+            <ul>
+                <li>クリーニング前後のデータ概要の比較</li>
+                <li>欠損値・外れ値・重複の検出結果</li>
+                <li>クリーニング済みのCSVファイル</li>
+            </ul>
+        </section>
+
+        <section class="content-section">
+                <h2>📚 第4部：探索的データ分析（EDA）（30分）</h2>
+            
+            <h4>4-1. 探索的データ分析とは</h4>
+            <p>
+                <strong>探索的データ分析（EDA: Exploratory Data Analysis）</strong>とは、
+                データの特徴や傾向を理解するために、統計量の計算やグラフの作成を通じてデータを「探索」するプロセスです。
+            </p>
+
+            <div class="info-box">
+                <h5>EDAの主な目的</h5>
+                <ul>
+                    <li>データの分布や傾向を把握する</li>
+                    <li>変数間の関係を発見する</li>
+                    <li>異常値や外れ値を検出する</li>
+                    <li>仮説を立てる</li>
+                    <li>適切な分析手法を選択する</li>
+                </ul>
+            </div>
+
+            <h4>4-2. 基本統計量の確認</h4>
+            <p>
+                pandasの<code>describe()</code>メソッドを使うと、基本統計量を一度に確認できます。
+            </p>
+
+            <pre style="background: #f8f9fa; padding: 1rem; border-radius: 0.5rem; overflow-x: auto; color: #333;"><code>import pandas as pd
+
+# サンプルデータ
+df = pd.read_csv('student_data.csv')
+
+# 基本統計量の表示
+print(df.describe())
+
+# 出力例：
+#              国語         数学         英語
+# count  100.000000  100.000000  100.000000  ← データ数
+# mean    75.500000   78.300000   80.100000  ← 平均
+# std      8.234567    9.123456    7.890123  ← 標準偏差
+# min     55.000000   60.000000   65.000000  ← 最小値
+# 25%     70.000000   72.000000   75.000000  ← 第1四分位数
+# 50%     76.000000   78.000000   80.000000  ← 中央値
+# 75%     82.000000   85.000000   86.000000  ← 第3四分位数
+# max     95.000000   98.000000   95.000000  ← 最大値
+
+# カテゴリデータの集計
+print(df['学年'].value_counts())
+# 1年    20
+# 2年    18
+# 3年    22
+# ...</code></pre>
+
+            <h4>4-3. データの可視化（matplotlib/seaborn）</h4>
+            <p>
+                <strong>matplotlib</strong>と<strong>seaborn</strong>は、Pythonで最も広く使われている可視化ライブラリです。
+                seabornはmatplotlibをベースに、より美しく統計的なグラフを簡単に作成できます。
+            </p>
+
+            <h5>ヒストグラム：分布の確認</h5>
+            <pre style="background: #f8f9fa; padding: 1rem; border-radius: 0.5rem; overflow-x: auto; color: #333;"><code>import matplotlib.pyplot as plt
+import seaborn as sns
+
+# 日本語フォントの設定（文字化け対策）
+plt.rcParams['font.sans-serif'] = ['Arial Unicode MS', 'Hiragino Sans', 'MS Gothic']
+
+# ヒストグラム
+plt.figure(figsize=(10, 6))
+plt.hist(df['数学'], bins=20, color='skyblue', edgecolor='black')
+plt.xlabel('数学の点数')
+plt.ylabel('人数')
+plt.title('数学の点数分布')
+plt.grid(axis='y', alpha=0.3)
+plt.show()
+
+# seabornを使ったより美しいヒストグラム
+sns.histplot(df['数学'], bins=20, kde=True)  # kde=True で分布曲線を追加
+plt.title('数学の点数分布（seaborn版）')
+plt.show()</code></pre>
+
+            <h5>箱ひげ図：分布の比較</h5>
+            <pre style="background: #f8f9fa; padding: 1rem; border-radius: 0.5rem; overflow-x: auto; color: #333;"><code># 学年別の成績比較
+plt.figure(figsize=(10, 6))
+sns.boxplot(x='学年', y='数学', data=df)
+plt.title('学年別の数学の成績分布')
+plt.xlabel('学年')
+plt.ylabel('数学の点数')
+plt.show()</code></pre>
+
+            <h5>散布図：2変数の関係</h5>
+            <pre style="background: #f8f9fa; padding: 1rem; border-radius: 0.5rem; overflow-x: auto; color: #333;"><code># 国語と数学の関係
+plt.figure(figsize=(10, 6))
+plt.scatter(df['国語'], df['数学'], alpha=0.6)
+plt.xlabel('国語の点数')
+plt.ylabel('数学の点数')
+plt.title('国語と数学の関係')
+plt.grid(True, alpha=0.3)
+plt.show()
+
+# seabornで回帰直線を追加
+sns.regplot(x='国語', y='数学', data=df)
+plt.title('国語と数学の関係（回帰直線付き）')
+plt.show()</code></pre>
+
+            <h5>相関係数の計算と可視化</h5>
+            <pre style="background: #f8f9fa; padding: 1rem; border-radius: 0.5rem; overflow-x: auto; color: #333;"><code># 相関行列の計算
+correlation_matrix = df[['国語', '数学', '英語', '理科', '社会']].corr()
+print(correlation_matrix)
+
+# ヒートマップで可視化
+plt.figure(figsize=(8, 6))
+sns.heatmap(correlation_matrix, annot=True, cmap='coolwarm', center=0, 
+            vmin=-1, vmax=1, square=True, linewidths=1)
+plt.title('科目間の相関係数')
+plt.show()</code></pre>
+
+            <h4>4-4. グループごとの集計</h4>
+            <p>
+                pandasの<code>groupby()</code>を使うと、カテゴリごとに集計できます。
+            </p>
+
+            <pre style="background: #f8f9fa; padding: 1rem; border-radius: 0.5rem; overflow-x: auto; color: #333;"><code># 学年ごとの平均点
+grade_means = df.groupby('学年')[['国語', '数学', '英語']].mean()
+print(grade_means)
+
+# クラスごと・科目ごとの平均点
+class_subject_means = df.groupby(['クラス', '学年'])[['国語', '数学']].mean()
+print(class_subject_means)
+
+# 集計結果を棒グラフで表示
+grade_means.plot(kind='bar', figsize=(10, 6))
+plt.title('学年別の科目平均点')
+plt.xlabel('学年')
+plt.ylabel('平均点')
+plt.legend(title='科目')
+plt.xticks(rotation=0)
+plt.grid(axis='y', alpha=0.3)
+plt.show()</code></pre>
+        </section>
+
+        <section class="content-section">
+            <h3>💻 実践演習3：探索的データ分析（EDA）の実践（20分）</h3>
+            
+            <h4>演習内容</h4>
+            <p>
+                クリーニング済みの学力調査データを用いて、探索的データ分析を実践します。
+            </p>
+
+            <ol>
+                <li><strong>基本統計量の確認</strong>：
+                    <ul>
+                        <li><code>describe()</code>でデータの概要を把握</li>
+                        <li>各科目の平均点、標準偏差、最高点、最低点を確認</li>
+                    </ul>
+                </li>
+                <li><strong>分布の可視化</strong>：
+                    <ul>
+                        <li>各科目のヒストグラムを作成</li>
+                        <li>学年別の箱ひげ図を作成</li>
+                    </ul>
+                </li>
+                <li><strong>相関分析</strong>：
+                    <ul>
+                        <li>科目間の相関係数を計算</li>
+                        <li>ヒートマップで相関を可視化</li>
+                        <li>最も相関が高い科目のペアを散布図で確認</li>
+                    </ul>
+                </li>
+                <li><strong>グループごとの比較</strong>：
+                    <ul>
+                        <li>学年ごとの平均点を計算</li>
+                        <li>クラスごとの平均点を計算</li>
+                        <li>結果を棒グラフで可視化</li>
+                    </ul>
+                </li>
+                <li><strong>発見の記録</strong>：
+                    <ul>
+                        <li>データから分かったこと（傾向、特徴）をまとめる</li>
+                        <li>気になる点や追加で調べたいことをメモする</li>
+                    </ul>
+                </li>
+            </ol>
+
+            <h4>期待される成果物</h4>
+            <ul>
+                <li>各種グラフ（ヒストグラム、箱ひげ図、散布図、ヒートマップ、棒グラフ）</li>
+                <li>データから得られた知見のまとめ（Markdownセルに記述）</li>
+            </ul>
+
+            <div class="info-box">
+                <h5>💡 分析のヒント</h5>
+                <ul>
+                    <li>平均点が低い学年や科目はありますか？</li>
+                    <li>科目間の相関が高い（または低い）組み合わせはありますか？</li>
+                    <li>ある科目の成績が極端に高い/低い生徒はいますか？</li>
+                    <li>学年が上がるにつれて成績はどう変化していますか？</li>
+                </ul>
+            </div>
+        </section>
+
+        <section class="content-section">
+                <h2>📚 第5部：教育データ分析の実践（30分）</h2>
+            
+            <h4>5-1. 教育データ分析のユースケース</h4>
+            <p>
+                教育現場では、以下のようなデータ分析のニーズがあります。
+            </p>
+
+            <table style="width: 100%; border-collapse: collapse; margin: 1rem 0;">
+                <thead style="background-color: #f3e5f5;">
+                    <tr>
+                        <th style="border: 1px solid #ddd; padding: 0.75rem; text-align: left;">分析目的</th>
+                        <th style="border: 1px solid #ddd; padding: 0.75rem; text-align: left;">活用データ</th>
+                        <th style="border: 1px solid #ddd; padding: 0.75rem; text-align: left;">分析手法</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td style="border: 1px solid #ddd; padding: 0.75rem; background: #f8f9fa;"><strong>学力向上施策の効果検証</strong></td>
+                        <td style="border: 1px solid #ddd; padding: 0.75rem;">テスト成績の経年変化</td>
+                        <td style="border: 1px solid #ddd; padding: 0.75rem;">時系列分析、t検定</td>
+                    </tr>
+                    <tr>
+                        <td style="border: 1px solid #ddd; padding: 0.75rem; background: #f8f9fa;"><strong>学習時間と成績の関係</strong></td>
+                        <td style="border: 1px solid #ddd; padding: 0.75rem;">学習時間調査、テスト成績</td>
+                        <td style="border: 1px solid #ddd; padding: 0.75rem;">相関分析、回帰分析</td>
+                    </tr>
+                    <tr>
+                        <td style="border: 1px solid #ddd; padding: 0.75rem; background: #f8f9fa;"><strong>つまずきの早期発見</strong></td>
+                        <td style="border: 1px solid #ddd; padding: 0.75rem;">単元別テスト、確認テスト</td>
+                        <td style="border: 1px solid #ddd; padding: 0.75rem;">クラスタリング、異常検知</td>
+                    </tr>
+                    <tr>
+                        <td style="border: 1px solid #ddd; padding: 0.75rem; background: #f8f9fa;"><strong>クラス間の成績比較</strong></td>
+                        <td style="border: 1px solid #ddd; padding: 0.75rem;">クラス別成績データ</td>
+                        <td style="border: 1px solid #ddd; padding: 0.75rem;">分散分析（ANOVA）</td>
+                    </tr>
+                    <tr>
+                        <td style="border: 1px solid #ddd; padding: 0.75rem; background: #f8f9fa;"><strong>欠席と学力の関係</strong></td>
+                        <td style="border: 1px solid #ddd; padding: 0.75rem;">出席記録、成績データ</td>
+                        <td style="border: 1px solid #ddd; padding: 0.75rem;">相関分析、回帰分析</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h4>5-2. 実践例：学力向上施策の効果検証</h4>
+            <p>
+                新しい指導方法を導入した前後で、成績に有意な変化があったかを検証します。
+            </p>
+
+            <h5>分析の流れ</h5>
+            <ol>
+                <li><strong>問題設定</strong>：「新しい指導方法は効果があったか？」</li>
+                <li><strong>データ収集</strong>：導入前（1学期）と導入後（2学期）の成績データ</li>
+                <li><strong>データクリーニング</strong>：欠損値の処理、外れ値の確認</li>
+                <li><strong>EDA</strong>：平均点の比較、分布の確認</li>
+                <li><strong>統計的検定</strong>：t検定で有意差を確認</li>
+                <li><strong>解釈と報告</strong>：結果を教職員に報告</li>
+            </ol>
+
+            <h5>コード例</h5>
+            <pre style="background: #f8f9fa; padding: 1rem; border-radius: 0.5rem; overflow-x: auto; color: #333;"><code>import pandas as pd
+import numpy as np
+from scipy import stats
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+# データの読み込み
+df = pd.read_csv('grade_comparison.csv')
+
+# 1学期と2学期の成績を抽出
+first_semester = df[df['学期'] == 1]['数学'].dropna()
+second_semester = df[df['学期'] == 2]['数学'].dropna()
+
+# 基本統計量の確認
+print("1学期の平均:", first_semester.mean())
+print("2学期の平均:", second_semester.mean())
+
+# 分布の可視化
+plt.figure(figsize=(10, 6))
+plt.hist(first_semester, bins=20, alpha=0.5, label='1学期', color='blue')
+plt.hist(second_semester, bins=20, alpha=0.5, label='2学期', color='red')
+plt.xlabel('数学の点数')
+plt.ylabel('人数')
+plt.title('学期別の数学成績分布')
+plt.legend()
+plt.show()
+
+# 対応のあるt検定（同じ生徒の前後比較）
+# 帰無仮説：「1学期と2学期の平均点に差はない」
+t_statistic, p_value = stats.ttest_rel(first_semester, second_semester)
+
+print(f"t値: {t_statistic:.4f}")
+print(f"p値: {p_value:.4f}")
+
+if p_value < 0.05:
+    print("結論: 有意水準5%で有意差あり → 新しい指導方法に効果があった可能性が高い")
+else:
+    print("結論: 有意差なし → 新しい指導方法の効果は確認できなかった")</code></pre>
+
+            <h4>5-3. 実践例：学習時間と成績の相関分析</h4>
+            <p>
+                家庭学習時間と成績の関係を分析し、学習時間の重要性を検証します。
+            </p>
+
+            <pre style="background: #f8f9fa; padding: 1rem; border-radius: 0.5rem; overflow-x: auto; color: #333;"><code># データの読み込み
+df = pd.read_csv('study_time_score.csv')
+
+# 散布図の作成
+plt.figure(figsize=(10, 6))
+sns.regplot(x='学習時間（分）', y='数学', data=df)
+plt.title('学習時間と数学成績の関係')
+plt.xlabel('1日あたりの学習時間（分）')
+plt.ylabel('数学の点数')
+plt.show()
+
+# 相関係数の計算
+correlation = df['学習時間（分）'].corr(df['数学'])
+print(f"相関係数: {correlation:.3f}")
+
+# 相関の解釈
+if abs(correlation) >= 0.7:
+    print("強い相関あり")
+elif abs(correlation) >= 0.4:
+    print("中程度の相関あり")
+else:
+    print("弱い相関")
+
+# 回帰分析（学習時間から成績を予測）
+from scipy.stats import linregress
+slope, intercept, r_value, p_value, std_err = linregress(df['学習時間（分）'], df['数学'])
+
+print(f"回帰式: 数学 = {intercept:.2f} + {slope:.2f} × 学習時間")
+print(f"決定係数（R²）: {r_value**2:.3f}")  # モデルの説明力
+print(f"p値: {p_value:.4f}")
+
+# 予測例
+study_time_input = 60  # 60分勉強した場合
+predicted_score = intercept + slope * study_time_input
+print(f"学習時間{study_time_input}分の場合、予測される数学の点数: {predicted_score:.1f}点")</code></pre>
+
+            <h4>5-4. データ倫理と個人情報保護</h4>
+            <div class="warning-box">
+                <h5>⚠️ 教育データを扱う際の重要な注意事項</h5>
+                <ul>
+                    <li><strong>個人情報の保護</strong>：生徒の氏名や個人を特定できる情報は適切に匿名化する</li>
+                    <li><strong>データの管理</strong>：データは暗号化して保存し、不要になったら適切に削除する</li>
+                    <li><strong>目的外利用の禁止</strong>：データは明確な教育目的のためにのみ使用する</li>
+                    <li><strong>公平性の確保</strong>：データ分析の結果が特定の生徒や集団に不利益をもたらさないよう配慮する</li>
+                    <li><strong>透明性</strong>：データの収集・利用目的を保護者や生徒に説明し、同意を得る</li>
+                    <li><strong>法令遵守</strong>：個人情報保護法、学校保健安全法などの関連法規を遵守する</li>
+                </ul>
+            </div>
+        </section>
+
+        <section class="content-section">
+            <h3>💻 実践演習4：教育データ分析プロジェクト（30分）</h3>
+            
+            <h4>総合演習：学力調査データの包括的分析</h4>
+            <p>
+                これまで学んだ知識を統合し、実際の教育現場を想定した包括的なデータ分析プロジェクトを実施します。
+            </p>
+
+            <h5>プロジェクトのシナリオ</h5>
+            <div class="info-box">
+                <p>
+                    あなたは小学校のICT支援員として、校長先生から「本校の児童の学力状況を分析し、改善策を提案してほしい」という依頼を受けました。
+                    学校では全国学力調査と独自の学力テストを実施しており、そのデータが利用可能です。
+                </p>
+            </div>
+
+            <h5>プロジェクトの流れ</h5>
+            <ol>
+                <li><strong>問題設定</strong>：
+                    <ul>
+                        <li>現状の学力水準はどうなっているか？</li>
+                        <li>学年・クラス間で差はあるか？</li>
+                        <li>科目間でバランスは取れているか？</li>
+                        <li>どの科目・単元に課題があるか？</li>
+                    </ul>
+                </li>
+                <li><strong>データの読み込みとクリーニング</strong>：
+                    <ul>
+                        <li>CSVファイルからデータを読み込む</li>
+                        <li>欠損値、外れ値、重複を処理する</li>
+                        <li>データ型を適切に変換する</li>
+                    </ul>
+                </li>
+                <li><strong>探索的データ分析（EDA）</strong>：
+                    <ul>
+                        <li>基本統計量を確認</li>
+                        <li>学年別・クラス別の平均点を比較</li>
+                        <li>科目間の相関を分析</li>
+                        <li>分布を可視化（ヒストグラム、箱ひげ図）</li>
+                    </ul>
+                </li>
+                <li><strong>深掘り分析</strong>：
+                    <ul>
+                        <li>全国平均と比較（t検定）</li>
+                        <li>学習時間と成績の関係（相関・回帰分析）</li>
+                        <li>成績が低い児童の特徴を抽出</li>
+                    </ul>
+                </li>
+                <li><strong>結果の解釈とレポート作成</strong>：
+                    <ul>
+                        <li>分析結果をまとめる</li>
+                        <li>グラフを用いて視覚的に表現</li>
+                        <li>具体的な改善提案を記述</li>
+                    </ul>
+                </li>
+            </ol>
+
+            <h5>提出物</h5>
+            <ul>
+                <li><strong>Jupyter Notebook</strong>：分析のコードと実行結果</li>
+                <li><strong>分析レポート（PDF）</strong>：
+                    <ul>
+                        <li>分析の目的と概要</li>
+                        <li>データの概要（件数、欠損値の処理方法など）</li>
+                        <li>主要な発見（グラフと説明）</li>
+                        <li>統計的検定の結果</li>
+                        <li>改善提案（具体的な施策）</li>
+                    </ul>
+                </li>
+            </ul>
+
+            <h5>評価のポイント</h5>
+            <ul>
+                <li>適切なデータクリーニングが実施されているか</li>
+                <li>探索的データ分析を通じてデータの特徴を把握できているか</li>
+                <li>適切な統計手法を選択・適用できているか</li>
+                <li>グラフが効果的に活用されているか</li>
+                <li>分析結果が正確に解釈されているか</li>
+                <li>教育現場に役立つ具体的な提案がなされているか</li>
+            </ul>
+        </section>
+
+        <section class="content-section">
+                <h2>📚 第6部：データ分析の自動化とレポーティング（20分）</h2>
+            
+            <h4>6-1. データ分析の自動化</h4>
+            <p>
+                毎月・毎学期ごとに同じ形式のレポートを作成する場合、Pythonスクリプトとして自動化することで作業効率を大幅に向上できます。
+            </p>
+
+            <h5>自動化の例：月次レポートの自動生成</h5>
+            <pre style="background: #f8f9fa; padding: 1rem; border-radius: 0.5rem; overflow-x: auto; color: #333;"><code>import pandas as pd
+import matplotlib.pyplot as plt
+from datetime import datetime
+
+def generate_monthly_report(data_file, output_folder):
+    """月次の学力レポートを自動生成する関数"""
+    
+    # データの読み込み
+    df = pd.read_csv(data_file)
+    
+    # 基本統計量の計算
+    summary = df[['国語', '数学', '英語']].describe()
+    
+    # グラフの作成
+    fig, axes = plt.subplots(2, 2, figsize=(12, 10))
+    
+    # 1. ヒストグラム
+    df[['国語', '数学', '英語']].hist(ax=axes[0, 0], bins=20)
+    axes[0, 0].set_title('科目別成績分布')
+    
+    # 2. 箱ひげ図
+    df[['国語', '数学', '英語']].boxplot(ax=axes[0, 1])
+    axes[0, 1].set_title('科目別成績の散らばり')
+    
+    # 3. 相関ヒートマップ
+    import seaborn as sns
+    sns.heatmap(df[['国語', '数学', '英語']].corr(), annot=True, ax=axes[1, 0])
+    axes[1, 0].set_title('科目間の相関')
+    
+    # 4. 学年別平均点
+    grade_means = df.groupby('学年')[['国語', '数学', '英語']].mean()
+    grade_means.plot(kind='bar', ax=axes[1, 1])
+    axes[1, 1].set_title('学年別平均点')
+    axes[1, 1].set_xlabel('学年')
+    axes[1, 1].set_ylabel('平均点')
+    
+    plt.tight_layout()
+    
+    # 現在の日付でファイル名を生成
+    today = datetime.now().strftime('%Y%m%d')
+    graph_file = f"{output_folder}/report_{today}.png"
+    plt.savefig(graph_file, dpi=300, bbox_inches='tight')
+    plt.close()
+    
+    # CSVで統計量を保存
+    summary_file = f"{output_folder}/summary_{today}.csv"
+    summary.to_csv(summary_file)
+    
+    print(f"レポート生成完了: {graph_file}, {summary_file}")
+
+# 実行例
+generate_monthly_report('student_data.csv', 'reports')</code></pre>
+
+            <h4>6-2. インタラクティブなレポートの作成</h4>
+            <p>
+                <strong>Plotly</strong>や<strong>Dash</strong>を使うと、インタラクティブなグラフやダッシュボードを作成できます。
+            </p>
+
+            <h5>Plotlyの例</h5>
+            <pre style="background: #f8f9fa; padding: 1rem; border-radius: 0.5rem; overflow-x: auto; color: #333;"><code>import plotly.express as px
+import pandas as pd
+
+# データの読み込み
+df = pd.read_csv('student_data.csv')
+
+# インタラクティブな散布図
+fig = px.scatter(df, x='学習時間（分）', y='数学', color='学年',
+                 size='国語', hover_data=['生徒ID'],
+                 title='学習時間と数学成績の関係（学年別）')
+fig.show()
+
+# インタラクティブな箱ひげ図
+fig = px.box(df, x='学年', y='数学', color='クラス',
+             title='学年・クラス別の数学成績分布')
+fig.show()</code></pre>
+
+            <h4>6-3. PDFレポートの自動生成</h4>
+            <p>
+                <strong>matplotlib</strong>や<strong>reportlab</strong>を使って、PDFレポートを自動生成できます。
+            </p>
+
+            <pre style="background: #f8f9fa; padding: 1rem; border-radius: 0.5rem; overflow-x: auto; color: #333;"><code>from matplotlib.backends.backend_pdf import PdfPages
+import matplotlib.pyplot as plt
+
+# PDFに複数のグラフをまとめる
+with PdfPages('monthly_report.pdf') as pdf:
+    # ページ1: ヒストグラム
+    fig, ax = plt.subplots()
+    df['数学'].hist(bins=20, ax=ax)
+    ax.set_title('数学の成績分布')
+    pdf.savefig(fig, bbox_inches='tight')
+    plt.close()
+    
+    # ページ2: 箱ひげ図
+    fig, ax = plt.subplots()
+    df.boxplot(column=['国語', '数学', '英語'], ax=ax)
+    ax.set_title('科目別成績の散らばり')
+    pdf.savefig(fig, bbox_inches='tight')
+    plt.close()
+    
+    # メタデータの追加
+    d = pdf.infodict()
+    d['Title'] = '月次学力レポート'
+    d['Author'] = 'ICT支援員'
+    d['Subject'] = '学力分析'
+    d['Keywords'] = 'Education, Data Analysis'
+    d['CreationDate'] = datetime.now()
+
+print("PDFレポート生成完了")</code></pre>
+        </section>
+
+        <section class="content-section">
+            <h3>💻 実践演習5：データ分析の自動化（20分）</h3>
+            
+            <h4>演習内容</h4>
+            <p>
+                月次レポートを自動生成するPythonスクリプトを作成します。
+            </p>
+
+            <ol>
+                <li><strong>関数の作成</strong>：
+                    <ul>
+                        <li><code>generate_monthly_report()</code>関数を作成</li>
+                        <li>引数：データファイルのパス、出力フォルダのパス</li>
+                        <li>処理内容：基本統計量の計算、グラフの作成、ファイルへの保存</li>
+                    </ul>
+                </li>
+                <li><strong>グラフの作成</strong>：
+                    <ul>
+                        <li>ヒストグラム（科目別の分布）</li>
+                        <li>箱ひげ図（科目別の散らばり）</li>
+                        <li>相関ヒートマップ</li>
+                        <li>学年別平均点の棒グラフ</li>
+                    </ul>
+                </li>
+                <li><strong>統計量の保存</strong>：
+                    <ul>
+                        <li><code>describe()</code>の結果をCSVファイルとして保存</li>
+                    </ul>
+                </li>
+                <li><strong>ファイル名の自動生成</strong>：
+                    <ul>
+                        <li>現在の日付をファイル名に含める（例：<code>report_20250101.png</code>）</li>
+                    </ul>
+                </li>
+                <li><strong>動作確認</strong>：
+                    <ul>
+                        <li>サンプルデータで関数を実行</li>
+                        <li>正しくグラフとCSVが生成されるか確認</li>
+                    </ul>
+                </li>
+            </ol>
+
+            <h4>期待される成果物</h4>
+            <ul>
+                <li>Pythonスクリプト（<code>auto_report.py</code>）</li>
+                <li>生成されたグラフのPNG画像</li>
+                <li>基本統計量のCSVファイル</li>
+            </ul>
+
+            <div class="info-box">
+                <h5>💡 発展課題</h5>
+                <ul>
+                    <li>PDFレポートを自動生成する機能を追加する</li>
+                    <li>Plotlyでインタラクティブなグラフを作成し、HTMLファイルとして保存する</li>
+                    <li>コマンドライン引数でデータファイルと出力先を指定できるようにする</li>
+                </ul>
+            </div>
+        </section>
+
+        <section class="content-section">
+                <h2>📚 第7部：参考資料と次のステップ（10分）</h2>
+            
+            <h4>7-1. 参考文献・リソース</h4>
+            
+            <h5>📖 書籍</h5>
+            <ul>
+                <li>「Pythonではじめるデータ分析入門」（Wes McKinney著、オライリー・ジャパン）</li>
+                <li>「Pythonによるデータ分析入門 第2版」（Jake VanderPlas著、オライリー・ジャパン）</li>
+                <li>「Pythonではじめる機械学習」（Andreas C. Müller、Sarah Guido著、オライリー・ジャパン）</li>
+                <li>「データサイエンスのための統計学入門」（Peter Bruce、Andrew Bruce著、オライリー・ジャパン）</li>
+            </ul>
+
+            <h5>🌐 オンラインリソース</h5>
+            <ul>
+                <li><strong>Python公式ドキュメント</strong>: <a href="https://docs.python.org/ja/3/" target="_blank" rel="noopener">https://docs.python.org/ja/3/</a></li>
+                <li><strong>pandas公式ドキュメント</strong>: <a href="https://pandas.pydata.org/docs/" target="_blank" rel="noopener">https://pandas.pydata.org/docs/</a></li>
+                <li><strong>NumPy公式ドキュメント</strong>: <a href="https://numpy.org/doc/" target="_blank" rel="noopener">https://numpy.org/doc/</a></li>
+                <li><strong>matplotlib公式ドキュメント</strong>: <a href="https://matplotlib.org/stable/contents.html" target="_blank" rel="noopener">https://matplotlib.org/stable/contents.html</a></li>
+                <li><strong>seaborn公式ドキュメント</strong>: <a href="https://seaborn.pydata.org/" target="_blank" rel="noopener">https://seaborn.pydata.org/</a></li>
+                <li><strong>Google Colaboratory</strong>: <a href="https://colab.research.google.com/" target="_blank" rel="noopener">https://colab.research.google.com/</a></li>
+                <li><strong>Kaggle Learn</strong>（無料の実践的チュートリアル）: <a href="https://www.kaggle.com/learn" target="_blank" rel="noopener">https://www.kaggle.com/learn</a></li>
+            </ul>
+
+            <h5>🛠 ツール</h5>
+            <ul>
+                <li><strong>Anaconda</strong>: Pythonデータサイエンス環境 <a href="https://www.anaconda.com/" target="_blank" rel="noopener">https://www.anaconda.com/</a></li>
+                <li><strong>Jupyter Notebook / JupyterLab</strong>: インタラクティブ開発環境</li>
+                <li><strong>VS Code</strong>: 軽量で拡張性の高いエディタ（Jupyter拡張機能あり）</li>
+                <li><strong>Google Colaboratory</strong>: ブラウザだけで使えるJupyter環境</li>
+            </ul>
+
+            <h4>7-2. ICT支援員としての学習計画</h4>
+            
+            <div class="info-box">
+                <h5>レベル1：基礎固め（1〜2か月）</h5>
+                <ul>
+                    <li>Pythonの基本構文を習得（第57回・第58回の復習）</li>
+                    <li>NumPy、pandasの基本操作をマスター</li>
+                    <li>サンプルデータで簡単な分析を実践</li>
+                    <li>Jupyter Notebookの使い方に慣れる</li>
+                </ul>
+            </div>
+
+            <div class="info-box">
+                <h5>レベル2：実践応用（3〜6か月）</h5>
+                <ul>
+                    <li>学校の実データを使った分析プロジェクトの実施</li>
+                    <li>統計的検定（t検定、相関分析）の適用</li>
+                    <li>matplotlib/seabornで効果的なグラフを作成</li>
+                    <li>月次・学期ごとのレポート自動生成スクリプトの構築</li>
+                    <li>教職員向けの分析結果報告会の開催</li>
+                </ul>
+            </div>
+
+            <div class="info-box">
+                <h5>レベル3：専門家レベル（6か月〜）</h5>
+                <ul>
+                    <li>機械学習の基礎を学び、予測モデルを構築（第66回・第67回へ）</li>
+                    <li>ラーニングアナリティクスやEDMの高度な手法を習得（第65回へ）</li>
+                    <li>インタラクティブなダッシュボードの開発（Dash、Streamlit）</li>
+                    <li>教育データサイエンスの研究論文を読み、最新手法を導入</li>
+                    <li>教育委員会や管理職への政策提言</li>
+                </ul>
+            </div>
+
+            <h4>7-3. 関連講座</h4>
+            <ul>
+                <li><strong>第63回「基礎数学・統計学の活用」</strong>：データ分析の数学的基礎（前提知識）</li>
+                <li><strong>第57回「プログラミング基礎演習」</strong>：Python基礎</li>
+                <li><strong>第58回「プログラミング特論」</strong>：Python応用</li>
+                <li><strong>第65回「教育データサイエンス」</strong>：ラーニングアナリティクス、EDM（次のステップ）</li>
+                <li><strong>第66回「教育データ・アナリティクス論」</strong>：高度な統計手法と機械学習</li>
+                <li><strong>第67回「知識処理と人工知能論」</strong>：AI・機械学習の教育応用</li>
+            </ul>
+
+            <h4>7-4. まとめ</h4>
+            <p>
+                第64回では、<strong>Pythonを用いた実践的なデータ分析手法</strong>を学びました。
+            </p>
+
+            <h5>本講座のポイント</h5>
+            <ul>
+                <li><strong>データサイエンスライフサイクル</strong>の理解：問題設定→データ収集→クリーニング→EDA→モデリング→報告</li>
+                <li><strong>NumPy・pandasの活用</strong>：効率的なデータ処理と集計</li>
+                <li><strong>データクリーニング</strong>：欠損値・外れ値・重複の適切な処理</li>
+                <li><strong>探索的データ分析（EDA）</strong>：データの特徴を視覚的に把握</li>
+                <li><strong>教育データの実践分析</strong>：学力データや学習時間データの分析</li>
+                <li><strong>分析の自動化</strong>：レポート自動生成による効率化</li>
+            </ul>
+
+            <p>
+                ICT支援員として、データ分析のスキルは<strong>エビデンスに基づく教育改善（EBPM）</strong>を推進するための強力な武器です。
+                本講座で学んだ基礎をもとに、<strong>第65回以降でラーニングアナリティクスや機械学習</strong>などの高度な手法を学び、
+                データ駆動型の教育支援を実現していきましょう。
+            </p>
+            </section>
+
+            <div class="navigation-buttons">
+                <a href="session63.html" class="btn btn-secondary">← 第63回：基礎数学・統計学の活用</a>
+                <a href="../supplement.html" class="btn btn-primary">補完カリキュラムトップへ</a>
+                <a href="session65.html" class="btn btn-secondary">第65回：教育データサイエンス →</a>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 ICT支援員教育講座. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="../js/main.js"></script>
+</body>
+</html>

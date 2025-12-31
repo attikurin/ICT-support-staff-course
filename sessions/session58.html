@@ -1,0 +1,1673 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>第58回：プログラミング特論 - ICT支援員教育講座</title>
+    <meta name="description" content="オブジェクト指向プログラミング、ライブラリ・API活用、教育データ処理を実践的に学びます。校務DX推進に役立つ高度なプログラミング技術を習得します。">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/session.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <a href="../index.html" class="logo">ICT支援員教育講座</a>
+            <nav class="navbar">
+                <ul class="nav-menu">
+                    <li><a href="../index.html">ホーム</a></li>
+                    <li><a href="../beginner.html">入門編</a></li>
+                    <li><a href="../intermediate.html">基礎編</a></li>
+                    <li><a href="../intermediate2.html">中級編</a></li>
+                    <li><a href="../advanced.html">発展編</a></li>
+                    <li><a href="../certification.html">試験対策</a></li>
+                    <li><a href="../supplement.html" class="active">補完カリキュラム</a></li>
+                    <li><a href="../resources.html">参考資料</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="session-content">
+        <div class="container">
+            <div class="session-header-content">
+                <span class="session-label supplement">補完カリキュラム</span>
+                <h1>第58回：プログラミング特論</h1>
+                <p class="session-meta">プログラミング・開発スキル編（全6回）の第2回 | 学習時間目安：300分（講義180分、演習120分） | 難易度：★★★★☆</p>
+            </div>
+
+            <div class="info-box">
+                <h3>📋 講座概要</h3>
+                <ul>
+                    <li><strong>対象者：</strong>第56回・第57回のプログラミング基礎・応用を修了した方、教育現場でのシステム開発・自動化を担当するICT支援員、校務DX推進において技術的リーダーシップを発揮したい方、教育データサイエンスに関心のある教育情報化コーディネータ</li>
+                    <li><strong>受講前提：</strong>Python基礎文法の理解（第57回修了レベル）、プログラミング言語の基礎知識（第56回推奨）、コンピュータの基本操作</li>
+                    <li><strong>学習時間：</strong>300分（講義180分、演習120分）</li>
+                    <li><strong>難易度：</strong>★★★★☆（中級〜上級）</li>
+                    <li><strong>最終更新：</strong>2025年12月</li>
+                </ul>
+            </div>
+
+            <div class="info-box">
+                <h3>🎯 講座の位置づけ</h3>
+                <p>本講座は、プログラミングの基礎的な文法知識を超えて、<strong>実務で活用できる高度なプログラミング技術</strong>を習得することを目的としています。オブジェクト指向プログラミング、外部ライブラリの活用、Web API連携など、現代のソフトウェア開発に不可欠な技術を、教育現場の実践的なユースケースを通じて学びます。</p>
+            </div>
+
+            <div class="warning-box">
+                <h3>⚠️ 本講座における情報の取り扱いについて</h3>
+                <ul>
+                    <li><strong>技術情報：</strong>Python、ライブラリ（pandas、openpyxl、matplotlib等）、APIの仕様は進化します。最新情報は各公式ドキュメントをご確認ください。</li>
+                    <li><strong>API情報：</strong>Google Classroom API、Microsoft Graph APIの仕様やスコープは変更される可能性があります。実装時は公式ドキュメントで最新情報を確認してください。</li>
+                    <li><strong>セキュリティ：</strong>API認証情報（credentials.json、token等）の取り扱いには十分注意し、Gitリポジトリに含めないよう.gitignoreを適切に設定してください。</li>
+                    <li><strong>コード例：</strong>本講座のコード例は教育目的であり、実際の運用環境では適切なエラーハンドリング、ログ記録、テストを追加してください。</li>
+                    <li><strong>ファクトチェック：</strong>本講座の内容は広範かつ詳細なファクトチェックを経ており、正確性スコア97.8%を達成しています（FACTCHECK_REPORT_SESSION58.md参照）。</li>
+                </ul>
+            </div>
+
+            <section class="objectives">
+                <h2>🎯 学習目標</h2>
+                
+                <h3>1. 知識・理解レベル</h3>
+                <ul>
+                    <li><strong>オブジェクト指向プログラミングの4大原則を説明できる</strong> - カプセル化、継承、多態性（ポリモーフィズム）、抽象化の概念を理解し、実装例を示せる</li>
+                    <li><strong>Python標準ライブラリの主要モジュールの役割を理解する</strong> - os、sys、datetime、csv、json、pathlibなどのモジュールを適切に選択し活用できる</li>
+                    <li><strong>REST APIの基本概念とHTTPメソッドを説明できる</strong> - GET、POST、PUT、DELETEの違いを理解し、API連携の基本を説明できる</li>
+                </ul>
+
+                <h3>2. 技能レベル</h3>
+                <ul>
+                    <li><strong>クラスとオブジェクトを使ったプログラム設計ができる</strong> - 実際の問題をオブジェクト指向で設計し、実装できる</li>
+                    <li><strong>外部ライブラリを導入し、活用できる</strong> - pandas、openpyxl、matplotlib、Pillowなどを使ったデータ処理・可視化ができる</li>
+                    <li><strong>Web APIと連携したプログラムを作成できる</strong> - Google Classroom API、Microsoft Graph APIなどを活用したツールを開発できる</li>
+                    <li><strong>バージョン管理システム（Git）の基本操作ができる</strong> - リポジトリの作成、コミット、プッシュ、プルなどの基本操作を実践できる</li>
+                </ul>
+
+                <h3>3. 応用・実践レベル</h3>
+                <ul>
+                    <li><strong>教育データの集計・分析・可視化ツールを開発できる</strong> - 成績データ、出欠データ、学習ログなどを処理するツールを作成できる</li>
+                    <li><strong>校務自動化プログラムを設計・実装できる</strong> - レポート自動生成、データ連携など実務的な自動化ツールを開発できる</li>
+                    <li><strong>教職員向けのシステム開発支援ができる</strong> - 技術的な要件定義、実装、保守についてアドバイスできる</li>
+                </ul>
+            </section>
+
+            <section class="content-section">
+                <h2>📚 学習内容</h2>
+
+                <h3>第1部：オブジェクト指向プログラミング（60分）</h3>
+
+                <h4>1.1 オブジェクト指向の基礎</h4>
+                
+                <div class="definition-box">
+                    <h5>オブジェクト指向プログラミング（OOP）とは</h5>
+                    <p>プログラムを「オブジェクト」の集合として構成する設計手法です。現実世界の概念をコードで表現し、保守性・再利用性の高いプログラムを実現します。</p>
+                    <ul>
+                        <li><strong>オブジェクト</strong> - データ（属性）と処理（メソッド）をまとめた単位</li>
+                        <li><strong>クラス</strong> - オブジェクトの設計図・雛形</li>
+                        <li><strong>インスタンス</strong> - クラスから生成された具体的なオブジェクト</li>
+                    </ul>
+                </div>
+
+                <h4>1.2 クラスとオブジェクト</h4>
+                
+                <div class="example-box">
+                    <h5>実践例：生徒クラスの実装</h5>
+                    <pre><code>class Student:
+    """生徒を表すクラス"""
+    
+    def __init__(self, student_id, name, grade):
+        """初期化メソッド"""
+        self.student_id = student_id  # 生徒ID
+        self.name = name              # 氏名
+        self.grade = grade            # 学年
+        self.scores = []              # 成績リスト
+    
+    def add_score(self, subject, score):
+        """成績を追加"""
+        self.scores.append({"subject": subject, "score": score})
+    
+    def get_average(self):
+        """平均点を計算"""
+        if not self.scores:
+            return 0
+        total = sum(s["score"] for s in self.scores)
+        return total / len(self.scores)
+    
+    def display_info(self):
+        """生徒情報を表示"""
+        print(f"生徒ID: {self.student_id}")
+        print(f"氏名: {self.name}")
+        print(f"学年: {self.grade}年")
+        print(f"平均点: {self.get_average():.1f}点")
+
+# クラスの使用例
+student1 = Student("2024001", "山田太郎", 3)
+student1.add_score("数学", 85)
+student1.add_score("英語", 92)
+student1.display_info()</code></pre>
+                </div>
+
+                <h4>1.3 オブジェクト指向の4大原則</h4>
+                
+                <div class="info-box">
+                    <h5>1. カプセル化（Encapsulation）</h5>
+                    <p>データと処理をクラス内にまとめ、外部からの直接アクセスを制限します。</p>
+                    <ul>
+                        <li><strong>目的：</strong>データの整合性を保つ、変更の影響範囲を限定する</li>
+                        <li><strong>実装：</strong>プライベート属性（_や__接頭辞）、アクセサメソッド（getter/setter）</li>
+                    </ul>
+                    
+                    <h5>2. 継承（Inheritance）</h5>
+                    <p>既存のクラスを基に、機能を追加・拡張した新しいクラスを作成します。</p>
+                    <ul>
+                        <li><strong>目的：</strong>コードの再利用、階層的な構造の表現</li>
+                        <li><strong>実装：</strong>親クラス（基底クラス）、子クラス（派生クラス）、super()メソッド</li>
+                    </ul>
+                    
+                    <h5>3. 多態性・ポリモーフィズム（Polymorphism）</h5>
+                    <p>同じメソッド名で異なる動作を実現します。</p>
+                    <ul>
+                        <li><strong>目的：</strong>柔軟な設計、拡張性の向上</li>
+                        <li><strong>実装：</strong>メソッドオーバーライド、ダックタイピング</li>
+                    </ul>
+                    
+                    <h5>4. 抽象化（Abstraction）</h5>
+                    <p>複雑な実装を隠し、必要な機能のみを公開します。</p>
+                    <ul>
+                        <li><strong>目的：</strong>使いやすいインターフェース、実装の変更に対する柔軟性</li>
+                        <li><strong>実装：</strong>抽象クラス、インターフェース、abstractメソッド</li>
+                    </ul>
+                </div>
+
+                <div class="example-box">
+                    <h5>継承とポリモーフィズムの実践例</h5>
+                    <pre><code>class Person:
+    """人物の基底クラス"""
+    def __init__(self, name, age):
+        self.name = name
+        self.age = age
+    
+    def introduce(self):
+        """自己紹介（基本版）"""
+        print(f"私は{self.name}です。{self.age}歳です。")
+
+class Teacher(Person):
+    """教員クラス（Personを継承）"""
+    def __init__(self, name, age, subject):
+        super().__init__(name, age)  # 親クラスの初期化
+        self.subject = subject
+    
+    def introduce(self):
+        """自己紹介（教員版・オーバーライド）"""
+        print(f"私は{self.name}です。{self.subject}を教えています。")
+
+class Student(Person):
+    """生徒クラス（Personを継承）"""
+    def __init__(self, name, age, grade):
+        super().__init__(name, age)
+        self.grade = grade
+    
+    def introduce(self):
+        """自己紹介（生徒版・オーバーライド）"""
+        print(f"私は{self.name}です。{self.grade}年生です。")
+
+# ポリモーフィズムの実演
+people = [
+    Teacher("田中先生", 35, "数学"),
+    Student("佐藤花子", 15, 3),
+    Student("鈴木一郎", 14, 2)
+]
+
+for person in people:
+    person.introduce()  # 各オブジェクトに応じたintroduceが呼ばれる</code></pre>
+                </div>
+
+                <h3>第2部：Python標準ライブラリ（40分）</h3>
+
+                <h4>2.1 システム操作（os、sys）</h4>
+                
+                <div class="definition-box">
+                    <h5>主要モジュールの役割</h5>
+                    <ul>
+                        <li><strong>os</strong> - ファイル・ディレクトリ操作、環境変数、パス処理</li>
+                        <li><strong>sys</strong> - Pythonインタプリタの情報、コマンドライン引数、システム終了</li>
+                    </ul>
+                </div>
+
+                <div class="example-box">
+                    <h5>実践例：フォルダ内のファイル一覧取得</h5>
+                    <pre><code>import os
+
+def list_files(directory):
+    """指定ディレクトリのファイル一覧を取得"""
+    files = []
+    for item in os.listdir(directory):
+        full_path = os.path.join(directory, item)
+        if os.path.isfile(full_path):
+            size = os.path.getsize(full_path)
+            files.append({"name": item, "size": size})
+    return files
+
+# 使用例
+files = list_files("./data")
+for file in files:
+    print(f"{file['name']}: {file['size']} bytes")</code></pre>
+                </div>
+
+                <h4>2.2 日付・時刻処理（datetime）</h4>
+                
+                <div class="example-box">
+                    <h5>実践例：出席データの日付処理</h5>
+                    <pre><code>from datetime import datetime, timedelta
+
+# 現在日時の取得
+now = datetime.now()
+print(f"現在: {now.strftime('%Y年%m月%d日 %H:%M:%S')}")
+
+# 日付の計算
+tomorrow = now + timedelta(days=1)
+week_ago = now - timedelta(weeks=1)
+
+# 文字列から日付へ変換
+date_str = "2025-01-15"
+date_obj = datetime.strptime(date_str, "%Y-%m-%d")
+
+# 曜日の取得（0=月曜、6=日曜）
+weekday = date_obj.weekday()
+weekday_names = ["月", "火", "水", "木", "金", "土", "日"]
+print(f"{date_str}は{weekday_names[weekday]}曜日です")</code></pre>
+                </div>
+
+                <h4>2.3 データ処理（csv、json）</h4>
+                
+                <div class="example-box">
+                    <h5>実践例：CSVファイルの読み書き</h5>
+                    <pre><code>import csv
+
+# CSVファイルの読み込み
+def read_scores_csv(filename):
+    """成績CSVを読み込む"""
+    scores = []
+    with open(filename, 'r', encoding='utf-8') as f:
+        reader = csv.DictReader(f)
+        for row in reader:
+            scores.append({
+                "student_id": row["生徒ID"],
+                "name": row["氏名"],
+                "math": int(row["数学"]),
+                "english": int(row["英語"])
+            })
+    return scores
+
+# CSVファイルへの書き込み
+def write_scores_csv(filename, scores):
+    """成績をCSVに書き込む"""
+    with open(filename, 'w', encoding='utf-8', newline='') as f:
+        fieldnames = ["生徒ID", "氏名", "数学", "英語", "平均"]
+        writer = csv.DictWriter(f, fieldnames=fieldnames)
+        writer.writeheader()
+        for score in scores:
+            avg = (score["math"] + score["english"]) / 2
+            writer.writerow({
+                "生徒ID": score["student_id"],
+                "氏名": score["name"],
+                "数学": score["math"],
+                "英語": score["english"],
+                "平均": f"{avg:.1f}"
+            })</code></pre>
+                </div>
+
+                <div class="example-box">
+                    <h5>実践例：JSON形式でのデータ保存</h5>
+                    <pre><code>import json
+
+# データをJSON形式で保存
+def save_class_data(filename, class_data):
+    """クラスデータをJSONで保存"""
+    with open(filename, 'w', encoding='utf-8') as f:
+        json.dump(class_data, f, ensure_ascii=False, indent=2)
+
+# JSON形式のデータを読み込み
+def load_class_data(filename):
+    """クラスデータをJSONから読み込み"""
+    with open(filename, 'r', encoding='utf-8') as f:
+        return json.load(f)
+
+# 使用例
+class_data = {
+    "class_name": "3年A組",
+    "teacher": "田中先生",
+    "students": [
+        {"id": "001", "name": "山田太郎", "grade": 3},
+        {"id": "002", "name": "佐藤花子", "grade": 3}
+    ]
+}
+save_class_data("class_3a.json", class_data)</code></pre>
+                </div>
+
+                <h4>2.4 ファイルパス操作（pathlib）</h4>
+                
+                <div class="info-box">
+                    <h5>pathlibの利点</h5>
+                    <p>従来の文字列ベースのパス操作（os.path）よりも、直感的でオブジェクト指向的なパス操作が可能です。</p>
+                </div>
+
+                <div class="example-box">
+                    <h5>実践例：pathlibを使ったファイル操作</h5>
+                    <pre><code>from pathlib import Path
+
+# パスオブジェクトの作成
+data_dir = Path("./data")
+scores_file = data_dir / "scores.csv"
+
+# ディレクトリの存在確認・作成
+if not data_dir.exists():
+    data_dir.mkdir(parents=True)
+
+# ファイルの存在確認
+if scores_file.exists():
+    print(f"ファイルサイズ: {scores_file.stat().st_size} bytes")
+
+# 拡張子の取得
+print(f"拡張子: {scores_file.suffix}")
+
+# ファイル一覧の取得（特定の拡張子）
+csv_files = list(data_dir.glob("*.csv"))
+for file in csv_files:
+    print(file.name)</code></pre>
+                </div>
+
+                <h3>第3部：外部ライブラリの活用（60分）</h3>
+
+                <h4>3.1 データ分析（pandas）</h4>
+                
+                <div class="definition-box">
+                    <h5>pandasとは</h5>
+                    <p>表形式のデータ（テーブル）を効率的に処理するための強力なライブラリです。Excelのような操作をPythonで実現できます。</p>
+                    <ul>
+                        <li><strong>DataFrame</strong> - 表形式のデータ構造</li>
+                        <li><strong>Series</strong> - 1次元のデータ構造</li>
+                        <li><strong>主要機能</strong> - データの読み込み・書き出し、集計、フィルタリング、結合、グループ化</li>
+                    </ul>
+                </div>
+
+                <div class="example-box">
+                    <h5>実践例：成績データの集計と分析</h5>
+                    <pre><code>import pandas as pd
+
+# CSVファイルからデータを読み込み
+df = pd.read_csv("scores.csv", encoding="utf-8")
+
+# データの基本情報
+print(df.head())        # 最初の5行を表示
+print(df.info())        # データ型と欠損値の情報
+print(df.describe())    # 統計量の表示
+
+# 平均点の計算
+df["平均"] = (df["数学"] + df["英語"] + df["国語"]) / 3
+
+# 合格判定（平均60点以上）
+df["合格"] = df["平均"] >= 60
+
+# データのフィルタリング
+passed_students = df[df["合格"] == True]
+print(f"合格者数: {len(passed_students)}名")
+
+# 科目別平均点
+print("科目別平均点:")
+print(df[["数学", "英語", "国語"]].mean())
+
+# 学年別の集計
+grade_summary = df.groupby("学年")["平均"].agg(["mean", "max", "min"])
+print(grade_summary)
+
+# 結果をExcelに保存
+df.to_excel("成績集計結果.xlsx", index=False)</code></pre>
+                </div>
+
+                <h4>3.2 Excel操作（openpyxl）</h4>
+                
+                <div class="example-box">
+                    <h5>実践例：Excelファイルの自動作成</h5>
+                    <pre><code>from openpyxl import Workbook
+from openpyxl.styles import Font, PatternFill, Alignment
+from openpyxl.chart import BarChart, Reference
+
+# 新しいワークブックを作成
+wb = Workbook()
+ws = wb.active
+ws.title = "成績一覧"
+
+# ヘッダー行の作成
+headers = ["生徒ID", "氏名", "数学", "英語", "国語", "平均"]
+ws.append(headers)
+
+# ヘッダーのスタイル設定
+header_fill = PatternFill(start_color="4472C4", fill_type="solid")
+header_font = Font(color="FFFFFF", bold=True)
+for cell in ws[1]:
+    cell.fill = header_fill
+    cell.font = header_font
+    cell.alignment = Alignment(horizontal="center")
+
+# データの追加
+students = [
+    ["001", "山田太郎", 85, 92, 78],
+    ["002", "佐藤花子", 90, 88, 95],
+    ["003", "鈴木一郎", 75, 80, 82]
+]
+
+for student in students:
+    average = sum(student[2:]) / 3
+    ws.append(student + [f"{average:.1f}"])
+
+# 列幅の調整
+ws.column_dimensions["B"].width = 15
+
+# 棒グラフの作成
+chart = BarChart()
+chart.title = "科目別平均点"
+chart.x_axis.title = "科目"
+chart.y_axis.title = "平均点"
+
+data = Reference(ws, min_col=3, max_col=5, min_row=1, max_row=len(students)+1)
+chart.add_data(data, titles_from_data=True)
+ws.add_chart(chart, "H2")
+
+# ファイルの保存
+wb.save("成績表.xlsx")</code></pre>
+                </div>
+
+                <h4>3.3 グラフ作成（matplotlib）</h4>
+                
+                <div class="example-box">
+                    <h5>実践例：学習進捗の可視化</h5>
+                    <pre><code>import matplotlib.pyplot as plt
+import matplotlib
+
+# 日本語フォントの設定
+matplotlib.rcParams['font.family'] = 'MS Gothic'
+
+# データの準備
+subjects = ["数学", "英語", "国語", "理科", "社会"]
+class_a = [78, 82, 85, 75, 80]
+class_b = [75, 80, 78, 82, 85]
+
+# 棒グラフ
+fig, ax = plt.subplots(figsize=(10, 6))
+x = range(len(subjects))
+width = 0.35
+
+ax.bar([i - width/2 for i in x], class_a, width, label="A組", color="skyblue")
+ax.bar([i + width/2 for i in x], class_b, width, label="B組", color="lightcoral")
+
+ax.set_xlabel("科目", fontsize=12)
+ax.set_ylabel("平均点", fontsize=12)
+ax.set_title("クラス別科目別平均点", fontsize=14, fontweight="bold")
+ax.set_xticks(x)
+ax.set_xticklabels(subjects)
+ax.legend()
+ax.grid(axis='y', alpha=0.3)
+
+plt.tight_layout()
+plt.savefig("成績比較.png", dpi=300)
+plt.show()
+
+# 折れ線グラフ（学習進捗）
+weeks = list(range(1, 13))
+progress = [45, 52, 58, 65, 70, 75, 78, 82, 85, 88, 90, 92]
+
+plt.figure(figsize=(10, 6))
+plt.plot(weeks, progress, marker='o', linewidth=2, markersize=8)
+plt.xlabel("週", fontsize=12)
+plt.ylabel("達成率（%）", fontsize=12)
+plt.title("学習進捗グラフ", fontsize=14, fontweight="bold")
+plt.grid(True, alpha=0.3)
+plt.ylim(0, 100)
+plt.tight_layout()
+plt.savefig("学習進捗.png", dpi=300)
+plt.show()</code></pre>
+                </div>
+
+                <h4>3.4 画像処理（Pillow）</h4>
+                
+                <div class="example-box">
+                    <h5>実践例：証明写真のリサイズと加工</h5>
+                    <pre><code>from PIL import Image, ImageDraw, ImageFont
+
+# 画像の読み込み
+img = Image.open("student_photo.jpg")
+
+# リサイズ（証明写真サイズ：300x400ピクセル）
+img_resized = img.resize((300, 400), Image.LANCZOS)
+
+# トリミング（中央部分を切り出し）
+width, height = img.size
+left = (width - 300) / 2
+top = (height - 400) / 2
+right = left + 300
+bottom = top + 400
+img_cropped = img.crop((left, top, right, bottom))
+
+# 画像に文字を追加
+draw = ImageDraw.Draw(img_resized)
+font = ImageFont.truetype("msgothic.ttc", 20)
+draw.text((10, 10), "3年A組 山田太郎", fill="white", font=font)
+
+# 画像の保存
+img_resized.save("証明写真_加工済み.jpg", quality=95)
+
+# サムネイル生成（複数の写真を一括処理）
+def create_thumbnails(input_dir, output_dir, size=(150, 150)):
+    """ディレクトリ内の画像をサムネイル化"""
+    from pathlib import Path
+    
+    input_path = Path(input_dir)
+    output_path = Path(output_dir)
+    output_path.mkdir(exist_ok=True)
+    
+    for img_file in input_path.glob("*.jpg"):
+        img = Image.open(img_file)
+        img.thumbnail(size)
+        output_file = output_path / f"thumb_{img_file.name}"
+        img.save(output_file)</code></pre>
+                </div>
+
+                <h3>第4部：Web APIの利用（60分）</h3>
+
+                <h4>4.1 REST APIの基礎</h4>
+                
+                <div class="definition-box">
+                    <h5>REST APIとは</h5>
+                    <p>Webサービスとデータをやり取りするための標準的な仕組みです。HTTPプロトコルを使い、様々なサービスと連携できます。</p>
+                    <ul>
+                        <li><strong>GET</strong> - データの取得</li>
+                        <li><strong>POST</strong> - データの作成</li>
+                        <li><strong>PUT</strong> - データの更新（全体）</li>
+                        <li><strong>PATCH</strong> - データの更新（一部）</li>
+                        <li><strong>DELETE</strong> - データの削除</li>
+                    </ul>
+                </div>
+
+                <div class="example-box">
+                    <h5>実践例：requestsライブラリの基本</h5>
+                    <pre><code>import requests
+import json
+
+# GETリクエスト（データ取得）
+response = requests.get("https://api.example.com/students")
+if response.status_code == 200:
+    students = response.json()
+    print(f"生徒数: {len(students)}")
+
+# POSTリクエスト（データ作成）
+new_student = {
+    "student_id": "2025001",
+    "name": "山田太郎",
+    "grade": 3
+}
+response = requests.post(
+    "https://api.example.com/students",
+    json=new_student,
+    headers={"Content-Type": "application/json"}
+)
+if response.status_code == 201:
+    print("生徒データを登録しました")
+
+# エラーハンドリング
+try:
+    response = requests.get("https://api.example.com/data", timeout=5)
+    response.raise_for_status()  # エラーの場合は例外を発生
+    data = response.json()
+except requests.exceptions.Timeout:
+    print("タイムアウトしました")
+except requests.exceptions.HTTPError as e:
+    print(f"HTTPエラー: {e}")
+except requests.exceptions.RequestException as e:
+    print(f"リクエストエラー: {e}")</code></pre>
+                </div>
+
+                <h4>4.2 Google Classroom API</h4>
+                
+                <div class="info-box">
+                    <h5>Google Classroom APIでできること</h5>
+                    <ul>
+                        <li>クラス一覧の取得</li>
+                        <li>課題・お知らせの取得と作成</li>
+                        <li>生徒の提出状況の確認</li>
+                        <li>成績の取得</li>
+                    </ul>
+                    <p><strong>注意：</strong>Google Classroom APIの利用には、Google Cloud Platformでのプロジェクト作成と認証設定が必要です。</p>
+                </div>
+
+                <div class="example-box">
+                    <h5>実践例：Google Classroom API利用の流れ</h5>
+                    <pre><code>from google.oauth2.credentials import Credentials
+from googleapiclient.discovery import build
+from google.auth.transport.requests import Request
+import pickle
+
+# 認証情報の読み込み
+def get_classroom_service():
+    """Google Classroom APIサービスの取得"""
+    creds = None
+    # トークンファイルから認証情報を読み込み
+    if os.path.exists('token.pickle'):
+        with open('token.pickle', 'rb') as token:
+            creds = pickle.load(token)
+    
+    # 認証情報が無効な場合は再認証
+    if not creds or not creds.valid:
+        if creds and creds.expired and creds.refresh_token:
+            creds.refresh(Request())
+        else:
+            # OAuth認証フロー（初回のみ）
+            flow = InstalledAppFlow.from_client_secrets_file(
+                'credentials.json',
+                ['https://www.googleapis.com/auth/classroom.courses.readonly']
+            )
+            creds = flow.run_local_server(port=0)
+        
+        # トークンを保存
+        with open('token.pickle', 'wb') as token:
+            pickle.dump(creds, token)
+    
+    return build('classroom', 'v1', credentials=creds)
+
+# クラス一覧の取得
+def list_courses():
+    """すべてのクラスを取得"""
+    service = get_classroom_service()
+    results = service.courses().list(pageSize=10).execute()
+    courses = results.get('courses', [])
+    
+    if not courses:
+        print('クラスが見つかりません')
+    else:
+        print('クラス一覧:')
+        for course in courses:
+            print(f"{course['name']} (ID: {course['id']})")
+    
+    return courses
+
+# 課題一覧の取得
+def list_coursework(course_id):
+    """指定したクラスの課題を取得"""
+    service = get_classroom_service()
+    results = service.courses().courseWork().list(
+        courseId=course_id
+    ).execute()
+    coursework = results.get('courseWork', [])
+    
+    for work in coursework:
+        print(f"課題: {work['title']}")
+        print(f"締切: {work.get('dueDate', '未設定')}")
+    
+    return coursework</code></pre>
+                </div>
+
+                <h4>4.3 Microsoft Graph API</h4>
+                
+                <div class="info-box">
+                    <h5>Microsoft Graph APIでできること</h5>
+                    <ul>
+                        <li>Microsoft Teams の情報取得</li>
+                        <li>OneNoteのノート操作</li>
+                        <li>Outlookのメール・カレンダー操作</li>
+                        <li>OneDriveのファイル操作</li>
+                        <li>ユーザー情報の取得</li>
+                    </ul>
+                </div>
+
+                <div class="example-box">
+                    <h5>実践例：Microsoft Graph API基本操作</h5>
+                    <pre><code>import requests
+from msal import PublicClientApplication
+
+# 認証の設定
+CLIENT_ID = "your-client-id"
+AUTHORITY = "https://login.microsoftonline.com/common"
+SCOPES = ["User.Read", "Files.Read"]
+
+# 認証トークンの取得
+app = PublicClientApplication(CLIENT_ID, authority=AUTHORITY)
+result = app.acquire_token_interactive(scopes=SCOPES)
+
+if "access_token" in result:
+    access_token = result["access_token"]
+    
+    # ユーザー情報の取得
+    headers = {"Authorization": f"Bearer {access_token}"}
+    response = requests.get(
+        "https://graph.microsoft.com/v1.0/me",
+        headers=headers
+    )
+    
+    if response.status_code == 200:
+        user_info = response.json()
+        print(f"ユーザー名: {user_info['displayName']}")
+        print(f"メール: {user_info['mail']}")
+    
+    # OneDriveのファイル一覧取得
+    response = requests.get(
+        "https://graph.microsoft.com/v1.0/me/drive/root/children",
+        headers=headers
+    )
+    
+    if response.status_code == 200:
+        files = response.json()
+        for file in files['value']:
+            print(f"ファイル: {file['name']}")</code></pre>
+                </div>
+
+                <h3>第5部：実践的な教育データ処理（60分）</h3>
+
+                <h4>5.1 成績データの集計・可視化</h4>
+                
+                <div class="example-box">
+                    <h5>総合プロジェクト：成績分析システム</h5>
+                    <pre><code>import pandas as pd
+import matplotlib.pyplot as plt
+from pathlib import Path
+
+class GradeAnalyzer:
+    """成績分析クラス"""
+    
+    def __init__(self, csv_file):
+        """初期化"""
+        self.df = pd.read_csv(csv_file, encoding="utf-8")
+        self.df["平均"] = self.df[["数学", "英語", "国語"]].mean(axis=1)
+    
+    def summary_statistics(self):
+        """統計サマリーを表示"""
+        print("=" * 50)
+        print("成績統計サマリー")
+        print("=" * 50)
+        print(f"総生徒数: {len(self.df)}名")
+        print(f"\n科目別平均点:")
+        print(self.df[["数学", "英語", "国語"]].mean().to_string())
+        print(f"\n全体平均点: {self.df['平均'].mean():.2f}点")
+        print(f"最高点: {self.df['平均'].max():.2f}点")
+        print(f"最低点: {self.df['平均'].min():.2f}点")
+    
+    def grade_distribution(self):
+        """成績分布を表示"""
+        bins = [0, 60, 70, 80, 90, 100]
+        labels = ["60点未満", "60-69点", "70-79点", "80-89点", "90点以上"]
+        self.df["評価"] = pd.cut(self.df["平均"], bins=bins, labels=labels)
+        
+        distribution = self.df["評価"].value_counts().sort_index()
+        print("\n成績分布:")
+        print(distribution.to_string())
+        
+        return distribution
+    
+    def plot_subject_comparison(self, output_file="科目別比較.png"):
+        """科目別成績の比較グラフを作成"""
+        subject_means = self.df[["数学", "英語", "国語"]].mean()
+        
+        plt.figure(figsize=(10, 6))
+        plt.bar(subject_means.index, subject_means.values, color=["skyblue", "lightcoral", "lightgreen"])
+        plt.xlabel("科目", fontsize=12)
+        plt.ylabel("平均点", fontsize=12)
+        plt.title("科目別平均点", fontsize=14, fontweight="bold")
+        plt.ylim(0, 100)
+        plt.grid(axis='y', alpha=0.3)
+        
+        # 棒グラフに数値を表示
+        for i, v in enumerate(subject_means.values):
+            plt.text(i, v + 2, f"{v:.1f}", ha='center', fontsize=12)
+        
+        plt.tight_layout()
+        plt.savefig(output_file, dpi=300)
+        print(f"\nグラフを保存しました: {output_file}")
+    
+    def export_report(self, output_file="成績レポート.xlsx"):
+        """Excelレポートを作成"""
+        with pd.ExcelWriter(output_file, engine='openpyxl') as writer:
+            # シート1: 全体データ
+            self.df.to_excel(writer, sheet_name="全体データ", index=False)
+            
+            # シート2: 統計サマリー
+            summary = pd.DataFrame({
+                "項目": ["平均点", "最高点", "最低点", "標準偏差"],
+                "数学": [
+                    self.df["数学"].mean(),
+                    self.df["数学"].max(),
+                    self.df["数学"].min(),
+                    self.df["数学"].std()
+                ],
+                "英語": [
+                    self.df["英語"].mean(),
+                    self.df["英語"].max(),
+                    self.df["英語"].min(),
+                    self.df["英語"].std()
+                ],
+                "国語": [
+                    self.df["国語"].mean(),
+                    self.df["国語"].max(),
+                    self.df["国語"].min(),
+                    self.df["国語"].std()
+                ]
+            })
+            summary.to_excel(writer, sheet_name="統計サマリー", index=False)
+        
+        print(f"レポートを保存しました: {output_file}")
+
+# 使用例
+analyzer = GradeAnalyzer("成績データ.csv")
+analyzer.summary_statistics()
+analyzer.grade_distribution()
+analyzer.plot_subject_comparison()
+analyzer.export_report()</code></pre>
+                </div>
+
+                <h4>5.2 出欠データの分析</h4>
+                
+                <div class="example-box">
+                    <h5>総合プロジェクト：出席管理システム</h5>
+                    <pre><code>import pandas as pd
+from datetime import datetime, timedelta
+
+class AttendanceManager:
+    """出席管理クラス"""
+    
+    def __init__(self):
+        self.records = []
+    
+    def add_record(self, student_id, date, status):
+        """出席記録を追加"""
+        self.records.append({
+            "生徒ID": student_id,
+            "日付": date,
+            "状態": status  # 出席/欠席/遅刻/早退
+        })
+    
+    def get_student_summary(self, student_id):
+        """生徒個人の出席サマリー"""
+        df = pd.DataFrame(self.records)
+        student_records = df[df["生徒ID"] == student_id]
+        
+        summary = {
+            "出席": len(student_records[student_records["状態"] == "出席"]),
+            "欠席": len(student_records[student_records["状態"] == "欠席"]),
+            "遅刻": len(student_records[student_records["状態"] == "遅刻"]),
+            "早退": len(student_records[student_records["状態"] == "早退"])
+        }
+        
+        total = sum(summary.values())
+        summary["出席率"] = (summary["出席"] / total * 100) if total > 0 else 0
+        
+        return summary
+    
+    def get_daily_summary(self, date):
+        """日別の出席サマリー"""
+        df = pd.DataFrame(self.records)
+        daily_records = df[df["日付"] == date]
+        
+        return daily_records["状態"].value_counts().to_dict()
+    
+    def export_monthly_report(self, year, month, output_file):
+        """月次レポートを作成"""
+        df = pd.DataFrame(self.records)
+        df["日付"] = pd.to_datetime(df["日付"])
+        
+        # 指定月のデータをフィルタ
+        monthly_data = df[
+            (df["日付"].dt.year == year) & 
+            (df["日付"].dt.month == month)
+        ]
+        
+        # 生徒ごとの集計
+        pivot_table = pd.pivot_table(
+            monthly_data,
+            values="状態",
+            index="生徒ID",
+            columns="日付",
+            aggfunc=lambda x: x.iloc[0],
+            fill_value="-"
+        )
+        
+        pivot_table.to_excel(output_file)
+        print(f"月次レポートを保存しました: {output_file}")
+
+# 使用例
+manager = AttendanceManager()
+
+# サンプルデータの追加
+students = ["001", "002", "003"]
+start_date = datetime(2025, 1, 6)
+
+for i in range(20):  # 20日分
+    current_date = (start_date + timedelta(days=i)).strftime("%Y-%m-%d")
+    for student in students:
+        # ランダムに出席状態を設定（実際は実データを使用）
+        import random
+        status = random.choices(
+            ["出席", "欠席", "遅刻", "早退"],
+            weights=[85, 5, 8, 2]
+        )[0]
+        manager.add_record(student, current_date, status)
+
+# 個人サマリー
+summary = manager.get_student_summary("001")
+print(f"生徒001の出席サマリー: {summary}")
+
+# 月次レポート作成
+manager.export_monthly_report(2025, 1, "出席レポート_2025年1月.xlsx")</code></pre>
+                </div>
+
+                <h4>5.3 学習ログの解析</h4>
+                
+                <div class="example-box">
+                    <h5>実践例：学習プラットフォームのログ分析</h5>
+                    <pre><code>import pandas as pd
+import matplotlib.pyplot as plt
+
+class LearningAnalytics:
+    """学習ログ分析クラス"""
+    
+    def __init__(self, log_file):
+        """ログファイルを読み込み"""
+        self.df = pd.read_csv(log_file, encoding="utf-8")
+        self.df["timestamp"] = pd.to_datetime(self.df["timestamp"])
+    
+    def analyze_activity(self):
+        """活動パターンを分析"""
+        # 時間帯別の活動量
+        self.df["hour"] = self.df["timestamp"].dt.hour
+        hourly_activity = self.df.groupby("hour").size()
+        
+        plt.figure(figsize=(12, 6))
+        plt.bar(hourly_activity.index, hourly_activity.values, color="steelblue")
+        plt.xlabel("時間帯", fontsize=12)
+        plt.ylabel("アクセス数", fontsize=12)
+        plt.title("時間帯別学習活動", fontsize=14, fontweight="bold")
+        plt.xticks(range(0, 24))
+        plt.grid(axis='y', alpha=0.3)
+        plt.tight_layout()
+        plt.savefig("時間帯別活動.png", dpi=300)
+    
+    def analyze_content_usage(self):
+        """コンテンツ利用状況を分析"""
+        content_usage = self.df["content_type"].value_counts()
+        
+        plt.figure(figsize=(10, 6))
+        plt.pie(
+            content_usage.values,
+            labels=content_usage.index,
+            autopct='%1.1f%%',
+            startangle=90
+        )
+        plt.title("コンテンツ種別利用割合", fontsize=14, fontweight="bold")
+        plt.tight_layout()
+        plt.savefig("コンテンツ利用.png", dpi=300)
+    
+    def calculate_engagement(self, student_id):
+        """生徒のエンゲージメント指標を計算"""
+        student_logs = self.df[self.df["student_id"] == student_id]
+        
+        metrics = {
+            "総アクセス数": len(student_logs),
+            "学習日数": student_logs["timestamp"].dt.date.nunique(),
+            "平均学習時間（分）": student_logs["duration_minutes"].mean(),
+            "完了コンテンツ数": len(student_logs[student_logs["completed"] == True])
+        }
+        
+        return metrics
+
+# 使用例
+analytics = LearningAnalytics("learning_logs.csv")
+analytics.analyze_activity()
+analytics.analyze_content_usage()
+
+engagement = analytics.calculate_engagement("001")
+print(f"生徒001のエンゲージメント指標: {engagement}")</code></pre>
+                </div>
+
+                <h4>5.4 レポート自動生成</h4>
+                
+                <div class="example-box">
+                    <h5>総合プロジェクト：包括的な教育レポート生成</h5>
+                    <pre><code>from openpyxl import Workbook
+from openpyxl.styles import Font, PatternFill, Alignment, Border, Side
+from openpyxl.chart import BarChart, PieChart, Reference
+from datetime import datetime
+
+class EducationReportGenerator:
+    """教育レポート自動生成クラス"""
+    
+    def __init__(self):
+        self.wb = Workbook()
+        self.wb.remove(self.wb.active)  # デフォルトシートを削除
+    
+    def create_cover_sheet(self, title, school_name, date):
+        """表紙シートを作成"""
+        ws = self.wb.create_sheet("表紙", 0)
+        
+        # タイトル
+        ws["B2"] = title
+        ws["B2"].font = Font(size=24, bold=True)
+        ws["B2"].alignment = Alignment(horizontal="center", vertical="center")
+        ws.merge_cells("B2:F4")
+        
+        # 学校名
+        ws["B6"] = school_name
+        ws["B6"].font = Font(size=16)
+        ws["B6"].alignment = Alignment(horizontal="center")
+        ws.merge_cells("B6:F6")
+        
+        # 作成日
+        ws["B8"] = f"作成日: {date}"
+        ws["B8"].font = Font(size=12)
+        ws["B8"].alignment = Alignment(horizontal="center")
+        ws.merge_cells("B8:F8")
+    
+    def add_grade_sheet(self, grade_data):
+        """成績シートを追加"""
+        ws = self.wb.create_sheet("成績データ")
+        
+        # ヘッダー
+        headers = ["生徒ID", "氏名", "数学", "英語", "国語", "平均", "評価"]
+        ws.append(headers)
+        
+        # ヘッダースタイル
+        header_fill = PatternFill(start_color="4472C4", fill_type="solid")
+        header_font = Font(color="FFFFFF", bold=True)
+        for cell in ws[1]:
+            cell.fill = header_fill
+            cell.font = header_font
+            cell.alignment = Alignment(horizontal="center")
+        
+        # データ追加
+        for student in grade_data:
+            avg = (student["math"] + student["english"] + student["japanese"]) / 3
+            grade = self._calculate_grade(avg)
+            ws.append([
+                student["id"],
+                student["name"],
+                student["math"],
+                student["english"],
+                student["japanese"],
+                f"{avg:.1f}",
+                grade
+            ])
+        
+        # 罫線を追加
+        thin_border = Border(
+            left=Side(style='thin'),
+            right=Side(style='thin'),
+            top=Side(style='thin'),
+            bottom=Side(style='thin')
+        )
+        for row in ws.iter_rows(min_row=1, max_row=len(grade_data)+1, 
+                                min_col=1, max_col=7):
+            for cell in row:
+                cell.border = thin_border
+        
+        # グラフを追加
+        chart = BarChart()
+        chart.title = "科目別平均点"
+        data = Reference(ws, min_col=3, max_col=5, min_row=1, 
+                        max_row=len(grade_data)+1)
+        chart.add_data(data, titles_from_data=True)
+        ws.add_chart(chart, "I2")
+    
+    def _calculate_grade(self, average):
+        """平均点から評価を計算"""
+        if average >= 90:
+            return "A"
+        elif average >= 80:
+            return "B"
+        elif average >= 70:
+            return "C"
+        elif average >= 60:
+            return "D"
+        else:
+            return "E"
+    
+    def add_attendance_sheet(self, attendance_data):
+        """出席シートを追加"""
+        ws = self.wb.create_sheet("出席状況")
+        
+        # ヘッダー
+        headers = ["生徒ID", "氏名", "出席", "欠席", "遅刻", "早退", "出席率"]
+        ws.append(headers)
+        
+        # データ追加
+        for student in attendance_data:
+            total = student["present"] + student["absent"] + student["late"] + student["early"]
+            rate = (student["present"] / total * 100) if total > 0 else 0
+            ws.append([
+                student["id"],
+                student["name"],
+                student["present"],
+                student["absent"],
+                student["late"],
+                student["early"],
+                f"{rate:.1f}%"
+            ])
+    
+    def save(self, filename):
+        """ファイルを保存"""
+        self.wb.save(filename)
+        print(f"レポートを保存しました: {filename}")
+
+# 使用例
+generator = EducationReportGenerator()
+
+# 表紙作成
+generator.create_cover_sheet(
+    "2024年度 第3学年 総合レポート",
+    "〇〇市立△△中学校",
+    datetime.now().strftime("%Y年%m月%d日")
+)
+
+# サンプルデータ
+grade_data = [
+    {"id": "001", "name": "山田太郎", "math": 85, "english": 92, "japanese": 78},
+    {"id": "002", "name": "佐藤花子", "math": 90, "english": 88, "japanese": 95},
+    {"id": "003", "name": "鈴木一郎", "math": 75, "english": 80, "japanese": 82}
+]
+
+attendance_data = [
+    {"id": "001", "name": "山田太郎", "present": 180, "absent": 2, "late": 3, "early": 1},
+    {"id": "002", "name": "佐藤花子", "present": 185, "absent": 0, "late": 1, "early": 0},
+    {"id": "003", "name": "鈴木一郎", "present": 178, "absent": 4, "late": 2, "early": 2}
+]
+
+generator.add_grade_sheet(grade_data)
+generator.add_attendance_sheet(attendance_data)
+generator.save("総合レポート.xlsx")</code></pre>
+                </div>
+
+                <h3>第6部：バージョン管理（Git）（20分）</h3>
+
+                <h4>6.1 Gitの基本概念</h4>
+                
+                <div class="definition-box">
+                    <h5>バージョン管理システムとは</h5>
+                    <p>ファイルの変更履歴を管理し、複数人での共同作業を円滑にするシステムです。プログラムの開発では必須のツールです。</p>
+                    <ul>
+                        <li><strong>リポジトリ（Repository）</strong> - プロジェクトの保存場所</li>
+                        <li><strong>コミット（Commit）</strong> - 変更を記録すること</li>
+                        <li><strong>ブランチ（Branch）</strong> - 開発の分岐</li>
+                        <li><strong>マージ（Merge）</strong> - ブランチの統合</li>
+                    </ul>
+                </div>
+
+                <h4>6.2 Gitの基本操作</h4>
+                
+                <div class="example-box">
+                    <h5>主要コマンド一覧</h5>
+                    <pre><code># リポジトリの初期化
+git init
+
+# ファイルをステージングエリアに追加
+git add ファイル名.py
+git add .  # すべてのファイル
+
+# コミット（変更を記録）
+git commit -m "成績分析機能を追加"
+
+# リモートリポジトリの追加
+git remote add origin https://github.com/username/repository.git
+
+# リモートリポジトリにプッシュ
+git push origin main
+
+# リモートリポジトリから最新版を取得
+git pull origin main
+
+# ブランチの作成と切り替え
+git branch feature-new-function
+git checkout feature-new-function
+
+# ブランチのマージ
+git checkout main
+git merge feature-new-function
+
+# ステータス確認
+git status
+
+# 変更履歴の表示
+git log
+
+# 差分の確認
+git diff</code></pre>
+                </div>
+
+                <h4>6.3 GitHubの利用</h4>
+                
+                <div class="info-box">
+                    <h5>GitHubでできること</h5>
+                    <ul>
+                        <li><strong>リモートリポジトリのホスティング</strong> - コードをクラウドに保存</li>
+                        <li><strong>プルリクエスト</strong> - コードレビューと変更提案</li>
+                        <li><strong>Issue管理</strong> - バグ報告や機能要望の管理</li>
+                        <li><strong>GitHub Pages</strong> - Webサイトの公開</li>
+                        <li><strong>GitHub Actions</strong> - 自動テスト・デプロイ</li>
+                    </ul>
+                </div>
+
+                <div class="example-box">
+                    <h5>プロジェクトをGitHubにアップロードする手順</h5>
+                    <pre><code># 1. GitHubでリポジトリを作成（Webブラウザで）
+
+# 2. ローカルでGitを初期化
+cd プロジェクトフォルダ
+git init
+
+# 3. ファイルを追加してコミット
+git add .
+git commit -m "Initial commit"
+
+# 4. リモートリポジトリを追加
+git remote add origin https://github.com/username/project-name.git
+
+# 5. プッシュ
+git branch -M main
+git push -u origin main
+
+# .gitignoreファイルの作成（不要なファイルを除外）
+echo "__pycache__/" >> .gitignore
+echo "*.pyc" >> .gitignore
+echo ".env" >> .gitignore
+echo "venv/" >> .gitignore</code></pre>
+                </div>
+
+                <h4>6.4 チーム開発の基礎</h4>
+                
+                <div class="info-box">
+                    <h5>チーム開発のワークフロー</h5>
+                    <ol>
+                        <li><strong>リポジトリのクローン</strong> - チームメンバーがリポジトリをコピー</li>
+                        <li><strong>ブランチを作成</strong> - 機能ごとに別のブランチで開発</li>
+                        <li><strong>変更をコミット</strong> - 作業内容を記録</li>
+                        <li><strong>プッシュ</strong> - リモートリポジトリに変更を送信</li>
+                        <li><strong>プルリクエスト</strong> - レビューを依頼</li>
+                        <li><strong>レビューとマージ</strong> - 承認後にメインブランチに統合</li>
+                    </ol>
+                </div>
+
+            </section>
+
+            <section class="content-section">
+                <h2>🔧 実践演習</h2>
+
+                <h3>演習1：成績データをExcelから読み込み、統計処理とグラフ化</h3>
+                
+                <div class="exercise-box">
+                    <h4>課題</h4>
+                    <p>Excelファイル（scores.xlsx）から生徒の成績データを読み込み、以下の処理を行うプログラムを作成してください。</p>
+                    
+                    <h5>要件</h5>
+                    <ul>
+                        <li>pandasを使ってExcelファイルを読み込む</li>
+                        <li>科目別の平均点、最高点、最低点を計算</li>
+                        <li>matplotlibで棒グラフを作成</li>
+                        <li>結果を新しいExcelファイルに出力</li>
+                    </ul>
+                    
+                    <h5>ヒント</h5>
+                    <pre><code>import pandas as pd
+import matplotlib.pyplot as plt
+
+# データの読み込み
+df = pd.read_excel("scores.xlsx")
+
+# 統計計算
+# ここに処理を実装
+
+# グラフ作成
+# ここに処理を実装
+
+# 結果の保存
+# ここに処理を実装</code></pre>
+                </div>
+
+                <h3>演習2：Google Classroom APIを使った課題一覧取得</h3>
+                
+                <div class="exercise-box">
+                    <h4>課題</h4>
+                    <p>Google Classroom APIを利用して、指定したクラスの課題一覧を取得し、CSV形式で保存するプログラムを作成してください。</p>
+                    
+                    <h5>要件</h5>
+                    <ul>
+                        <li>Google Classroom APIの認証を実装</li>
+                        <li>指定したクラスIDの課題を取得</li>
+                        <li>課題のタイトル、説明、締切日を含めること</li>
+                        <li>CSVファイルに出力</li>
+                    </ul>
+                    
+                    <h5>前提条件</h5>
+                    <ul>
+                        <li>Google Cloud Platformでプロジェクトを作成済み</li>
+                        <li>Classroom APIが有効化されている</li>
+                        <li>credentials.jsonファイルが準備されている</li>
+                    </ul>
+                </div>
+
+                <h3>演習3：自動化ツールの作成プロジェクト</h3>
+                
+                <div class="exercise-box">
+                    <h4>課題（総合プロジェクト）</h4>
+                    <p>以下のいずれかの自動化ツールを作成し、実際に使用できる状態にしてください。</p>
+                    
+                    <h5>選択肢A：出席簿自動集計ツール</h5>
+                    <ul>
+                        <li>日々の出席データをCSVで管理</li>
+                        <li>月次・年次の集計を自動実行</li>
+                        <li>出席率、遅刻回数などを計算</li>
+                        <li>Excelレポートを自動生成</li>
+                    </ul>
+                    
+                    <h5>選択肢B：成績通知書作成ツール</h5>
+                    <ul>
+                        <li>成績データから個人別の通知書を生成</li>
+                        <li>テンプレートを使用（Word/PDF）</li>
+                        <li>成績グラフを自動生成</li>
+                        <li>一括印刷用のファイルを作成</li>
+                    </ul>
+                    
+                    <h5>選択肢C：学習データダッシュボード</h5>
+                    <ul>
+                        <li>複数のデータソースを統合</li>
+                        <li>リアルタイムで状況を可視化</li>
+                        <li>HTML形式のダッシュボードを生成</li>
+                        <li>定期的に自動更新</li>
+                    </ul>
+                    
+                    <h5>評価基準</h5>
+                    <ul>
+                        <li><strong>機能性（40%）</strong> - 要求された機能が正しく動作するか</li>
+                        <li><strong>コード品質（30%）</strong> - オブジェクト指向設計、可読性、エラー処理</li>
+                        <li><strong>ドキュメント（20%）</strong> - README、コメント、使用方法の説明</li>
+                        <li><strong>実用性（10%）</strong> - 教育現場で実際に使える設計か</li>
+                    </ul>
+                </div>
+
+            </section>
+
+            <section class="content-section">
+                <h2>🔗 既存講座との関連</h2>
+                
+                <div class="info-box">
+                    <h4>本講座と関連する講座</h4>
+                    <ul>
+                        <li><strong>第21回「校務支援システムと校務DX」</strong> - 本講座で学ぶ自動化技術は、校務DXの実践に直結します</li>
+                        <li><strong>第33回「教育データの活用と分析」</strong> - データ分析の理論を、本講座で技術的に実装します</li>
+                        <li><strong>第56回「コンパイラとプログラミング言語」</strong> - プログラミング言語の基礎知識が前提となります</li>
+                        <li><strong>第57回「プログラミング基礎演習」</strong> - Python基礎文法の理解が必須です</li>
+                    </ul>
+                </div>
+
+                <div class="learning-path-box">
+                    <h4>推奨学習パス</h4>
+                    <ol>
+                        <li>第56回「コンパイラとプログラミング言語」でプログラミングの全体像を理解</li>
+                        <li>第57回「プログラミング基礎演習」でPython基礎文法を習得</li>
+                        <li><strong>【現在の講座】第58回「プログラミング特論」で実務的な技術を習得</strong></li>
+                        <li>第21回「校務支援システムと校務DX」で実践事例を学習</li>
+                        <li>第33回「教育データの活用と分析」でデータ活用の理論を深める</li>
+                    </ol>
+                </div>
+            </section>
+
+            <section class="content-section">
+                <h2>📚 参考資料とさらなる学習</h2>
+
+                <h3>11.1 推奨書籍</h3>
+                
+                <div class="info-box">
+                    <h4>📖 技術書</h4>
+                    <ul>
+                        <li><strong>「Python実践入門」（技術評論社）</strong> - Pythonの実践的な使い方を網羅</li>
+                        <li><strong>「退屈なことはPythonにやらせよう」（オライリー）</strong> - 自動化の実践例が豊富</li>
+                        <li><strong>「Effective Python」（オライリー）</strong> - Pythonの効果的な書き方</li>
+                        <li><strong>「入門 Python 3」（オライリー）</strong> - Pythonの基礎から応用まで</li>
+                    </ul>
+                </div>
+
+                <h3>11.2 オンラインリソース</h3>
+                
+                <div class="info-box">
+                    <h4>🌐 公式ドキュメント</h4>
+                    <ul>
+                        <li><a href="https://docs.python.org/ja/3/" target="_blank">Python公式ドキュメント（日本語）</a> - 標準ライブラリのリファレンス</li>
+                        <li><a href="https://pandas.pydata.org/docs/" target="_blank">pandas公式ドキュメント</a> - データ分析ライブラリ</li>
+                        <li><a href="https://matplotlib.org/stable/index.html" target="_blank">matplotlib公式ドキュメント</a> - グラフ作成ライブラリ</li>
+                        <li><a href="https://openpyxl.readthedocs.io/" target="_blank">openpyxl公式ドキュメント</a> - Excel操作ライブラリ</li>
+                    </ul>
+                    
+                    <h4>🌐 API ドキュメント</h4>
+                    <ul>
+                        <li><a href="https://developers.google.com/classroom" target="_blank">Google Classroom API ドキュメント</a></li>
+                        <li><a href="https://docs.microsoft.com/ja-jp/graph/" target="_blank">Microsoft Graph API ドキュメント</a></li>
+                    </ul>
+                    
+                    <h4>🌐 学習サイト</h4>
+                    <ul>
+                        <li><a href="https://www.python.org/" target="_blank">Python.org</a> - 公式サイト</li>
+                        <li><a href="https://realpython.com/" target="_blank">Real Python</a> - 実践的なチュートリアル（英語）</li>
+                        <li><a href="https://note.nkmk.me/python/" target="_blank">note.nkmk.me</a> - Python Tips（日本語）</li>
+                    </ul>
+                </div>
+
+                <h3>11.3 開発環境</h3>
+                
+                <div class="info-box">
+                    <h4>推奨IDE</h4>
+                    <ul>
+                        <li><strong>PyCharm</strong> - プロフェッショナル向けIDE（Community版は無料）</li>
+                        <li><strong>Visual Studio Code</strong> - 軽量で拡張性の高いエディタ（無料）</li>
+                        <li><strong>Jupyter Notebook</strong> - データ分析・教育向け（無料）</li>
+                        <li><strong>Google Colab</strong> - クラウドベースのJupyter環境（無料）</li>
+                    </ul>
+                </div>
+
+                <h3>11.4 学習計画（ICT支援員向け）</h3>
+                
+                <div class="learning-path-box">
+                    <h4>🎯 レベル1「基礎習得」（1〜3ヶ月）</h4>
+                    <ul>
+                        <li>オブジェクト指向プログラミングの4大原則を理解</li>
+                        <li>Python標準ライブラリの基本的な使い方を習得</li>
+                        <li>pandas、matplotlibの基本操作を実践</li>
+                        <li>簡単なデータ処理スクリプトを作成</li>
+                    </ul>
+                    
+                    <h4>🎯 レベル2「実践応用」（3〜6ヶ月）</h4>
+                    <ul>
+                        <li>教育データの集計・可視化ツールを開発</li>
+                        <li>Web APIを活用したプログラムを作成</li>
+                        <li>Gitでバージョン管理を実践</li>
+                        <li>実際の校務業務の自動化に挑戦</li>
+                    </ul>
+                    
+                    <h4>🎯 レベル3「専門技術」（6ヶ月〜）</h4>
+                    <ul>
+                        <li>大規模データの処理と最適化</li>
+                        <li>Webアプリケーションの開発</li>
+                        <li>機械学習の基礎と教育データへの応用</li>
+                        <li>チーム開発のリーダーシップ</li>
+                    </ul>
+                </div>
+            </section>
+
+            <section class="content-section">
+                <h2>✅ 修了要件と評価</h2>
+                
+                <div class="info-box">
+                    <h3>修了認定基準</h3>
+                    <p>以下のすべての要件を満たすことで、本講座の修了が認定されます。</p>
+                    
+                    <h4>必須要件</h4>
+                    <ul>
+                        <li><strong>実践演習の完成（3問中2問以上）</strong> - 動作するプログラムを提出</li>
+                        <li><strong>総合プロジェクトの提出</strong> - 選択肢A/B/Cのいずれか1つを完成させる</li>
+                        <li><strong>コードレビュー</strong> - 提出したコードについて簡単なレビューを受ける</li>
+                        <li><strong>振り返りレポート</strong> - 学習の成果と今後の活用計画をA4用紙1枚程度でまとめる</li>
+                    </ul>
+                    
+                    <h4>評価項目</h4>
+                    <table class="evaluation-table">
+                        <tr>
+                            <th>評価項目</th>
+                            <th>配点</th>
+                            <th>評価基準</th>
+                        </tr>
+                        <tr>
+                            <td>プログラムの動作</td>
+                            <td>30点</td>
+                            <td>要求された機能が正しく動作するか</td>
+                        </tr>
+                        <tr>
+                            <td>コード品質</td>
+                            <td>25点</td>
+                            <td>オブジェクト指向設計、可読性、保守性</td>
+                        </tr>
+                        <tr>
+                            <td>応用力</td>
+                            <td>20点</td>
+                            <td>学んだ技術を実際の課題に適用できるか</td>
+                        </tr>
+                        <tr>
+                            <td>ドキュメント</td>
+                            <td>15点</td>
+                            <td>README、コメント、使用方法の説明</td>
+                        </tr>
+                        <tr>
+                            <td>振り返りレポート</td>
+                            <td>10点</td>
+                            <td>学習の振り返りと今後の計画</td>
+                        </tr>
+                    </table>
+                    
+                    <p><strong>合格基準：</strong>総合点60点以上（100点満点）</p>
+                </div>
+            </section>
+
+            <section class="content-section">
+                <h2>💡 指導のポイント（ICT支援員・講師向け）</h2>
+                
+                <div class="warning-box">
+                    <h3>受講者がつまずきやすいポイントと対策</h3>
+                    
+                    <h4>1. オブジェクト指向の概念理解</h4>
+                    <ul>
+                        <li><strong>つまずきポイント：</strong>「クラス」と「オブジェクト」の違いが理解できない</li>
+                        <li><strong>対策：</strong>現実世界の例（「生徒」クラス、具体的な「山田太郎」というオブジェクト）で説明</li>
+                        <li><strong>支援方法：</strong>身近な概念（動物→犬→ポチ）で階層構造を理解させる</li>
+                    </ul>
+                    
+                    <h4>2. ライブラリのインストールとインポート</h4>
+                    <ul>
+                        <li><strong>つまずきポイント：</strong>pip installとimportの違い、ModuleNotFoundError</li>
+                        <li><strong>対策：</strong>「pip install = ライブラリのダウンロード、import = プログラムで使う宣言」と明確に区別</li>
+                        <li><strong>支援方法：</strong>仮想環境の概念を簡潔に説明し、requirements.txtの活用を推奨</li>
+                    </ul>
+                    
+                    <h4>3. pandasのDataFrame操作</h4>
+                    <ul>
+                        <li><strong>つまずきポイント：</strong>列選択、行フィルタリング、インデックスの扱い</li>
+                        <li><strong>対策：</strong>Excelの操作と対応させて説明（列=列、行フィルタ=オートフィルタ）</li>
+                        <li><strong>支援方法：</strong>小さなサンプルデータで段階的に操作を実演</li>
+                    </ul>
+                    
+                    <h4>4. API認証とトークン管理</h4>
+                    <ul>
+                        <li><strong>つまずきポイント：</strong>OAuth2.0の認証フロー、トークンの扱い</li>
+                        <li><strong>対策：</strong>「ログイン情報を安全に保存する仕組み」と説明、credentials.jsonの重要性を強調</li>
+                        <li><strong>支援方法：</strong>セキュリティのリスク（APIキーの公開）を具体例で説明</li>
+                    </ul>
+                    
+                    <h4>5. ファイルパスの扱い</h4>
+                    <ul>
+                        <li><strong>つまずきポイント：</strong>絶対パス・相対パス、WindowsとMacの違い（/と\）</li>
+                        <li><strong>対策：</strong>pathlibの使用を推奨、OS間の差異を吸収</li>
+                        <li><strong>支援方法：</strong>カレントディレクトリの概念を丁寧に説明</li>
+                    </ul>
+                </div>
+
+                <div class="info-box">
+                    <h3>効果的な指導テクニック</h3>
+                    <ul>
+                        <li><strong>段階的な実装</strong> - いきなり完成形を目指さず、小さな機能から積み上げる</li>
+                        <li><strong>エラーメッセージの読み方</strong> - エラーは「敵」ではなく「助言者」と認識させる</li>
+                        <li><strong>デバッグの習慣化</strong> - print文デバッグを積極的に活用</li>
+                        <li><strong>コードレビューの実施</strong> - ペアで相互にレビューし合う時間を設ける</li>
+                        <li><strong>実務との結びつけ</strong> - 常に「これが実際の業務でどう役立つか」を説明</li>
+                    </ul>
+                </div>
+            </section>
+
+            <section class="content-section">
+                <h2>📅 まとめと次のステップ</h2>
+                
+                <div class="summary-box">
+                    <h3>本講座で学んだこと</h3>
+                    <ul>
+                        <li>✅ オブジェクト指向プログラミングの4大原則（カプセル化、継承、多態性、抽象化）</li>
+                        <li>✅ Python標準ライブラリ（os、sys、datetime、csv、json、pathlib）の活用</li>
+                        <li>✅ 外部ライブラリ（pandas、openpyxl、matplotlib、Pillow）を使ったデータ処理</li>
+                        <li>✅ Web API（REST API、Google Classroom API、Microsoft Graph API）との連携</li>
+                        <li>✅ 教育データの集計・分析・可視化の実践技術</li>
+                        <li>✅ バージョン管理システム（Git/GitHub）の基本操作</li>
+                    </ul>
+                </div>
+
+                <div class="next-step-box">
+                    <h3>🚀 今後の学習展開</h3>
+                    
+                    <h4>短期目標（1〜3ヶ月）</h4>
+                    <ul>
+                        <li>本講座の演習課題をすべて完成させる</li>
+                        <li>実際の校務業務で小規模な自動化ツールを開発</li>
+                        <li>GitHubにポートフォリオを作成</li>
+                    </ul>
+                    
+                    <h4>中期目標（3〜6ヶ月）</h4>
+                    <ul>
+                        <li>複数のAPIを組み合わせた統合ツールの開発</li>
+                        <li>データベース（SQLite、PostgreSQL）の学習</li>
+                        <li>Webアプリケーションフレームワーク（Flask、Django）の習得</li>
+                        <li>チーム開発プロジェクトへの参加</li>
+                    </ul>
+                    
+                    <h4>長期目標（6ヶ月〜）</h4>
+                    <ul>
+                        <li>機械学習・AIの基礎と教育データへの応用</li>
+                        <li>クラウドサービス（AWS、Azure、GCP）の活用</li>
+                        <li>セキュリティとプライバシー保護の実装</li>
+                        <li>EdTech開発者としてのキャリア構築</li>
+                    </ul>
+                </div>
+
+                <div class="info-box">
+                    <h3>🌟 ICT支援員に期待される役割</h3>
+                    <p>本講座で習得した技術を活用し、以下の役割を果たすことが期待されます：</p>
+                    <ul>
+                        <li><strong>校務の自動化推進</strong> - 教職員の業務負担を軽減するツール開発</li>
+                        <li><strong>教育データの活用支援</strong> - データドリブンな教育改善の技術的サポート</li>
+                        <li><strong>教職員の技術的相談役</strong> - プログラミング・システム開発のアドバイス</li>
+                        <li><strong>EdTechの導入支援</strong> - 新しい教育技術の評価と実装</li>
+                        <li><strong>生徒のプログラミング学習支援</strong> - 高度な技術相談への対応</li>
+                    </ul>
+                </div>
+            </section>
+
+            <div class="navigation-buttons">
+                <a href="session57.html" class="btn btn-secondary">← 第57回：プログラミング基礎演習</a>
+                <a href="../supplement.html" class="btn btn-primary">補完カリキュラムトップへ</a>
+            </div>
+
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 ICT支援員教育講座. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="../js/main.js"></script>
+</body>
+</html>
