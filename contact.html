@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>お問い合わせ - ICT支援員教育講座</title>
+    <meta name="description" content="ICT支援員教育講座へのお問い合わせはこちら。講座内容、受講方法、資格試験対策など、お気軽にご相談ください。">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="container">
+                <div class="logo">
+                    <h1>🎓 ICT支援員教育講座</h1>
+                </div>
+                <ul class="nav-menu">
+                    <li><a href="index.html">ホーム</a></li>
+                    <li><a href="beginner.html">入門編</a></li>
+                    <li><a href="intermediate.html">基礎編</a></li>
+                    <li><a href="intermediate2.html">中級編</a></li>
+                    <li><a href="advanced.html">発展編</a></li>
+                    <li><a href="certification.html">試験対策</a></li>
+                    <li><a href="supplement.html">補完カリキュラム</a></li>
+                    <li><a href="resources.html">参考資料</a></li>
+                    <li><a href="contact.html" class="active">お問い合わせ</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero" style="background: linear-gradient(135deg, #059669 0%, #047857 100%);">
+            <div class="container">
+                <div class="level-icon" style="font-size: 4rem;">✉️</div>
+                <h2>お問い合わせ</h2>
+                <p class="subtitle">講座内容、受講方法、資格試験対策など、お気軽にご相談ください</p>
+                <p class="hero-description">ICT支援員教育講座に関するご質問・ご相談を承ります。下記フォームよりお問い合わせください。</p>
+            </div>
+        </section>
+
+        <section class="contact-section">
+            <div class="container">
+                <div class="contact-intro">
+                    <h2>📧 お問い合わせフォーム</h2>
+                    <p>以下のフォームに必要事項をご記入の上、送信してください。<br>
+                    通常2〜3営業日以内にご返信いたします。</p>
+                </div>
+
+                <div class="contact-content">
+                    <div class="contact-form-wrapper">
+                        <form action="https://formspree.io/f/mqeakdep" method="POST" class="contact-form">
+                            <!-- お名前 -->
+                            <div class="form-group">
+                                <label for="name">お名前 <span class="required">必須</span></label>
+                                <input type="text" id="name" name="name" required placeholder="山田 太郎">
+                            </div>
+
+                            <!-- メールアドレス -->
+                            <div class="form-group">
+                                <label for="email">メールアドレス <span class="required">必須</span></label>
+                                <input type="email" id="email" name="_replyto" required placeholder="example@email.com">
+                            </div>
+
+                            <!-- 件名 -->
+                            <div class="form-group">
+                                <label for="subject">件名 <span class="required">必須</span></label>
+                                <input type="text" id="subject" name="_subject" required placeholder="例：入門編の受講について">
+                            </div>
+
+                            <!-- お問い合わせ種別 -->
+                            <div class="form-group">
+                                <label for="category">お問い合わせ種別</label>
+                                <select id="category" name="category">
+                                    <option value="">選択してください</option>
+                                    <option value="講座内容について">講座内容について</option>
+                                    <option value="受講方法について">受講方法について</option>
+                                    <option value="資格試験について">資格試験について</option>
+                                    <option value="補完カリキュラムについて">補完カリキュラムについて</option>
+                                    <option value="その他">その他</option>
+                                </select>
+                            </div>
+
+                            <!-- お問い合わせ内容 -->
+                            <div class="form-group">
+                                <label for="message">お問い合わせ内容 <span class="required">必須</span></label>
+                                <textarea id="message" name="message" rows="8" required placeholder="お問い合わせ内容をご記入ください"></textarea>
+                            </div>
+
+                            <!-- 送信ボタン -->
+                            <div class="form-submit">
+                                <button type="submit" class="btn btn-primary btn-large">送信する</button>
+                            </div>
+
+                            <!-- プライバシーポリシー -->
+                            <p class="form-note">
+                                ※ご入力いただいた個人情報は、お問い合わせへの回答のみに使用し、適切に管理いたします。<br>
+                                詳しくは<a href="privacy.html" target="_blank" style="color: var(--primary-color); text-decoration: underline;">プライバシーポリシー</a>をご確認ください。
+                            </p>
+                        </form>
+                    </div>
+
+                    <!-- サイドバー：よくある質問 -->
+                    <div class="contact-sidebar">
+                        <div class="faq-box">
+                            <h3>💡 よくある質問</h3>
+                            
+                            <div class="faq-item">
+                                <h4>Q. 講座はどのように受講できますか？</h4>
+                                <p>各講座ページから「詳細を見る」をクリックし、講座内容をご確認いただけます。</p>
+                            </div>
+
+                            <div class="faq-item">
+                                <h4>Q. 受講料はかかりますか？</h4>
+                                <p>現在、本講座は無料で公開しております。自由に学習いただけます。</p>
+                            </div>
+
+                            <div class="faq-item">
+                                <h4>Q. 修了証は発行されますか？</h4>
+                                <p>各レベルの確認テストに合格すると、合格証が自動発行されます。修了証の発行については、お問い合わせください。</p>
+                            </div>
+
+                            <div class="faq-item">
+                                <h4>Q. 補完カリキュラムとは何ですか？</h4>
+                                <p>既存講座62回に加え、さらに専門性を深める28回の高度なカリキュラムです。詳しくは<a href="supplement.html">補完カリキュラム</a>ページをご覧ください。</p>
+                            </div>
+                        </div>
+
+                        <div class="contact-info-box">
+                            <h3>📮 直接メールでのお問い合わせ</h3>
+                            <p>フォームがご利用いただけない場合は、以下のメールアドレスまで直接お問い合わせください。</p>
+                            <p class="email-address">
+                                <a href="mailto:school.ict.info@gmail.com">school.ict.info@gmail.com</a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>基本講座</h4>
+                    <ul>
+                        <li><a href="beginner.html">入門編（第1回～第10回）</a></li>
+                        <li><a href="intermediate.html">基礎編（第11回～第24回）</a></li>
+                        <li><a href="intermediate2.html">中級編（第1回～第14回）</a></li>
+                        <li><a href="advanced.html">発展編（第25回～第36回）</a></li>
+                        <li><a href="certification.html">試験対策（第37回～第48回）</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>補完カリキュラム</h4>
+                    <ul>
+                        <li><a href="supplement.html">情報科学・CS基礎（第49～56回）</a></li>
+                        <li><a href="supplement.html">プログラミング（第57～62回）</a></li>
+                        <li><a href="supplement.html">データサイエンス・AI（第63～68回）</a></li>
+                        <li><a href="supplement.html">教育経営（第69～76回）</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>参考リソース</h4>
+                    <ul>
+                        <li><a href="resources.html">主要参考資料</a></li>
+                        <li><a href="resources.html#government">国・行政機関</a></li>
+                        <li><a href="resources.html#organizations">専門機関・団体</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>お問い合わせ</h4>
+                    <ul>
+                        <li><a href="contact.html">お問い合わせフォーム</a></li>
+                    </ul>
+                    <p>Email: <a href="mailto:school.ict.info@gmail.com">school.ict.info@gmail.com</a></p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 ICT支援員教育講座. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+</body>
+</html>
