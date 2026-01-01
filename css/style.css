@@ -671,3 +671,349 @@ footer {
         background: white;
     }
 }
+
+/* ========================================
+   広告枠スタイル
+   ======================================== */
+
+/* 広告コンテナの基本スタイル */
+.ad-container {
+    margin: 2rem 0;
+    padding: 1rem;
+    background: #fafafa;
+    border: 1px solid #e5e7eb;
+    border-radius: 0.5rem;
+    text-align: center;
+}
+
+.ad-label {
+    font-size: 0.75rem;
+    color: #9ca3af;
+    margin-bottom: 0.5rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+/* サイドバー広告（デスクトップ） */
+.ad-sidebar {
+    position: sticky;
+    top: 80px;
+    width: 300px;
+    margin-left: 2rem;
+    display: none; /* デフォルトは非表示 */
+}
+
+.main-with-sidebar {
+    display: flex;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.main-content-wrapper {
+    flex: 1;
+    min-width: 0;
+}
+
+/* インコンテンツ広告（セクション間） */
+.ad-inline {
+    max-width: 728px;
+    margin: 3rem auto;
+}
+
+/* フッター上部広告 */
+.ad-footer-top {
+    max-width: 970px;
+    margin: 2rem auto;
+    padding: 2rem 1rem;
+}
+
+/* レスポンシブ対応 */
+@media (min-width: 1400px) {
+    .ad-sidebar {
+        display: block; /* 大画面でサイドバー広告を表示 */
+    }
+}
+
+@media (max-width: 768px) {
+    .ad-inline {
+        max-width: 100%;
+    }
+    
+    .ad-container {
+        padding: 0.75rem;
+        margin: 1.5rem 0;
+    }
+}
+
+/* 広告非表示時の調整 */
+.ad-container:empty {
+    display: none;
+    margin: 0;
+    padding: 0;
+}
+
+/* 印刷時は広告を非表示 */
+@media print {
+    .ad-container,
+    .ad-sidebar,
+    .ad-inline,
+    .ad-footer-top {
+        display: none !important;
+    }
+}
+
+/* ========================================
+   お問い合わせフォームスタイル
+   ======================================== */
+
+/* お問い合わせセクション */
+.contact-section {
+    padding: 4rem 0;
+    background: #f9fafb;
+}
+
+.contact-intro {
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+.contact-intro h2 {
+    font-size: 2rem;
+    color: var(--dark);
+    margin-bottom: 1rem;
+}
+
+.contact-intro p {
+    font-size: 1.1rem;
+    color: var(--gray);
+    line-height: 1.8;
+}
+
+/* コンテンツレイアウト */
+.contact-content {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 3rem;
+    margin-top: 2rem;
+}
+
+/* フォームラッパー */
+.contact-form-wrapper {
+    background: white;
+    padding: 2.5rem;
+    border-radius: 1rem;
+    box-shadow: var(--shadow);
+}
+
+/* フォームスタイル */
+.contact-form {
+    width: 100%;
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+.form-group label {
+    display: block;
+    font-weight: 600;
+    color: var(--dark);
+    margin-bottom: 0.5rem;
+    font-size: 1rem;
+}
+
+.required {
+    color: var(--danger-color);
+    font-size: 0.875rem;
+    font-weight: 500;
+    margin-left: 0.25rem;
+}
+
+.form-group input[type="text"],
+.form-group input[type="email"],
+.form-group select,
+.form-group textarea {
+    width: 100%;
+    padding: 0.875rem 1rem;
+    font-size: 1rem;
+    border: 2px solid #e5e7eb;
+    border-radius: 0.5rem;
+    transition: all 0.3s ease;
+    font-family: inherit;
+}
+
+.form-group input[type="text"]:focus,
+.form-group input[type="email"]:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: var(--success-color);
+    box-shadow: 0 0 0 3px rgba(5, 150, 105, 0.1);
+}
+
+.form-group textarea {
+    resize: vertical;
+    min-height: 150px;
+}
+
+.form-group select {
+    cursor: pointer;
+    background-color: white;
+}
+
+.form-submit {
+    margin-top: 2rem;
+}
+
+.btn-large {
+    padding: 1rem 3rem;
+    font-size: 1.1rem;
+    width: 100%;
+}
+
+.form-note {
+    margin-top: 1.5rem;
+    font-size: 0.875rem;
+    color: var(--gray);
+    line-height: 1.6;
+}
+
+/* サイドバー */
+.contact-sidebar {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+/* FAQボックス */
+.faq-box {
+    background: white;
+    padding: 2rem;
+    border-radius: 1rem;
+    box-shadow: var(--shadow);
+}
+
+.faq-box h3 {
+    font-size: 1.5rem;
+    color: var(--dark);
+    margin-bottom: 1.5rem;
+    border-bottom: 3px solid var(--success-color);
+    padding-bottom: 0.5rem;
+}
+
+.faq-item {
+    margin-bottom: 1.5rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid #e5e7eb;
+}
+
+.faq-item:last-child {
+    margin-bottom: 0;
+    padding-bottom: 0;
+    border-bottom: none;
+}
+
+.faq-item h4 {
+    font-size: 1rem;
+    color: var(--dark);
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+}
+
+.faq-item p {
+    font-size: 0.95rem;
+    color: var(--gray);
+    line-height: 1.6;
+}
+
+.faq-item a {
+    color: var(--success-color);
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.faq-item a:hover {
+    text-decoration: underline;
+}
+
+/* お問い合わせ情報ボックス */
+.contact-info-box {
+    background: linear-gradient(135deg, #059669 0%, #047857 100%);
+    color: white;
+    padding: 2rem;
+    border-radius: 1rem;
+    box-shadow: var(--shadow);
+}
+
+.contact-info-box h3 {
+    font-size: 1.3rem;
+    color: white;
+    margin-bottom: 1rem;
+}
+
+.contact-info-box p {
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin-bottom: 1rem;
+}
+
+.email-address {
+    background: rgba(255, 255, 255, 0.2);
+    padding: 1rem;
+    border-radius: 0.5rem;
+    text-align: center;
+    margin-top: 1.5rem;
+}
+
+.email-address a {
+    color: white;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 1.1rem;
+    word-break: break-all;
+}
+
+.email-address a:hover {
+    text-decoration: underline;
+}
+
+/* レスポンシブ対応 */
+@media (max-width: 968px) {
+    .contact-content {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+    
+    .contact-form-wrapper {
+        padding: 2rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .contact-section {
+        padding: 3rem 0;
+    }
+    
+    .contact-intro h2 {
+        font-size: 1.75rem;
+    }
+    
+    .contact-intro p {
+        font-size: 1rem;
+    }
+    
+    .contact-form-wrapper {
+        padding: 1.5rem;
+    }
+    
+    .faq-box,
+    .contact-info-box {
+        padding: 1.5rem;
+    }
+    
+    .btn-large {
+        padding: 0.875rem 2rem;
+        font-size: 1rem;
+    }
+}
